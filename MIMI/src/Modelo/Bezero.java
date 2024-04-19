@@ -44,69 +44,149 @@ public class Bezero {
 
     //---------------- GETTERS eta SETTERS ---------------- //
 
+    /**
+     * Bezeroaren identifikazioa lortzen du.
+     *
+     * @return Bezeroaren identifikazioa.
+     */
     public int getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    /**
+     * Bezeroaren identifikazioa ezartzen du.
+     *
+     * @param id Bezeroaren identifikazioa.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getIzena() {
-		return izena;
-	}
+    /**
+     * Bezeroaren izena lortzen du.
+     *
+     * @return Bezeroaren izena.
+     */
+    public String getIzena() {
+        return izena;
+    }
 
-	public void setIzena(String izena) {
-		this.izena = izena;
-	}
+    /**
+     * Bezeroaren izena ezartzen du.
+     *
+     * @param izena Bezeroaren izena.
+     */
+    public void setIzena(String izena) {
+        this.izena = izena;
+    }
 
-	public String getAbizena() {
-		return abizena;
-	}
+    /**
+     * Bezeroaren abizena lortzen du.
+     *
+     * @return Bezeroaren abizena.
+     */
+    public String getAbizena() {
+        return abizena;
+    }
 
-	public void setAbizena(String abizena) {
-		this.abizena = abizena;
-	}
+    /**
+     * Bezeroaren abizena ezartzen du.
+     *
+     * @param abizena Bezeroaren abizena.
+     */
+    public void setAbizena(String abizena) {
+        this.abizena = abizena;
+    }
 
-	public String getErabiltzaile() {
-		return erabiltzaile;
-	}
+    /**
+     * Bezeroaren erabiltzaile izena lortzen du.
+     *
+     * @return Bezeroaren erabiltzaile izena.
+     */
+    public String getErabiltzaile() {
+        return erabiltzaile;
+    }
 
-	public void setErabiltzaile(String erabiltzaile) {
-		this.erabiltzaile = erabiltzaile;
-	}
+    /**
+     * Bezeroaren erabiltzaile izena ezartzen du.
+     *
+     * @param erabiltzaile Bezeroaren erabiltzaile izena.
+     */
+    public void setErabiltzaile(String erabiltzaile) {
+        this.erabiltzaile = erabiltzaile;
+    }
 
-	public String getPasahitza() {
-		return pasahitza;
-	}
+    /**
+     * Bezeroaren pasahitza lortzen du.
+     *
+     * @return Bezeroaren pasahitza.
+     */
+    public String getPasahitza() {
+        return pasahitza;
+    }
 
-	public void setPasahitza(String pasahitza) {
-		this.pasahitza = pasahitza;
-	}
+    /**
+     * Bezeroaren pasahitza ezartzen du.
+     *
+     * @param pasahitza Bezeroaren pasahitza.
+     */
+    public void setPasahitza(String pasahitza) {
+        this.pasahitza = pasahitza;
+    }
 
-	public Date getJaioData() {
-		return jaioData;
-	}
+    /**
+     * Bezeroaren jaioData lortzen du.
+     *
+     * @return Bezeroaren jaioData.
+     */
+    public Date getJaioData() {
+        return jaioData;
+    }
 
-	public void setJaioData(Date jaioData) {
-		this.jaioData = jaioData;
-	}
+    /**
+     * Bezeroaren jaioData ezartzen du.
+     *
+     * @param jaioData Bezeroaren jaioData.
+     */
+    public void setJaioData(Date jaioData) {
+        this.jaioData = jaioData;
+    }
 
-	public Date getErregisData() {
-		return erregisData;
-	}
+    /**
+     * Bezeroaren erregisData lortzen du.
+     *
+     * @return Bezeroaren erregisData.
+     */
+    public Date getErregisData() {
+        return erregisData;
+    }
 
-	public void setErregisData(Date erregisData) {
-		this.erregisData = erregisData;
-	}
+    /**
+     * Bezeroaren erregisData ezartzen du.
+     *
+     * @param erregisData Bezeroaren erregisData.
+     */
+    public void setErregisData(Date erregisData) {
+        this.erregisData = erregisData;
+    }
 
-	public ArrayList<Abesti> getPlayArray() {
-		return playArray;
-	}
+    /**
+     * Bezeroaren abesti lista lortzen du.
+     *
+     * @return Bezeroaren abesti lista.
+     */
+    public ArrayList<Abesti> getPlayArray() {
+        return playArray;
+    }
 
-	public void setPlayArray(ArrayList<Abesti> playArray) {
-		this.playArray = playArray;
-	}
+    /**
+     * Bezeroaren abesti lista ezartzen du.
+     *
+     * @param playArray Bezeroaren abesti lista.
+     */
+    public void setPlayArray(ArrayList<Abesti> playArray) {
+        this.playArray = playArray;
+    }
 
     //---------------- ToString ---------------- //
 
