@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Kontrolador.Konexioa;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -16,6 +19,11 @@ import java.awt.Insets;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -217,7 +225,7 @@ public class ErregistroBista extends JFrame {
         lblHizkuntza.setFont(new Font("Tahoma", Font.PLAIN, 18));
         getContentPane().add(lblHizkuntza);
         
-        JComboBox cmbHizkuntza = new JComboBox();
+        JComboBox cmbHizkuntza = new JComboBox(HizkuntzaAtera());
         springLayout.putConstraint(SpringLayout.NORTH, cmbHizkuntza, 29, SpringLayout.SOUTH, txtPremium);
         springLayout.putConstraint(SpringLayout.WEST, cmbHizkuntza, 0, SpringLayout.WEST, txtIzena);
         springLayout.putConstraint(SpringLayout.SOUTH, cmbHizkuntza, 51, SpringLayout.SOUTH, txtPremium);
@@ -248,5 +256,40 @@ public class ErregistroBista extends JFrame {
         springLayout.putConstraint(SpringLayout.WEST, btnErosi, 0, SpringLayout.WEST, txtAbizen);
         springLayout.putConstraint(SpringLayout.EAST, btnErosi, -29, SpringLayout.EAST, getContentPane());
         getContentPane().add(btnErosi);
+    }
+    
+    public String[] HizkuntzaAtera () {
+    	String [] hiz = null;
+    	int cont = 0;
+    	 try (Connection con = Konexioa.konexioa()) {
+             String countSql = "SELECT COUNT(*) AS total FROM Hizkuntza";
+             try (PreparedStatement sta = con.prepareStatement(countSql)) {
+                 try (ResultSet res = sta.executeQuery()) {
+                     if (res.next()) {
+                         cont = res.getInt("total");
+                     }
+                 }
+             }
+
+             hiz = new String[cont];
+
+             String kontsulta = "SELECT idHizkuntza FROM Hizkuntza";
+             try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+                 try (ResultSet rs = pstmt.executeQuery()) {
+                     int index = 0;
+                     while (rs.next()) {
+                     	String id = rs.getString("idHizkuntza");
+                         
+
+                         hiz[index] = id;
+                         index++;
+                     }
+                 }
+             }
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+
+         return hiz;
     }
 }
