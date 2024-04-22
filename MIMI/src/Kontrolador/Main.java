@@ -2,7 +2,12 @@ package Kontrolador;
 
 import Bista.LoginBista;
 import Bista.MenuaBista;
+<<<<<<< HEAD
 import funtzioak.Konexioa;
+=======
+import Kontrolador.Konexioa;
+import Kontrolador.Konexioa;
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
 
 public class Main {
 

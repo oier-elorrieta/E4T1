@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 package Bista;
 
@@ -10,10 +11,30 @@ import javax.swing.SwingConstants;
 import Modelo.Bezero;
 import funtzioak.ErregistratuF;
 
+=======
+package Bista;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Kontrolador.Konexioa;
+
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.BoxLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
 import java.awt.Insets;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.Array;
@@ -26,26 +47,59 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Properties;
+=======
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+<<<<<<< HEAD
 import org.jdatepicker.impl.*;
 
+=======
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
 
 public class ErregistroBista extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField txtIzena;
+<<<<<<< HEAD
     private JTextField txtAbizena;
+=======
+    private JTextField txtAbizen;
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
     private JTextField txtErabiltzaile;
     private JPasswordField pasahitzaPass;
     private JPasswordField konfirmarPass;
     private JTextField txtJaiotza;
     private JTextField txtErregistro;
     private JTextField txtPremium;
+<<<<<<< HEAD
     private Date selectDate;
+=======
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    ErregistroBista frame = new ErregistroBista();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
 
     /**
      * Create the frame.
@@ -91,6 +145,7 @@ public class ErregistroBista extends JFrame {
         getContentPane().add(txtIzena);
         txtIzena.setColumns(10);
         
+<<<<<<< HEAD
         txtAbizena = new JTextField();
         springLayout.putConstraint(SpringLayout.NORTH, txtAbizena, 0, SpringLayout.NORTH, lblIzena);
         springLayout.putConstraint(SpringLayout.WEST, txtAbizena, 485, SpringLayout.WEST, getContentPane());
@@ -98,12 +153,25 @@ public class ErregistroBista extends JFrame {
         springLayout.putConstraint(SpringLayout.EAST, txtAbizena, -168, SpringLayout.EAST, getContentPane());
         txtAbizena.setColumns(10);
         getContentPane().add(txtAbizena);
+=======
+        txtAbizen = new JTextField();
+        springLayout.putConstraint(SpringLayout.NORTH, txtAbizen, 0, SpringLayout.NORTH, lblIzena);
+        springLayout.putConstraint(SpringLayout.WEST, txtAbizen, 485, SpringLayout.WEST, getContentPane());
+        springLayout.putConstraint(SpringLayout.SOUTH, txtAbizen, -493, SpringLayout.SOUTH, getContentPane());
+        springLayout.putConstraint(SpringLayout.EAST, txtAbizen, -168, SpringLayout.EAST, getContentPane());
+        txtAbizen.setColumns(10);
+        getContentPane().add(txtAbizen);
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
         
         JLabel lblAbizena = new JLabel("Abizena:");
         springLayout.putConstraint(SpringLayout.EAST, txtIzena, -16, SpringLayout.WEST, lblAbizena);
         springLayout.putConstraint(SpringLayout.NORTH, lblAbizena, 0, SpringLayout.NORTH, lblIzena);
         springLayout.putConstraint(SpringLayout.WEST, lblAbizena, 386, SpringLayout.WEST, getContentPane());
+<<<<<<< HEAD
         springLayout.putConstraint(SpringLayout.EAST, lblAbizena, -6, SpringLayout.WEST, txtAbizena);
+=======
+        springLayout.putConstraint(SpringLayout.EAST, lblAbizena, -6, SpringLayout.WEST, txtAbizen);
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
         lblAbizena.setHorizontalAlignment(SwingConstants.CENTER);
         lblAbizena.setFont(new Font("Tahoma", Font.PLAIN, 18));
         getContentPane().add(lblAbizena);
@@ -164,6 +232,7 @@ public class ErregistroBista extends JFrame {
         lblJaoitza.setFont(new Font("Tahoma", Font.PLAIN, 18));
         getContentPane().add(lblJaoitza);
         
+<<<<<<< HEAD
 
         UtilDateModel model = new UtilDateModel();
         Properties properties = new Properties();
@@ -198,6 +267,15 @@ public class ErregistroBista extends JFrame {
         springLayout.putConstraint(SpringLayout.EAST, datePicker, 0, SpringLayout.EAST, txtIzena);
         datePicker.setBounds(150, 100, 150, 30);
         getContentPane().add(datePicker);
+=======
+        txtJaiotza = new JTextField();
+        springLayout.putConstraint(SpringLayout.NORTH, txtJaiotza, 357, SpringLayout.NORTH, getContentPane());
+        springLayout.putConstraint(SpringLayout.SOUTH, konfirmarPass, -41, SpringLayout.NORTH, txtJaiotza);
+        springLayout.putConstraint(SpringLayout.WEST, txtJaiotza, 0, SpringLayout.WEST, txtIzena);
+        springLayout.putConstraint(SpringLayout.EAST, txtJaiotza, -478, SpringLayout.EAST, getContentPane());
+        txtJaiotza.setColumns(10);
+        getContentPane().add(txtJaiotza);
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
         
         JLabel lblErregistro = new JLabel("Erregistro data:");
         springLayout.putConstraint(SpringLayout.NORTH, lblErregistro, 40, SpringLayout.SOUTH, lblJaoitza);
@@ -208,6 +286,7 @@ public class ErregistroBista extends JFrame {
         lblErregistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
         getContentPane().add(lblErregistro);
         
+<<<<<<< HEAD
         DateTimeFormatter gaurkoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
       
         
@@ -215,6 +294,11 @@ public class ErregistroBista extends JFrame {
         txtErregistro.setEditable(false);
         springLayout.putConstraint(SpringLayout.NORTH, txtErregistro, 418, SpringLayout.NORTH, getContentPane());
         springLayout.putConstraint(SpringLayout.SOUTH, txtErregistro, -41, SpringLayout.NORTH, txtErregistro);
+=======
+        txtErregistro = new JTextField();
+        springLayout.putConstraint(SpringLayout.NORTH, txtErregistro, 418, SpringLayout.NORTH, getContentPane());
+        springLayout.putConstraint(SpringLayout.SOUTH, txtJaiotza, -41, SpringLayout.NORTH, txtErregistro);
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
         springLayout.putConstraint(SpringLayout.WEST, txtErregistro, 0, SpringLayout.WEST, txtIzena);
         springLayout.putConstraint(SpringLayout.EAST, txtErregistro, -478, SpringLayout.EAST, getContentPane());
         txtErregistro.setColumns(10);
@@ -228,7 +312,10 @@ public class ErregistroBista extends JFrame {
         getContentPane().add(lblPremium);
         
         txtPremium = new JTextField();
+<<<<<<< HEAD
         txtPremium.setEditable(false);
+=======
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
         springLayout.putConstraint(SpringLayout.SOUTH, txtErregistro, -37, SpringLayout.NORTH, txtPremium);
         springLayout.putConstraint(SpringLayout.NORTH, txtPremium, 4, SpringLayout.NORTH, lblPremium);
         springLayout.putConstraint(SpringLayout.WEST, txtPremium, 0, SpringLayout.WEST, txtIzena);
@@ -246,8 +333,12 @@ public class ErregistroBista extends JFrame {
         lblHizkuntza.setFont(new Font("Tahoma", Font.PLAIN, 18));
         getContentPane().add(lblHizkuntza);
         
+<<<<<<< HEAD
       
         JComboBox cmbHizkuntza = new JComboBox(ErregistratuF.HizkuntzaAtera());
+=======
+        JComboBox cmbHizkuntza = new JComboBox(HizkuntzaAtera());
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
         springLayout.putConstraint(SpringLayout.NORTH, cmbHizkuntza, 29, SpringLayout.SOUTH, txtPremium);
         springLayout.putConstraint(SpringLayout.WEST, cmbHizkuntza, 0, SpringLayout.WEST, txtIzena);
         springLayout.putConstraint(SpringLayout.SOUTH, cmbHizkuntza, 51, SpringLayout.SOUTH, txtPremium);
@@ -257,6 +348,7 @@ public class ErregistroBista extends JFrame {
         JButton btnGorde = new JButton("GORDE");
         btnGorde.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
             	
             	//java.sql.Date sqlDate = new java.sql.Date();
 //  ----------------------------------------------------------------------------------- Hay que añadir un insert -----------------------------------------------------------------------------------------
@@ -272,6 +364,10 @@ public class ErregistroBista extends JFrame {
 
             	
             	try {
+=======
+//  ----------------------------------------------------------------------------------- Hay que añadir un insert -----------------------------------------------------------------------------------------
+                try {
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
                     LoginBista frame = new LoginBista();
                     frame.setVisible(true);
                 } catch (Exception ex) {
@@ -287,6 +383,7 @@ public class ErregistroBista extends JFrame {
         getContentPane().add(btnGorde);
         
         JButton btnErosi = new JButton("EROSI PREMIUM");
+<<<<<<< HEAD
         btnErosi.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
@@ -296,9 +393,51 @@ public class ErregistroBista extends JFrame {
         });
         springLayout.putConstraint(SpringLayout.NORTH, btnErosi, 0, SpringLayout.NORTH, btnGorde);
         springLayout.putConstraint(SpringLayout.WEST, btnErosi, 0, SpringLayout.WEST, txtAbizena);
+=======
+        springLayout.putConstraint(SpringLayout.NORTH, btnErosi, 0, SpringLayout.NORTH, btnGorde);
+        springLayout.putConstraint(SpringLayout.WEST, btnErosi, 0, SpringLayout.WEST, txtAbizen);
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
         springLayout.putConstraint(SpringLayout.EAST, btnErosi, -29, SpringLayout.EAST, getContentPane());
         getContentPane().add(btnErosi);
     }
     
+<<<<<<< HEAD
    
 }
+=======
+    public String[] HizkuntzaAtera () {
+    	String [] hiz = null;
+    	int cont = 0;
+    	 try (Connection con = Konexioa.konexioa()) {
+             String countSql = "SELECT COUNT(*) AS total FROM Hizkuntza";
+             try (PreparedStatement sta = con.prepareStatement(countSql)) {
+                 try (ResultSet res = sta.executeQuery()) {
+                     if (res.next()) {
+                         cont = res.getInt("total");
+                     }
+                 }
+             }
+
+             hiz = new String[cont];
+
+             String kontsulta = "SELECT idHizkuntza FROM Hizkuntza";
+             try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+                 try (ResultSet rs = pstmt.executeQuery()) {
+                     int index = 0;
+                     while (rs.next()) {
+                     	String id = rs.getString("idHizkuntza");
+                         
+
+                         hiz[index] = id;
+                         index++;
+                     }
+                 }
+             }
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+
+         return hiz;
+    }
+}
+>>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
