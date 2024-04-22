@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import Bista.MenuaBista;
 import Modelo.Bezero;
+import Modelo.PremiumBezeroa;
 
 public class ErregistratuF {
 
@@ -117,4 +118,30 @@ public class ErregistratuF {
 	}
 	
 	
+	public static PremiumBezeroa PremiumErosi(Bezero erregistroBezeroa, String premiumMuga) {
+				
+		PremiumBezeroa berriaPre = new PremiumBezeroa();
+		berriaPre.setMota("premium");
+		berriaPre.setAbizena(erregistroBezeroa.getAbizena());
+		berriaPre.setIzena(erregistroBezeroa.getIzena());
+		berriaPre.setErabiltzaile(erregistroBezeroa.getErabiltzaile());
+		berriaPre.setPasahitza(erregistroBezeroa.getPasahitza());
+		berriaPre.setJaioData(erregistroBezeroa.getJaioData());
+		berriaPre.setErregisData(erregistroBezeroa.getErregisData());
+		berriaPre.setPremiumMuga((java.sql.Date) StringtoDate(premiumMuga));
+		
+		return berriaPre;
+	}
+	
+	
+	public static Bezero sortuBezeroa (Bezero erregistroBezeroa) {
+		   
+        erregistroBezero.setIzena(txtIzena.getText());
+        erregistroBezero.setAbizena(txtAbizena.getText());
+        erregistroBezero.setErabiltzaile(txtErabiltzaile.getText());
+        erregistroBezero.setPasahitza(pasahitzaPass.getText());
+        erregistroBezero.setJaioData(selectDate);
+        erregistroBezero.setErregisData((Date)ErregistratuF.StringtoDate(txtErregistro.getText()));
+        erregistroBezero.setMota("free");
+	}
 }

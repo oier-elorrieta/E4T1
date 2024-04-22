@@ -74,7 +74,7 @@ public class ErregistroBista extends JFrame {
     private JTextField txtJaiotza;
     private JTextField txtErregistro;
     private JTextField txtPremium;
-
+    private  Bezero erregistroBezero;
     private Date selectDate;
 
 
@@ -288,9 +288,6 @@ public class ErregistroBista extends JFrame {
         txtErregistro.setEditable(false);
         springLayout.putConstraint(SpringLayout.NORTH, txtErregistro, 418, SpringLayout.NORTH, getContentPane());
         springLayout.putConstraint(SpringLayout.SOUTH, txtErregistro, -41, SpringLayout.NORTH, txtErregistro);
-        txtErregistro = new JTextField();
-        springLayout.putConstraint(SpringLayout.NORTH, txtErregistro, 418, SpringLayout.NORTH, getContentPane());
-        springLayout.putConstraint(SpringLayout.SOUTH, txtJaiotza, -41, SpringLayout.NORTH, txtErregistro);
         springLayout.putConstraint(SpringLayout.WEST, txtErregistro, 0, SpringLayout.WEST, txtIzena);
         springLayout.putConstraint(SpringLayout.EAST, txtErregistro, -478, SpringLayout.EAST, getContentPane());
         txtErregistro.setColumns(10);
@@ -303,8 +300,8 @@ public class ErregistroBista extends JFrame {
         lblPremium.setFont(new Font("Tahoma", Font.PLAIN, 18));
         getContentPane().add(lblPremium);
         
-        txtPremium = new JTextField();
-
+        LocalDate premiumMuga = LocalDate.now().plusYears(1);
+        txtPremium = new JTextField(premiumMuga.format(gaurkoData));
         txtPremium.setEditable(false);
         springLayout.putConstraint(SpringLayout.SOUTH, txtErregistro, -37, SpringLayout.NORTH, txtPremium);
         springLayout.putConstraint(SpringLayout.NORTH, txtPremium, 4, SpringLayout.NORTH, lblPremium);
@@ -324,8 +321,7 @@ public class ErregistroBista extends JFrame {
         getContentPane().add(lblHizkuntza);
         
       
-        JComboBox cmbHizkuntza = new JComboBox(ErregistratuF.HizkuntzaAtera());
-       
+        JComboBox cmbHizkuntza = new JComboBox(ErregistratuF.HizkuntzaAtera());   
         springLayout.putConstraint(SpringLayout.NORTH, cmbHizkuntza, 29, SpringLayout.SOUTH, txtPremium);
         springLayout.putConstraint(SpringLayout.WEST, cmbHizkuntza, 0, SpringLayout.WEST, txtIzena);
         springLayout.putConstraint(SpringLayout.SOUTH, cmbHizkuntza, 51, SpringLayout.SOUTH, txtPremium);
@@ -338,15 +334,8 @@ public class ErregistroBista extends JFrame {
             	
             	//java.sql.Date sqlDate = new java.sql.Date();
 //  ----------------------------------------------------------------------------------- Hay que añadir un insert -----------------------------------------------------------------------------------------
-                Bezero erregistroBezero = new Bezero();
-                
-                erregistroBezero.setIzena(txtIzena.getText());
-                erregistroBezero.setAbizena(txtAbizena.getText());
-                erregistroBezero.setErabiltzaile(txtErabiltzaile.getText());
-                erregistroBezero.setPasahitza(pasahitzaPass.getText());
-                erregistroBezero.setJaioData(selectDate);
-                erregistroBezero.setErregisData((Date)ErregistratuF.StringtoDate(txtErregistro.getText()));
-                erregistroBezero.setIzena(txtIzena.getText());
+              
+             
 
             	
             
@@ -370,7 +359,10 @@ public class ErregistroBista extends JFrame {
         btnErosi.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		//premiunErosi();
+        		//ErregistratuF.PremiumErosi(null, premiumMuga.format(gaurkoData));
+        		
+        		 
+        		System.out.println(ErregistratuF.PremiumErosi(erregistroBezero, premiumMuga.format(gaurkoData)));
         		
         	}
         });

@@ -28,13 +28,21 @@ public class PremiumBezeroa extends Bezero {
 	 * @param PremiumMuga  Premium bezeroaren premium muga data.
 	 */
 	public PremiumBezeroa(int id, String izena, String abizena, String erabiltzaile, String pasahitza, Date jaioData,
-			Date erregisData, ArrayList<Abesti> playArray, Date PremiumMuga) {
-		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray);
+			Date erregisData, ArrayList<Abesti> playArray, Date PremiumMuga, String mota) {
+		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota);
 
 		this.PremiumMuga = PremiumMuga;
 	}
+	
+	
 
 	// ---------------- GETTERS eta SETTERS ---------------- //
+
+	public PremiumBezeroa() {
+		
+	}
+
+
 
 	/**
 	 * Premium bezeroaren premium muga data itzultzen du.
