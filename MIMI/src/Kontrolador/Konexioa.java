@@ -14,9 +14,9 @@ public class Konexioa {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String url = "jdbc:mysql://localhost:3307/mimi";
-            String user = "root";
-            String pass = "";
+            String url = "jdbc:mysql://10.5.6.108:3306/MIMI";
+            String user = "admin";
+            String pass = "1234";
 
             konektatua = DriverManager.getConnection(url, user, pass); 
             System.out.println("konektatuta");
