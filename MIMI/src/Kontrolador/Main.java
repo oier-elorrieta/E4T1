@@ -2,7 +2,7 @@ package Kontrolador;
 
 import Bista.LoginBista;
 import Bista.MenuaBista;
-import Kontrolador.Konexioa;
+import funtzioak.Konexioa;
 
 public class Main {
 
@@ -13,7 +13,7 @@ public class Main {
           } catch (Exception ex) {
               ex.printStackTrace();
           }
-		  
+		  Konexioa.konexioa();
 	}
 
 }

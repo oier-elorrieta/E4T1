@@ -9,8 +9,8 @@ private Date PremiumMuga;
 //---------------- ERAIKITZAILEA ---------------- // 
 
 	public PremiumBezeroa(int id, String izena, String abizena, String erabiltzaile, String pasahitza, Date jaioData,
-			Date erregisData, ArrayList<Abesti> playArray, Date PremiumMuga) {
-		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray);
+			Date erregisData, ArrayList<Abesti> playArray, Date PremiumMuga, String mota) {
+		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota);
 		
 		this.PremiumMuga=PremiumMuga;
 	}
@@ -30,7 +30,7 @@ private Date PremiumMuga;
 	public String toString() {
 	    return "PremiumBezeroa [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile=" + erabiltzaile
 	            + ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData
-	            + ", playArray=" + playArray + ", PremiumMuga=" + PremiumMuga + "]";
+	            + ", playArray=" + playArray + ", mota " + mota + ", PremiumMuga=" + PremiumMuga + "]";
 	}
 
 	//---------------- EQUALS ---------------- //

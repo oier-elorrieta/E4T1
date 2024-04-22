@@ -85,7 +85,7 @@ public class BezeroTest {
     public void testSetPasahitzaFalse() {
         Bezero bezero = new Bezero(0, null, null, null, null, null, null, null);
         bezero.setPasahitza("pasahitza");
-        assertEquals("password", bezero.getPasahitza());
+        assertNotEquals("password", bezero.getPasahitza());
     }
 
     @Test
@@ -107,17 +107,28 @@ public class BezeroTest {
 
 
     @Test
-    public void testSetJaioData() {
+    public void testSetJaioDataTrue() {
         Date jaioData = Date.valueOf("2000-01-01");
         Bezero bezero = new Bezero(0, null, null, null, null, null, null, null);
         bezero.setJaioData(jaioData);
         assertEquals(jaioData, bezero.getJaioData());
     }
+    
+    @Test 
+    public void testSetJaioDataFalse() {
+        Date jaioData = Date.valueOf("2005-11-21");
+        Bezero bezero = new Bezero(0, null, null, null, null, null, null, null);
+        bezero.setJaioData(jaioData);
+        Date BesteJaioData = Date.valueOf("2004-11-21");
+        
+        assertNotEquals(BesteJaioData, bezero.getJaioData());
+    }
+
 
     @Test
     public void testGetErregisData() {
         Date erregisData = Date.valueOf("2022-04-18");
-        Bezero bezero = new Bezero(1, "John", "Doe", "johndoe", "password", Date.valueOf("2000-01-01"), erregisData, new ArrayList<>());
+        Bezero bezero = new Bezero(1, "mimi", "talde", "mimitalde", "password", Date.valueOf("2024-04-19"), erregisData, new ArrayList<>());
         assertEquals(erregisData, bezero.getErregisData());
     }
 
@@ -133,7 +144,7 @@ public class BezeroTest {
     public void testGetPlayArray() {
         ArrayList<Abesti> playArray = new ArrayList<>();
         playArray.add(new Abesti(1, "Song1", 3.5, "Album1", "Artist1"));
-        Bezero bezero = new Bezero(1, "John", "Doe", "johndoe", "password", Date.valueOf("2000-01-01"), Date.valueOf("2022-04-18"), playArray);
+        Bezero bezero = new Bezero(1, "mimi", "talde", "mimitalde", "password", Date.valueOf("2024-04-19"), Date.valueOf("2024-04-20"), playArray);
         assertEquals(playArray, bezero.getPlayArray());
     }
 
@@ -149,12 +160,17 @@ public class BezeroTest {
 
     @Test
     public void testEquals() {
-        Bezero bezero1 = new Bezero(1, "John", "Doe", "johndoe", "password", Date.valueOf("2000-01-01"), Date.valueOf("2022-04-18"), new ArrayList<>());
-        Bezero bezero2 = new Bezero(1, "John", "Doe", "johndoe", "password", Date.valueOf("2000-01-01"), Date.valueOf("2022-04-18"), new ArrayList<>());
-        Bezero bezero3 = new Bezero(2, "Jane", "Smith", "janesmith", "newpassword", Date.valueOf("1990-01-01"), Date.valueOf("2022-04-19"), new ArrayList<>());
+        Bezero bezero1 = new Bezero(1, "mimi", "talde", "mimitalde", "password", Date.valueOf("2024-04-19"), Date.valueOf("2024-04-20"), new ArrayList<>());
+        Bezero bezero2 = new Bezero(1, "mimi", "talde", "mimitalde", "password", Date.valueOf("2024-04-19"), Date.valueOf("2024-04-20"), new ArrayList<>());
 
         assertTrue(bezero1.equals(bezero2));
-        assertFalse(bezero1.equals(bezero3));
+       
+    }
+    @Test
+    public void testEqualsFalse() {
+        Bezero bezero1 = new Bezero(1, "mimi", "talde", "mimitalde", "password", Date.valueOf("2024-04-19"), Date.valueOf("2024-04-20"), new ArrayList<>());
+        Bezero bezero2 = new Bezero(2, "Mirari", "Casillas", "micasillas", "ninguna", Date.valueOf("1990-01-01"), Date.valueOf("2022-04-19"), new ArrayList<>());
+        assertFalse(bezero1.equals(bezero2));
     }
 
     @Test

@@ -43,10 +43,6 @@ public void setInfo(String info) {
 
 //---------------- ToString ---------------- //
 
-@Override
-public String toString() {
-	return "Artista [id=" + id + ", izena=" + izena + ", info=" + info + "]";
-}
 
 //---------------- EQUALS ---------------- //
 

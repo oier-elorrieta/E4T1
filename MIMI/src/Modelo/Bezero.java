@@ -13,11 +13,15 @@ public class Bezero {
 	protected Date jaioData;
 	protected Date erregisData;
 	protected ArrayList<Abesti> playArray;
+	protected String mota;
 
 //---------------- ERAIKITZAILEA ---------------- // 
+	public Bezero() {
+		
+	}
 
 	public Bezero(int id, String izena, String abizena, String erabiltzaile, String pasahitza, Date jaioData,
-			Date erregisData, ArrayList<Abesti> playArray) {
+			Date erregisData, ArrayList<Abesti> playArray, String mota) {
 		
 		this.id = id;
 		this.izena = izena;
@@ -27,6 +31,7 @@ public class Bezero {
 		this.jaioData = jaioData;
 		this.erregisData = erregisData;
 		this.playArray = playArray;
+		this.mota = mota;
 	}
 
 	//---------------- GETTERS eta SETTERS ---------------- //
@@ -58,6 +63,10 @@ public class Bezero {
 	public String getErabiltzaile() {
 		return erabiltzaile;
 	}
+	
+	public String getMota() {
+		return mota;
+	}
 
 	public void setErabiltzaile(String erabiltzaile) {
 		this.erabiltzaile = erabiltzaile;
@@ -86,6 +95,10 @@ public class Bezero {
 	public void setErregisData(Date erregisData) {
 		this.erregisData = erregisData;
 	}
+	
+	public void setMota(String mota) {
+		this.mota = mota;
+	}
 
 	public ArrayList<Abesti> getPlayArray() {
 		return playArray;
@@ -101,7 +114,7 @@ public class Bezero {
 	public String toString() {
 		return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile=" + erabiltzaile
 				+ ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData
-				+ ", playArray=" + playArray + "]";
+				+ ", playArray=" + playArray + ", mota " + mota + "]";
 	}
 
 	//---------------- EQUALS ---------------- //

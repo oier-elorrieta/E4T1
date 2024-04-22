@@ -1,4 +1,4 @@
-package Kontrolador;
+package funtzioak;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +10,7 @@ public class Konexioa {
 
     public static Connection konektatua;
     
-    public static void konexioa() {
+    public static Connection konexioa() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -23,6 +23,7 @@ public class Konexioa {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+		return konektatua;
     }
     
     public static void konexioaExit() {

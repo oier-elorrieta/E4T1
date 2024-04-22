@@ -29,7 +29,7 @@ public void setMota(Mota mota) {
 
 @Override
 public String toString() {
-	return "Abeslari [id=" + id + ", izena=" + izena + ", info=" + info + "mota=" + mota + "]";
+	return "Abeslari [id=" + id + ", izena=" + izena + ", info=" + info + ", mota=" + mota + "]";
 }
 
 //---------------- EQUALS ---------------- //

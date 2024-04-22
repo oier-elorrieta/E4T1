@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import Modelo.Abeslari;
+import Modelo.Abeslari.Mota;
 import Modelo.Podcaster;
 
 public class ArtistaTest {
@@ -107,9 +108,22 @@ public class ArtistaTest {
     abeslari.setInfo("Beste informazio bat");
         assertEquals("Beste informazio bat", abeslari.getInfo());
     }
+    
+//    @Test
+//    public void testGetMota() {
+//        Mota mota = Mota.Bakarlari;
+//        assertEquals(mota, Abeslari.getMota());
+//    }
+//
+//    @Test
+//    public void testSetMota() {
+//        Mota mota = Mota.Bakarlari;
+//        Abeslari.setMota(Mota.Taldea);
+//        assertEquals(Mota.Taldea, Abeslari.getMota());
+//    }
 
     @Test
-    public void testToStringa() {
+    public void testToStringA() {
         Abeslari abeslari = new Abeslari(1, "abeslari1", "Informazioa", null);
         String expectedToStringa = "Abeslari [id=1, izena=abeslari1, info=Informazioa, mota=null]";
         assertEquals(expectedToStringa, abeslari.toString());
