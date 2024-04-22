@@ -6,19 +6,19 @@
 	<artifactId>MIMI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
 		</dependency>
-<<<<<<< HEAD
+		
 		<dependency>
 	        <groupId>org.jdatepicker</groupId>
 	        <artifactId>jdatepicker</artifactId>
 	        <version>1.3.4</version>
     	</dependency>
-=======
->>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
+    	
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>

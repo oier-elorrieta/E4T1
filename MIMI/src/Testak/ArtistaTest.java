@@ -109,20 +109,7 @@ public class ArtistaTest {
         assertEquals("Beste informazio bat", abeslari.getInfo());
     }
     
-<<<<<<< HEAD
-//    @Test
-//    public void testGetMota() {
-//        Mota mota = Mota.Bakarlari;
-//        assertEquals(mota, Abeslari.getMota());
-//    }
-//
-//    @Test
-//    public void testSetMota() {
-//        Mota mota = Mota.Bakarlari;
-//        Abeslari.setMota(Mota.Taldea);
-//        assertEquals(Mota.Taldea, Abeslari.getMota());
-//    }
-=======
+
 
         @Test
         public void testGetMota() {
@@ -137,7 +124,7 @@ public class ArtistaTest {
             assertEquals(Mota.Taldea, abeslari.getMota());
         
     }
->>>>>>> e9cbff5e7531b321ee6c4b1b7188b027ffb7e917
+
 
     @Test
     public void testToStringA() {
