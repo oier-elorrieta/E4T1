@@ -4,11 +4,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import Modelo.Abeslari;
+import Modelo.Abesti;
 import Modelo.Abeslari.Mota;
 import Modelo.Podcaster;
+import Modelo.PremiumBezeroa;
 
 public class ArtistaTest {
 
@@ -129,7 +133,8 @@ public class ArtistaTest {
     @Test
     public void testToStringA() {
         Abeslari abeslari = new Abeslari(1, "abeslari1", "Informazioa", null);
-        String expectedToStringa = "Abeslari [id=1, izena=abeslari1, info=Informazioa, mota=null]";
+        
+        String expectedToStringa = "[id=1, izena=abeslari1, info=Informazioa]Mota = null";
         assertEquals(expectedToStringa, abeslari.toString());
     }
 
@@ -142,5 +147,7 @@ public class ArtistaTest {
         assertTrue(abeslari1.equals(abeslari2));
         assertFalse(abeslari1.equals(abeslari3));
     }
+    
+ 
 
 }

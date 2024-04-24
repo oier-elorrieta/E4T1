@@ -1,6 +1,5 @@
 package Modelo;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 public class FreeBezero extends Bezero {

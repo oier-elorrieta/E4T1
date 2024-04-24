@@ -127,7 +127,7 @@ public abstract class Artista {
 
 	public String toString() {
 
-		return "Artista [id=" + id + ", izena=" + izena + ", info=" + info + "]";
+		return "[id=" + id + ", izena=" + izena + ", info=" + info + "]";
 
 	}
 

@@ -88,7 +88,7 @@ public class Abeslari extends Artista {
 	@Override
 	public String toString() {
 
-		return "Abeslari [id=" + id + ", izena=" + izena + ", info=" + info + ", mota=" + mota + "]";
+		return super.toString() + "Mota = " + mota;
 	}
 
 	/**
