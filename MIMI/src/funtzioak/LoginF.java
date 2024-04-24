@@ -45,6 +45,7 @@ public class LoginF {
 	                                MenuaBista frame = new MenuaBista();
 	                                frame.setVisible(true);
 	                                
+	                                
 	                            } catch (Exception ex) {
 	                                ex.printStackTrace();
 	                            }

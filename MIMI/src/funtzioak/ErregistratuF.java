@@ -14,6 +14,9 @@ import javax.swing.JTextField;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import Bista.ErregistroBista;
+import Bista.LoginBista;
 import Bista.MenuaBista;
 import Modelo.Bezero;
 import Modelo.FreeBezero;
@@ -305,6 +308,19 @@ public static void InsertPremium (PremiumBezeroa berriaPre) throws SQLException 
         
         return erregistroBezero;
 	}
+	
+	public static void loginJoan() {
+		
+		 try {
+             LoginBista frame = new LoginBista();
+             frame.setVisible(true);
+         } catch (Exception ex) {
+             ex.printStackTrace();
+         }
+
+     }
+		
+	
 	
 	
 	

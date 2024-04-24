@@ -31,5 +31,13 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+            <resource>
+                <directory>src</directory>
+                <includes>
+                    <include>img/*.png</include>
+                </includes>
+            </resource>
+        </resources>
 	</build>
 </project>

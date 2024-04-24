@@ -79,6 +79,7 @@ public class LoginBista extends JFrame {
                 
                 try {
 					LoginF.LoginKomprobatu(textFieldErabiltzailea, passwordFieldPasahitza);
+					dispose();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

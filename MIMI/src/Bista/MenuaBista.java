@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import funtzioak.ErregistratuF;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -15,6 +18,8 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JSplitPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuaBista extends JFrame {
 
@@ -65,6 +70,12 @@ public class MenuaBista extends JFrame {
 		panel.add(splitPane_1);
 		
 		JButton btnAtzera = new JButton("ATZERA");
+		btnAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ErregistratuF.loginJoan();
+				dispose();
+			}
+		});
 		btnAtzera.setFont(new Font("Sitka Text", Font.PLAIN, 16));
 		splitPane_1.setLeftComponent(btnAtzera);
 		
