@@ -10,6 +10,11 @@ public class Konexioa {
 
     public static Connection konektatua;
     
+    /**
+     * Metodo honek konexioa sortzen du datu-basearekin.
+     *
+     * @return konexioa sortutako Connection objektua
+     */
     public static Connection konexioa() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -26,6 +31,11 @@ public class Konexioa {
 		return konektatua;
     }
     
+    /**
+     * It closes the connection to the database.
+     * 
+     * @throws SQLException if an error occurs while closing the connection
+     */
     public static void konexioaExit() {
     	try {
 	        konektatua.close();

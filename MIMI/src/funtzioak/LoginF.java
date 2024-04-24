@@ -14,6 +14,16 @@ import Bista.MenuaBista;
 public class LoginF {
 	
 
+	/**
+	 * Metodo honek erabiltzailearen sartutako erabiltzailea eta pasahitza konprobatzen du.
+	 * Sartutako erabiltzailea eta pasahitza datu basean dauden erabiltzaile eta pasahitzarekin konparatzen ditu.
+	 * Sartutako erabiltzailea eta pasahitza datu basean aurkitzen badira, sesioa hasi egokia dela adierazten du eta MenuaBista klasearen instantzia sortzen du.
+	 * Sartutako erabiltzailea eta pasahitza datu basean ez badira aurkitzen, errore mezua erakusten du eta sartutako eremuak husten ditu.
+	 *
+	 * @param textFieldErabiltzailea Erabiltzailearen erabiltzailea sartzen duen JTextField objektua.
+	 * @param passwordFieldPasahitza Erabiltzailearen pasahitza sartzen duen JPasswordField objektua.
+	 * @throws SQLException SQL errore bat gertatzen bada.
+	 */
 	  public static void LoginKomprobatu (JTextField textFieldErabiltzailea, JPasswordField passwordFieldPasahitza ) throws SQLException {
 	        boolean loginOK = false;
 

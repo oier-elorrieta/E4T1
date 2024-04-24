@@ -179,10 +179,20 @@ public  abstract class Bezero  {
         this.erregisData = erregisData;
     }
     
+    /**
+     * Itzultzen du mota aldagaia.
+     *
+     * @return mota aldagaia
+     */
     public String getMota() {
     	return mota;
     }
     
+    /**
+     * Metodo honek Bezeroaren mota ezartzen du.
+     *
+     * @param mota Bezeroaren mota
+     */
     public void setMota(String mota) {
     	this.mota = mota;
     }
@@ -205,10 +215,19 @@ public  abstract class Bezero  {
         this.playArray = playArray;
     }
     
+    /**
+     * Metodo honek Bezeroaren hizkuntza itzultzen du.
+     *
+     * @return Bezeroaren hizkuntza
+     */
     public String getHizkuntza() {
     	return Hizkuntza;
     }
     
+    /**
+     * Hizkuntza aldagaia ezartzen du.
+     * @param Hizkuntza Hizkuntza aldagaia
+     */
     public void setHizkuntza (String Hizkuntza) {
     	this.Hizkuntza = Hizkuntza;
     }
