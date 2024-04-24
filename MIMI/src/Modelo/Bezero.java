@@ -1,23 +1,24 @@
 
 package Modelo;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Objects;
 
 /**
  * Klasea Bezero bat ordezkatzen du, erabiltzailea bezala.
  */
-public class Bezero {
-    protected int id;
+public  abstract class Bezero  {
+    protected String id;
     protected String izena;
     protected String abizena;
     protected String erabiltzaile;
     protected String pasahitza;
-    protected Date jaioData;
-    protected Date erregisData;
+    protected String jaioData;
+    protected String erregisData;
     protected ArrayList<Abesti> playArray;
     protected String mota;
+    protected String Hizkuntza;
 
     //---------------- ERAIKITZAILEA ---------------- //
 
@@ -33,7 +34,7 @@ public class Bezero {
      * @param erregisData  Bezeroaren erregisData.
      * @param playArray    Bezeroaren abesti lista.
      */
-    public Bezero(int id, String izena, String abizena, String erabiltzaile, String pasahitza, Date jaioData, Date erregisData, ArrayList<Abesti> playArray, String mota) {
+    public Bezero(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData, String erregisData, ArrayList<Abesti> playArray, String mota, String Hizkuntza) {
         this.id = id;
         this.izena = izena;
         this.abizena = abizena;
@@ -43,6 +44,7 @@ public class Bezero {
         this.erregisData = erregisData;
         this.playArray = playArray;
         this.mota = mota;
+        this.Hizkuntza = Hizkuntza;
     }
 
     //---------------- GETTERS eta SETTERS ---------------- //
@@ -56,7 +58,7 @@ public class Bezero {
      *
      * @return Bezeroaren identifikazioa.
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -65,7 +67,7 @@ public class Bezero {
      *
      * @param id Bezeroaren identifikazioa.
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -146,7 +148,7 @@ public class Bezero {
      *
      * @return Bezeroaren jaioData.
      */
-    public Date getJaioData() {
+    public String getJaioData() {
         return jaioData;
     }
 
@@ -155,7 +157,7 @@ public class Bezero {
      *
      * @param jaioData Bezeroaren jaioData.
      */
-    public void setJaioData(Date jaioData) {
+    public void setJaioData(String jaioData) {
         this.jaioData = jaioData;
     }
 
@@ -164,7 +166,7 @@ public class Bezero {
      *
      * @return Bezeroaren erregisData.
      */
-    public Date getErregisData() {
+    public String getErregisData() {
         return erregisData;
     }
 
@@ -173,7 +175,7 @@ public class Bezero {
      *
      * @param erregisData Bezeroaren erregisData.
      */
-    public void setErregisData(Date erregisData) {
+    public void setErregisData(String erregisData) {
         this.erregisData = erregisData;
     }
     
@@ -202,6 +204,14 @@ public class Bezero {
     public void setPlayArray(ArrayList<Abesti> playArray) {
         this.playArray = playArray;
     }
+    
+    public String getHizkuntza() {
+    	return Hizkuntza;
+    }
+    
+    public void setHizkuntza (String Hizkuntza) {
+    	this.Hizkuntza = Hizkuntza;
+    }
 
     //---------------- ToString ---------------- //
 
@@ -211,9 +221,11 @@ public class Bezero {
      * @return Bezeroaren errepresentazio katea.
      */
     @Override
-    public String toString() {
-        return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile=" + erabiltzaile + ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData + ", mota" + mota + "playArray=" + playArray + "]";
-    }
+	public String toString() {
+		return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile=" + erabiltzaile
+				+ ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData
+				+ ", playArray=" + playArray + ", mota=" + mota + ", Hizkuntza=" + Hizkuntza + "]";
+	}
 
     //---------------- EQUALS ---------------- //
 
@@ -242,5 +254,7 @@ public class Bezero {
 				&& Objects.equals(mota, other.mota) && Objects.equals(pasahitza, other.pasahitza)
 				&& Objects.equals(playArray, other.playArray);
 	}
+
+	
 }
 

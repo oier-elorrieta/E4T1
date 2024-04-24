@@ -78,7 +78,7 @@ public class LoginBista extends JFrame {
                
                 
                 try {
-					LoginF.LoginKomprobatu(textFieldErabiltzailea, passwordFieldPasahitza);;
+					LoginF.LoginKomprobatu(textFieldErabiltzailea, passwordFieldPasahitza);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -116,10 +116,11 @@ public class LoginBista extends JFrame {
         JButton btnErregistro = new JButton("Erregistratu");
         btnErregistro.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                
                 try {
                     ErregistroBista frame = new ErregistroBista();
                     frame.setVisible(true);
+                    dispose();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

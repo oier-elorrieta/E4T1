@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class PremiumBezeroa extends Bezero {
 
-	private Date PremiumMuga;
+	private String PremiumMuga;
 
 	// ---------------- ERAIKITZAILEA ---------------- //
 
@@ -27,9 +27,9 @@ public class PremiumBezeroa extends Bezero {
 	 * @param playArray    Bezeroaren abesti lista.
 	 * @param PremiumMuga  Premium bezeroaren premium muga data.
 	 */
-	public PremiumBezeroa(int id, String izena, String abizena, String erabiltzaile, String pasahitza, Date jaioData,
-			Date erregisData, ArrayList<Abesti> playArray, Date PremiumMuga, String mota) {
-		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota);
+	public PremiumBezeroa(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData,
+			String erregisData, ArrayList<Abesti> playArray, String PremiumMuga, String mota, String Hizkuntza ) {
+		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota, Hizkuntza);
 
 		this.PremiumMuga = PremiumMuga;
 	}
@@ -49,7 +49,7 @@ public class PremiumBezeroa extends Bezero {
 	 *
 	 * @return Premium bezeroaren premium muga data.
 	 */
-	public Date getPremiumMuga() {
+	public String getPremiumMuga() {
 		return PremiumMuga;
 	}
 
@@ -58,7 +58,7 @@ public class PremiumBezeroa extends Bezero {
 	 *
 	 * @param premiumMuga Premium bezeroaren premium muga data.
 	 */
-	public void setPremiumMuga(Date premiumMuga) {
+	public void setPremiumMuga(String premiumMuga) {
 		PremiumMuga = premiumMuga;
 	}
 
@@ -71,9 +71,7 @@ public class PremiumBezeroa extends Bezero {
 	 */
 	@Override
 	public String toString() {
-		return "PremiumBezeroa [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile="
-				+ erabiltzaile + ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData
-				+ ", playArray=" + playArray + ", PremiumMuga=" + PremiumMuga + "]";
+		return super.toString() + "PremiumMuga=" + PremiumMuga + "]";
 	}
 
 	// ---------------- EQUALS ---------------- //

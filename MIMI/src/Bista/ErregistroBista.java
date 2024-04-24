@@ -9,23 +9,9 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import Modelo.Bezero;
+import Modelo.FreeBezero;
+import Modelo.PremiumBezeroa;
 import funtzioak.ErregistratuF;
-import funtzioak.Konexioa;
-
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.BoxLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-
-import java.awt.Insets;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -34,7 +20,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.Array;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,33 +52,14 @@ public class ErregistroBista extends JFrame {
 
     private JTextField txtAbizena;
 
-    private JTextField txtAbizen;
-
     private JTextField txtErabiltzaile;
     private JPasswordField pasahitzaPass;
     private JPasswordField konfirmarPass;
-    private JTextField txtJaiotza;
     private JTextField txtErregistro;
     private JTextField txtPremium;
-    private  Bezero erregistroBezero;
+    private  FreeBezero erregistroBezero;
     private Date selectDate;
-
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    ErregistroBista frame = new ErregistroBista();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    private PremiumBezeroa berriaPre;
 
 
     /**
@@ -148,14 +115,6 @@ public class ErregistroBista extends JFrame {
         txtAbizena.setColumns(10);
         getContentPane().add(txtAbizena);
 
-        txtAbizen = new JTextField();
-        springLayout.putConstraint(SpringLayout.NORTH, txtAbizen, 0, SpringLayout.NORTH, lblIzena);
-        springLayout.putConstraint(SpringLayout.WEST, txtAbizen, 485, SpringLayout.WEST, getContentPane());
-        springLayout.putConstraint(SpringLayout.SOUTH, txtAbizen, -493, SpringLayout.SOUTH, getContentPane());
-        springLayout.putConstraint(SpringLayout.EAST, txtAbizen, -168, SpringLayout.EAST, getContentPane());
-        txtAbizen.setColumns(10);
-        getContentPane().add(txtAbizen);
-
         
         JLabel lblAbizena = new JLabel("Abizena:");
         springLayout.putConstraint(SpringLayout.EAST, txtIzena, -16, SpringLayout.WEST, lblAbizena);
@@ -163,8 +122,6 @@ public class ErregistroBista extends JFrame {
         springLayout.putConstraint(SpringLayout.WEST, lblAbizena, 386, SpringLayout.WEST, getContentPane());
 
         springLayout.putConstraint(SpringLayout.EAST, lblAbizena, -6, SpringLayout.WEST, txtAbizena);
-
-        springLayout.putConstraint(SpringLayout.EAST, lblAbizena, -6, SpringLayout.WEST, txtAbizen);
 
         lblAbizena.setHorizontalAlignment(SwingConstants.CENTER);
         lblAbizena.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -246,7 +203,7 @@ public class ErregistroBista extends JFrame {
             public void propertyChange(PropertyChangeEvent evt) {
                 if ("value".equals(evt.getPropertyName())) {
                 	selectDate = (Date) evt.getNewValue(); // Actualizar la fecha seleccionada
-                    if (selectDate != null && selectDate.before(today.getTime())) {
+                    if (selectDate != null && selectDate.after(today.getTime())) {
                         model.setDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
                         model.setSelected(true);
                     }
@@ -262,13 +219,6 @@ public class ErregistroBista extends JFrame {
         datePicker.setBounds(150, 100, 150, 30);
         getContentPane().add(datePicker);
 
-        txtJaiotza = new JTextField();
-        springLayout.putConstraint(SpringLayout.NORTH, txtJaiotza, 357, SpringLayout.NORTH, getContentPane());
-        springLayout.putConstraint(SpringLayout.SOUTH, konfirmarPass, -41, SpringLayout.NORTH, txtJaiotza);
-        springLayout.putConstraint(SpringLayout.WEST, txtJaiotza, 0, SpringLayout.WEST, txtIzena);
-        springLayout.putConstraint(SpringLayout.EAST, txtJaiotza, -478, SpringLayout.EAST, getContentPane());
-        txtJaiotza.setColumns(10);
-        getContentPane().add(txtJaiotza);
 
         
         JLabel lblErregistro = new JLabel("Erregistro data:");
@@ -327,19 +277,35 @@ public class ErregistroBista extends JFrame {
         springLayout.putConstraint(SpringLayout.SOUTH, cmbHizkuntza, 51, SpringLayout.SOUTH, txtPremium);
         springLayout.putConstraint(SpringLayout.EAST, cmbHizkuntza, 0, SpringLayout.EAST, txtIzena);
         getContentPane().add(cmbHizkuntza);
+        JTextField AukeratuHizkuntza = new JTextField(3);
+        AukeratuHizkuntza.setText("ES");
+        cmbHizkuntza.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AukeratuHizkuntza.setText(cmbHizkuntza.getSelectedItem().toString());
+				
+			}
+		});
         
-        JButton btnGorde = new JButton("GORDE");
+        
+        JButton btnGorde = new JButton("Segui free");
         btnGorde.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
-            	//java.sql.Date sqlDate = new java.sql.Date();
-//  ----------------------------------------------------------------------------------- Hay que añadir un insert -----------------------------------------------------------------------------------------
-              
-             
-
+            	erregistroBezero = new FreeBezero();
             	
-            
-//  ----------------------------------------------------------------------------------- Hay que añadir un insert -----------------------------------------------------------------------------------------
+            	 ErregistratuF.sortuBezeroa(erregistroBezero, txtIzena, txtAbizena, txtErabiltzaile, pasahitzaPass, selectDate, txtErregistro, AukeratuHizkuntza);
+            	
+            	   try {
+           			ErregistratuF.InsertFree(erregistroBezero);
+           		} catch (SQLException e1) {
+           			e1.printStackTrace();
+           		}
+            	
+          
+        
+             
+            	
                 try {
                     LoginBista frame = new LoginBista();
                     frame.setVisible(true);
@@ -357,19 +323,25 @@ public class ErregistroBista extends JFrame {
         
         JButton btnErosi = new JButton("EROSI PREMIUM");
         btnErosi.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        	public void actionPerformed(ActionEvent e) {	
         		
-        		//ErregistratuF.PremiumErosi(null, premiumMuga.format(gaurkoData));
-        		
+        		berriaPre = new PremiumBezeroa();	
         		 
-        		System.out.println(ErregistratuF.PremiumErosi(erregistroBezero, premiumMuga.format(gaurkoData)));
+      ErregistratuF.PremiumErosi(premiumMuga.format(gaurkoData), txtIzena, txtAbizena, txtErabiltzaile, pasahitzaPass, selectDate, txtErregistro, AukeratuHizkuntza, berriaPre);
+      
+      try {
+		ErregistratuF.InsertPremium(berriaPre);
+	} catch (SQLException e1) {
+		e1.printStackTrace();
+	}
+      
+      
         		
         	}
         });
         springLayout.putConstraint(SpringLayout.NORTH, btnErosi, 0, SpringLayout.NORTH, btnGorde);
         springLayout.putConstraint(SpringLayout.WEST, btnErosi, 0, SpringLayout.WEST, txtAbizena);
         springLayout.putConstraint(SpringLayout.NORTH, btnErosi, 0, SpringLayout.NORTH, btnGorde);
-        springLayout.putConstraint(SpringLayout.WEST, btnErosi, 0, SpringLayout.WEST, txtAbizen);
         springLayout.putConstraint(SpringLayout.EAST, btnErosi, -29, SpringLayout.EAST, getContentPane());
         getContentPane().add(btnErosi);
     }
