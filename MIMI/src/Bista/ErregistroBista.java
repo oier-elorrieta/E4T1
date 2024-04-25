@@ -1,48 +1,38 @@
 
 package Bista;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
-import javax.swing.SwingConstants;
-
-import Modelo.Bezero;
-import Modelo.FreeBezero;
-import Modelo.PremiumBezeroa;
-import funtzioak.ErregistratuF;
-import javax.swing.SpringLayout;
-import javax.swing.JButton;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.sql.Array;
-import java.sql.Connection;
-import java.util.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 
-import java.sql.Array;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
 
-import org.jdatepicker.impl.*;
-import java.awt.Toolkit;
+import org.jdatepicker.impl.DateComponentFormatter;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import Modelo.FreeBezero;
+import Modelo.PremiumBezeroa;
+import funtzioak.BezeroDao;
+import funtzioak.BistakArgitaratu;
+import funtzioak.ErregistratuF;
 
 public class ErregistroBista extends JFrame {
 
@@ -87,7 +77,7 @@ public class ErregistroBista extends JFrame {
 		springLayout.putConstraint(SpringLayout.EAST, btnAtzera, 169, SpringLayout.WEST, getContentPane());
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ErregistratuF.loginJoan();
+				BistakArgitaratu.loginJoan();
 				dispose();
 			}
 		});
@@ -295,7 +285,7 @@ public class ErregistroBista extends JFrame {
 		lblHizkuntza.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		getContentPane().add(lblHizkuntza);
 
-		JComboBox cmbHizkuntza = new JComboBox(ErregistratuF.HizkuntzaAtera());
+		JComboBox cmbHizkuntza = new JComboBox(BezeroDao.HizkuntzaAtera());
 		springLayout.putConstraint(SpringLayout.NORTH, cmbHizkuntza, 29, SpringLayout.SOUTH, txtPremium);
 		springLayout.putConstraint(SpringLayout.WEST, cmbHizkuntza, 0, SpringLayout.WEST, txtIzena);
 		springLayout.putConstraint(SpringLayout.SOUTH, cmbHizkuntza, 51, SpringLayout.SOUTH, txtPremium);
@@ -324,12 +314,12 @@ public class ErregistroBista extends JFrame {
 						selectDate, txtErregistro, AukeratuHizkuntza);
 
 				try {
-					ErregistratuF.InsertFree(erregistroBezero);
+					BezeroDao.InsertFree(erregistroBezero);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
 
-				ErregistratuF.loginJoan();
+				BistakArgitaratu.loginJoan();
 				dispose();
 			}
 		});
@@ -350,12 +340,12 @@ public class ErregistroBista extends JFrame {
 						pasahitzaPass, selectDate, txtErregistro, AukeratuHizkuntza, berriaPre);
 
 				try {
-					ErregistratuF.InsertPremium(berriaPre);
+					BezeroDao.InsertPremium(berriaPre);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
 
-				ErregistratuF.loginJoan();
+				BistakArgitaratu.loginJoan();
 				dispose();
 
 			}

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import funtzioak.BistakArgitaratu;
 import funtzioak.ErregistratuF;
 
 import javax.swing.JLabel;
@@ -72,7 +73,7 @@ public class MenuaBista extends JFrame {
 		JButton btnAtzera = new JButton("ATZERA");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ErregistratuF.loginJoan();
+				BistakArgitaratu.loginJoan();
 				dispose();
 			}
 		});
