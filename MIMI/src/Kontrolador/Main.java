@@ -1,8 +1,8 @@
 package Kontrolador;
 
 
+import DatuBasea.Konexioa;
 import funtzioak.BistakArgitaratu;
-import funtzioak.Konexioa;
 
 public class Main {
 

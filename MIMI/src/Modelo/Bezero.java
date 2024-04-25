@@ -18,7 +18,7 @@ public  abstract class Bezero  {
     protected String erregisData;
     protected ArrayList<Abesti> playArray;
     protected String mota;
-    protected String Hizkuntza;
+	protected String hizkuntza;
 
     //---------------- ERAIKITZAILEA ---------------- //
 
@@ -34,7 +34,7 @@ public  abstract class Bezero  {
      * @param erregisData  Bezeroaren erregisData.
      * @param playArray    Bezeroaren abesti lista.
      */
-    public Bezero(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData, String erregisData, ArrayList<Abesti> playArray, String mota, String Hizkuntza) {
+    public Bezero(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData, String erregisData, ArrayList<Abesti> playArray, String mota, String hizkuntza) {
         this.id = id;
         this.izena = izena;
         this.abizena = abizena;
@@ -44,7 +44,7 @@ public  abstract class Bezero  {
         this.erregisData = erregisData;
         this.playArray = playArray;
         this.mota = mota;
-        this.Hizkuntza = Hizkuntza;
+        this.hizkuntza = hizkuntza;
     }
 
     //---------------- GETTERS eta SETTERS ---------------- //
@@ -221,15 +221,15 @@ public  abstract class Bezero  {
      * @return Bezeroaren hizkuntza
      */
     public String getHizkuntza() {
-    	return Hizkuntza;
+    	return hizkuntza;
     }
     
     /**
      * Hizkuntza aldagaia ezartzen du.
      * @param Hizkuntza Hizkuntza aldagaia
      */
-    public void setHizkuntza (String Hizkuntza) {
-    	this.Hizkuntza = Hizkuntza;
+    public void setHizkuntza (String hizkuntza) {
+    	this.hizkuntza = hizkuntza;
     }
 
     //---------------- ToString ---------------- //
@@ -243,7 +243,7 @@ public  abstract class Bezero  {
 	public String toString() {
 		return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile=" + erabiltzaile
 				+ ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData
-				+ ", playArray=" + playArray + ", mota=" + mota + ", Hizkuntza=" + Hizkuntza + "]";
+				+ ", playArray=" + playArray + ", mota=" + mota + ", hizkuntza=" + hizkuntza + "]";
 	}
 
     //---------------- EQUALS ---------------- //

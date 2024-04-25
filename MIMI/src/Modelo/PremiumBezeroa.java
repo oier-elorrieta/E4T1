@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class PremiumBezeroa extends Bezero {
 
-	private String PremiumMuga;
+	private String premiumMuga;
 
 	// ---------------- ERAIKITZAILEA ---------------- //
 
@@ -28,10 +28,10 @@ public class PremiumBezeroa extends Bezero {
 	 * @param PremiumMuga  Premium bezeroaren premium muga data.
 	 */
 	public PremiumBezeroa(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData,
-			String erregisData, ArrayList<Abesti> playArray, String PremiumMuga, String mota, String Hizkuntza ) {
-		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota, Hizkuntza);
+			String erregisData, ArrayList<Abesti> playArray, String premiumMuga, String mota, String hizkuntza ) {
+		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota, hizkuntza);
 
-		this.PremiumMuga = PremiumMuga;
+		this.premiumMuga = premiumMuga;
 	}
 	
 	
@@ -50,7 +50,7 @@ public class PremiumBezeroa extends Bezero {
 	 * @return Premium bezeroaren premium muga data.
 	 */
 	public String getPremiumMuga() {
-		return PremiumMuga;
+		return premiumMuga;
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class PremiumBezeroa extends Bezero {
 	 * @param premiumMuga Premium bezeroaren premium muga data.
 	 */
 	public void setPremiumMuga(String premiumMuga) {
-		PremiumMuga = premiumMuga;
+		this.premiumMuga = premiumMuga;
 	}
 
 	// ---------------- ToString ---------------- //
@@ -71,7 +71,7 @@ public class PremiumBezeroa extends Bezero {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "PremiumMuga=" + PremiumMuga + "]";
+		return super.toString() + ", premiumMuga=" + premiumMuga + "]";
 	}
 
 	// ---------------- EQUALS ---------------- //
@@ -91,7 +91,7 @@ public class PremiumBezeroa extends Bezero {
 		if (getClass() != obj.getClass())
 			return false;
 		PremiumBezeroa other = (PremiumBezeroa) obj;
-		return Objects.equals(PremiumMuga, other.PremiumMuga);
+		return Objects.equals(this.premiumMuga, other.premiumMuga);
 	}
 
 }

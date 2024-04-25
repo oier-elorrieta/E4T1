@@ -13,17 +13,17 @@ import java.util.Objects;
 
 public class Album {
 
-	private String id;
+	protected String id;
 
-	private String abesti_izena;
+	protected String abesti_izena;
 
-	private Date argitaratzea;
+	protected Date argitaratzea;
 
-	private int AbestiKopurua;
+	protected int abestiKopurua;
 
-	private String Kolaboratzaile;
+	protected String Kolaboratzaile;
 
-	private Double iraupena;
+	protected Double iraupena;
 
 	// ---------------- ERAIKITZAILEA ---------------- //
 
@@ -51,7 +51,7 @@ public class Album {
 
 		this.argitaratzea = argitaratzea;
 
-		this.AbestiKopurua = AbestiKopurua;
+		this.abestiKopurua = AbestiKopurua;
 
 		this.Kolaboratzaile = Kolaboratzaile;
 
@@ -155,7 +155,7 @@ public class Album {
 
 	public int getAbestiKopurua() {
 
-		return AbestiKopurua;
+		return abestiKopurua;
 
 	}
 
@@ -169,7 +169,7 @@ public class Album {
 
 	public void setAbestiKopurua(int abestiKopurua) {
 
-		AbestiKopurua = abestiKopurua;
+		abestiKopurua = abestiKopurua;
 
 	}
 
@@ -245,7 +245,7 @@ public class Album {
 
 		return "Album [id=" + id + ", abesti_izena=" + abesti_izena + ", argitaratzea=" + argitaratzea
 
-				+ ", AbestiKopurua=" + AbestiKopurua + ", Kolaboratzaile=" + Kolaboratzaile + ", iraupena=" + iraupena
+				+ ", AbestiKopurua=" + abestiKopurua + ", Kolaboratzaile=" + Kolaboratzaile + ", iraupena=" + iraupena
 
 				+ "]";
 
@@ -281,7 +281,7 @@ public class Album {
 
 		Album other = (Album) obj;
 
-		return AbestiKopurua == other.AbestiKopurua && Objects.equals(Kolaboratzaile, other.Kolaboratzaile)
+		return abestiKopurua == other.abestiKopurua && Objects.equals(Kolaboratzaile, other.Kolaboratzaile)
 
 				&& Objects.equals(abesti_izena, other.abesti_izena) && Objects.equals(argitaratzea, other.argitaratzea)
 

@@ -99,13 +99,13 @@ public class PlaylistTest {
 
     @Test
     public void testToString() {
+    	
         ArrayList<Abesti> abestiList = new ArrayList<>();
         abestiList.add(new Abesti("1", "Abesti1", 3.5, "Album1", "Kolaboratzaile1"));
         Playlist playlist = new Playlist("1", "Playlist1", abestiList);
-        String expectedToString = "Playlist [id=1, izena=Playlist1, AbestiList=[" +
-                                  "Abesti [id=1, abestiIzena=Abesti1, iraupena=3.5, albumIzena=Album1, kolaboratzaile=Kolaboratzaile1]" +
-                                  "]]";
+        String expectedToString = "Playlist [id=1, izena=Playlist1, abestiList=[Abesti [id=1, abestiIzena=Abesti1, iraupena=3.5, albumIzena=Album1, kolaboratzaile=Kolaboratzaile1]]]";
         assertEquals(expectedToString, playlist.toString());
+       
     }
 
     @Test

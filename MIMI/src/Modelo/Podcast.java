@@ -16,7 +16,7 @@ public class Podcast {
 
 	private String podcast_izena;
 
-	private String Kolaboratzaile;
+	private String kolaboratzaile;
 
 	private Double iraupena;
 
@@ -46,7 +46,7 @@ public class Podcast {
 
 		this.podcast_izena = podcast_izena;
 
-		Kolaboratzaile = kolaboratzaile;
+		kolaboratzaile = kolaboratzaile;
 
 		this.iraupena = iraupena;
 
@@ -96,7 +96,7 @@ public class Podcast {
      * @return Kolaboratzailearen izena.
      */
     public String getKolaboratzaile() {
-        return Kolaboratzaile;
+        return kolaboratzaile;
     }
 
     /**
@@ -105,7 +105,7 @@ public class Podcast {
      * @param kolaboratzaile Kolaboratzailearen izena.
      */
     public void setKolaboratzaile(String kolaboratzaile) {
-        Kolaboratzaile = kolaboratzaile;
+        kolaboratzaile = kolaboratzaile;
     }
 
     /**
@@ -140,7 +140,7 @@ public class Podcast {
 
 	public String toString() {
 
-		return "Podcast [id=" + id + ", podcast_izena=" + podcast_izena + ", Kolaboratzaile=" + Kolaboratzaile
+		return "Podcast [id=" + id + ", podcast_izena=" + podcast_izena + ", Kolaboratzaile=" + kolaboratzaile
 
 				+ ", iraupena=" + iraupena + "]";
 
@@ -180,7 +180,7 @@ public class Podcast {
 
 		Podcast other = (Podcast) obj;
 
-		return Objects.equals(Kolaboratzaile, other.Kolaboratzaile) && id == other.id
+		return Objects.equals(kolaboratzaile, other.kolaboratzaile) && id == other.id
 
 				&& Objects.equals(iraupena, other.iraupena) && Objects.equals(podcast_izena, other.podcast_izena);
 

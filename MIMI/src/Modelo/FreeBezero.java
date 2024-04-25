@@ -32,8 +32,8 @@ public class FreeBezero extends Bezero {
 	 * @param Hizkuntza    bezeroaren hizkuntza
 	 */
 	public FreeBezero(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData,
-			String erregisData, ArrayList<Abesti> playArray, String mota, String Hizkuntza) {
-		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota, Hizkuntza);
+			String erregisData, ArrayList<Abesti> playArray, String mota, String hizkuntza) {
+		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota, hizkuntza);
 		// TODO Auto-generated constructor stub
 	}
 

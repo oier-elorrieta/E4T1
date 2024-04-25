@@ -21,7 +21,7 @@ public class Playlist {
 
 	private String izena;
 
-	private ArrayList<Abesti> AbestiList;
+	private ArrayList<Abesti> abestiList;
 
 	// ---------------- ERAIKITZAILEA ---------------- //
 
@@ -43,7 +43,7 @@ public class Playlist {
 
 		this.izena = izena;
 
-		AbestiList = abestiList;
+		this.abestiList = abestiList;
 
 	}
 
@@ -115,7 +115,7 @@ public class Playlist {
 
 	public ArrayList<Abesti> getAbestiList() {
 
-		return AbestiList;
+		return abestiList;
 
 	}
 
@@ -129,7 +129,7 @@ public class Playlist {
 
 	public void setAbestiList(ArrayList<Abesti> abestiList) {
 
-		AbestiList = abestiList;
+		this.abestiList = abestiList;
 
 	}
 
@@ -145,7 +145,7 @@ public class Playlist {
 
 	public String toString() {
 
-		return "Playlist [id=" + id + ", izena=" + izena + ", AbestiList=" + AbestiList + "]";
+		return "Playlist [id=" + id + ", izena=" + izena + ", abestiList=" + abestiList + "]";
 
 	}
 
@@ -180,7 +180,7 @@ public class Playlist {
 
 		Playlist other = (Playlist) obj;
 
-		return Objects.equals(AbestiList, other.AbestiList) && id == other.id && Objects.equals(izena, other.izena);
+		return Objects.equals(abestiList, other.abestiList) && id == other.id && Objects.equals(izena, other.izena);
 
 	}
 

@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import funtzioak.BezeroDao;
+import DatuBasea.BezeroDao;
 
 public class LoginBista extends JFrame {
 
@@ -29,7 +29,6 @@ public class LoginBista extends JFrame {
     private JPasswordField passwordFieldPasahitza;
 
     public LoginBista() {
-//      setIconImage(Toolkit.getDefaultToolkit().getImage(LoginBista.class.getResource(Aldagaiak.ikonoLogo)));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1280, 720);
         contentPane = new JPanel();
@@ -82,17 +81,13 @@ public class LoginBista extends JFrame {
 
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-                // Simular el clic en el botón cuando se presiona Enter
-
                 btnLog.doClick();
-                // Deitu login botoia click funtzioa
+    
             }
 
         }
 
     });
-    
-    //
     
         
         passwordFieldPasahitza.setBounds(657, 210, 163, 20);
