@@ -6,7 +6,7 @@ import java.util.Objects;
 
 	public class Abesti {
 
-	private int id;
+	private String id;
 
 	private String abestiIzena;
 
@@ -30,7 +30,7 @@ import java.util.Objects;
 	 * 
 	 */
 
-	public Abesti(int id, String abestiIzena, Double iraupena, String albumIzena, String kolaboratzaile) {
+	public Abesti(String id, String abestiIzena, Double iraupena, String albumIzena, String kolaboratzaile) {
 		this.id = id;
 		this.abestiIzena = abestiIzena;
 		this.iraupena = iraupena;
@@ -49,7 +49,7 @@ import java.util.Objects;
 	 * 
 	 */
 
-	public int getId() {
+	public String getId() {
 
 		return id;
 
@@ -63,7 +63,7 @@ import java.util.Objects;
 	 * 
 	 */
 
-	public void setId(int id) {
+	public void setId(String id) {
 
 		this.id = id;
 

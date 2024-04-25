@@ -29,7 +29,7 @@ public class Abeslari extends Artista {
 	 * 
 	 */
 
-	public Abeslari(int id, String izena, String info, Mota mota) {
+	public Abeslari(String id, String izena, String info, Mota mota) {
 
 		super(id, izena, info);
 

@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class Podcast {
 
-	private int id;
+	private String id;
 
 	private String podcast_izena;
 
@@ -38,7 +38,7 @@ public class Podcast {
 	 * 
 	 */
 
-	public Podcast(int id, String podcast_izena, String kolaboratzaile, Double iraupena) {
+	public Podcast(String id, String podcast_izena, String kolaboratzaile, Double iraupena) {
 
 		super();
 
@@ -59,7 +59,7 @@ public class Podcast {
      *
      * @return Podcast-aren identifikazioa.
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -68,7 +68,7 @@ public class Podcast {
      *
      * @param id Podcast-aren identifikazioa.
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

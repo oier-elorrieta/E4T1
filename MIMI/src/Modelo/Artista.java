@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public abstract class Artista {
 	
-	protected int id;
+	protected String id;
 	protected String izena;
 	protected String info;
 
@@ -27,7 +27,7 @@ public abstract class Artista {
 	 * 
 	 */
 
-	public Artista(int id, String izena, String info) {
+	public Artista(String id, String izena, String info) {
 
 		this.id = id;
 
@@ -49,7 +49,7 @@ public abstract class Artista {
 	 * 
 	 */
 
-	public int getId() {
+	public String getId() {
 
 		return id;
 
@@ -61,7 +61,7 @@ public abstract class Artista {
 	 * @param id Berria izango den artistaaren identifikazioa.
 	 */
 
-	public void setId(int id) {
+	public void setId(String id) {
 
 		this.id = id;
 

@@ -5,7 +5,7 @@ public class Podcaster extends Artista{
 	
 	//---------------- ERAIKITZAILEA ---------------- // 
 
-	public Podcaster(int id, String izena, String info) {
+	public Podcaster(String id, String izena, String info) {
 		super(id, izena, info);
 	}
 

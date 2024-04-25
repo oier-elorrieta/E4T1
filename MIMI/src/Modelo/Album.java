@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class Album {
 
-	private int id;
+	private String id;
 
 	private String abesti_izena;
 
@@ -42,7 +42,7 @@ public class Album {
 	 * 
 	 */
 
-	public Album(int id, String abesti_izena, Date argitaratzea, int AbestiKopurua, String Kolaboratzaile,
+	public Album(String id, String abesti_izena, Date argitaratzea, int AbestiKopurua, String Kolaboratzaile,
 			Double iraupena) {
 
 		this.id = id;
@@ -69,7 +69,7 @@ public class Album {
 	 * 
 	 */
 
-	public int getId() {
+	public String getId() {
 
 		return id;
 
@@ -83,7 +83,7 @@ public class Album {
 	 * 
 	 */
 
-	public void setId(int id) {
+	public void setId(String id) {
 
 		this.id = id;
 

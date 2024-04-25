@@ -10,12 +10,119 @@ import Modelo.*;
 
 public class BezeroTest {
 
+	// --------------------------------- TEST BEZERO FREE --------------------------------- //
 	@Test
 	public void testGetIzenaTrue() {
 		FreeBezero bezero = new FreeBezero("BZ009", "talde", "talde", "mimitalde", "password", "2024-04-19",
 				"2024-04-20", new ArrayList<>(), null, null);
 		assertEquals("talde", bezero.getIzena());
 	}
+
+	@Test
+	public void testSetIzenaFalse() {
+		FreeBezero bezero = new FreeBezero();
+		bezero.setIzena("Garcia");
+		assertNotEquals("Casillas", bezero.getIzena());
+	}
+
+	@Test
+	public void testGetIdTrue() {
+		FreeBezero bezero = new FreeBezero("BZ009", "talde", "talde", "mimitalde", "password", "2024-04-19",
+				"2024-04-20", new ArrayList<>(), null, null);
+		assertEquals("BZ009", bezero.getId());
+	}
+
+	@Test
+	public void testSetIdFalse() {
+		FreeBezero bezero = new FreeBezero();
+		bezero.setIzena("BZ002");
+		assertNotEquals("BZ009", bezero.getId());
+	}
+
+	@Test
+	public void testGetAbizenaTrue() {
+		FreeBezero bezero = new FreeBezero("BZ009", "mimi", "talde", "mimitalde", "password", "2024-04-19",
+				"2024-04-20", new ArrayList<>(), null, null);
+		assertEquals("talde", bezero.getAbizena());
+	}
+
+	@Test
+	public void testSetAbizenaFalse() {
+		FreeBezero bezero = new FreeBezero();
+		bezero.setAbizena("Garcia");
+		assertNotEquals("Casillas", bezero.getAbizena());
+	}
+
+	@Test
+	public void testGetMotaTrue() {
+		FreeBezero bezero = new FreeBezero("BZ001", "Pedro", "Garcia", "pedrus", "kk", "2001-01-01", "2023-04-04", null,
+				"Premium", "EU");
+
+		assertEquals("Premium", bezero.getMota());
+
+	}
+
+	@Test
+	public void testGetMotaFalse() {
+		FreeBezero bezero = new FreeBezero("BZ001", "Pedro", "Garcia", "pedrus", "kk", "2001-01-01", "2023-04-04", null,
+				"Premium", "EU");
+
+		assertNotEquals("Free", bezero.getMota());
+
+	}
+
+	@Test
+	public void testSetMotaTrue() {
+		FreeBezero bezero = new FreeBezero("BZ001", "Pedro", "Garcia", null, "kk", "2001-01-01", "2023-04-04", null,
+				"Premium", "ES");
+		bezero.setMota("Free");
+		assertEquals("Free", bezero.getMota());
+	}
+
+	@Test
+	public void testSetMotaFalse() {
+		FreeBezero bezero = new FreeBezero("BZ001", "Pedro", "Garcia", null, "kk", "2001-01-01", "2023-04-04", null,
+				"Premium", "ES");
+		bezero.setMota("Free");
+		assertNotEquals("Premium", bezero.getMota());
+
+	}
+
+	@Test
+	public void testEqualsFreeTrue() {
+		FreeBezero bezero1 = new FreeBezero("BZ009", "mimi", "talde", "mimitalde", "password", "2024-04-19",
+				"2024-04-20", new ArrayList<>(), null, null);
+		FreeBezero bezero2 = new FreeBezero("BZ009", "mimi", "talde", "mimitalde", "password", "2024-04-19",
+				"2024-04-20", new ArrayList<>(), null, null);
+
+		assertTrue(bezero1.equals(bezero2));
+
+	}
+
+	@Test
+	public void testEqualsFreeFalse() {
+		FreeBezero bezero1 = new FreeBezero("BZ003", "mimi", "talde", "mimitalde", "password", "2024-04-19",
+				"2024-04-20", new ArrayList<>(), null, null);
+		FreeBezero bezero2 = new FreeBezero("BZ009", "mimi", "talde", "mimitalde", "password", "2024-04-19",
+				"2024-04-20", new ArrayList<>(), null, null);
+
+		assertFalse(bezero1.equals(bezero2));
+	}
+
+	@Test
+	public void testToStringFree() {
+		ArrayList<Abesti> playArray = new ArrayList<>();
+		playArray.add(new Abesti("1", "Song1", 3.5, "Album1", "Artist1"));
+		FreeBezero bezero = new FreeBezero("BZ003", "mimi", "talde", "mimitalde", "password", "2024-04-19",
+				"2024-04-20", new ArrayList<>(), null, null);
+		String expectedToString = "Bezero [id=BZ003, izena=mimi, abizena=talde, erabiltzaile=mimitalde, pasahitza=password, jaioData=2024-04-19, erregisData=2024-04-20, playArray=[], mota=null, Hizkuntza=null]";
+		;
+
+		assertEquals(expectedToString, bezero.toString());
+
+	}
+
+	// --------------------------------- TEST BEZERO PREMIUM ----------------------------- //
 
 	@Test
 	public void testGetIzenaFalse() {
@@ -29,20 +136,6 @@ public class BezeroTest {
 		PremiumBezeroa bezero = new PremiumBezeroa();
 		bezero.setIzena("Garcia");
 		assertEquals("Garcia", bezero.getIzena());
-	}
-
-	@Test
-	public void testSetIzenaFalse() {
-		FreeBezero bezero = new FreeBezero();
-		bezero.setIzena("Garcia");
-		assertNotEquals("Casillas", bezero.getIzena());
-	}
-	
-	@Test
-	public void testGetIdTrue() {
-		FreeBezero bezero = new FreeBezero("BZ009", "talde", "talde", "mimitalde", "password", "2024-04-19",
-				"2024-04-20", new ArrayList<>(), null, null);
-		assertEquals("BZ009", bezero.getId());
 	}
 
 	@Test
@@ -60,20 +153,6 @@ public class BezeroTest {
 	}
 
 	@Test
-	public void testSetIdFalse() {
-		FreeBezero bezero = new FreeBezero();
-		bezero.setIzena("BZ002");
-		assertNotEquals("BZ009", bezero.getId());
-	}
-	
-	@Test
-	public void testGetAbizenaTrue() {
-		FreeBezero bezero = new FreeBezero("BZ009", "mimi", "talde", "mimitalde", "password", "2024-04-19",
-				"2024-04-20", new ArrayList<>(), null, null);
-		assertEquals("talde", bezero.getAbizena());
-	}
-
-	@Test
 	public void testGetAbizenaFalse() {
 		PremiumBezeroa bezero = new PremiumBezeroa("BZ001", "Pedro", "Garcia", "pedrus", "kk", "2001-01-01",
 				"2023-04-04", null, "2024-04-04", "Premium", "ES");
@@ -85,13 +164,6 @@ public class BezeroTest {
 		PremiumBezeroa bezero = new PremiumBezeroa();
 		bezero.setAbizena("Garcia");
 		assertEquals("Garcia", bezero.getAbizena());
-	}
-
-	@Test
-	public void testSetAbizenaFalse() {
-		FreeBezero bezero = new FreeBezero();
-		bezero.setAbizena("Garcia");
-		assertNotEquals("Casillas", bezero.getAbizena());
 	}
 
 	@Test
@@ -220,7 +292,7 @@ public class BezeroTest {
 	@Test
 	public void testGetPlayArray() {
 		ArrayList<Abesti> playArray = new ArrayList<>();
-		playArray.add(new Abesti(1, "Song1", 3.5, "Album1", "Artist1"));
+		playArray.add(new Abesti("1", "Song1", 3.5, "Album1", "Artist1"));
 		PremiumBezeroa bezero = new PremiumBezeroa("BZ001", "Pedro", "Garcia", "pedrus", "kk", null, "2023-04-04",
 				playArray, "2024-04-04", "Premium", "ES");
 		assertEquals(playArray, bezero.getPlayArray());
@@ -229,7 +301,7 @@ public class BezeroTest {
 	@Test
 	public void testSetPlayArray() {
 		ArrayList<Abesti> playArray = new ArrayList<>();
-		playArray.add(new Abesti(1, "Song1", 3.5, "Album1", "Artist1"));
+		playArray.add(new Abesti("1", "Song1", 3.5, "Album1", "Artist1"));
 		PremiumBezeroa bezero = new PremiumBezeroa("BZ001", "Pedro", "Garcia", "pedrus", "kk", null, null, null,
 				"2024-04-04", "Premium", "ES");
 		bezero.setPlayArray(playArray);
@@ -258,29 +330,9 @@ public class BezeroTest {
 	}
 
 	@Test
-	public void testEqualsFreeTrue() {
-		FreeBezero bezero1 = new FreeBezero("BZ009", "mimi", "talde", "mimitalde", "password", "2024-04-19",
-				"2024-04-20", new ArrayList<>(), null, null);
-		FreeBezero bezero2 = new FreeBezero("BZ009", "mimi", "talde", "mimitalde", "password", "2024-04-19",
-				"2024-04-20", new ArrayList<>(), null, null);
-
-		assertTrue(bezero1.equals(bezero2));
-
-	}
-
-	@Test
-	public void testEqualsFreeFalse() {
-		FreeBezero bezero1 = new FreeBezero("BZ003", "mimi", "talde", "mimitalde", "password", "2024-04-19",
-				"2024-04-20", new ArrayList<>(), null, null);
-		FreeBezero bezero2 = new FreeBezero("BZ009", "mimi", "talde", "mimitalde", "password", "2024-04-19",
-				"2024-04-20", new ArrayList<>(), null, null);
-		assertFalse(bezero1.equals(bezero2));
-	}
-
-	@Test
 	public void testToStringPremium() {
 		ArrayList<Abesti> playArray = new ArrayList<>();
-		playArray.add(new Abesti(1, "Song1", 3.5, "Album1", "Artist1"));
+		playArray.add(new Abesti("1", "Song1", 3.5, "Album1", "Artist1"));
 		PremiumBezeroa bezero = new PremiumBezeroa("BZ001", "Pedro", "Garcia", "pedrus", "kk", null, null, null,
 				"2024-04-04", "Premium", "ES");
 		String expectedToString = "Bezero [id=BZ001, izena=Pedro, abizena=Garcia, erabiltzaile=pedrus, pasahitza=kk, jaioData=null, erregisData=null, playArray=null, mota=Premium, Hizkuntza=ES]PremiumMuga=2024-04-04]";
@@ -288,16 +340,4 @@ public class BezeroTest {
 		assertEquals(expectedToString, bezero.toString());
 	}
 
-	@Test
-	public void testToStringFree() {
-		ArrayList<Abesti> playArray = new ArrayList<>();
-		playArray.add(new Abesti(1, "Song1", 3.5, "Album1", "Artist1"));
-		FreeBezero bezero = new FreeBezero("BZ003", "mimi", "talde", "mimitalde", "password", "2024-04-19",
-				"2024-04-20", new ArrayList<>(), null, null);
-		String expectedToString = "Bezero [id=BZ003, izena=mimi, abizena=talde, erabiltzaile=mimitalde, pasahitza=password, jaioData=2024-04-19, erregisData=2024-04-20, playArray=[], mota=null, Hizkuntza=null]";
-;
-
-		assertEquals(expectedToString, bezero.toString());
-
-	}
 }

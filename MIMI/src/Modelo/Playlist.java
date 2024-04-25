@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class Playlist {
 
-	private int id;
+	private String id;
 
 	private String izena;
 
@@ -35,7 +35,7 @@ public class Playlist {
 	 * 
 	 */
 
-	public Playlist(int id, String izena, ArrayList<Abesti> abestiList) {
+	public Playlist(String id, String izena, ArrayList<Abesti> abestiList) {
 
 		super();
 
@@ -57,7 +57,7 @@ public class Playlist {
 	 * 
 	 */
 
-	public int getId() {
+	public String getId() {
 
 		return id;
 
@@ -71,7 +71,7 @@ public class Playlist {
 	 * 
 	 */
 
-	public void setId(int id) {
+	public void setId(String id) {
 
 		this.id = id;
 
