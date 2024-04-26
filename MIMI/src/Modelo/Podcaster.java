@@ -7,6 +7,10 @@ public class Podcaster extends Artista{
 	
 	//---------------- ERAIKITZAILEA ---------------- // 
 
+	public Podcaster() {
+		
+	}
+	
 	public Podcaster(String id, String izena, String info, Blob irudia) {
 		super(id, izena, info, irudia);
 	}

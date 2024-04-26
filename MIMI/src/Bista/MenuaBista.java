@@ -84,6 +84,13 @@ public class MenuaBista extends JFrame {
 		splitPane_5.setLeftComponent(btnNirePlay);
 		
 		JButton btnPDeskubritu = new JButton("Podcastak Deskubritu");
+		btnPDeskubritu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				BistakArgitaratu.PodcastDeskubrituJoan();
+				dispose();
+			}
+		});
 		btnPDeskubritu.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		splitPane_4.setLeftComponent(btnPDeskubritu);
 		

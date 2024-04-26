@@ -7,7 +7,10 @@ import Bista.ErregistroBista;
 import Bista.LoginBista;
 import Bista.MenuaBista;
 import Bista.MusikaDeskubrituBista;
+import Bista.PodcastDeskubrituBista;
+import Bista.PodcasterBista;
 import Modelo.Album;
+import Modelo.Podcast;
 
 public class BistakArgitaratu {
 
@@ -81,5 +84,24 @@ public class BistakArgitaratu {
 		}
 	}
 	
+	
+	public static void PodcastDeskubrituJoan() {
+		try { 
+			PodcastDeskubrituBista frame = new PodcastDeskubrituBista();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void PodcasterBistaJoan(String artistaIzena, List<Podcast> podcast) {
+		try { 
+			PodcasterBista frame = new PodcasterBista(artistaIzena,podcast);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

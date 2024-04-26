@@ -23,12 +23,15 @@ import java.sql.SQLException;
 
 import Modelo.Abeslari;
 import Modelo.Album;
+import Modelo.Podcast;
+import funtzioak.BistakArgitaratu;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-public class ArtistaBista extends JFrame {
+public class PodcasterBista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -36,7 +39,7 @@ public class ArtistaBista extends JFrame {
 	private DefaultListModel<String> model;
 	private List<Abeslari> musikariak;
 
-	public ArtistaBista(String artistaIzena, List<Album> albumak) throws SQLException {
+	public PodcasterBista(String artistaIzena, List<Podcast> podcast) throws SQLException {
 		setResizable(false);
 
 		musikariak = AbeslariDao.musikariakAtera();
@@ -93,16 +96,17 @@ public class ArtistaBista extends JFrame {
 		contentPane.add(listMusika);
 
 		model = new DefaultListModel<String>();
-		System.out.println(albumak.toString());
+		System.out.println(podcast.toString());
 		System.out.println(artistaIzena);
 
-		for (int i = 0; i < albumak.size(); i++) {
-			model.addElement(artistaIzena + " - " + albumak.get(i).getIzenburua());
+		for (int i = 0; i < podcast.size(); i++) {
+			model.addElement(artistaIzena + " - " + podcast.get(i).getPodcast_izena());
 		}
 		listMusika.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
+				//	PLAY
 
 				}
 			}

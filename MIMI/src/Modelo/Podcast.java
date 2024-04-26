@@ -22,6 +22,10 @@ public class Podcast {
 
 	// ---------------- ERAIKITZAILEA ---------------- //
 
+	public Podcast() {
+
+	}
+
 	/**
 	 * 
 	 * Podcast-aren eraikitzailea.
@@ -52,79 +56,79 @@ public class Podcast {
 
 	}
 
-    // ---------------- GETTERS eta SETTERS ---------------- //
+	// ---------------- GETTERS eta SETTERS ---------------- //
 
-    /**
-     * Podcast-aren identifikazioa lortzen du.
-     *
-     * @return Podcast-aren identifikazioa.
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * Podcast-aren identifikazioa lortzen du.
+	 *
+	 * @return Podcast-aren identifikazioa.
+	 */
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * Podcast-aren identifikazioa ezartzen du.
-     *
-     * @param id Podcast-aren identifikazioa.
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+	/**
+	 * Podcast-aren identifikazioa ezartzen du.
+	 *
+	 * @param id Podcast-aren identifikazioa.
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    /**
-     * Podcast-aren izena lortzen du.
-     *
-     * @return Podcast-aren izena.
-     */
-    public String getPodcast_izena() {
-        return podcast_izena;
-    }
+	/**
+	 * Podcast-aren izena lortzen du.
+	 *
+	 * @return Podcast-aren izena.
+	 */
+	public String getPodcast_izena() {
+		return podcast_izena;
+	}
 
-    /**
-     * Podcast-aren izena ezartzen du.
-     *
-     * @param podcast_izena Podcast-aren izena.
-     */
-    public void setPodcast_izena(String podcast_izena) {
-        this.podcast_izena = podcast_izena;
-    }
+	/**
+	 * Podcast-aren izena ezartzen du.
+	 *
+	 * @param podcast_izena Podcast-aren izena.
+	 */
+	public void setPodcast_izena(String podcast_izena) {
+		this.podcast_izena = podcast_izena;
+	}
 
-    /**
-     * Kolaboratzailearen izena lortzen du.
-     *
-     * @return Kolaboratzailearen izena.
-     */
-    public String getKolaboratzaile() {
-        return kolaboratzaile;
-    }
+	/**
+	 * Kolaboratzailearen izena lortzen du.
+	 *
+	 * @return Kolaboratzailearen izena.
+	 */
+	public String getKolaboratzaile() {
+		return kolaboratzaile;
+	}
 
-    /**
-     * Kolaboratzailearen izena ezartzen du.
-     *
-     * @param kolaboratzaile Kolaboratzailearen izena.
-     */
-    public void setKolaboratzaile(String kolaboratzaile) {
-    	this.kolaboratzaile = kolaboratzaile;
-    }
+	/**
+	 * Kolaboratzailearen izena ezartzen du.
+	 *
+	 * @param kolaboratzaile Kolaboratzailearen izena.
+	 */
+	public void setKolaboratzaile(String kolaboratzaile) {
+		this.kolaboratzaile = kolaboratzaile;
+	}
 
-    /**
-     * Podcast-aren iraupena minututan lortzen du.
-     *
-     * @return Podcast-aren iraupena minututan.
-     */
-    public Double getIraupena() {
-        return iraupena;
-    }
+	/**
+	 * Podcast-aren iraupena minututan lortzen du.
+	 *
+	 * @return Podcast-aren iraupena minututan.
+	 */
+	public Double getIraupena() {
+		return iraupena;
+	}
 
-    /**
-     * Podcast-aren iraupena minututan ezartzen du.
-     *
-     * @param iraupena Podcast-aren iraupena minututan.
-     */
-    public void setIraupena(Double iraupena) {
-        this.iraupena = iraupena;
-    }
+	/**
+	 * Podcast-aren iraupena minututan ezartzen du.
+	 *
+	 * @param iraupena Podcast-aren iraupena minututan.
+	 */
+	public void setIraupena(Double iraupena) {
+		this.iraupena = iraupena;
+	}
 
 	// ---------------- ToString ---------------- //
 
@@ -147,8 +151,6 @@ public class Podcast {
 	}
 
 	// ---------------- EQUALS ---------------- //
-
-	
 
 	/**
 	 * 
@@ -187,4 +189,3 @@ public class Podcast {
 	}
 
 }
-

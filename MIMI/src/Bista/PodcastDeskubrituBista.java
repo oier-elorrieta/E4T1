@@ -18,24 +18,27 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import DatuBasea.AbeslariDao;
+import DatuBasea.PodcasterDao;
 import Modelo.Abeslari;
 import Modelo.Album;
+import Modelo.Podcast;
+import Modelo.Podcaster;
 import funtzioak.BistakArgitaratu;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 
-public class MusikaDeskubrituBista extends JFrame {
+public class PodcastDeskubrituBista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private static List<Abeslari> musikariak;
+	private List<Podcaster> podcasterList;
 	private DefaultListModel<String> model;
-	public static String artistaIzena;
-    public List<Album> albumak;
+	private String podcasterIzena;
+	public List<Podcast> podcastList;
 
-	public MusikaDeskubrituBista() {
+	public PodcastDeskubrituBista() {
 
-		musikariak = AbeslariDao.musikariakAtera();
+		podcasterList = PodcasterDao.podcakasterAtera();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 913, 484);
@@ -78,30 +81,26 @@ public class MusikaDeskubrituBista extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 
-		JList<String> listMusika = new JList<String>();
-		scrollPane.setViewportView(listMusika);
+		JList<String> listPodcast = new JList<String>();
+		scrollPane.setViewportView(listPodcast);
 
 		model = new DefaultListModel<String>();
-		for (int i = 0; i < musikariak.size(); i++) {
-			model.addElement(musikariak.get(i).getIzena());
+		for (int i = 0; i < podcasterList.size(); i++) {
+			model.addElement(podcasterList.get(i).getIzena());
 
 		}
-		listMusika.addListSelectionListener(new ListSelectionListener() {
+		listPodcast.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
-		
-					 artistaIzena = (String) listMusika.getSelectedValue();
-					 albumak = AbeslariDao.musikariarenAlbum(artistaIzena);
-					 BistakArgitaratu.ArtistaBistaJoan(artistaIzena,albumak);
-		        	dispose();
-					 System.out.println(albumak.toString());
-					System.out.println(artistaIzena);
+					podcasterIzena = (String) listPodcast.getSelectedValue();
+					
+
 				}
 			}
- 
+
 		});
-		listMusika.setModel(model);
+		listPodcast.setModel(model);
 
 	}
 }
