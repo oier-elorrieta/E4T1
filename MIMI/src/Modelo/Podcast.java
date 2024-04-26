@@ -46,7 +46,7 @@ public class Podcast {
 
 		this.podcast_izena = podcast_izena;
 
-		kolaboratzaile = kolaboratzaile;
+		this.kolaboratzaile = kolaboratzaile;
 
 		this.iraupena = iraupena;
 
@@ -105,7 +105,7 @@ public class Podcast {
      * @param kolaboratzaile Kolaboratzailearen izena.
      */
     public void setKolaboratzaile(String kolaboratzaile) {
-        kolaboratzaile = kolaboratzaile;
+    	this.kolaboratzaile = kolaboratzaile;
     }
 
     /**
@@ -140,7 +140,7 @@ public class Podcast {
 
 	public String toString() {
 
-		return "Podcast [id=" + id + ", podcast_izena=" + podcast_izena + ", Kolaboratzaile=" + kolaboratzaile
+		return "Podcast [id=" + id + ", podcast_izena=" + podcast_izena + ", kolaboratzaile=" + kolaboratzaile
 
 				+ ", iraupena=" + iraupena + "]";
 

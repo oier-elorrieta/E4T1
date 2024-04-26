@@ -1,7 +1,6 @@
 
 package Modelo;
 
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -18,7 +17,7 @@ public  abstract class Bezero  {
     protected String erregisData;
     protected ArrayList<Abesti> playArray;
     protected String mota;
-	protected String hizkuntza;
+    protected String hizkuntza;
 
     //---------------- ERAIKITZAILEA ---------------- //
 
@@ -243,7 +242,7 @@ public  abstract class Bezero  {
 	public String toString() {
 		return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile=" + erabiltzaile
 				+ ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData
-				+ ", playArray=" + playArray + ", mota=" + mota + ", hizkuntza=" + hizkuntza + "]";
+				+ ", playArray=" + playArray + ", mota=" + mota + ", Hizkuntza=" + hizkuntza + "]";
 	}
 
     //---------------- EQUALS ---------------- //

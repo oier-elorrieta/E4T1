@@ -145,7 +145,7 @@ public class Playlist {
 
 	public String toString() {
 
-		return "Playlist [id=" + id + ", izena=" + izena + ", abestiList=" + abestiList + "]";
+		return "Playlist [id=" + id + ", izena=" + izena + ", AbestiList=" + abestiList + "]";
 
 	}
 

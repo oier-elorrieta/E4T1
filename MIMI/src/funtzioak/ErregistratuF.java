@@ -76,6 +76,7 @@ public class ErregistratuF {
 	 *                          hizkuntza jaso ahal izateko
 	 * @return sortutako PremiumBezero objektua
 	 */
+	@SuppressWarnings("deprecation")
 	public static PremiumBezeroa PremiumErosi(String premiumMuga, JTextField txtIzena, JTextField txtAbizena,
 			JTextField txtErabiltzaile, JPasswordField pasahitzaPass, Date selectDate, JTextField txtErregistro,
 			JTextField AukeratuHizkuntza, PremiumBezeroa berriaPre) {
@@ -114,6 +115,7 @@ public class ErregistratuF {
 	 *                          hizkuntza jaso ahal izateko
 	 * @return sortutako FreeBezero objektua
 	 */
+	@SuppressWarnings("deprecation")
 	public static FreeBezero sortuBezeroa(FreeBezero erregistroBezero, JTextField txtIzena, JTextField txtAbizena,
 			JTextField txtErabiltzaile, JPasswordField pasahitzaPass, java.util.Date selectDate,
 			JTextField txtErregistro, JTextField AukeratuHizkuntza) {

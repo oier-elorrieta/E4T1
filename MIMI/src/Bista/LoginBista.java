@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import DatuBasea.BezeroDao;
+import funtzioak.BezeroDao;
 
 public class LoginBista extends JFrame {
 
@@ -82,12 +82,13 @@ public class LoginBista extends JFrame {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
                 btnLog.doClick();
-    
             }
 
         }
 
     });
+    
+    //
     
         
         passwordFieldPasahitza.setBounds(657, 210, 163, 20);

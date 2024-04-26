@@ -3,6 +3,8 @@ package Modelo;
 
 import java.util.Objects;
 
+import java.sql.Blob;
+
 /**
  * 
  * Klase abstraktua da, Artista bat ordezkatzen duena.
@@ -10,10 +12,15 @@ import java.util.Objects;
  */
 
 public abstract class Artista {
-	
+
 	protected String id;
 	protected String izena;
 	protected String info;
+	protected Blob irudia;
+
+	public Artista() {
+
+	}
 
 	// ---------------- ERAIKITZAILEA ---------------- //
 
@@ -27,13 +34,15 @@ public abstract class Artista {
 	 * 
 	 */
 
-	public Artista(String id, String izena, String info) {
+	public Artista(String id, String izena, String info, Blob irudia) {
 
 		this.id = id;
 
 		this.izena = izena;
 
 		this.info = info;
+
+		this.irudia = irudia;
 
 	}
 
@@ -115,6 +124,24 @@ public abstract class Artista {
 
 	}
 
+	/**
+	 * Artistaaren irudia itzultzen du.
+	 * 
+	 * @return
+	 */
+	public Blob getIrudia() {
+		return irudia;
+	}
+
+	/**
+	 * Artistaaren irudia ezartzen du.
+	 * 
+	 * @param irudia
+	 */
+	public void setIrudia(Blob irudia) {
+		this.irudia = irudia;
+	}
+
 	// ---------------- ToString ---------------- //
 
 	/**
@@ -139,7 +166,6 @@ public abstract class Artista {
 	 * @param obj Beste artista bat.
 	 * @return Bi artistak berdinak badira true, bestela false.
 	 */
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -149,8 +175,8 @@ public abstract class Artista {
 		if (getClass() != obj.getClass())
 			return false;
 		Artista other = (Artista) obj;
-		return id == other.id && Objects.equals(info, other.info) && Objects.equals(izena, other.izena);
-
+		return Objects.equals(id, other.id) && Objects.equals(info, other.info) && Objects.equals(irudia, other.irudia)
+				&& Objects.equals(izena, other.izena);
 	}
 
 }

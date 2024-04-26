@@ -2,7 +2,6 @@
 package Modelo;
 
 import java.sql.Date;
-
 import java.util.Objects;
 
 /**
@@ -13,49 +12,54 @@ import java.util.Objects;
 
 public class Album {
 
-	protected String id;
+	private String id;
 
-	protected String abesti_izena;
+	private String izenburua;
 
-	protected Date argitaratzea;
+	private Date argitaratzea;
 
-	protected int abestiKopurua;
+	private int abestiKopurua;
 
-	protected String Kolaboratzaile;
+	private String generoa;
+	
+	private String idMusikaria;
 
-	protected Double iraupena;
+	private String kolaboratzaileak;
 
+	
+	
 	// ---------------- ERAIKITZAILEA ---------------- //
 
 	/**
 	 * 
 	 * Albumaren eraikitzailea.
 	 *
-	 * @param id 			Albumaren identifikazioa.
-	 * 
-	 * @param abesti_izena   Abestien izena.
-	 * 
-	 * @param argitaratzea   Albuma argitaratu den data.	
-	 * @param AbestiKopurua  Albuman dauden abesti kopurua.
-	 * @param Kolaboratzaile Kolaboratzailearen izena.
-	 * @param iraupena       Albumaren iraupena minututan.
+	 * @param id 					 Albumaren identifikazioa.
+	 * @param izenburua 			 Albumaren izenburua.
+	 * @param argitaratzea  		 Albuma argitaratu den data.	
+	 * @param AbestiKopurua 		 Albuman dauden abesti kopurua.
+	 * @param generoa 				 Albumaren generoa.
+	 * @param idMusikaria   		 Albumaren idMusikaria.
+	 * @param kolaboratzaileak       Albumaren kolaboratzaileak minututan.
 	 * 
 	 */
 
-	public Album(String id, String abesti_izena, Date argitaratzea, int AbestiKopurua, String Kolaboratzaile,
-			Double iraupena) {
+	public Album(String id, String izenburua, Date argitaratzea, int AbestiKopurua, String generoa, String idMusikaria ,
+			String kolaboratzaileak) {
 
 		this.id = id;
 
-		this.abesti_izena = abesti_izena;
+		this.izenburua = izenburua;
 
 		this.argitaratzea = argitaratzea;
 
 		this.abestiKopurua = AbestiKopurua;
 
-		this.Kolaboratzaile = Kolaboratzaile;
+		this.generoa = generoa;
 
-		this.iraupena = iraupena;
+		this.idMusikaria = idMusikaria;
+		
+		this.kolaboratzaileak = kolaboratzaileak;
 
 	}
 
@@ -88,32 +92,60 @@ public class Album {
 		this.id = id;
 
 	}
-
+	
 	/**
 	 * 
-	 * Album-aren abestiaren izena lortzen du.
+	 * Album-aren idMusikaria lortzen du.
 	 * 
-	 * @return Album-aren abestiaren izena.
+	 * @return Album-aren idMusikaria.
 	 * 
 	 */
 
-	public String getAbesti_izena() {
+	public String getIdMusikaria() {
 
-		return abesti_izena;
+		return idMusikaria;
 
 	}
 
 	/**
 	 * 
-	 * Album-aren abestiaren izena ezartzen du.
+	 * Album-aren idMusikaria ezartzen du.
 	 * 
-	 * @param abesti_izena Album-aren abestiaren izena.
+	 * @param Album-aren idMusikaria.
 	 * 
 	 */
 
-	public void setAbesti_izena(String abesti_izena) {
+	public void setIdMusikaria(String idMusikaria) {
 
-		this.abesti_izena = abesti_izena;
+		this.idMusikaria = idMusikaria;
+
+	}
+
+	/**
+	 * 
+	 * Album-aren izena lortzen du.
+	 * 
+	 * @return Album-aren izena.
+	 * 
+	 */
+
+	public String getIzenburua() {
+
+		return izenburua;
+
+	}
+
+	/**
+	 * 
+	 * Album-aren izena ezartzen du.
+	 * 
+	 * @param abesti_izena Album-aren izena.
+	 * 
+	 */
+
+	public void setAbesti_izena(String izenburua) {
+
+		this.izenburua = izenburua;
 
 	}
 
@@ -169,7 +201,7 @@ public class Album {
 
 	public void setAbestiKopurua(int abestiKopurua) {
 
-		abestiKopurua = abestiKopurua;
+		this.abestiKopurua = abestiKopurua;
 
 	}
 
@@ -181,9 +213,9 @@ public class Album {
 	 * 
 	 */
 
-	public String getKolaboratzaile() {
+	public String getGeneroa() {
 
-		return Kolaboratzaile;
+		return generoa;
 
 	}
 
@@ -195,37 +227,37 @@ public class Album {
 	 * 
 	 */
 
-	public void setKolaboratzaile(String kolaboratzaile) {
+	public void setGeneroa(String generoa) {
 
-		Kolaboratzaile = kolaboratzaile;
-
-	}
-
-	/**
-	 * 
-	 * Album-aren iraupena minututan lortzen du.
-	 * 
-	 * @return Album-aren iraupena minututan.
-	 * 
-	 */
-
-	public Double getIraupena() {
-
-		return iraupena;
+		this.generoa = generoa;
 
 	}
 
 	/**
 	 * 
-	 * Album-aren iraupena minututan ezartzen du.
+	 * Album-aren kolaboratzaileak lortzen du.
 	 * 
-	 * @param iraupena Album-aren iraupena minututan.
+	 * @return Album-aren kolaboratzaileak .
 	 * 
 	 */
 
-	public void setIraupena(Double iraupena) {
+	public String getKolaboratzaileak() {
 
-		this.iraupena = iraupena;
+		return kolaboratzaileak;
+
+	}
+
+	/**
+	 * 
+	 * Album-aren kolaboratzaileak  ezartzen du.
+	 * 
+	 * @param kolaboratzaileak Album-aren kolaboratzaileak .
+	 * 
+	 */
+
+	public void setKolaboratzaileak(String kolaboratzaileak) {
+
+		this.kolaboratzaileak = kolaboratzaileak;
 
 	}
 
@@ -243,13 +275,16 @@ public class Album {
 
 	public String toString() {
 
-		return "Album [id=" + id + ", abesti_izena=" + abesti_izena + ", argitaratzea=" + argitaratzea
+		return "Album [id=" + id + ", izenburua=" + izenburua + ", argitaratzea=" + argitaratzea
 
-				+ ", AbestiKopurua=" + abestiKopurua + ", Kolaboratzaile=" + Kolaboratzaile + ", iraupena=" + iraupena
+				+ ", AbestiKopurua=" + abestiKopurua + ", generoa=" + generoa + ", kolaboratzaileak=" + kolaboratzaileak
 
 				+ "]";
 
 	}
+
+
+
 
 	// ---------------- EQUALS ---------------- //
 
@@ -262,31 +297,19 @@ public class Album {
 	 * @return Bi albumak berdinak badira true, bestela false.
 	 * 
 	 */
-
 	@Override
-
 	public boolean equals(Object obj) {
-
 		if (this == obj)
-
 			return true;
-
 		if (obj == null)
-
 			return false;
-
 		if (getClass() != obj.getClass())
-
 			return false;
-
 		Album other = (Album) obj;
-
-		return abestiKopurua == other.abestiKopurua && Objects.equals(Kolaboratzaile, other.Kolaboratzaile)
-
-				&& Objects.equals(abesti_izena, other.abesti_izena) && Objects.equals(argitaratzea, other.argitaratzea)
-
-				&& id == other.id && Objects.equals(iraupena, other.iraupena);
-
+		return abestiKopurua == other.abestiKopurua && Objects.equals(argitaratzea, other.argitaratzea)
+				&& Objects.equals(generoa, other.generoa) && Objects.equals(id, other.id)
+				&& Objects.equals(idMusikaria, other.idMusikaria) && Objects.equals(izenburua, other.izenburua)
+				&& Objects.equals(kolaboratzaileak, other.kolaboratzaileak);
 	}
-
+	
 }

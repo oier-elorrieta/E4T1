@@ -1,8 +1,13 @@
 package funtzioak;
 
+import java.util.List;
+
+import Bista.ArtistaBista;
 import Bista.ErregistroBista;
 import Bista.LoginBista;
 import Bista.MenuaBista;
+import Bista.MusikaDeskubrituBista;
+import Modelo.Album;
 
 public class BistakArgitaratu {
 
@@ -56,6 +61,24 @@ public class BistakArgitaratu {
 			ex.printStackTrace();
 		}
 
+	}
+	
+	public static void MusikaDeskubrituJoan() {
+		try {
+			MusikaDeskubrituBista frame = new MusikaDeskubrituBista();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void ArtistaBistaJoan(String artistaIzena, List<Album> albumak) {
+		try { 
+			ArtistaBista frame = new ArtistaBista(artistaIzena, albumak);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

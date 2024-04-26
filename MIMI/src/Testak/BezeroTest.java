@@ -1,7 +1,6 @@
 package Testak;
 
 import static org.junit.Assert.*;
-import java.sql.Date;
 import java.util.ArrayList;
 import org.junit.Test;
 
@@ -115,7 +114,7 @@ public class BezeroTest {
 		playArray.add(new Abesti("1", "Song1", 3.5, "Album1", "Artist1"));
 		FreeBezero bezero = new FreeBezero("BZ003", "mimi", "talde", "mimitalde", "password", "2024-04-19",
 				"2024-04-20", new ArrayList<>(), null, null);
-		String expectedToString = "Bezero [id=BZ003, izena=mimi, abizena=talde, erabiltzaile=mimitalde, pasahitza=password, jaioData=2024-04-19, erregisData=2024-04-20, playArray=[], mota=null, hizkuntza=null]";
+		String expectedToString = "Bezero [id=BZ003, izena=mimi, abizena=talde, erabiltzaile=mimitalde, pasahitza=password, jaioData=2024-04-19, erregisData=2024-04-20, playArray=[], mota=null, Hizkuntza=null]";
 		;
 
 		assertEquals(expectedToString, bezero.toString());
@@ -335,8 +334,7 @@ public class BezeroTest {
 		playArray.add(new Abesti("1", "Song1", 3.5, "Album1", "Artist1"));
 		PremiumBezeroa bezero = new PremiumBezeroa("BZ001", "Pedro", "Garcia", "pedrus", "kk", null, null, null,
 				"2024-04-04", "Premium", "ES");
-		String expectedToString = "Bezero [id=BZ001, izena=Pedro, abizena=Garcia, erabiltzaile=pedrus, pasahitza=kk, jaioData=null, erregisData=null, playArray=null, mota=Premium, hizkuntza=ES], premiumMuga=2024-04-04]";
-
+		String expectedToString = "Bezero [id=BZ001, izena=Pedro, abizena=Garcia, erabiltzaile=pedrus, pasahitza=kk, jaioData=null, erregisData=null, playArray=null, mota=Premium, Hizkuntza=ES]premiumMuga=2024-04-04]";
 		assertEquals(expectedToString, bezero.toString());
 	}
 
