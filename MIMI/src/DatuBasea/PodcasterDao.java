@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
-
+import java.sql.Time;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -107,19 +107,22 @@ public class PodcasterDao {
 					while (rs.next()) {
 
 
+						String IdAudio = rs.getString("IdAudio");
 
-						String idAudio = rs.getString("idAudio");
+						String idPodcast = rs.getString("IdPodcaster");
+						
+						String podcast_izena = rs.getString("IdPodcaster");
 
 						String kolaboratzaileak = rs.getString("Kolaboratzaileak");
 
-						String idPodcaster = rs.getString("IdPodcaster");
+						Time iraupena = rs.getTime("Iraupena");;
 
 						String deskribapena = rs.getString("Deskribapena");
 
-
+			
 			
 					
-
+					//	Podcast podcast = new  Podcast(String id, String podcast_izena, String kolaboratzaile, Time iraupena) ;
 						
 
 					 //Podcast podcast = new Podcast(idAudio,kolaboratzaileak,idPodcaster,deskribapena);

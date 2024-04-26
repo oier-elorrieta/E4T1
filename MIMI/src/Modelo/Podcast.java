@@ -1,6 +1,7 @@
 
 package Modelo;
 
+import java.sql.Time;
 import java.util.Objects;
 
 /**
@@ -18,7 +19,7 @@ public class Podcast {
 
 	private String kolaboratzaile;
 
-	private Double iraupena;
+	private Time iraupena;
 
 	// ---------------- ERAIKITZAILEA ---------------- //
 
@@ -42,7 +43,7 @@ public class Podcast {
 	 * 
 	 */
 
-	public Podcast(String id, String podcast_izena, String kolaboratzaile, Double iraupena) {
+	public Podcast(String id, String podcast_izena, String kolaboratzaile, Time iraupena) {
 
 		super();
 
@@ -117,7 +118,7 @@ public class Podcast {
 	 *
 	 * @return Podcast-aren iraupena minututan.
 	 */
-	public Double getIraupena() {
+	public Time getIraupena() {
 		return iraupena;
 	}
 
@@ -126,7 +127,7 @@ public class Podcast {
 	 *
 	 * @param iraupena Podcast-aren iraupena minututan.
 	 */
-	public void setIraupena(Double iraupena) {
+	public void setIraupena(Time iraupena) {
 		this.iraupena = iraupena;
 	}
 

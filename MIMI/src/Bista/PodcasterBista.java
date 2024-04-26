@@ -18,12 +18,14 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import DatuBasea.AbeslariDao;
+import DatuBasea.PodcasterDao;
 
 import java.sql.SQLException;
 
 import Modelo.Abeslari;
 import Modelo.Album;
 import Modelo.Podcast;
+import Modelo.Podcaster;
 import funtzioak.BistakArgitaratu;
 
 import java.awt.event.ActionListener;
@@ -37,17 +39,18 @@ public class PodcasterBista extends JFrame {
 	private JPanel contentPane;
 
 	private DefaultListModel<String> model;
-	private List<Abeslari> musikariak;
+	private List<Podcaster> podcastList;
+
 
 	public PodcasterBista(String artistaIzena, List<Podcast> podcast) throws SQLException {
 		setResizable(false);
 
-		musikariak = AbeslariDao.musikariakAtera();
-		Abeslari abeslari = new Abeslari();
+		podcastList = PodcasterDao.podcakasterAtera();
+		Podcaster podcaster = new Podcaster();
 
-		for (int i = 0; i < musikariak.size(); i++) {
-			if (musikariak.get(i).getIzena().equals(artistaIzena)) {
-				abeslari = musikariak.get(i);
+		for (int i = 0; i < podcastList.size(); i++) {
+			if (podcastList.get(i).getIzena().equals(artistaIzena)) {
+				podcaster = podcastList.get(i);
 				break;
 			}
 		}
@@ -63,7 +66,7 @@ public class PodcasterBista extends JFrame {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				funtzioak.BistakArgitaratu.MusikaDeskubrituJoan();
+				BistakArgitaratu.PodcastDeskubrituJoan();
 				dispose();
 			}
 		});
@@ -84,7 +87,7 @@ public class PodcasterBista extends JFrame {
 		lblirudia.setHorizontalAlignment(SwingConstants.CENTER);
 		lblirudia.setBounds(22, 235, 332, 332);
 		contentPane.add(lblirudia);
-		lblirudia.setIcon(new ImageIcon(abeslari.getIrudia().getBytes(1, (int) abeslari.getIrudia().length())));
+		lblirudia.setIcon(new ImageIcon(podcaster.getIrudia().getBytes(1, (int) podcaster.getIrudia().length())));
 
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
@@ -96,11 +99,9 @@ public class PodcasterBista extends JFrame {
 		contentPane.add(listMusika);
 
 		model = new DefaultListModel<String>();
-		System.out.println(podcast.toString());
-		System.out.println(artistaIzena);
-
-		for (int i = 0; i < podcast.size(); i++) {
-			model.addElement(artistaIzena + " - " + podcast.get(i).getPodcast_izena());
+		
+		for (int i = 0; i < podcastList.size(); i++) {
+			model.addElement(artistaIzena + " - " + "Nombre Podcast");
 		}
 		listMusika.addListSelectionListener(new ListSelectionListener() {
 			@Override
@@ -118,7 +119,7 @@ public class PodcasterBista extends JFrame {
 		deskribapenaTextPane.setBackground(SystemColor.control);
 		deskribapenaTextPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		deskribapenaTextPane.setEditable(false);
-		deskribapenaTextPane.setText(abeslari.getInfo());
+		deskribapenaTextPane.setText(podcaster.getInfo());
 		deskribapenaTextPane.setBounds(398, 53, 332, 514);
 		contentPane.add(deskribapenaTextPane);
 

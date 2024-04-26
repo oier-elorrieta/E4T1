@@ -17,10 +17,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import DatuBasea.AbeslariDao;
 import DatuBasea.PodcasterDao;
-import Modelo.Abeslari;
-import Modelo.Album;
 import Modelo.Podcast;
 import Modelo.Podcaster;
 import funtzioak.BistakArgitaratu;
@@ -94,8 +91,8 @@ public class PodcastDeskubrituBista extends JFrame {
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 					podcasterIzena = (String) listPodcast.getSelectedValue();
-					
-
+					BistakArgitaratu.PodcasterBistaJoan(podcasterIzena, podcastList);
+					dispose();
 				}
 			}
 
