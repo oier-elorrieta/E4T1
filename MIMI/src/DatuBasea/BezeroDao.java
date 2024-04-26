@@ -1,4 +1,4 @@
-package funtzioak;
+package DatuBasea;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 
 import Modelo.FreeBezero;
 import Modelo.PremiumBezeroa;
+import funtzioak.BistakArgitaratu;
+import funtzioak.ErregistratuF;
 
 public class BezeroDao {
 

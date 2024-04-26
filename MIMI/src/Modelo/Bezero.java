@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Klasea Bezero bat ordezkatzen du, erabiltzailea bezala.
  */
-public  abstract class Bezero  {
+public class Bezero  {
     protected String id;
     protected String izena;
     protected String abizena;

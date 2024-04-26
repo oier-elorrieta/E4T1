@@ -17,9 +17,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import DatuBasea.AbeslariDao;
 import Modelo.Abeslari;
 import Modelo.Album;
-import funtzioak.AbeslariDao;
 import funtzioak.BistakArgitaratu;
 import javax.swing.JScrollPane;
 import javax.swing.JList;

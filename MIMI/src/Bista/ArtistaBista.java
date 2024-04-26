@@ -17,12 +17,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import DatuBasea.AbeslariDao;
+
 import java.sql.Blob;
 import java.sql.SQLException;
 
 import Modelo.Abeslari;
 import Modelo.Album;
-import funtzioak.AbeslariDao;
 
 public class ArtistaBista extends JFrame {
 
@@ -68,56 +69,22 @@ public class ArtistaBista extends JFrame {
         btnPerfil.setBounds(460, 5, 121, 23);
         contentPane.add(btnPerfil);
         
-        JLabel lblTitulua = new JLabel("Artista.getIzena()");
+        JLabel lblTitulua = new JLabel(artistaIzena);
         lblTitulua.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitulua.setBounds(80, 9, 370, 14);
         contentPane.add(lblTitulua);
-             JLabel lblirudia = new JLabel("");
+             JLabel lblirudia = new JLabel();
         lblirudia.setVerticalAlignment(SwingConstants.TOP);
-        lblirudia.setBounds(5, 50, 576, 427);
+        lblirudia.setBounds(5, 245, 276, 232);
         
-        Blob blob = abeslari.getIrudia();
-        if (blob != null) {
-            try {
-                byte[] bytes = blob.getBytes(1, (int) blob.length());
-                // Convertir los bytes en un ImageIcon
-                ImageIcon imageIcon = new ImageIcon(bytes);
-                // Establecer el ImageIcon en el JLabel
-                lblirudia.setIcon(imageIcon);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        
+        lblirudia.setIcon( new ImageIcon(abeslari.getIrudia().getBytes(1,(int)abeslari.getIrudia().length())));
+      
         
 //   if (abeslari.getIrudia() != null) {
 //	   System.out.println(abeslari.getIrudia());
 //        	 lblirudia.setIcon( new ImageIcon(abeslari.getIrudia().getBytes(1,(int)abeslari.getIrudia().length())));
 //     
         
-        
-//        Blob blob = abeslari.getIrudia();
-//        if (blob != null) {
-//            try {
-//                byte[] bytes = blob.getBytes(1, (int) blob.length());
-//                ImageIcon imageIcon = new ImageIcon(bytes);
-//                lblirudia.setIcon(imageIcon);
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-            
-
-			                
-//			// Verificar si imageIcon se crea correctamente
-//			if (imageIcon != null) {
-//			    // Establecer el ImageIcon en el JLabel
-//			    lblirudia.setIcon(imageIcon);
-//			    System.out.println(abeslari.getIrudia().length());
-//			    System.out.println("La imagen se estableció correctamente en el JLabel.");
-//			} else{
-//			    System.out.println("No se pudo crear el ImageIcon.");
-//			}
-//        }
          contentPane.add(lblirudia);       
         JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
@@ -147,6 +114,7 @@ public class ArtistaBista extends JFrame {
 		listMusika.setModel(model);
         
         JTextPane deskribapenaTextPane = new JTextPane();
+        deskribapenaTextPane.setEditable(false);
         deskribapenaTextPane.setText(abeslari.getInfo());
         deskribapenaTextPane.setBounds(300, 50, 276, 276);
         contentPane.add(deskribapenaTextPane);

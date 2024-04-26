@@ -1,4 +1,4 @@
-package funtzioak;
+package DatuBasea;
 
 import java.sql.Blob;
 import java.sql.Connection;

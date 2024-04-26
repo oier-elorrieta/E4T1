@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import funtzioak.BezeroDao;
+import DatuBasea.BezeroDao;
 
 public class LoginBista extends JFrame {
 

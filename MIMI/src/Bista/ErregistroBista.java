@@ -28,9 +28,9 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import DatuBasea.BezeroDao;
 import Modelo.FreeBezero;
 import Modelo.PremiumBezeroa;
-import funtzioak.BezeroDao;
 import funtzioak.BistakArgitaratu;
 import funtzioak.ErregistratuF;
 
