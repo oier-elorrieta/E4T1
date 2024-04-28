@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import funtzioak.BistakArgitaratu;
+import java.awt.Toolkit;
 
 public class MenuaBista extends JFrame {
 
@@ -22,6 +23,7 @@ public class MenuaBista extends JFrame {
 
 
 	public MenuaBista() {
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(MenuaBista.class.getResource("/media/img/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 913, 484);
 		contentPane = new JPanel();

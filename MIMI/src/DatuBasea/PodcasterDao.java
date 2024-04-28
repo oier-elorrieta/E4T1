@@ -23,7 +23,7 @@ import Modelo.Abeslari;
 import Modelo.Abeslari.Mota;
 
 import Modelo.Album;
-
+import Modelo.Audio;
 import Modelo.Podcast;
 
 import Modelo.Podcaster;
@@ -96,9 +96,9 @@ public class PodcasterDao {
 
 
 
-			String kontsulta = "SELECT * FROM Podcast inner join Podcaster USING (IdPodcaster) WHERE IdPodcaster = (SELECT IdPodcaster from Podcaster WHERE IzenArtistikoa like '"
+			String kontsulta = "select * from audio inner join podcast using(idAudio) inner join podcaster using (idPodcaster) where IzenArtistikoa = '"
 
-					+ podcasterIzena + "');";
+					+ podcasterIzena + "';";
 
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 
@@ -108,28 +108,26 @@ public class PodcasterDao {
 
 
 						String IdAudio = rs.getString("IdAudio");
-
-						String idPodcast = rs.getString("IdPodcaster");
 						
-						String podcast_izena = rs.getString("IdPodcaster");
+						String podcast_izena = rs.getString("izena");
 
 						String kolaboratzaileak = rs.getString("Kolaboratzaileak");
 
 						Time iraupena = rs.getTime("Iraupena");;
-
-						String deskribapena = rs.getString("Deskribapena");
-
-			
+						
+						Blob Irudia = rs.getBlob("Irudia");
+						
+						
 			
 					
-					//	Podcast podcast = new  Podcast(String id, String podcast_izena, String kolaboratzaile, Time iraupena) ;
+						Podcast pod = new  Podcast(IdAudio,iraupena, Irudia, Audio.Mota.podcast, IdAudio,podcast_izena, kolaboratzaileak);
+					
+						
 						
 
-					 //Podcast podcast = new Podcast(idAudio,kolaboratzaileak,idPodcaster,deskribapena);
 
 
-
-					//	albumak.add(album);
+					podcast.add(pod);
 
 					}
 
@@ -145,7 +143,7 @@ public class PodcasterDao {
 
 
 
-		return null;
+		return podcast;
 
 
 

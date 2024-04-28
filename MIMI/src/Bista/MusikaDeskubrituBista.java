@@ -19,6 +19,7 @@ import javax.swing.event.ListSelectionListener;
 
 import DatuBasea.AbeslariDao;
 import Modelo.Abeslari;
+import Modelo.Abesti;
 import Modelo.Album;
 import funtzioak.BistakArgitaratu;
 import javax.swing.JScrollPane;

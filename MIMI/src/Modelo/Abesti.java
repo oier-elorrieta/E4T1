@@ -1,16 +1,16 @@
 package Modelo;
 
+import java.sql.Blob;
+import java.sql.Time;
 import java.util.Objects;
 
 
 
-	public class Abesti {
+	public class Abesti extends Audio{
 
-	private String id;
+	private String id_abesti;
 
 	private String abestiIzena;
-
-	private Double iraupena;
 
 	private String albumIzena;
 
@@ -29,17 +29,24 @@ import java.util.Objects;
 	 * @param kolaboratzaile Kolaboratzailearen izena.
 	 * 
 	 */
-
-	public Abesti(String id, String abestiIzena, Double iraupena, String albumIzena, String kolaboratzaile) {
-		this.id = id;
-		this.abestiIzena = abestiIzena;
-		this.iraupena = iraupena;
-		this.albumIzena = albumIzena;
-		this.kolaboratzaile = kolaboratzaile;
-
-	}
+	
+	
+	
+	
 
 	// ---------------- GETTERS eta SETTERS ---------------- //
+
+
+	public Abesti(String id, Time iraupena, Blob irudia, Mota mota, String id_abesti, String abestiIzena, String albumIzena, String kolaboratzaile) {
+		super(id, iraupena, irudia, mota);
+		this.id_abesti = id_abesti;
+		this.abestiIzena = abestiIzena;
+		this.albumIzena = albumIzena;
+		this.kolaboratzaile = kolaboratzaile;
+		
+		
+	}
+
 
 	/**
 	 * 
@@ -49,11 +56,13 @@ import java.util.Objects;
 	 * 
 	 */
 
-	public String getId() {
+	public String getid_abesti() {
 
-		return id;
+		return id_abesti;
 
 	}
+
+	
 
 	/**
 	 * 
@@ -63,9 +72,9 @@ import java.util.Objects;
 	 * 
 	 */
 
-	public void setId(String id) {
+	public void setid_abesti(String id_abesti) {
 
-		this.id = id;
+		this.id_abesti = id_abesti;
 
 	}
 
@@ -94,34 +103,6 @@ import java.util.Objects;
 	public void setAbestiIzena(String abestiIzena) {
 
 		this.abestiIzena = abestiIzena;
-
-	}
-
-	/**
-	 * 
-	 * Abestiaren iraupena itzultzen du.
-	 * 
-	 * @return Abestiaren iraupena minututan.
-	 * 
-	 */
-
-	public Double getIraupena() {
-
-		return iraupena;
-
-	}
-
-	/**
-	 * 
-	 * Abestiaren iraupena ezartzen du.
-	 * 
-	 * @param iraupena Berria izango den abestiaren iraupena.
-	 * 
-	 */
-
-	public void setIraupena(Double iraupena) {
-
-		this.iraupena = iraupena;
 
 	}
 
@@ -194,10 +175,13 @@ import java.util.Objects;
 	@Override
 	public String toString() {
 
-		return "Abesti [id=" + id + ", abestiIzena=" + abestiIzena + ", iraupena=" + iraupena + ", albumIzena="
+		return super.toString() + "Abesti [id=" + id_abesti + ", abestiIzena=" + abestiIzena  + "albumIzena="
 				+ albumIzena
 				+ ", kolaboratzaile=" + kolaboratzaile + "]";
 	}
+
+
+
 
 	// ---------------- EQUALS ---------------- //
 
@@ -214,13 +198,14 @@ import java.util.Objects;
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Abesti other = (Abesti) obj;
 		return Objects.equals(abestiIzena, other.abestiIzena) && Objects.equals(albumIzena, other.albumIzena)
-				&& id == other.id && Objects.equals(iraupena, other.iraupena)
-				&& Objects.equals(kolaboratzaile, other.kolaboratzaile);
+				&& Objects.equals(id_abesti, other.id_abesti) && Objects.equals(kolaboratzaile, other.kolaboratzaile);
 	}
+
+	
 }

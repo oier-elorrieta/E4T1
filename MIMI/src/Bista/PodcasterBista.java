@@ -39,18 +39,18 @@ public class PodcasterBista extends JFrame {
 	private JPanel contentPane;
 
 	private DefaultListModel<String> model;
-	private List<Podcaster> podcastList;
+	private List<Podcaster> podcasterList;
 
 
-	public PodcasterBista(String artistaIzena, List<Podcast> podcast) throws SQLException {
+	public PodcasterBista(String artistaIzena, List<Podcast> podcastList) throws SQLException {
 		setResizable(false);
 
-		podcastList = PodcasterDao.podcakasterAtera();
+		podcasterList = PodcasterDao.podcakasterAtera();
 		Podcaster podcaster = new Podcaster();
 
-		for (int i = 0; i < podcastList.size(); i++) {
-			if (podcastList.get(i).getIzena().equals(artistaIzena)) {
-				podcaster = podcastList.get(i);
+		for (int i = 0; i < podcasterList.size(); i++) {
+			if (podcasterList.get(i).getIzena().equals(artistaIzena)) {
+				podcaster = podcasterList.get(i);
 				break;
 			}
 		}
@@ -100,14 +100,17 @@ public class PodcasterBista extends JFrame {
 
 		model = new DefaultListModel<String>();
 		
+		podcastList = PodcasterDao.podcastLortu(artistaIzena);
+		
 		for (int i = 0; i < podcastList.size(); i++) {
-			model.addElement(artistaIzena + " - " + "Nombre Podcast");
+			model.addElement(artistaIzena + " - " + podcastList.get(i).getPodcast_izena());
 		}
 		listMusika.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
-				//	PLAY
+				
+					
 
 				}
 			}
