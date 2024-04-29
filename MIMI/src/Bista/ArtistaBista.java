@@ -23,6 +23,9 @@ import java.sql.SQLException;
 
 import Modelo.Abeslari;
 import Modelo.Album;
+import Modelo.FreeBezero;
+import funtzioak.BistakArgitaratu;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -32,11 +35,10 @@ public class ArtistaBista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
 	private DefaultListModel<String> model;
 	private List<Abeslari> musikariak;
 
-	public ArtistaBista(String artistaIzena, List<Album> albumak) throws SQLException {
+	public ArtistaBista(String artistaIzena, List<Album> albumak, String BezeroErabil) throws SQLException {
 		setResizable(false);
 
 		musikariak = AbeslariDao.musikariakAtera();
@@ -60,15 +62,15 @@ public class ArtistaBista extends JFrame {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				funtzioak.BistakArgitaratu.MusikaDeskubrituJoan();
+				BistakArgitaratu.MusikaDeskubrituJoan(BezeroErabil);
 				dispose();
 			}
 		});
 		btnAtzera.setBounds(5, 5, 132, 23);
 		contentPane.add(btnAtzera);
 
-		// Hay
-		JButton btnPerfil = new JButton("Erabiltzaile.getIzena()");
+		
+		JButton btnPerfil = new JButton(BezeroErabil);
 		btnPerfil.setBounds(572, 5, 177, 23);
 		contentPane.add(btnPerfil);
 

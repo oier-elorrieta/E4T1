@@ -96,7 +96,7 @@ public class PodcasterDao {
 
 
 
-			String kontsulta = "select * from audio inner join podcast using(idAudio) inner join podcaster using (idPodcaster) where IzenArtistikoa = '"
+			String kontsulta = "select * from Audio inner join Podcast using(idAudio) inner join Podcaster using (idPodcaster) where IzenArtistikoa = '"
 
 					+ podcasterIzena + "';";
 

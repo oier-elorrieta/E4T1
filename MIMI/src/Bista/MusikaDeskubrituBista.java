@@ -34,7 +34,7 @@ public class MusikaDeskubrituBista extends JFrame {
 	public static String artistaIzena;
     public List<Album> albumak;
 
-	public MusikaDeskubrituBista() {
+	public MusikaDeskubrituBista(String BezeroErabil) {
 
 		musikariak = AbeslariDao.musikariakAtera();
 
@@ -64,7 +64,7 @@ public class MusikaDeskubrituBista extends JFrame {
 		JButton btnAtzera = new JButton("ATZERA");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MenuJoan();
+				BistakArgitaratu.MenuJoan(BezeroErabil);
 				dispose();
 			}
 		});
@@ -94,7 +94,7 @@ public class MusikaDeskubrituBista extends JFrame {
 		
 					 artistaIzena = (String) listMusika.getSelectedValue();
 					 albumak = AbeslariDao.musikariarenAlbum(artistaIzena);
-					 BistakArgitaratu.ArtistaBistaJoan(artistaIzena,albumak);
+					 BistakArgitaratu.ArtistaBistaJoan(artistaIzena,albumak,BezeroErabil);
 		        	dispose();
 					 System.out.println(albumak.toString());
 					System.out.println(artistaIzena);

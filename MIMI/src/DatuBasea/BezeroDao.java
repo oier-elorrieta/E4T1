@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Modelo.Bezero;
 import Modelo.FreeBezero;
 import Modelo.PremiumBezeroa;
 import funtzioak.BistakArgitaratu;
@@ -31,7 +32,7 @@ public class BezeroDao {
 	 *                               JPasswordField objektua.
 	 * @throws SQLException SQL errore bat gertatzen bada.
 	 */
-	public static void LoginKomprobatu(JTextField textFieldErabiltzailea, JPasswordField passwordFieldPasahitza)
+	public static String LoginKomprobatu(JTextField textFieldErabiltzailea, JPasswordField passwordFieldPasahitza, String BezeroErabil)
 			throws SQLException {
 		boolean loginOK = false;
 
@@ -39,18 +40,29 @@ public class BezeroDao {
 		String pasahitza = new String(passwordFieldPasahitza.getPassword());
 
 		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "select erabiltzailea,pasahitza from Bezeroa";
+			String kontsulta = "select erabiltzailea,pasahitza,IdBezeroa,mota from Bezeroa";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
 						String erabiltzaileaDB = rs.getString("erabiltzailea");
 						String pasahitzaDB = rs.getString("pasahitza");
+						String id_bezero = rs.getString("IdBezeroa");
+						String mota = rs.getString("mota");
+						
+						if(mota == "premium") {
+							PremiumBezeroa PM = new PremiumBezeroa(id_bezero, null, null, erabiltzaileaDB, pasahitzaDB, null, null, null, null, mota, null);
+							
+						}else {
+							FreeBezero FB = new FreeBezero(id_bezero, null, null, erabiltzaileaDB, pasahitzaDB, null, null, null, mota, null);
+						}
+
+					
 
 						if (erabiltzailea.equals(erabiltzaileaDB) && pasahitza.equals(pasahitzaDB)) {
 							loginOK = true;
 							JOptionPane.showMessageDialog(null, "Sesioa hasi da modu egokian");
-							BistakArgitaratu.MenuJoan();
-
+							BistakArgitaratu.MenuJoan(BezeroErabil);
+							return erabiltzailea;
 						}
 					}
 					if (loginOK == false) {
@@ -65,6 +77,7 @@ public class BezeroDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
 
 	}
 

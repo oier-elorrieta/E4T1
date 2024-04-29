@@ -33,7 +33,7 @@ public class PodcastDeskubrituBista extends JFrame {
 	private String podcasterIzena;
 	public List<Podcast> podcastList;
 
-	public PodcastDeskubrituBista() {
+	public PodcastDeskubrituBista(String BezeroErabil) {
 
 		podcasterList = PodcasterDao.podcakasterAtera();
 
@@ -63,7 +63,7 @@ public class PodcastDeskubrituBista extends JFrame {
 		JButton btnAtzera = new JButton("ATZERA");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MenuJoan();
+				BistakArgitaratu.MenuJoan(BezeroErabil);
 				dispose();
 			}
 		});
@@ -91,7 +91,7 @@ public class PodcastDeskubrituBista extends JFrame {
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 					podcasterIzena = (String) listPodcast.getSelectedValue();
-					BistakArgitaratu.PodcasterBistaJoan(podcasterIzena, podcastList);
+					BistakArgitaratu.PodcasterBistaJoan(podcasterIzena, podcastList, BezeroErabil);
 					dispose();
 				}
 			}

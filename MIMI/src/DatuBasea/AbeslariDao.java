@@ -68,7 +68,6 @@ public class AbeslariDao {
 						
 
 					
-						;
 						Album album = new Album(id,izenburua,argitaratzea,0, generoa, idmusikaria, kolaboratzaileak);
 
 						albumak.add(album);

@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import DatuBasea.BezeroDao;
+import Modelo.Bezero;
 
 public class LoginBista extends JFrame {
 
@@ -27,6 +28,7 @@ public class LoginBista extends JFrame {
     private JPanel contentPane;
     private JTextField textFieldErabiltzailea;
     private JPasswordField passwordFieldPasahitza;
+    private String BezeroErabil;
 
     public LoginBista() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,12 +64,15 @@ public class LoginBista extends JFrame {
                
                 
                 try {
-                	BezeroDao.LoginKomprobatu(textFieldErabiltzailea, passwordFieldPasahitza);
+                	BezeroErabil = BezeroDao.LoginKomprobatu(textFieldErabiltzailea, passwordFieldPasahitza, BezeroErabil);
 					dispose();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
             }
+            
+            
+   
         });
         btnLog.setBounds(532, 352, 115, 36);
         panel.add(btnLog);
@@ -94,6 +99,7 @@ public class LoginBista extends JFrame {
         passwordFieldPasahitza.setBounds(657, 210, 163, 20);
         panel.add(passwordFieldPasahitza);
         
+       
         
         JButton btnErregistro = new JButton("Erregistratu");
         btnErregistro.addActionListener(new ActionListener() {

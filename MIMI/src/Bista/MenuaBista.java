@@ -22,7 +22,7 @@ public class MenuaBista extends JFrame {
 	private JPanel contentPane;
 
 
-	public MenuaBista() {
+	public MenuaBista(String BezeroErabil) {
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(MenuaBista.class.getResource("/media/img/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 913, 484);
@@ -89,7 +89,7 @@ public class MenuaBista extends JFrame {
 		btnPDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				BistakArgitaratu.PodcastDeskubrituJoan();
+				BistakArgitaratu.PodcastDeskubrituJoan(BezeroErabil);
 				dispose();
 			}
 		});
@@ -99,7 +99,7 @@ public class MenuaBista extends JFrame {
 		JButton btnMDeskubritu = new JButton("Musika Deskubritu");
 		btnMDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MusikaDeskubrituJoan();
+				BistakArgitaratu.MusikaDeskubrituJoan(BezeroErabil);
 				dispose();
 			}
 		});

@@ -55,10 +55,10 @@ public class BistakArgitaratu {
 	 * 
 	 * 
 	 */
-	public static void MenuJoan() {
+	public static void MenuJoan(String BezeroErabil) {
 
 		try {
-			MenuaBista frame = new MenuaBista();
+			MenuaBista frame = new MenuaBista(BezeroErabil);
 			frame.setVisible(true);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -66,28 +66,18 @@ public class BistakArgitaratu {
 
 	}
 	
-	public static void MusikaDeskubrituJoan() {
+	public static void MusikaDeskubrituJoan(String BezeroErabil) {
 		try {
-			MusikaDeskubrituBista frame = new MusikaDeskubrituBista();
+			MusikaDeskubrituBista frame = new MusikaDeskubrituBista(BezeroErabil);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static void ArtistaBistaJoan(String artistaIzena, List<Album> albumak) {
+	public static void ArtistaBistaJoan(String artistaIzena, List<Album> albumak, String BezeroErabil) {
 		try { 
-			ArtistaBista frame = new ArtistaBista(artistaIzena, albumak);
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public static void PodcastDeskubrituJoan() {
-		try { 
-			PodcastDeskubrituBista frame = new PodcastDeskubrituBista();
+			ArtistaBista frame = new ArtistaBista(artistaIzena, albumak, BezeroErabil);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,9 +85,19 @@ public class BistakArgitaratu {
 	}
 	
 	
-	public static void PodcasterBistaJoan(String artistaIzena, List<Podcast> podcast) {
+	public static void PodcastDeskubrituJoan(String BezeroErabil) {
 		try { 
-			PodcasterBista frame = new PodcasterBista(artistaIzena,podcast);
+			PodcastDeskubrituBista frame = new PodcastDeskubrituBista(BezeroErabil);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void PodcasterBistaJoan(String artistaIzena, List<Podcast> podcast, String BezeroErabil) {
+		try { 
+			PodcasterBista frame = new PodcasterBista(artistaIzena,podcast, BezeroErabil);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
