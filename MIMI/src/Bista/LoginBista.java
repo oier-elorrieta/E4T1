@@ -28,7 +28,6 @@ public class LoginBista extends JFrame {
     private JPanel contentPane;
     private JTextField textFieldErabiltzailea;
     private JPasswordField passwordFieldPasahitza;
-    private String BezeroErabil;
 
     public LoginBista() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,8 +63,7 @@ public class LoginBista extends JFrame {
                
                 
                 try {
-                	BezeroErabil = BezeroDao.LoginKomprobatu(textFieldErabiltzailea, passwordFieldPasahitza, BezeroErabil);
-					dispose();
+                	BezeroDao.LoginKomprobatu(textFieldErabiltzailea, passwordFieldPasahitza);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

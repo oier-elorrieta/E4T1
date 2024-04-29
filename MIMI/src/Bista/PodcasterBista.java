@@ -42,7 +42,7 @@ public class PodcasterBista extends JFrame {
 	private List<Podcaster> podcasterList;
 
 
-	public PodcasterBista(String artistaIzena, List<Podcast> podcastList, String BezeroErabil) throws SQLException {
+	public PodcasterBista(String artistaIzena, List<Podcast> podcastList, String erabiltzailea) throws SQLException {
 		setResizable(false);
 
 		podcasterList = PodcasterDao.podcakasterAtera();
@@ -66,7 +66,7 @@ public class PodcasterBista extends JFrame {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.PodcastDeskubrituJoan(BezeroErabil);
+				BistakArgitaratu.PodcastDeskubrituJoan(erabiltzailea);
 				dispose();
 			}
 		});
@@ -74,7 +74,7 @@ public class PodcasterBista extends JFrame {
 		contentPane.add(btnAtzera);
 
 		// Hay
-		JButton btnPerfil = new JButton(BezeroErabil);
+		JButton btnPerfil = new JButton(erabiltzailea);
 		btnPerfil.setBounds(572, 5, 177, 23);
 		contentPane.add(btnPerfil);
 

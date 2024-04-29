@@ -22,8 +22,8 @@ public class MenuaBista extends JFrame {
 	private JPanel contentPane;
 
 
-	public MenuaBista(String BezeroErabil) {
-		//setIconImage(Toolkit.getDefaultToolkit().getImage(MenuaBista.class.getResource("/media/img/logo.png")));
+	public MenuaBista(String erabiltzailea) {
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(MenuaBista.class.getResource("/media.img/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 913, 484);
 		contentPane = new JPanel();
@@ -58,6 +58,12 @@ public class MenuaBista extends JFrame {
 		splitPane_1.setLeftComponent(btnAtzera);
 		
 		JButton btnNewButton = new JButton("PROFILA");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BistakArgitaratu.ProfilaBistaJoan(erabiltzailea);
+				dispose();
+			}
+		});
 		btnNewButton.setFont(new Font("Sitka Text", Font.PLAIN, 16));
 		splitPane_1.setRightComponent(btnNewButton);
 		
@@ -89,7 +95,7 @@ public class MenuaBista extends JFrame {
 		btnPDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				BistakArgitaratu.PodcastDeskubrituJoan(BezeroErabil);
+				BistakArgitaratu.PodcastDeskubrituJoan(erabiltzailea);
 				dispose();
 			}
 		});
@@ -99,7 +105,7 @@ public class MenuaBista extends JFrame {
 		JButton btnMDeskubritu = new JButton("Musika Deskubritu");
 		btnMDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MusikaDeskubrituJoan(BezeroErabil);
+				BistakArgitaratu.MusikaDeskubrituJoan(erabiltzailea);
 				dispose();
 			}
 		});

@@ -38,7 +38,7 @@ public class ArtistaBista extends JFrame {
 	private DefaultListModel<String> model;
 	private List<Abeslari> musikariak;
 
-	public ArtistaBista(String artistaIzena, List<Album> albumak, String BezeroErabil) throws SQLException {
+	public ArtistaBista(String artistaIzena, List<Album> albumak, String erabiltzailea) throws SQLException {
 		setResizable(false);
 
 		musikariak = AbeslariDao.musikariakAtera();
@@ -62,7 +62,7 @@ public class ArtistaBista extends JFrame {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MusikaDeskubrituJoan(BezeroErabil);
+				BistakArgitaratu.MusikaDeskubrituJoan(erabiltzailea);
 				dispose();
 			}
 		});
@@ -70,7 +70,7 @@ public class ArtistaBista extends JFrame {
 		contentPane.add(btnAtzera);
 
 		
-		JButton btnPerfil = new JButton(BezeroErabil);
+		JButton btnPerfil = new JButton(erabiltzailea);
 		btnPerfil.setBounds(572, 5, 177, 23);
 		contentPane.add(btnPerfil);
 
