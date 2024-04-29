@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import Modelo.Abesti;
 import Modelo.Playlist;
+import Modelo.Audio.Mota;
 
 public class PlaylistTest {
 
@@ -68,7 +69,7 @@ public class PlaylistTest {
     @Test
     public void testGetAbestiListTrue() {
         ArrayList<Abesti> abestiList = new ArrayList<>();
-        abestiList.add(new Abesti("1", "Noain", 3.5, "Noain", ""));
+        abestiList.add(new Abesti(null,null,null,Mota.abestia,null, "Abesti1", "Album1", "Kolaboratzaile1"));
         Playlist playlist = new Playlist("1", "EuskalKantak", abestiList);
         assertEquals(abestiList, playlist.getAbestiList());
     }
@@ -76,10 +77,10 @@ public class PlaylistTest {
     @Test
     public void testGetAbestiListFalse() {
         ArrayList<Abesti> abestiList = new ArrayList<>();
-        abestiList.add(new Abesti("1", "Noain", 3.5, "Noain", ""));
+        abestiList.add(new Abesti(null,null,null,Mota.abestia,null, "Abesti1", "Album1", "Kolaboratzaile1"));
         
         ArrayList<Abesti> AbestiLista = new ArrayList<>();
-        AbestiLista.add(new Abesti("2", "Odio Eterno", 4.0, "Oi!Baldorba", ""));
+        AbestiLista.add(new Abesti(null,null,null,Mota.podcast,null, "Abesti2", "Album2", "Kolaboratzaile1"));
         
         Playlist playlist = new Playlist("1", "Playlist1", abestiList);
         
@@ -90,7 +91,7 @@ public class PlaylistTest {
     @Test
     public void testSetAbestiList() {
         ArrayList<Abesti> newAbestiList = new ArrayList<>();
-        newAbestiList.add(new Abesti("2", "Abesti2", 4.0, "Album2", "Kolaboratzaile2"));
+        newAbestiList.add(new Abesti(null,null,null,Mota.abestia,null, "Abesti1", "Album1", "Kolaboratzaile1"));
         Playlist playlist = new Playlist("0", null, null);
         playlist.setAbestiList(newAbestiList);
         assertEquals(newAbestiList, playlist.getAbestiList());
@@ -99,18 +100,16 @@ public class PlaylistTest {
     @Test
     public void testToString() {
         ArrayList<Abesti> abestiList = new ArrayList<>();
-        abestiList.add(new Abesti("1", "Abesti1", 3.5, "Album1", "Kolaboratzaile1"));
+        abestiList.add(new Abesti(null,null,null,Mota.abestia,null, "Abesti1", "Album1", "Kolaboratzaile1"));
         Playlist playlist = new Playlist("1", "Playlist1", abestiList);
-        String expectedToString = "Playlist [id=1, izena=Playlist1, AbestiList=[" +
-                                  "Abesti [id=1, abestiIzena=Abesti1, iraupena=3.5, albumIzena=Album1, kolaboratzaile=Kolaboratzaile1]" +
-                                  "]]";
+        String expectedToString = "Playlist [id=1, izena=Playlist1, AbestiList=[Audio [id=null, iraupena=null, irudia=null, mota=abestia]Abesti [id=null, abestiIzena=Abesti1albumIzena=Album1, kolaboratzaile=Kolaboratzaile1]]]";
         assertEquals(expectedToString, playlist.toString());
     }
 
     @Test
     public void testEqualsTrue() {
         ArrayList<Abesti> abestiList = new ArrayList<>();
-        abestiList.add(new Abesti("1", "Noain", 3.5, "Noain", ""));
+        abestiList.add(new Abesti(null,null,null,Mota.abestia,null, "Abesti1", "Album1", "Kolaboratzaile1"));
         Playlist playlist1 = new Playlist("1", "EuskalKantak", abestiList);
         Playlist playlist2 = new Playlist("1", "EuskalKantak", abestiList);
 
@@ -120,7 +119,7 @@ public class PlaylistTest {
     @Test
     public void testEqualsFalse() {
         ArrayList<Abesti> abestiList = new ArrayList<>();
-        abestiList.add(new Abesti("1", "Noain", 3.5, "Noain", ""));
+        abestiList.add(new Abesti(null,null,null,Mota.abestia,null, "Abesti1", "Album1", "Kolaboratzaile1"));
         Playlist playlist1 = new Playlist("1", "EuskalKantak", abestiList);
         Playlist playlist3 = new Playlist("3", "CancionsGalegas", abestiList);
 

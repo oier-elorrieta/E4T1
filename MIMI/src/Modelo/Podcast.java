@@ -58,7 +58,7 @@ public class Podcast extends Audio {
 	 *
 	 * @return Podcast-aren identifikazioa.
 	 */
-	public String getId() {
+	public String getId_Podcast() {
 		return id_podcast;
 	}
 
@@ -67,7 +67,7 @@ public class Podcast extends Audio {
 	 *
 	 * @param id Podcast-aren identifikazioa.
 	 */
-	public void setId(String id) {
+	public void setId_Podcast(String id) {
 		this.id_podcast = id;
 	}
 

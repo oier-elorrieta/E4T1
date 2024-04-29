@@ -143,7 +143,7 @@ public class Album {
 	 * 
 	 */
 
-	public void setAbesti_izena(String izenburua) {
+	public void setIzenburua(String izenburua) {
 
 		this.izenburua = izenburua;
 
