@@ -23,6 +23,7 @@ import java.sql.SQLException;
 
 import Modelo.Abeslari;
 import Modelo.Album;
+import Modelo.Bezero;
 import Modelo.FreeBezero;
 import funtzioak.BistakArgitaratu;
 
@@ -38,7 +39,7 @@ public class ArtistaBista extends JFrame {
 	private DefaultListModel<String> model;
 	private List<Abeslari> musikariak;
 
-	public ArtistaBista(String artistaIzena, List<Album> albumak, String erabiltzailea) throws SQLException {
+	public ArtistaBista(String artistaIzena, List<Album> albumak, Bezero bz) throws SQLException {
 		setResizable(false);
 
 		musikariak = AbeslariDao.musikariakAtera();
@@ -62,7 +63,7 @@ public class ArtistaBista extends JFrame {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MusikaDeskubrituJoan(erabiltzailea);
+				BistakArgitaratu.MusikaDeskubrituJoan(bz);
 				dispose();
 			}
 		});
@@ -70,7 +71,7 @@ public class ArtistaBista extends JFrame {
 		contentPane.add(btnAtzera);
 
 		
-		JButton btnPerfil = new JButton(erabiltzailea);
+		JButton btnPerfil = new JButton(bz.getErabiltzaile());
 		btnPerfil.setBounds(572, 5, 177, 23);
 		contentPane.add(btnPerfil);
 

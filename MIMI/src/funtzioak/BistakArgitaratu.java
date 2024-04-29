@@ -11,6 +11,7 @@ import Bista.PodcastDeskubrituBista;
 import Bista.PodcasterBista;
 import Bista.ProfilaBista;
 import Modelo.Album;
+import Modelo.Bezero;
 import Modelo.Podcast;
 
 public class BistakArgitaratu {
@@ -56,10 +57,10 @@ public class BistakArgitaratu {
 	 * 
 	 * 
 	 */
-	public static void MenuJoan(String erabiltzailea) {
+	public static void MenuJoan(Bezero bz) {
 
 		try {
-			MenuaBista frame = new MenuaBista(erabiltzailea);
+			MenuaBista frame = new MenuaBista(bz);
 			frame.setVisible(true);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -67,28 +68,18 @@ public class BistakArgitaratu {
 
 	}
 	
-	public static void MusikaDeskubrituJoan(String erabiltzailea) {
+	public static void MusikaDeskubrituJoan(Bezero bz) {
 		try {
-			MusikaDeskubrituBista frame = new MusikaDeskubrituBista(erabiltzailea);
+			MusikaDeskubrituBista frame = new MusikaDeskubrituBista(bz);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static void ArtistaBistaJoan(String artistaIzena, List<Album> albumak, String erabiltzailea) {
+	public static void ArtistaBistaJoan(String artistaIzena, List<Album> albumak, Bezero bz) {
 		try { 
-			ArtistaBista frame = new ArtistaBista(artistaIzena, albumak, erabiltzailea);
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public static void PodcastDeskubrituJoan(String erabiltzailea) {
-		try { 
-			PodcastDeskubrituBista frame = new PodcastDeskubrituBista(erabiltzailea);
+			ArtistaBista frame = new ArtistaBista(artistaIzena, albumak, bz);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -96,9 +87,19 @@ public class BistakArgitaratu {
 	}
 	
 	
-	public static void PodcasterBistaJoan(String artistaIzena, List<Podcast> podcast, String erabiltzailea) {
+	public static void PodcastDeskubrituJoan(Bezero bz) {
 		try { 
-			PodcasterBista frame = new PodcasterBista(artistaIzena,podcast, erabiltzailea);
+			PodcastDeskubrituBista frame = new PodcastDeskubrituBista(bz);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void PodcasterBistaJoan(String artistaIzena, List<Podcast> podcast, Bezero bz) {
+		try { 
+			PodcasterBista frame = new PodcasterBista(artistaIzena,podcast, bz);
 			frame.setVisible(true);
 			
 		} catch (Exception e) {
@@ -106,9 +107,9 @@ public class BistakArgitaratu {
 		}
 	}
 	
-	public static void ProfilaBistaJoan(String erabiltzailea) {
+	public static void ProfilaBistaJoan(Bezero bz) {
 		try {
-			ProfilaBista frame = new ProfilaBista(erabiltzailea);
+			ProfilaBista frame = new ProfilaBista(bz);
 			frame.setVisible(true);
 		}catch (Exception e) {
 			e.printStackTrace();

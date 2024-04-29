@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
+import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -21,14 +23,14 @@ public class ProfilaBista extends TxantiloiaBista {
 	private JTextField textIzena;
 	private JTextField textAbizena;
 	private JTextField textErabiltzalea;
-	private JTextField textPasahitza;
-	private JTextField textKonfirmatu;
+	private JPasswordField textPasahitza;
+	private JPasswordField textKonfirmatu;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public ProfilaBista(String erabiltzailea) {
+	public ProfilaBista(Bezero bz) {
 		setResizable(false);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,12 +44,13 @@ public class ProfilaBista extends TxantiloiaBista {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MenuJoan(erabiltzailea);
+				BistakArgitaratu.MenuJoan(bz);
 				dispose();
 			}
 		});
 		btnAtzera.setBounds(5, 5, 177, 36);
 		contentPane.add(btnAtzera);
+		
 		
 		JLabel ProfilaIzena = new JLabel("Izena");
 		ProfilaIzena.setForeground(Color.BLACK);
@@ -55,7 +58,7 @@ public class ProfilaBista extends TxantiloiaBista {
 		ProfilaIzena.setBounds(57, 102, 46, 14);
 		contentPane.add(ProfilaIzena);
 		
-		textIzena = new JTextField();
+		textIzena = new JTextField(bz.getIzena());
 		textIzena.setEditable(false);
 		textIzena.setBounds(101, 101, 116, 20);
 		contentPane.add(textIzena);
@@ -66,7 +69,7 @@ public class ProfilaBista extends TxantiloiaBista {
 		ProfilaAbizena.setBounds(372, 104, 69, 14);
 		contentPane.add(ProfilaAbizena);
 		
-		textAbizena = new JTextField();
+		textAbizena = new JTextField(bz.getAbizena());
 		textAbizena.setEditable(false);
 		textAbizena.setBounds(436, 101, 138, 20);
 		contentPane.add(textAbizena);
@@ -77,7 +80,7 @@ public class ProfilaBista extends TxantiloiaBista {
 		ProfilaErabiltzailea.setBounds(30, 179, 73, 14);
 		contentPane.add(ProfilaErabiltzailea);
 		
-		textErabiltzalea = new JTextField(erabiltzailea);
+		textErabiltzalea = new JTextField(bz.getErabiltzaile());
 		textErabiltzalea.setEditable(false);
 		textErabiltzalea.setBounds(113, 178, 123, 20);
 		contentPane.add(textErabiltzalea);
@@ -88,7 +91,7 @@ public class ProfilaBista extends TxantiloiaBista {
 		ProfilaPasahitza.setBounds(357, 179, 69, 14);
 		contentPane.add(ProfilaPasahitza);
 		
-		textPasahitza = new JTextField();
+		textPasahitza = new JPasswordField(bz.getPasahitza());
 		textPasahitza.setEditable(false);
 		textPasahitza.setBounds(436, 178, 138, 20);
 		contentPane.add(textPasahitza);
@@ -99,11 +102,12 @@ public class ProfilaBista extends TxantiloiaBista {
 		ProfilaKonfirmatu.setBounds(357, 245, 84, 14);
 		contentPane.add(ProfilaKonfirmatu);
 		
-		textKonfirmatu = new JTextField();
+		textKonfirmatu = new JPasswordField(bz.getPasahitza());
 		textKonfirmatu.setEditable(false);
 		textKonfirmatu.setBounds(436, 244, 138, 20);
 		contentPane.add(textKonfirmatu);
 		textKonfirmatu.setColumns(10);
+		
 		
 		JButton btnEditatu = new JButton("Editatu");
 		btnEditatu.addActionListener(new ActionListener() {

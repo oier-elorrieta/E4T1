@@ -41,7 +41,7 @@ public class BezeroDao {
 		String pasahitza = new String(passwordFieldPasahitza.getPassword());
 
 		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "select erabiltzailea,pasahitza,IdBezeroa,mota from Bezeroa";
+			String kontsulta = "select * from Bezeroa";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
@@ -49,20 +49,16 @@ public class BezeroDao {
 						String pasahitzaDB = rs.getString("pasahitza");
 						String id_bezero = rs.getString("IdBezeroa");
 						String mota = rs.getString("mota");
-						
-						if(mota == "premium") {
-							PremiumBezeroa PM = new PremiumBezeroa(id_bezero, null, null, erabiltzaileaDB, pasahitzaDB, null, null, null, null, mota, null);
-							
-						}else {
-							FreeBezero FB = new FreeBezero(id_bezero, null, null, erabiltzaileaDB, pasahitzaDB, null, null, null, mota, null);
-						}
+						String izena = rs.getString("Izena");
+						String abizena = rs.getString("Abizena");
+							Bezero bz = new Bezero(id_bezero, izena, abizena, erabiltzaileaDB, pasahitzaDB, null, null, null, mota, null);
 
 					
 
 						if (erabiltzailea.equals(erabiltzaileaDB) && pasahitza.equals(pasahitzaDB)) {
 							loginOK = true;
 							JOptionPane.showMessageDialog(null, "Sesioa hasi da modu egokian");
-							BistakArgitaratu.MenuJoan(erabiltzailea);
+							BistakArgitaratu.MenuJoan(bz);
 							
 						}
 					}
@@ -270,6 +266,26 @@ public class BezeroDao {
 
 		}
 
+	}
+	
+	public static void BezeroUpdate(Bezero bz, JTextField textIzena, JTextField textAbizena, JTextField textErabiltzalea, JPasswordField textPasahitza) {
+		
+		try (Connection con = Konexioa.konexioa()) {
+
+			String update = "";
+
+			try {
+				PreparedStatement preparedStatement = con.prepareStatement(update);
+				preparedStatement.setString(1,);
+				preparedStatement.setDate(2,);
+
+				preparedStatement.executeUpdate();
+
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+
+		}
 	}
 
 }

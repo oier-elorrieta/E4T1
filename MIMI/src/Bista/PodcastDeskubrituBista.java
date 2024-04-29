@@ -18,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import DatuBasea.PodcasterDao;
+import Modelo.Bezero;
 import Modelo.Podcast;
 import Modelo.Podcaster;
 import funtzioak.BistakArgitaratu;
@@ -33,7 +34,7 @@ public class PodcastDeskubrituBista extends JFrame {
 	private String podcasterIzena;
 	public List<Podcast> podcastList;
 
-	public PodcastDeskubrituBista(String erabiltzailea) {
+	public PodcastDeskubrituBista(Bezero bz) {
 
 		podcasterList = PodcasterDao.podcakasterAtera();
 
@@ -63,7 +64,7 @@ public class PodcastDeskubrituBista extends JFrame {
 		JButton btnAtzera = new JButton("ATZERA");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MenuJoan(erabiltzailea);
+				BistakArgitaratu.MenuJoan(bz);
 				dispose();
 			}
 		});
@@ -91,8 +92,7 @@ public class PodcastDeskubrituBista extends JFrame {
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 					podcasterIzena = (String) listPodcast.getSelectedValue();
-					System.out.println(erabiltzailea);
-					BistakArgitaratu.PodcasterBistaJoan(podcasterIzena, podcastList, erabiltzailea);
+					BistakArgitaratu.PodcasterBistaJoan(podcasterIzena, podcastList, bz);
 					dispose();
 				}
 			}

@@ -21,6 +21,7 @@ import DatuBasea.AbeslariDao;
 import Modelo.Abeslari;
 import Modelo.Abesti;
 import Modelo.Album;
+import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
@@ -34,7 +35,7 @@ public class MusikaDeskubrituBista extends JFrame {
 	public static String artistaIzena;
     public List<Album> albumak;
 
-	public MusikaDeskubrituBista(String erabiltzailea) {
+	public MusikaDeskubrituBista(Bezero bz) {
 
 		musikariak = AbeslariDao.musikariakAtera();
 
@@ -64,7 +65,7 @@ public class MusikaDeskubrituBista extends JFrame {
 		JButton btnAtzera = new JButton("ATZERA");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MenuJoan(erabiltzailea);
+				BistakArgitaratu.MenuJoan(bz);
 				dispose();
 			}
 		});
@@ -94,7 +95,7 @@ public class MusikaDeskubrituBista extends JFrame {
 		
 					 artistaIzena = (String) listMusika.getSelectedValue();
 					 albumak = AbeslariDao.musikariarenAlbum(artistaIzena);
-					 BistakArgitaratu.ArtistaBistaJoan(artistaIzena,albumak,erabiltzailea);
+					 BistakArgitaratu.ArtistaBistaJoan(artistaIzena,albumak,bz);
 		        	dispose();
 					 System.out.println(albumak.toString());
 					System.out.println(artistaIzena);

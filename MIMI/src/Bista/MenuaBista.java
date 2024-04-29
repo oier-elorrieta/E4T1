@@ -13,6 +13,7 @@ import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
 import java.awt.Toolkit;
 
@@ -22,7 +23,7 @@ public class MenuaBista extends JFrame {
 	private JPanel contentPane;
 
 
-	public MenuaBista(String erabiltzailea) {
+	public MenuaBista(Bezero bz) {
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(MenuaBista.class.getResource("/media.img/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 913, 484);
@@ -60,7 +61,7 @@ public class MenuaBista extends JFrame {
 		JButton btnNewButton = new JButton("PROFILA");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.ProfilaBistaJoan(erabiltzailea);
+				BistakArgitaratu.ProfilaBistaJoan(bz);
 				dispose();
 			}
 		});
@@ -95,7 +96,7 @@ public class MenuaBista extends JFrame {
 		btnPDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				BistakArgitaratu.PodcastDeskubrituJoan(erabiltzailea);
+				BistakArgitaratu.PodcastDeskubrituJoan(bz);
 				dispose();
 			}
 		});
@@ -105,7 +106,7 @@ public class MenuaBista extends JFrame {
 		JButton btnMDeskubritu = new JButton("Musika Deskubritu");
 		btnMDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MusikaDeskubrituJoan(erabiltzailea);
+				BistakArgitaratu.MusikaDeskubrituJoan(bz);
 				dispose();
 			}
 		});

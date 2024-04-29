@@ -24,6 +24,7 @@ import java.sql.SQLException;
 
 import Modelo.Abeslari;
 import Modelo.Album;
+import Modelo.Bezero;
 import Modelo.Podcast;
 import Modelo.Podcaster;
 import funtzioak.BistakArgitaratu;
@@ -42,7 +43,7 @@ public class PodcasterBista extends JFrame {
 	private List<Podcaster> podcasterList;
 
 
-	public PodcasterBista(String artistaIzena, List<Podcast> podcastList, String erabiltzailea) throws SQLException {
+	public PodcasterBista(String artistaIzena, List<Podcast> podcastList, Bezero bz) throws SQLException {
 		setResizable(false);
 
 		podcasterList = PodcasterDao.podcakasterAtera();
@@ -66,7 +67,7 @@ public class PodcasterBista extends JFrame {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.PodcastDeskubrituJoan(erabiltzailea);
+				BistakArgitaratu.PodcastDeskubrituJoan(bz);
 				dispose();
 			}
 		});
@@ -74,7 +75,7 @@ public class PodcasterBista extends JFrame {
 		contentPane.add(btnAtzera);
 
 		// Hay
-		JButton btnPerfil = new JButton(erabiltzailea);
+		JButton btnPerfil = new JButton(bz.getErabiltzaile());
 		btnPerfil.setBounds(572, 5, 177, 23);
 		contentPane.add(btnPerfil);
 
