@@ -1,7 +1,5 @@
 package Bista;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
@@ -9,9 +7,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import DatuBasea.AbeslariDao;
 import DatuBasea.AlbumDao;
-import Modelo.Abeslari;
 import Modelo.Abesti;
 import Modelo.Album;
 import Modelo.Bezero;
@@ -27,126 +23,113 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class AlbumBista extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private DefaultListModel<String> model;
-	private List<Abesti> abestiak;
-	private String kolab;
-	private Time iraupen;
-	private String abestiIzena;
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
+    private DefaultListModel<String> model;
+    private List<Abesti> abestiak;
 
-	/**
-	 * Create the frame.
-	 * 
-	 * @throws SQLException
-	 */
-	public AlbumBista(Bezero bz, Album album) throws SQLException {
+    public AlbumBista(Bezero bz, Album album) throws SQLException {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 775, 633);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
 
-		Abesti abesti = new Abesti();
-		abestiak = AlbumDao.albumarenAbestiak(album.getIzenburua());
-		abesti = abestiak.get(0);
-		System.out.println(abesti.toString());
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 775, 633);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        abestiak = AlbumDao.albumarenAbestiak(album.getIzenburua());
+        Abesti abesti = abestiak.get(0); 
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+        JList<String> listMusika = new JList<String>();
+        listMusika.setBackground(SystemColor.controlLtHighlight);
+        listMusika.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        listMusika.setBounds(22, 53, 332, 164);
+        contentPane.add(listMusika);
 
-		JList<String> listMusika = new JList<String>();
-		listMusika.setBackground(SystemColor.controlLtHighlight);
-		listMusika.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		listMusika.setBounds(22, 53, 332, 164);
-		contentPane.add(listMusika);
+        model = new DefaultListModel<String>();
+        for (Abesti abestia : abestiak) {
+            model.addElement(abestia.getAbestiIzena() + " - " + abestia.getIraupena());
+        }
+        listMusika.setModel(model);
 
-		model = new DefaultListModel<String>();
+        listMusika.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String selectedValue = listMusika.getSelectedValue();
+                    String abestiIzena = splitIzena(selectedValue);
+                    Abesti selectedAbesti = null;
+                    for (Abesti abesti : abestiak) {
+                        if (abesti.getAbestiIzena().equals(abestiIzena)) {
+                            selectedAbesti = abesti;
+                            break;
+                        }
+                    }
+                    if (selectedAbesti != null) {
+                        BistakArgitaratu.ErreproduktoreaBistaJoan(bz, selectedAbesti, abestiak);
+                        dispose();
+                    } else {
+                        System.out.println("Abestiaren izena ez da aurkitu.");
+                    }
+                }
+            }
+        });
 
-		if (album.getKolaboratzaileak() == null) {
-			kolab = "";
+        JLabel lblIrudia = new JLabel("");
+        lblIrudia.setBounds(20, 235, 332, 332);
+        lblIrudia.setIcon(new ImageIcon(abesti.getIrudia().getBytes(1, (int) abesti.getIrudia().length())));
+        contentPane.add(lblIrudia);
 
-		} else {
-			kolab = album.getKolaboratzaileak();
-		}
+        JTextPane deskribapenaTextPane = new JTextPane();
+        deskribapenaTextPane.setBackground(SystemColor.control);
+        deskribapenaTextPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        deskribapenaTextPane.setEditable(false);
+        deskribapenaTextPane.setText("Kolaboratzaileak: " + album.getKolaboratzaileak() + "\nArgitaratze Data: "
+                + album.getArgitaratzea() + "\nKanta kopurua: " + abestiak.size() + "\nIraupena: "
+                + album.getAlbumIraupena());
+        deskribapenaTextPane.setBounds(398, 53, 332, 514);
+        contentPane.add(deskribapenaTextPane);
 
-		for (int i = 0; i < abestiak.size(); i++) {
-			// iraupen += abestiak.get(i).getIraupena();
-			model.addElement(abestiak.get(i).getAbestiIzena() + " - " + abestiak.get(i).getIraupena());
-			listMusika.addListSelectionListener(new ListSelectionListener() {
-				@Override
-				public void valueChanged(ListSelectionEvent e) {
-					if (!e.getValueIsAdjusting()) {
+        JButton btnAtzera = new JButton("Atzera");
+        btnAtzera.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                BistakArgitaratu.MenuJoan(bz);
+                dispose();
+            }
+        });
+        btnAtzera.setBounds(10, 11, 132, 23);
+        contentPane.add(btnAtzera);
 
-						abestiIzena = (String) listMusika.getSelectedValue();
-						System.out.println(abestiIzena);
-						for (int i = 0; i < abestiak.size(); i++) {
-							if (abestiIzena.contains(abestiak.get(i).getAbestiIzena())) {
-								System.out.println("Son el mismo");
-								Abesti abesti = new Abesti();
-								abesti = abestiak.get(i);
-								BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abesti);
-								dispose();
-							}else {
-								System.out.println("NO Son el mismo");
+        JButton btnPerfil = new JButton(bz.getErabiltzaile());
+        btnPerfil.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                BistakArgitaratu.ProfilaBistaJoan(bz);
+                dispose();
+            }
+        });
+        btnPerfil.setBounds(572, 11, 177, 23);
+        contentPane.add(btnPerfil);
 
-							}
+        JLabel lblTitulua = new JLabel(album.getIzenburua());
+        lblTitulua.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitulua.setFont(new Font("Tahoma", Font.BOLD, 20));
+        lblTitulua.setBounds(147, 11, 415, 33);
+        contentPane.add(lblTitulua);
+    }
 
-						}
-					}
-
-					}
-
-			});
-		listMusika.setModel(model);
-
-		JLabel lblIrudia = new JLabel("");
-		lblIrudia.setBounds(20, 235, 332, 332);
-		contentPane.add(lblIrudia);
-		lblIrudia.setIcon(new ImageIcon(abesti.getIrudia().getBytes(1, (int) abesti.getIrudia().length())));
-
-		JTextPane deskribapenaTextPane = new JTextPane();
-		deskribapenaTextPane.setBackground(SystemColor.control);
-		deskribapenaTextPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		deskribapenaTextPane.setEditable(false);
-		// Iraupen gehitu metodoa
-
-		deskribapenaTextPane.setText("Kolaboratzaileak: " + kolab + "\nArgitaratze Data: " + album.getArgitaratzea()
-				+ "\nKanta kopurua: " + abestiak.size() + "\nIraupena: " + album.getAlbumIraupena());
-		deskribapenaTextPane.setBounds(398, 53, 332, 514);
-		contentPane.add(deskribapenaTextPane);
-
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MenuJoan(bz);
-				dispose();
-			}
-		});
-		btnAtzera.setBounds(10, 11, 132, 23);
-		contentPane.add(btnAtzera);
-
-		JButton btnPerfil = new JButton(bz.getErabiltzaile());
-		btnPerfil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.ProfilaBistaJoan(bz);
-				dispose();
-			}
-		});
-		btnPerfil.setBounds(572, 11, 177, 23);
-		contentPane.add(btnPerfil);
-
-		JLabel lblTitulua = new JLabel(album.getIzenburua());
-		lblTitulua.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulua.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblTitulua.setBounds(147, 11, 415, 33);
-		contentPane.add(lblTitulua);
-	}
-	}
+    public String splitIzena(String izena) {
+        String izenaSplit = "";
+        String[] splitKatea = izena.split(" - ");
+        if (splitKatea.length >= 1) {
+            izenaSplit = splitKatea[0];
+            System.out.println("Abestiaren izena: " + izenaSplit);
+        } else {
+            System.out.println("Txarto");
+        }
+        return izenaSplit;
+    }
 }

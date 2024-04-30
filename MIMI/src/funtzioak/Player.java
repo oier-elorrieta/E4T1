@@ -1,80 +1,90 @@
 package funtzioak;
 
 import javax.sound.sampled.*;
+
+import Modelo.Abesti;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
 public class Player {
-    private static List<File> abestiak = new ArrayList<>();
-    private static int indizea = 0; // abestiaren indizea hasieratu
-    private static Clip klipa;
+    private List<File> abestiakPlayer;
+    private int indizea = 0; 
+    private Clip klipa;
 
-    public Player() {
-        File karpeta = new File("src/media/wav");
-        File[] fitxategiak = karpeta.listFiles();
-        if (fitxategiak != null) {
-            for (File fitxategia : fitxategiak) {
-                if (fitxategia.isFile()) {
-                    abestiak.add(fitxategia);
-                }
-            }
+    public Player(List<Abesti> abestiak) {
+        abestiakPlayer = new ArrayList<>();
+        for (Abesti abesti : abestiak) {
+            String fileName = abesti.getid_abesti(); // abestiaren id lortu (wav izen berbera)
+            File file = new File("src/media/wav/" + fileName + ".wav");
+            abestiakPlayer.add(file);
+        }
+        // klipa hasieratu
+        try {
+            klipa = AudioSystem.getClip();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
         }
     }
 
     public void aurreko() {
         if (indizea > 0) {
             indizea--;
-            pause();
-            play();
         } else {
-            System.out.println("Ez dago aurreko abestirik eskuragarri.");
+            // abesti gehiago aurrean ez badaude, zerrendako azkenengo abestia jartzen du
+            indizea = abestiakPlayer.size() - 1;
         } 
+        stop();
+        play();
     }
 
     public void next() {
-        if (indizea < abestiak.size() - 1) {
+        if (indizea < abestiakPlayer.size() - 1) {
             indizea++;
-            pause();
-            play();
         } else {
-            System.out.println("Ez dago hurrengo abestirik eskuragarri.");
+        	// abesti gehiago atzean ez badaude, zerrendako lehenengo abestia jartzen du            
+        	indizea = 0;
         }
+        stop();
+        play();
     }
 
     public void play() {
-        File unekoAbestia = abestiak.get(indizea);
-        if (klipa != null && klipa.isRunning()) {
-            pause();
-            
-        }else { 
-        	try {
-        		
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(unekoAbestia);
-            AudioFormat formatua = audioStream.getFormat();
-            DataLine.Info info = new DataLine.Info(Clip.class, formatua);
-            klipa = (Clip) AudioSystem.getLine(info);
-            klipa.open(audioStream);
-            klipa.start();
-            System.out.println("Orain erreproduzitzen: " + unekoAbestia.getName());
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-            e.printStackTrace();
+        File unekoAbestia = abestiakPlayer.get(indizea);
+        if (klipa != null) {
+            if (klipa.isOpen()) { // Klipa irekita dagoen begiratzen du
+                if (klipa.isRunning()) {
+                    pause();
+                } else {
+                    klipa.start(); // Klipa irekita badago baina geldituta badago, berriro hasten du
+                }
+            } else {
+                try {   
+                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(unekoAbestia);
+                    klipa.open(audioStream);
+                    klipa.start();
+                } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
-        }
-                
     }
 
+
+
     public void pause() {
-        if (klipa != null && klipa.isRunning()) {
+        if (klipa != null && klipa.isRunning()) {// Klipa irekita badago eta erreproduzitzen badago, gelditzen du
             klipa.stop();
-            System.out.println("Abestia pausatuta: " + abestiak.get(indizea).getName());
         } else {
             System.out.println("Ez dago abestirik erreproduzitzen.");
         }
     }
 
+    public void stop() {
+        if (klipa != null) {
+            klipa.stop();
+            klipa.close();
+        }
+    }
 }
