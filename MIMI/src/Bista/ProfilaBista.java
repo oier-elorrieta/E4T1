@@ -15,8 +15,10 @@ import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class ProfilaBista extends TxantiloiaBista {
 
@@ -53,60 +55,59 @@ public class ProfilaBista extends TxantiloiaBista {
 		btnAtzera.setBounds(5, 5, 177, 36);
 		contentPane.add(btnAtzera);
 		
-		
 		JLabel ProfilaIzena = new JLabel("Izena");
 		ProfilaIzena.setForeground(Color.BLACK);
 		ProfilaIzena.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		ProfilaIzena.setBounds(57, 102, 46, 14);
+		ProfilaIzena.setBounds(32, 185, 46, 14);
 		contentPane.add(ProfilaIzena);
 		
 		textIzena = new JTextField(bz.getIzena());
 		textIzena.setEditable(false);
-		textIzena.setBounds(101, 101, 116, 20);
+		textIzena.setBounds(88, 179, 116, 20);
 		contentPane.add(textIzena);
 		textIzena.setColumns(10);
 		
 		JLabel ProfilaAbizena = new JLabel("Abizena");
 		ProfilaAbizena.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		ProfilaAbizena.setBounds(372, 104, 69, 14);
+		ProfilaAbizena.setBounds(359, 179, 69, 14);
 		contentPane.add(ProfilaAbizena);
 		
 		textAbizena = new JTextField(bz.getAbizena());
 		textAbizena.setEditable(false);
-		textAbizena.setBounds(436, 101, 138, 20);
+		textAbizena.setBounds(436, 179, 138, 20);
 		contentPane.add(textAbizena);
 		textAbizena.setColumns(10);
 		
 		JLabel ProfilaErabiltzailea = new JLabel("Erabiltzailea");
 		ProfilaErabiltzailea.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		ProfilaErabiltzailea.setBounds(30, 179, 73, 14);
+		ProfilaErabiltzailea.setBounds(32, 238, 91, 14);
 		contentPane.add(ProfilaErabiltzailea);
 		
 		textErabiltzalea = new JTextField(bz.getErabiltzaile());
 		textErabiltzalea.setEditable(false);
-		textErabiltzalea.setBounds(113, 178, 123, 20);
+		textErabiltzalea.setBounds(119, 232, 123, 20);
 		contentPane.add(textErabiltzalea);
 		textErabiltzalea.setColumns(10);
 		
 		JLabel ProfilaPasahitza = new JLabel("Pasahitza");
 		ProfilaPasahitza.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		ProfilaPasahitza.setBounds(357, 179, 69, 14);
+		ProfilaPasahitza.setBounds(359, 238, 69, 14);
 		contentPane.add(ProfilaPasahitza);
 		
 		textPasahitza = new JPasswordField(bz.getPasahitza());
 		textPasahitza.setEditable(false);
-		textPasahitza.setBounds(436, 178, 138, 20);
+		textPasahitza.setBounds(436, 238, 138, 20);
 		contentPane.add(textPasahitza);
 		textPasahitza.setColumns(10);
 		
 		JLabel ProfilaKonfirmatu = new JLabel("Konfirmatu");
 		ProfilaKonfirmatu.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		ProfilaKonfirmatu.setBounds(357, 245, 84, 14);
+		ProfilaKonfirmatu.setBounds(357, 288, 84, 14);
 		contentPane.add(ProfilaKonfirmatu);
 		
 		textKonfirmatu = new JPasswordField(bz.getPasahitza());
 		textKonfirmatu.setEditable(false);
-		textKonfirmatu.setBounds(436, 244, 138, 20);
+		textKonfirmatu.setBounds(436, 288, 138, 20);
 		contentPane.add(textKonfirmatu);
 		textKonfirmatu.setColumns(10);
 		
@@ -137,6 +138,12 @@ public class ProfilaBista extends TxantiloiaBista {
 		});
 		btnGorde.setBounds(476, 426, 108, 36);
 		contentPane.add(btnGorde);
+		
+		JLabel lblTitulua = new JLabel("PROFILA");
+		lblTitulua.setFont(new Font("Monospaced", Font.PLAIN, 60));
+		lblTitulua.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTitulua.setBounds(258, 0, 260, 77);
+		contentPane.add(lblTitulua);
 
 		
 	}

@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import DatuBasea.AbeslariDao;
 import DatuBasea.AlbumDao;
@@ -38,6 +40,7 @@ public class AlbumBista extends JFrame {
 	private List<Abesti> abestiak;
 	private String kolab;
 	private Time iraupen;
+	private String abestiIzena;
 
 	/**
 	 * Create the frame.
@@ -75,10 +78,32 @@ public class AlbumBista extends JFrame {
 
 		for (int i = 0; i < abestiak.size(); i++) {
 			// iraupen += abestiak.get(i).getIraupena();
-			System.out.println(abestiak.get(i).getIraupena());
 			model.addElement(abestiak.get(i).getAbestiIzena() + " - " + abestiak.get(i).getIraupena());
+			listMusika.addListSelectionListener(new ListSelectionListener() {
+				@Override
+				public void valueChanged(ListSelectionEvent e) {
+					if (!e.getValueIsAdjusting()) {
 
-		}
+						abestiIzena = (String) listMusika.getSelectedValue();
+						System.out.println(abestiIzena);
+						for (int i = 0; i < abestiak.size(); i++) {
+							if (abestiIzena.contains(abestiak.get(i).getAbestiIzena())) {
+								System.out.println("Son el mismo");
+								Abesti abesti = new Abesti();
+								abesti = abestiak.get(i);
+								BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abesti);
+								dispose();
+							}else {
+								System.out.println("NO Son el mismo");
+
+							}
+
+						}
+					}
+
+					}
+
+			});
 		listMusika.setModel(model);
 
 		JLabel lblIrudia = new JLabel("");
@@ -123,5 +148,5 @@ public class AlbumBista extends JFrame {
 		lblTitulua.setBounds(147, 11, 415, 33);
 		contentPane.add(lblTitulua);
 	}
-
+	}
 }

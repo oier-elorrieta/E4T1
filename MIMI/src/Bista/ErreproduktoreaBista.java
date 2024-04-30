@@ -4,12 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Modelo.Abesti;
 import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
 import funtzioak.Player;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -22,8 +25,9 @@ public class ErreproduktoreaBista extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public ErreproduktoreaBista(Bezero bz) {
+	public ErreproduktoreaBista(Bezero bz, Abesti abesti) throws SQLException {
 		Player player = new Player();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1009, 500);
@@ -59,8 +63,10 @@ public class ErreproduktoreaBista extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblIrudi = new JLabel("");
-		lblIrudi.setBounds(252, 65, 471, 290);
+		lblIrudi.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIrudi.setBounds(332, 66, 319, 290);
 		contentPane.add(lblIrudi);
+		lblIrudi.setIcon(new ImageIcon(abesti.getIrudia().getBytes(1, (int) abesti.getIrudia().length())));
 		
 		JButton btnMenu = new JButton("Menua");
 		btnMenu.addActionListener(new ActionListener() {

@@ -9,9 +9,11 @@ import Bista.ErreproduktoreaBista;
 import Bista.LoginBista;
 import Bista.MenuaBista;
 import Bista.MusikaDeskubrituBista;
+import Bista.PlaylistBista;
 import Bista.PodcastDeskubrituBista;
 import Bista.PodcasterBista;
 import Bista.ProfilaBista;
+import Modelo.Abesti;
 import Modelo.Album;
 import Modelo.Bezero;
 import Modelo.Podcast;
@@ -123,12 +125,23 @@ public class BistakArgitaratu {
 			e.printStackTrace();
 		}
 	}
-	public static void ErreproduktoreaBistaJoan(Bezero bz) {
+	public static void ErreproduktoreaBistaJoan(Bezero bz, Abesti abesti) {
 		try {
-			ErreproduktoreaBista frame = new ErreproduktoreaBista(bz);
+			ErreproduktoreaBista frame = new ErreproduktoreaBista(bz, abesti);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+
+	public static void PlaylistBistaraJoan(Bezero bz) {
+		try {
+			PlaylistBista frame = new PlaylistBista(bz);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

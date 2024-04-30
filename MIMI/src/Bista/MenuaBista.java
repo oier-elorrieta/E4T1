@@ -61,8 +61,7 @@ public class MenuaBista extends JFrame {
 		JButton btnNewButton = new JButton("PROFILA");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//BistakArgitaratu.ProfilaBistaJoan(bz);
-				 BistakArgitaratu.ErreproduktoreaBistaJoan(bz);
+				 BistakArgitaratu.ProfilaBistaJoan(bz);
 				dispose();
 			}
 		});
@@ -90,6 +89,12 @@ public class MenuaBista extends JFrame {
 		splitPane_5.setRightComponent(panel_1);
 		
 		JButton btnNirePlay = new JButton("Nire PlayList-ak");
+		btnNirePlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BistakArgitaratu.PlaylistBistaraJoan(bz);
+				dispose();
+			}
+		});
 		btnNirePlay.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		splitPane_5.setLeftComponent(btnNirePlay);
 		
