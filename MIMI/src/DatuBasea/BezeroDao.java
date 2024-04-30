@@ -277,19 +277,14 @@ public class BezeroDao {
 			String erabil = textErabiltzalea.getText();
 			String pasa = textPasahitza.getText();
 
-<<<<<<< HEAD
+
 			String update = "Update Bezeroa set izena='" + izena + "', Abizena='" + abizena + "', erabiltzailea='" + erabil + "', pasahitza='" + pasa +"' where IdBezeroa='" + bz.getId() + "';" ;
 
-			try {
-				PreparedStatement preparedStatement = con.prepareStatement(update);
-
-=======
-			String update = "update";
-
+	
 			try {
 				PreparedStatement preparedStatement = con.prepareStatement(update);
 			
->>>>>>> d1818750656c37aaf6c279efa3f1fb1b57cb4322
+
 				preparedStatement.executeUpdate();
 
 			} catch (SQLException e) {

@@ -38,6 +38,7 @@ public class ArtistaBista extends JFrame {
 	private JPanel contentPane;
 	private DefaultListModel<String> model;
 	private List<Abeslari> musikariak;
+	private String albumIzena;
 
 	public ArtistaBista(String artistaIzena, List<Album> albumak, Bezero bz) throws SQLException {
 		setResizable(false);
@@ -70,8 +71,13 @@ public class ArtistaBista extends JFrame {
 		btnAtzera.setBounds(5, 5, 132, 23);
 		contentPane.add(btnAtzera);
 
-		
 		JButton btnPerfil = new JButton(bz.getErabiltzaile());
+		btnPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BistakArgitaratu.ProfilaBistaJoan(bz);
+				dispose();
+			}
+		});
 		btnPerfil.setBounds(572, 5, 177, 23);
 		contentPane.add(btnPerfil);
 
@@ -100,14 +106,34 @@ public class ArtistaBista extends JFrame {
 		System.out.println(artistaIzena);
 
 		for (int i = 0; i < albumak.size(); i++) {
-			model.addElement(artistaIzena + " - " + albumak.get(i).getIzenburua());
+			model.addElement(albumak.get(i).getIzenburua());
 		}
 		listMusika.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 
+					albumIzena = (String) listMusika.getSelectedValue();
+					for (int i = 0; i < albumak.size(); i++) {
+						System.out.println("del prog : "+ albumIzena);
+						System.out.println("del prog : " + albumak.get(i).getIzenburua());
+
+						if (albumIzena.equals(albumak.get(i).getIzenburua())) {
+							System.out.println("Son el mismo");
+							Album album = new Album();
+							album = albumak.get(i);
+							BistakArgitaratu.AlbumBistaJoan(bz, album);
+							dispose();
+							break;
+						}else {
+							System.out.println("NO Son el mismo");
+
+						}
+
+					}
+
 				}
+
 			}
 
 		});

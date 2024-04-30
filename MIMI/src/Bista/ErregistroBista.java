@@ -54,7 +54,7 @@ public class ErregistroBista extends JFrame {
 
 	
 	public ErregistroBista() {
-		//setIconImage(Toolkit.getDefaultToolkit().getImage(ErregistroBista.class.getResource("/img/logo.png")));
+	
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 864, 694);

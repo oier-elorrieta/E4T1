@@ -2,6 +2,7 @@ package funtzioak;
 
 import java.util.List;
 
+import Bista.AlbumBista;
 import Bista.ArtistaBista;
 import Bista.ErregistroBista;
 import Bista.LoginBista;
@@ -32,7 +33,7 @@ public class BistakArgitaratu {
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * Metodo honek Erregistro bistara eramaten gaitu.
@@ -49,8 +50,7 @@ public class BistakArgitaratu {
 		}
 
 	}
-	
-	
+
 	/**
 	 * 
 	 * Metodo honek Menu bistara eramaten gaitu.
@@ -67,7 +67,7 @@ public class BistakArgitaratu {
 		}
 
 	}
-	
+
 	public static void MusikaDeskubrituJoan(Bezero bz) {
 		try {
 			MusikaDeskubrituBista frame = new MusikaDeskubrituBista(bz);
@@ -76,44 +76,50 @@ public class BistakArgitaratu {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void ArtistaBistaJoan(String artistaIzena, List<Album> albumak, Bezero bz) {
-		try { 
+		try {
 			ArtistaBista frame = new ArtistaBista(artistaIzena, albumak, bz);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public static void PodcastDeskubrituJoan(Bezero bz) {
-		try { 
+		try {
 			PodcastDeskubrituBista frame = new PodcastDeskubrituBista(bz);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public static void PodcasterBistaJoan(String artistaIzena, List<Podcast> podcast, Bezero bz) {
-		try { 
-			PodcasterBista frame = new PodcasterBista(artistaIzena,podcast, bz);
+		try {
+			PodcasterBista frame = new PodcasterBista(artistaIzena, podcast, bz);
 			frame.setVisible(true);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void ProfilaBistaJoan(Bezero bz) {
 		try {
 			ProfilaBista frame = new ProfilaBista(bz);
 			frame.setVisible(true);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public static void AlbumBistaJoan(Bezero bz, Album album) {
+		try {
+			AlbumBista frame = new AlbumBista(bz,album);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

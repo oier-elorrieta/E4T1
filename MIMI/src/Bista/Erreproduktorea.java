@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Modelo.Bezero;
+import funtzioak.BistakArgitaratu;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,7 +24,7 @@ public class Erreproduktorea extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Erreproduktorea() {
+	public Erreproduktorea(Bezero bz) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1009, 500);
 		contentPane = new JPanel();
@@ -38,6 +42,12 @@ public class Erreproduktorea extends JFrame {
 		contentPane.add(btnAtzera);
 		
 		JButton btnProfila = new JButton("");
+		btnProfila.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BistakArgitaratu.ProfilaBistaJoan(bz);
+				dispose();
+			}
+		});
 		btnProfila.setBounds(855, 11, 128, 23);
 		contentPane.add(btnProfila);
 		

@@ -48,6 +48,11 @@ import java.util.Objects;
 	}
 
 
+	public Abesti() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/**
 	 * 
 	 * Id-a hartzen du.

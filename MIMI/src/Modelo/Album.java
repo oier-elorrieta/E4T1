@@ -21,30 +21,28 @@ public class Album {
 	private int abestiKopurua;
 
 	private String generoa;
-	
+
 	private String idMusikaria;
 
 	private String kolaboratzaileak;
 
-	
-	
 	// ---------------- ERAIKITZAILEA ---------------- //
 
 	/**
 	 * 
 	 * Albumaren eraikitzailea.
 	 *
-	 * @param id 					 Albumaren identifikazioa.
-	 * @param izenburua 			 Albumaren izenburua.
-	 * @param argitaratzea  		 Albuma argitaratu den data.	
-	 * @param AbestiKopurua 		 Albuman dauden abesti kopurua.
-	 * @param generoa 				 Albumaren generoa.
-	 * @param idMusikaria   		 Albumaren idMusikaria.
-	 * @param kolaboratzaileak       Albumaren kolaboratzaileak minututan.
+	 * @param id               Albumaren identifikazioa.
+	 * @param izenburua        Albumaren izenburua.
+	 * @param argitaratzea     Albuma argitaratu den data.
+	 * @param AbestiKopurua    Albuman dauden abesti kopurua.
+	 * @param generoa          Albumaren generoa.
+	 * @param idMusikaria      Albumaren idMusikaria.
+	 * @param kolaboratzaileak Albumaren kolaboratzaileak minututan.
 	 * 
 	 */
 
-	public Album(String id, String izenburua, Date argitaratzea, int AbestiKopurua, String generoa, String idMusikaria ,
+	public Album(String id, String izenburua, Date argitaratzea, int AbestiKopurua, String generoa, String idMusikaria,
 			String kolaboratzaileak) {
 
 		this.id = id;
@@ -58,12 +56,16 @@ public class Album {
 		this.generoa = generoa;
 
 		this.idMusikaria = idMusikaria;
-		
+
 		this.kolaboratzaileak = kolaboratzaileak;
 
 	}
 
 	// ---------------- GETTERS eta SETTERS ---------------- //
+
+	public Album() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * 
@@ -92,7 +94,7 @@ public class Album {
 		this.id = id;
 
 	}
-	
+
 	/**
 	 * 
 	 * Album-aren idMusikaria lortzen du.
@@ -249,7 +251,7 @@ public class Album {
 
 	/**
 	 * 
-	 * Album-aren kolaboratzaileak  ezartzen du.
+	 * Album-aren kolaboratzaileak ezartzen du.
 	 * 
 	 * @param kolaboratzaileak Album-aren kolaboratzaileak .
 	 * 
@@ -283,9 +285,6 @@ public class Album {
 
 	}
 
-
-
-
 	// ---------------- EQUALS ---------------- //
 
 	/**
@@ -311,5 +310,5 @@ public class Album {
 				&& Objects.equals(idMusikaria, other.idMusikaria) && Objects.equals(izenburua, other.izenburua)
 				&& Objects.equals(kolaboratzaileak, other.kolaboratzaileak);
 	}
-	
+
 }
