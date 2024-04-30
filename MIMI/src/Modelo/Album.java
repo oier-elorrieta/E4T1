@@ -2,6 +2,7 @@
 package Modelo;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.Objects;
 
 /**
@@ -26,6 +27,8 @@ public class Album {
 
 	private String kolaboratzaileak;
 
+	private Time albumIraupena;
+
 	// ---------------- ERAIKITZAILEA ---------------- //
 
 	/**
@@ -43,7 +46,7 @@ public class Album {
 	 */
 
 	public Album(String id, String izenburua, Date argitaratzea, int AbestiKopurua, String generoa, String idMusikaria,
-			String kolaboratzaileak) {
+			String kolaboratzaileak, Time albumIraupena) {
 
 		this.id = id;
 
@@ -58,6 +61,8 @@ public class Album {
 		this.idMusikaria = idMusikaria;
 
 		this.kolaboratzaileak = kolaboratzaileak;
+
+		this.albumIraupena = albumIraupena;
 
 	}
 
@@ -263,6 +268,14 @@ public class Album {
 
 	}
 
+	public Time getAlbumIraupena() {
+		return albumIraupena;
+	}
+
+	public void setAlbumIraupena(Time albumIraupena) {
+		this.albumIraupena = albumIraupena;
+	}
+
 	// ---------------- ToString ---------------- //
 
 	/**
@@ -272,18 +285,14 @@ public class Album {
 	 * @return Albumaren errepresentazio katea.
 	 * 
 	 */
-
 	@Override
-
 	public String toString() {
+		return "Album [id=" + id + ", izenburua=" + izenburua + ", argitaratzea=" + argitaratzea + ", abestiKopurua="
+				+ abestiKopurua + ", generoa=" + generoa + ", idMusikaria=" + idMusikaria + ", kolaboratzaileak="
+				+ kolaboratzaileak + ", albumIraupena=" + albumIraupena + "]";
+	} 
 
-		return "Album [id=" + id + ", izenburua=" + izenburua + ", argitaratzea=" + argitaratzea
-
-				+ ", AbestiKopurua=" + abestiKopurua + ", generoa=" + generoa + ", kolaboratzaileak=" + kolaboratzaileak
-
-				+ "]";
-
-	}
+	
 
 	// ---------------- EQUALS ---------------- //
 
@@ -305,9 +314,10 @@ public class Album {
 		if (getClass() != obj.getClass())
 			return false;
 		Album other = (Album) obj;
-		return abestiKopurua == other.abestiKopurua && Objects.equals(argitaratzea, other.argitaratzea)
-				&& Objects.equals(generoa, other.generoa) && Objects.equals(id, other.id)
-				&& Objects.equals(idMusikaria, other.idMusikaria) && Objects.equals(izenburua, other.izenburua)
+		return abestiKopurua == other.abestiKopurua && Objects.equals(albumIraupena, other.albumIraupena)
+				&& Objects.equals(argitaratzea, other.argitaratzea) && Objects.equals(generoa, other.generoa)
+				&& Objects.equals(id, other.id) && Objects.equals(idMusikaria, other.idMusikaria)
+				&& Objects.equals(izenburua, other.izenburua)
 				&& Objects.equals(kolaboratzaileak, other.kolaboratzaileak);
 	}
 

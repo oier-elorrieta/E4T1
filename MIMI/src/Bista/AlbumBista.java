@@ -25,6 +25,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -35,14 +37,15 @@ public class AlbumBista extends JFrame {
 	private DefaultListModel<String> model;
 	private List<Abesti> abestiak;
 	private String kolab;
-
+	private Time iraupen;
 
 	/**
 	 * Create the frame.
-	 * @throws SQLException 
+	 * 
+	 * @throws SQLException
 	 */
 	public AlbumBista(Bezero bz, Album album) throws SQLException {
-		
+
 		Abesti abesti = new Abesti();
 		abestiak = AlbumDao.albumarenAbestiak(album.getIzenburua());
 		abesti = abestiak.get(0);
@@ -54,7 +57,7 @@ public class AlbumBista extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JList<String> listMusika = new JList<String>();
 		listMusika.setBackground(SystemColor.controlLtHighlight);
 		listMusika.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -62,37 +65,38 @@ public class AlbumBista extends JFrame {
 		contentPane.add(listMusika);
 
 		model = new DefaultListModel<String>();
-		
-		if(album.getKolaboratzaileak() == null) {
+
+		if (album.getKolaboratzaileak() == null) {
 			kolab = "";
-			
-		}else {
+
+		} else {
 			kolab = album.getKolaboratzaileak();
 		}
-		
+
 		for (int i = 0; i < abestiak.size(); i++) {
-			System.out.println(abestiak.get(i).getAbestiIzena() + " - " + abestiak.get(i).getIraupena());
+			// iraupen += abestiak.get(i).getIraupena();
+			System.out.println(abestiak.get(i).getIraupena());
 			model.addElement(abestiak.get(i).getAbestiIzena() + " - " + abestiak.get(i).getIraupena());
-			
+
 		}
 		listMusika.setModel(model);
 
-		
 		JLabel lblIrudia = new JLabel("");
 		lblIrudia.setBounds(20, 235, 332, 332);
 		contentPane.add(lblIrudia);
-		lblIrudia.setIcon(new ImageIcon(abesti.getIrudia().getBytes(1, (int)abesti.getIrudia().length())));
-		
+		lblIrudia.setIcon(new ImageIcon(abesti.getIrudia().getBytes(1, (int) abesti.getIrudia().length())));
+
 		JTextPane deskribapenaTextPane = new JTextPane();
 		deskribapenaTextPane.setBackground(SystemColor.control);
 		deskribapenaTextPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		deskribapenaTextPane.setEditable(false);
-		
-		deskribapenaTextPane.setText("Kolaboratzaileak: " + kolab  + "\nArgitaratze Data: " + album.getArgitaratzea() + "\nKanta kopurua: " + abestiak.size() + "\nIraupena: "+ "egin behar");
+		// Iraupen gehitu metodoa
+
+		deskribapenaTextPane.setText("Kolaboratzaileak: " + kolab + "\nArgitaratze Data: " + album.getArgitaratzea()
+				+ "\nKanta kopurua: " + abestiak.size() + "\nIraupena: " + album.getAlbumIraupena());
 		deskribapenaTextPane.setBounds(398, 53, 332, 514);
 		contentPane.add(deskribapenaTextPane);
-		
-		
+
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -102,7 +106,7 @@ public class AlbumBista extends JFrame {
 		});
 		btnAtzera.setBounds(10, 11, 132, 23);
 		contentPane.add(btnAtzera);
-		
+
 		JButton btnPerfil = new JButton(bz.getErabiltzaile());
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,11 +116,12 @@ public class AlbumBista extends JFrame {
 		});
 		btnPerfil.setBounds(572, 11, 177, 23);
 		contentPane.add(btnPerfil);
-		
+
 		JLabel lblTitulua = new JLabel(album.getIzenburua());
 		lblTitulua.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulua.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblTitulua.setBounds(147, 11, 415, 33);
 		contentPane.add(lblTitulua);
 	}
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import Bista.AlbumBista;
 import Bista.ArtistaBista;
 import Bista.ErregistroBista;
+import Bista.ErreproduktoreaBista;
 import Bista.LoginBista;
 import Bista.MenuaBista;
 import Bista.MusikaDeskubrituBista;
@@ -117,6 +118,14 @@ public class BistakArgitaratu {
 	public static void AlbumBistaJoan(Bezero bz, Album album) {
 		try {
 			AlbumBista frame = new AlbumBista(bz,album);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static void ErreproduktoreaBistaJoan(Bezero bz) {
+		try {
+			ErreproduktoreaBista frame = new ErreproduktoreaBista(bz);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

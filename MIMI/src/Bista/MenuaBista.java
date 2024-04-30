@@ -61,7 +61,8 @@ public class MenuaBista extends JFrame {
 		JButton btnNewButton = new JButton("PROFILA");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.ProfilaBistaJoan(bz);
+				//BistakArgitaratu.ProfilaBistaJoan(bz);
+				 BistakArgitaratu.ErreproduktoreaBistaJoan(bz);
 				dispose();
 			}
 		});

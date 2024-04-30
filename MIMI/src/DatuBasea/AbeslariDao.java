@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import Modelo.Abeslari;
@@ -61,14 +62,14 @@ public class AbeslariDao {
 						String id = rs.getString("IdAlbum");
 						String izenburua = rs.getString("Izenburua");
 						Date argitaratzea = rs.getDate("urtea");
-						//int AbestiKopurua = rs.getString("Idmusikaria");
 						String generoa = rs.getString("generoa");
 						String idmusikaria = rs.getString("Idmusikaria");
 						String kolaboratzaileak = rs.getString("Kolaboratzaileak");
+						Time albumIraupena = rs.getTime("Iraupena");
 						
 
 					
-						Album album = new Album(id,izenburua,argitaratzea,0, generoa, idmusikaria, kolaboratzaileak);
+						Album album = new Album(id,izenburua,argitaratzea,0, generoa, idmusikaria, kolaboratzaileak, albumIraupena);
 
 						albumak.add(album);
 					}
