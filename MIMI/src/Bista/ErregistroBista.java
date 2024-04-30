@@ -54,7 +54,7 @@ public class ErregistroBista extends JFrame {
 
 	
 	public ErregistroBista() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ErregistroBista.class.getResource("/img/logo.png")));
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(ErregistroBista.class.getResource("/img/logo.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 864, 694);
@@ -307,6 +307,9 @@ public class ErregistroBista extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				erregistroBezero = new FreeBezero();
+				
+				
+				 if(ErregistratuF.PasahitzaBedina(pasahitzaPass, konfirmarPass) == true) {
 
 				ErregistratuF.sortuBezeroa(erregistroBezero, txtIzena, txtAbizena, txtErabiltzaile, pasahitzaPass,
 						selectDate, txtErregistro, AukeratuHizkuntza);
@@ -319,6 +322,7 @@ public class ErregistroBista extends JFrame {
 
 				BistakArgitaratu.loginJoan();
 				dispose();
+			}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnGorde, -52, SpringLayout.SOUTH, getContentPane());
@@ -333,6 +337,8 @@ public class ErregistroBista extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				berriaPre = new PremiumBezeroa();
+				
+				 if(ErregistratuF.PasahitzaBedina(pasahitzaPass, konfirmarPass) == true) {
 
 				ErregistratuF.PremiumErosi(premiumMuga.format(gaurkoData), txtIzena, txtAbizena, txtErabiltzaile,
 						pasahitzaPass, selectDate, txtErregistro, AukeratuHizkuntza, berriaPre);
@@ -345,7 +351,7 @@ public class ErregistroBista extends JFrame {
 
 				BistakArgitaratu.loginJoan();
 				dispose();
-
+			}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnErosi, 0, SpringLayout.NORTH, btnGorde);

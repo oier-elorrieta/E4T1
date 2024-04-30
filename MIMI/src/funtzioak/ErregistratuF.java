@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -131,5 +132,21 @@ public class ErregistratuF {
 
 		return erregistroBezero;
 	}
-
+	
+	public static boolean PasahitzaBedina(JPasswordField pasahitzaPass, JPasswordField konfirmarPass) {
+		
+		boolean pasahitzaOK = false;
+		    
+		    String pasahitza = new String(pasahitzaPass.getPassword());
+		    String konfirmazioa = new String(konfirmarPass.getPassword());
+		    
+		    if (pasahitza.equals(konfirmazioa)) {
+		        pasahitzaOK = true;
+		    } else {
+		        JOptionPane.showMessageDialog(null, "Pasahitza ez da berdina");
+		        konfirmarPass.setText("");
+		    }
+		    
+		return pasahitzaOK;
+}
 }
