@@ -50,7 +50,7 @@ public class PodcastDeskubrituBista extends JFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		contentPane.add(splitPane, BorderLayout.NORTH);
 
-		JLabel lblMenua = new JLabel("Musika Deskubritu");
+		JLabel lblMenua = new JLabel("Podcast Deskubritu");
 		splitPane.setLeftComponent(lblMenua);
 		lblMenua.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMenua.setFont(new Font("Monospaced", Font.PLAIN, 60));

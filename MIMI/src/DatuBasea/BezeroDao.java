@@ -272,19 +272,20 @@ public class BezeroDao {
 		
 		try (Connection con = Konexioa.konexioa()) {
 
-			String update = "";
+			String update = "update";
 
 			try {
 				PreparedStatement preparedStatement = con.prepareStatement(update);
-				preparedStatement.setString(1,);
-				preparedStatement.setDate(2,);
-
+			
 				preparedStatement.executeUpdate();
 
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 
+		} catch (SQLException e1) {
+		
+			e1.printStackTrace();
 		}
 	}
 
