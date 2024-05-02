@@ -70,7 +70,7 @@ public class AlbumBista extends JFrame {
                         }
                     }
                     if (selectedAbesti != null) {
-                        BistakArgitaratu.ErreproduktoreaBistaJoan(bz, selectedAbesti, abestiak);
+                        BistakArgitaratu.ErreproduktoreaBistaJoan(bz, selectedAbesti, abestiak, album);
                         dispose();
                     } else {
                         System.out.println("Abestiaren izena ez da aurkitu.");

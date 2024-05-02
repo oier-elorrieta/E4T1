@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Modelo.Abesti;
+import Modelo.Album;
 import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
 import funtzioak.Player;
@@ -24,10 +25,11 @@ public class ErreproduktoreaBista extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private Player player;
+    private int indizea = 0; 
 
-    public ErreproduktoreaBista(Bezero bz, Abesti abesti, List<Abesti> abestiak) throws SQLException {
+    public ErreproduktoreaBista(Bezero bz, Abesti abesti, List<Abesti> abestiak, Album album) throws SQLException {
         // Player (Klipa hasten du hautatutako abesti zerrendarekin (album / playlist))
-        player = new Player(abestiak);
+        player = new Player(abestiak, indizea);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1009, 500);
@@ -42,7 +44,7 @@ public class ErreproduktoreaBista extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 player.pause();
                 dispose();
-                BistakArgitaratu.MenuJoan(bz);
+                BistakArgitaratu.AlbumBistaJoan(bz, album);
                 
             }
         });
@@ -70,7 +72,7 @@ public class ErreproduktoreaBista extends JFrame {
         lblIrudi.setHorizontalAlignment(SwingConstants.CENTER);
         lblIrudi.setBounds(332, 66, 319, 290);
         contentPane.add(lblIrudi);
-        lblIrudi.setIcon(new ImageIcon(abesti.getIrudia().getBytes(1, (int) abesti.getIrudia().length())));
+        player.ateraArgazkia(lblIrudi,indizea,abestiak);
         
         JButton btnMenu = new JButton("Menua");
         btnMenu.addActionListener(new ActionListener() {
@@ -86,7 +88,7 @@ public class ErreproduktoreaBista extends JFrame {
         JButton btnPlay = new JButton("Play");
         btnPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            player.play();
+            player.play(indizea);
             }
         });
         btnPlay.setBounds(450, 366, 89, 23);
@@ -95,8 +97,16 @@ public class ErreproduktoreaBista extends JFrame {
         JButton btnAbestiAtzera = new JButton("<");
         btnAbestiAtzera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                player.aurreko();
-
+                player.aurreko(indizea);   
+                try {
+                    indizea--;
+                    if (indizea < 0) {
+                        indizea = abestiak.size() - 1;
+                    }
+                    player.ateraArgazkia(lblIrudi, indizea, abestiak);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         btnAbestiAtzera.setBounds(351, 366, 89, 23);
@@ -105,8 +115,17 @@ public class ErreproduktoreaBista extends JFrame {
         JButton btnAbestiAurrera = new JButton(">");
         btnAbestiAurrera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                player.next();
-
+            	
+                player.next(indizea, lblIrudi,bz);
+                try {
+                    indizea--;
+                    if (indizea < 0) {
+                        indizea = abestiak.size() - 1;
+                    }
+                    player.ateraArgazkia(lblIrudi, indizea, abestiak);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         btnAbestiAurrera.setBounds(548, 366, 89, 23);

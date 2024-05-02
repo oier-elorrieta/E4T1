@@ -212,5 +212,7 @@ import java.util.Objects;
 				&& Objects.equals(id_abesti, other.id_abesti) && Objects.equals(kolaboratzaile, other.kolaboratzaile);
 	}
 
+
+
 	
 }
