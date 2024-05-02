@@ -34,7 +34,6 @@
                 <directory>src</directory>
                 <includes>
                     <include>img/*.png</include>
-                    <include>img/*.jpg</include>
                 </includes>
             </resource>
         </resources>

@@ -11,12 +11,14 @@ import Bista.MenuaBista;
 import Bista.MusikaDeskubrituBista;
 import Bista.PlaylistBista;
 import Bista.PodcastDeskubrituBista;
+import Bista.PodcastErreproduktoreBista;
 import Bista.PodcasterBista;
 import Bista.ProfilaBista;
 import Modelo.Abesti;
 import Modelo.Album;
 import Modelo.Bezero;
 import Modelo.Podcast;
+import Modelo.Podcaster;
 
 public class BistakArgitaratu {
 
@@ -98,9 +100,9 @@ public class BistakArgitaratu {
 		}
 	}
 
-	public static void PodcasterBistaJoan(String artistaIzena, List<Podcast> podcast, Bezero bz) {
+	public static void PodcasterBistaJoan(Podcaster podcaster, Bezero bz) {
 		try {
-			PodcasterBista frame = new PodcasterBista(artistaIzena, podcast, bz);
+			PodcasterBista frame = new PodcasterBista(podcaster, bz);
 			frame.setVisible(true);
 
 		} catch (Exception e) {
@@ -143,5 +145,14 @@ public class BistakArgitaratu {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static void PodcastErreproduktoreraJoan(Bezero bz, Podcast podcast, List<Podcast> podcastak) {
+		try {
+			PodcastErreproduktoreBista frame = new PodcastErreproduktoreBista(bz, podcast, podcastak);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

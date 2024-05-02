@@ -33,6 +33,7 @@ public class PodcastDeskubrituBista extends JFrame {
 	private DefaultListModel<String> model;
 	private String podcasterIzena;
 	public List<Podcast> podcastList;
+	public Podcaster podcaster;
 
 	public PodcastDeskubrituBista(Bezero bz) {
 
@@ -85,15 +86,26 @@ public class PodcastDeskubrituBista extends JFrame {
 		model = new DefaultListModel<String>();
 		for (int i = 0; i < podcasterList.size(); i++) {
 			model.addElement(podcasterList.get(i).getIzena());
-
+			
 		}
 		listPodcast.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 					podcasterIzena = (String) listPodcast.getSelectedValue();
-					BistakArgitaratu.PodcasterBistaJoan(podcasterIzena, podcastList, bz);
-					dispose();
+					for (int i = 0; i < podcasterList.size(); i++) {
+						if(podcasterIzena.equals(podcasterList.get(i).getIzena())) {
+					        podcaster  = podcasterList.get(i);
+					        System.out.println(podcaster.toString());
+					        BistakArgitaratu.PodcasterBistaJoan(podcaster , bz);
+					        dispose();
+					   
+					        break;
+						}
+						
+					}
+					
+					
 				}
 			}
 

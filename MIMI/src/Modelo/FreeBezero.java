@@ -9,14 +9,12 @@ import java.util.ArrayList;
  */
 public class FreeBezero extends Bezero {
 
-   
-
 	/**
 	 * FreeBezero klasearen eraikitzailea.
 	 */
 	public FreeBezero() {
 		super();
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -33,7 +31,11 @@ public class FreeBezero extends Bezero {
 	 * @param mota         bezeroaren mota
 	 * @param Hizkuntza    bezeroaren hizkuntza
 	 */
-	
+	public FreeBezero(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData,
+			String erregisData, ArrayList<Abesti> playArray, String mota, String hizkuntza) {
+		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota, hizkuntza);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Objektu hau eta beste objektu bat berdinak diren ala ez adierazten duen metodoa.
@@ -61,14 +63,5 @@ public class FreeBezero extends Bezero {
 	public String toString() {
 		return super.toString();
 	}
-	
-	public void playlistGehiegi() {
-		
-		if (playArray.size() == 3) {
-			
-			
-		}
-	}
-	
 
 }
