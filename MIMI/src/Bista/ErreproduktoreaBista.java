@@ -89,6 +89,11 @@ public class ErreproduktoreaBista extends JFrame {
         btnPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             player.play(indizea);
+            if(btnPlay.getText() == "Play") {
+            	btnPlay.setText("Pause");
+            }else if (btnPlay.getText() == "Pause") {
+        	btnPlay.setText("Play");
+            }
             }
         });
         btnPlay.setBounds(450, 366, 89, 23);
