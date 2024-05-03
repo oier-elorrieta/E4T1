@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Bista.LoginBista;
 import Modelo.Bezero;
 import Modelo.FreeBezero;
 import Modelo.PremiumBezeroa;
@@ -33,7 +32,7 @@ public class BezeroDao {
 	 *                               JPasswordField objektua.
 	 * @throws SQLException SQL errore bat gertatzen bada.
 	 */
-	public static void LoginKomprobatu(JTextField textFieldErabiltzailea, JPasswordField passwordFieldPasahitza)
+	public static boolean LoginKomprobatu(JTextField textFieldErabiltzailea, JPasswordField passwordFieldPasahitza)
 			throws SQLException {
 		boolean loginOK = false;
 
@@ -74,6 +73,7 @@ public class BezeroDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return loginOK;
 	}
 
 	/**
@@ -275,6 +275,7 @@ public class BezeroDao {
 			String izena = textIzena.getText();
 			String abizena = textAbizena.getText();
 			String erabil = textErabiltzalea.getText();
+			@SuppressWarnings("deprecation")
 			String pasa = textPasahitza.getText();
 
 

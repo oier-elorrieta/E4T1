@@ -147,9 +147,9 @@ public class BistakArgitaratu {
 		
 	}
 	
-	public static void PodcastErreproduktoreraJoan(Bezero bz, Podcast podcast, List<Podcast> podcastak) {
+	public static void PodcastErreproduktoreraJoan(Bezero bz, int selectedValue, List<Podcast> podcastak) {
 		try {
-			PodcastErreproduktoreBista frame = new PodcastErreproduktoreBista(bz, podcast, podcastak);
+			PodcastErreproduktoreBista frame = new PodcastErreproduktoreBista(bz, selectedValue, podcastak);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

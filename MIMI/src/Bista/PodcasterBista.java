@@ -13,7 +13,6 @@ import Modelo.Podcaster;
 import Modelo.Bezero;
 import Modelo.Podcast;
 import funtzioak.BistakArgitaratu;
-import funtzioak.PodcastBistaFuntzioak;
 
 public class PodcasterBista extends JFrame {
 
@@ -81,22 +80,17 @@ public class PodcasterBista extends JFrame {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
-					String selectedValue = listMusika.getSelectedValue();
-					String podcastIzena = PodcastBistaFuntzioak.splitIzenaPodcast(selectedValue);
-
-					Podcast selectedPodcast = null;
-					for (int i = 0; i < podcastList.size(); i++) {
-						Podcast podcast = podcastList.get(i);
-						System.out.println(selectedValue);
-						System.out.println(podcast.getPodcast_izena());
-						if (podcast.getPodcast_izena().equals(podcastIzena)) {
-							selectedPodcast = podcast;
-							BistakArgitaratu.PodcastErreproduktoreraJoan(bz, selectedPodcast, podcastList);
-							dispose();
-							break;
-						}
-					}
-				}
+                	
+                    int selectedValue = listMusika.getSelectedIndex();
+               
+                 
+                    if (selectedValue >= 0) {
+                        BistakArgitaratu.PodcastErreproduktoreraJoan(bz, selectedValue, podcastList);
+                        dispose();
+                    } else {
+                        System.out.println("Abestiaren izena ez da aurkitu.");
+                    }
+                }
 			}
 		});
 

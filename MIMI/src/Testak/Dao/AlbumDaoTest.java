@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import DatuBasea.AlbumDao;
+import DatuBasea.AlbestiDao;
 import DatuBasea.Konexioa;
 import Modelo.Abesti;
 import Modelo.Audio.Mota;
@@ -56,7 +56,7 @@ public class AlbumDaoTest {
 	}
 	@Test
 	public void testAlbumarenAbestiak() {
-	    List<Abesti> abestiak = AlbumDao.albumarenAbestiak("Aurrera");
+	    List<Abesti> abestiak = AlbestiDao.albumarenAbestiak("Aurrera");
 	    		
 	    		
 	    abestiakTest = albumarenAbestiakTest("Aurrera");

@@ -113,6 +113,19 @@ public class Player {
 
 
 	}
+	public void ateraInformazioa(JLabel lblInfo, int indizea, List<Abesti> abestiak) throws SQLException {
+		Abesti a = abestiak.get(indizea);
+	    
+	    String info = "Abesti : " + a.getAbestiIzena() + " / Iraupena : "  + a.getIraupena() + " / Kolaboratzaile : ";
+	    System.out.println(a.getKolaboratzaile());
+	    if(a.getKolaboratzaile() == null ) {
+	        System.out.println("Es null");
+	    } else {
+	        info += a.getKolaboratzaile();
+	    }
+	    
+	    lblInfo.setText(info);
+	}
 
 	public String kenduWav(String filename) {
 		String[] tarteak = filename.split("\\.");

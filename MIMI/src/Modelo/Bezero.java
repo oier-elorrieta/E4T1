@@ -2,6 +2,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -15,7 +16,7 @@ public class Bezero  {
     protected String pasahitza;
     protected String jaioData;
     protected String erregisData;
-    protected ArrayList<Abesti> playArray;
+    protected ArrayList<Playlist> playArray;
     protected String mota;
     protected String hizkuntza;
 
@@ -33,7 +34,7 @@ public class Bezero  {
      * @param erregisData  Bezeroaren erregisData.
      * @param playArray    Bezeroaren abesti lista.
      */
-    public Bezero(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData, String erregisData, ArrayList<Abesti> playArray, String mota, String hizkuntza) {
+    public Bezero(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData, String erregisData, ArrayList<Playlist> playArray, String mota, String hizkuntza) {
         this.id = id;
         this.izena = izena;
         this.abizena = abizena;
@@ -201,17 +202,17 @@ public class Bezero  {
      *
      * @return Bezeroaren abesti lista.
      */
-    public ArrayList<Abesti> getPlayArray() {
+    public ArrayList<Playlist> getPlayArray() {
         return playArray;
     }
 
     /**
      * Bezeroaren abesti lista ezartzen du.
      *
-     * @param playArray Bezeroaren abesti lista.
+     * @param playlistArray Bezeroaren abesti lista.
      */
-    public void setPlayArray(ArrayList<Abesti> playArray) {
-        this.playArray = playArray;
+    public void setPlayArray(ArrayList<Playlist> playlistArray) {
+        this.playArray = playlistArray;
     }
     
     /**
@@ -242,7 +243,7 @@ public class Bezero  {
 	public String toString() {
 		return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile=" + erabiltzaile
 				+ ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData
-				+ ", playArray=" + playArray + ", mota=" + mota + ", Hizkuntza=" + hizkuntza + "]";
+				+ ", playArray=" + playArray.toArray() + ", mota=" + mota + ", Hizkuntza=" + hizkuntza + "]";
 	}
 
     //---------------- EQUALS ---------------- //

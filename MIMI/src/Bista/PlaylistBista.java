@@ -32,6 +32,8 @@ public class PlaylistBista extends JFrame {
 	 * @throws SQLException 
 	 */
 	public PlaylistBista(Bezero bz) throws SQLException {
+		setResizable(false);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -69,8 +71,9 @@ public class PlaylistBista extends JFrame {
 		contentPane.add(listMusika);
 		
 		model = new DefaultListModel<String>();
-		
-		PlaylistDao.PlayListAtera(bz, playlistArray);
+//		PlaylistDao.PlayListAtera(bz, playlistArray);
+
+		PlaylistDao.PlayListAtera(bz);
 		
 		for (int i = 0; i < playlistArray.size(); i++) {
 			model.addElement(playlistArray.get(i).getIzena());	

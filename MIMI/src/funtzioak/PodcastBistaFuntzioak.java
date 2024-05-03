@@ -1,6 +1,5 @@
 package funtzioak;
 
-import Modelo.Podcast;
 
 public class PodcastBistaFuntzioak {
 

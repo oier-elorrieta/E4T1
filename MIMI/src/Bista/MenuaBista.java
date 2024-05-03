@@ -24,6 +24,8 @@ public class MenuaBista extends JFrame {
 
 
 	public MenuaBista(Bezero bz) {
+		setResizable(false);
+
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(MenuaBista.class.getResource("/media.img/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 913, 484);

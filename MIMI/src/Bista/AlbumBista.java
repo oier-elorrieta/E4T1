@@ -34,6 +34,7 @@ public class AlbumBista extends JFrame {
     private List<Abesti> abestiak;
 
     public AlbumBista(Bezero bz, Album album) throws SQLException {
+    	setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 775, 633);
         contentPane = new JPanel();

@@ -25,7 +25,6 @@ public class AlbumDao {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
 
-						String idAlbum = rs.getString("IdAlbum");
 						Time argitaratzea = rs.getTime("Iraupena");
 						Blob irudia = rs.getBlob("Irudia");
 						String mota = rs.getString("mota");
@@ -35,7 +34,7 @@ public class AlbumDao {
 						String kolaboratzaile = rs.getString("Kolaboratzaileak");
 						
 						if(mota.equals("abestia")) {
-							Abesti abesti = new Abesti(idAlbum,argitaratzea,irudia,Mota.abestia,idAudio,abestiIzena,albumIzena,kolaboratzaile);
+							Abesti abesti = new Abesti(idAudio,argitaratzea,irudia,Mota.abestia,idAudio,abestiIzena,albumIzena,kolaboratzaile);
 							abestiak.add(abesti);
 						}
 

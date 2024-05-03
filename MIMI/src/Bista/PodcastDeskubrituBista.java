@@ -36,6 +36,7 @@ public class PodcastDeskubrituBista extends JFrame {
 	public Podcaster podcaster;
 
 	public PodcastDeskubrituBista(Bezero bz) {
+		setResizable(false);
 
 		podcasterList = PodcasterDao.podcakasterAtera();
 

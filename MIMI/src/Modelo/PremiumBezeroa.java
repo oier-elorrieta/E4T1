@@ -27,7 +27,7 @@ public class PremiumBezeroa extends Bezero {
 	 * @param premiumMuga  Premium bezeroaren premium muga data.
 	 */
 	public PremiumBezeroa(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData,
-			String erregisData, ArrayList<Abesti> playArray, String PremiumMuga, String mota, String Hizkuntza ) {
+			String erregisData, ArrayList<Playlist> playArray, String PremiumMuga, String mota, String Hizkuntza ) {
 		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota, Hizkuntza);
 
 		this.premiumMuga = PremiumMuga;

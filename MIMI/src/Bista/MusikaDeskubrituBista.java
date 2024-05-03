@@ -19,7 +19,6 @@ import javax.swing.event.ListSelectionListener;
 
 import DatuBasea.AbeslariDao;
 import Modelo.Abeslari;
-import Modelo.Abesti;
 import Modelo.Album;
 import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
@@ -36,6 +35,8 @@ public class MusikaDeskubrituBista extends JFrame {
     public List<Album> albumak;
 
 	public MusikaDeskubrituBista(Bezero bz) {
+		setResizable(false);
+
 
 		musikariak = AbeslariDao.musikariakAtera();
 
