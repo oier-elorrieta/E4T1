@@ -26,10 +26,11 @@ public class ErreproduktoreaBista extends JFrame {
     private JPanel contentPane;
     private Player player;
     private int indizea = 0; 
+    private JLabel lblIrudi;
 
-    public ErreproduktoreaBista(Bezero bz, Abesti abesti, List<Abesti> abestiak, Album album) throws SQLException {
+    public ErreproduktoreaBista(Bezero bz, int selectedValue, List<Abesti> abestiak, Album album) throws SQLException {
         // Player (Klipa hasten du hautatutako abesti zerrendarekin (album / playlist))
-        player = new Player(abestiak, indizea);
+        player = new Player(abestiak, bz, selectedValue);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1009, 500);
@@ -68,7 +69,7 @@ public class ErreproduktoreaBista extends JFrame {
         lblNewLabel.setBounds(148, 15, 697, 39);
         contentPane.add(lblNewLabel);
         
-        JLabel lblIrudi = new JLabel("");
+         lblIrudi = new JLabel("");
         lblIrudi.setHorizontalAlignment(SwingConstants.CENTER);
         lblIrudi.setBounds(332, 66, 319, 290);
         contentPane.add(lblIrudi);
@@ -88,11 +89,11 @@ public class ErreproduktoreaBista extends JFrame {
         JButton btnPlay = new JButton("Play");
         btnPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            player.play(indizea);
+            player.play();
             if(btnPlay.getText() == "Play") {
-            	btnPlay.setText("Pause");
+                btnPlay.setText("Pause");
             }else if (btnPlay.getText() == "Pause") {
-        	btnPlay.setText("Play");
+            btnPlay.setText("Play");
             }
             }
         });
@@ -102,11 +103,11 @@ public class ErreproduktoreaBista extends JFrame {
         JButton btnAbestiAtzera = new JButton("<");
         btnAbestiAtzera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                player.aurreko(indizea);   
+                player.aurreko();   
                 try {
-                    indizea--;
-                    if (indizea < 0) {
-                        indizea = abestiak.size() - 1;
+                    indizea++;
+                    if (indizea >= abestiak.size()) {
+                        indizea = 0;
                     }
                     player.ateraArgazkia(lblIrudi, indizea, abestiak);
                 } catch (SQLException e1) {
@@ -120,12 +121,12 @@ public class ErreproduktoreaBista extends JFrame {
         JButton btnAbestiAurrera = new JButton(">");
         btnAbestiAurrera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
-                player.next(indizea, lblIrudi,bz);
+                
+                player.next();
                 try {
-                    indizea--;
-                    if (indizea < 0) {
-                        indizea = abestiak.size() - 1;
+                    indizea++;
+                    if (indizea >= abestiak.size()) {
+                        indizea = 0;
                     }
                     player.ateraArgazkia(lblIrudi, indizea, abestiak);
                 } catch (SQLException e1) {

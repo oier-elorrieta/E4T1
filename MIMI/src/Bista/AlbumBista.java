@@ -60,17 +60,12 @@ public class AlbumBista extends JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    String selectedValue = listMusika.getSelectedValue();
-                    String abestiIzena = splitIzena(selectedValue);
-                    Abesti selectedAbesti = null;
-                    for (Abesti abesti : abestiak) {
-                        if (abesti.getAbestiIzena().equals(abestiIzena)) {
-                            selectedAbesti = abesti;
-                            break;
-                        }
-                    }
-                    if (selectedAbesti != null) {
-                        BistakArgitaratu.ErreproduktoreaBistaJoan(bz, selectedAbesti, abestiak, album);
+                	
+                    int selectedValue = listMusika.getSelectedIndex();
+               
+                 
+                    if (selectedValue >= 0) {
+                        BistakArgitaratu.ErreproduktoreaBistaJoan(bz, selectedValue, abestiak, album);
                         dispose();
                     } else {
                         System.out.println("Abestiaren izena ez da aurkitu.");

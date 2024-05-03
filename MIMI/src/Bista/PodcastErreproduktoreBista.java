@@ -30,7 +30,7 @@ public class PodcastErreproduktoreBista extends JFrame {
     public PodcastErreproduktoreBista(Bezero bz, Podcast podcast, List<Podcast> podcastak) throws SQLException {
         // Player (Klipa hasten du hautatutako abesti zerrendarekin (album / playlist))
     	player = new Player(bz, podcastak,indizea);
-    	player.PlayerPod(podcastak);
+    	player.PlayerPod(podcastak,podcast);
     	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1009, 585);
@@ -108,7 +108,7 @@ public class PodcastErreproduktoreBista extends JFrame {
         JButton btnAbestiAurrera = new JButton(">");
         btnAbestiAurrera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                player.next(indizea, lblIrudi, bz);
+                player.next(indizea);
 
             }
         });
