@@ -20,6 +20,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import DatuBasea.BezeroDao;
+import Kontrolador.Main;
+
+import javax.swing.ImageIcon;
 
 public class LoginBista extends JFrame {
 
