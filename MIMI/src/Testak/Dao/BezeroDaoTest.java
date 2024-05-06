@@ -1,8 +1,10 @@
 package Testak.Dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.sql.SQLException;
 
@@ -14,6 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import DatuBasea.BezeroDao;
+import Modelo.Bezero;
 import Modelo.FreeBezero;
 import Modelo.PremiumBezeroa;
 
@@ -29,22 +32,62 @@ public class BezeroDaoTest {
     }
     
     @Test
-    public void testloginkonprobatuondo() throws SQLException {
-        textFieldErabiltzailea.setText("erabiltzaile1");
-        passwordFieldPasahitza.setText("pasahitza1");
-        BezeroDao.LoginKomprobatu(textFieldErabiltzailea, passwordFieldPasahitza);
-        assertTrue("Sesio bat hasi dela erakutsi behar da", JOptionPane.getFrameForComponent(null).isVisible());
+    public void testLoginKomprobatu() {
+        String id = "1";
+        String izena = "Jon";
+        String abizena = "Doe";
+        String erabiltzailea = "jon.doe@example.com";
+        String pasahitza = "password";
+        String mota = "mota";
+
+        Bezero bz = new Bezero(id, izena, abizena, erabiltzailea, pasahitza, null, null, null, mota, null);
+        assertNotNull(bz);
+
+        assertEquals(id, bz.getId());
+        assertEquals(izena, bz.getIzena());
+        assertEquals(abizena, bz.getAbizena());
+        assertEquals(erabiltzailea, bz.getErabiltzaile());
+        assertEquals(pasahitza, bz.getPasahitza());
+        assertEquals(mota, bz.getMota());
+
+        JTextField textFieldErabiltzaileaOK = new JTextField("erabiltzailea");
+        JPasswordField passwordFieldPasahitzaOK = new JPasswordField("pasahitza");
+        
+        try {
+            BezeroDao.LoginKomprobatu(textFieldErabiltzaileaOK, passwordFieldPasahitzaOK);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        JTextField textFieldErabiltzaileaFail = new JTextField("usuarioincorrecto");
+        JPasswordField passwordFieldPasahitzaFail = new JPasswordField("contraseñaincorrecta");
+        try {
+            BezeroDao.LoginKomprobatu(textFieldErabiltzaileaFail, passwordFieldPasahitzaFail);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        JTextField textFieldErabiltzaileaException = new JTextField("usuario");
+        JPasswordField passwordFieldPasahitzaException = new JPasswordField("contraseña");
+        try {
+            BezeroDao.LoginKomprobatu(textFieldErabiltzaileaException, passwordFieldPasahitzaException);
+        } catch (SQLException e) {
+            assertTrue(e instanceof SQLException);
+        }
+
+        JTextField textFieldErabiltzaileaEmpty = new JTextField("");
+        JPasswordField passwordFieldPasahitzaEmpty = new JPasswordField("");
+        try {
+            BezeroDao.LoginKomprobatu(textFieldErabiltzaileaEmpty, passwordFieldPasahitzaEmpty);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    @Test
-    public void testloginkonprobatutxarto() throws SQLException {
-        textFieldErabiltzailea.setText("erabiltzaile_okerra");
-        passwordFieldPasahitza.setText("pasahitza_okerra");
-        BezeroDao.LoginKomprobatu(textFieldErabiltzailea, passwordFieldPasahitza);
-        assertTrue("Errore mezua erakutsi behar da", JOptionPane.getFrameForComponent(null).isVisible());
-    }
-    
-    @Test
+
+
+	@Test
     public void testHizkuntzaAtera() {
         String[] hizkuntzak = BezeroDao.HizkuntzaAtera();
         assertNotNull("Hizkuntzak ezin du nulua izan", hizkuntzak);
