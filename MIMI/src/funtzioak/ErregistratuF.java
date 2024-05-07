@@ -2,6 +2,8 @@ package funtzioak;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -149,4 +151,15 @@ public class ErregistratuF {
 		    
 		return pasahitzaOK;
 }
+	
+	public static String LocalDatetoString () {
+		
+		LocalDate localDate = LocalDate.now();//For reference
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String formattedString = localDate.format(formatter);
+		
+		
+		return formattedString;
+		
+	}
 }

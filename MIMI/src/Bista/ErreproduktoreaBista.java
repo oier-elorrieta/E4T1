@@ -120,7 +120,12 @@ public class ErreproduktoreaBista extends JFrame {
 
                   if (selectedPlaylist != null && selectedPlaylist.length() > 0) {
                       System.out.println("Playlist aukeratua: " + selectedPlaylist + " " +idAudioLike);
-                      PlaylistDao.InsertAbestiPlaylist(selectedPlaylist,idAudioLike);
+                      try {
+						PlaylistDao.InsertAbestiPlaylist(selectedPlaylist,idAudioLike);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                   }
         		
             }

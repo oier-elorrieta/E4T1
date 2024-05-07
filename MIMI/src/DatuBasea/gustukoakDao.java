@@ -14,6 +14,8 @@ public class gustukoakDao {
 	
 public static void GutokoInsert (Bezero bz, String idAudioLike) throws SQLException {
 	
+	
+	
 	System.out.println(bz.getId() + " eta " + idAudioLike);
 	
 	try (Connection con = Konexioa.konexioa()) {

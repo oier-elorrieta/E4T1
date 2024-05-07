@@ -56,7 +56,7 @@ public class AlbumDaoTest {
 	}
 	@Test
 	public void testAlbumarenAbestiak() {
-	    List<Abesti> abestiak = AlbestiDao.albumarenAbestiak("Aurrera");
+	    List<Abesti> abestiak = AbestiDao.albumarenAbestiak("Aurrera");
 	    		
 	    		
 	    abestiakTest = albumarenAbestiakTest("Aurrera");
@@ -68,9 +68,6 @@ public class AlbumDaoTest {
 	    System.out.println(abestiakTest.get(i).toString());
 	    }
 	    for (int i = 0; i < abestiakTest.size(); i++) {
-	    	//Hay que mirar como testear las fotos.
-	    	// se testea cada atributo por que las fotos salta el equals
-	    	// creo que hay que convertirlo a string y compararlos en el equals
 	    	assertEquals(abestiakTest.get(i).getId(), abestiak.get(i).getId());
 	    	assertEquals(abestiakTest.get(i).getMota(), abestiak.get(i).getMota());
 //	    	assertEquals(abestiakTest.get(i).getIrudia(), abestiak.get(i).getIrudia());
@@ -78,6 +75,5 @@ public class AlbumDaoTest {
 	    	assertEquals(abestiakTest.get(i).getIraupena(), abestiak.get(i).getIraupena());
 	    	assertEquals(abestiakTest.get(i).getKolaboratzaile(), abestiak.get(i).getKolaboratzaile());
 	    }
-	    // lortuAreatoakTEST() metodoaren emaitzak eta AbeslariDao-rena berdina direla egiaztatu.
 	}
 }

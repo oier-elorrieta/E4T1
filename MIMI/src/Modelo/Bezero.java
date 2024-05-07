@@ -243,7 +243,7 @@ public class Bezero  {
 	public String toString() {
 		return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile=" + erabiltzaile
 				+ ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData
-				+ ", playArray=" + playArray.toArray() + ", mota=" + mota + ", Hizkuntza=" + hizkuntza + "]";
+				+ ", playArray=" + playArray.toString() + ", mota=" + mota + ", Hizkuntza=" + hizkuntza + "]";
 	}
 
     //---------------- EQUALS ---------------- //
