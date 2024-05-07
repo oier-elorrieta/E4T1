@@ -31,9 +31,9 @@
 		</plugins>
 		<resources>
             <resource>
-                <directory>src</directory>
+                <directory>src/media/img</directory>
                 <includes>
-                    <include>img/*.png</include>
+                    <include>*.png</include>
                 </includes>
             </resource>
         </resources>

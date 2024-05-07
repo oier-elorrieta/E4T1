@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import DatuBasea.AlbestiDao;
+import DatuBasea.AlbumDao;
 import DatuBasea.Konexioa;
 import Modelo.Abesti;
 import Modelo.Audio.Mota;
@@ -56,7 +56,11 @@ public class AlbumDaoTest {
 	}
 	@Test
 	public void testAlbumarenAbestiak() {
+<<<<<<< HEAD
 	    List<Abesti> abestiak = AbestiDao.albumarenAbestiak("Aurrera");
+=======
+	    List<Abesti> abestiak = AlbumDao.albumarenAbestiak("Aurrera");
+>>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
 	    		
 	    		
 	    abestiakTest = albumarenAbestiakTest("Aurrera");
@@ -68,7 +72,14 @@ public class AlbumDaoTest {
 	    System.out.println(abestiakTest.get(i).toString());
 	    }
 	    for (int i = 0; i < abestiakTest.size(); i++) {
+<<<<<<< HEAD
 	    	assertEquals(abestiakTest.get(i).getId(), abestiak.get(i).getId());
+=======
+	    	//Hay que mirar como testear las fotos.
+	    	// se testea cada atributo por que las fotos salta el equals
+	    	// creo que hay que convertirlo a string y compararlos en el equals
+	    	assertEquals(abestiakTest.get(i).getid_abesti(), abestiak.get(i).getId());
+>>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
 	    	assertEquals(abestiakTest.get(i).getMota(), abestiak.get(i).getMota());
 //	    	assertEquals(abestiakTest.get(i).getIrudia(), abestiak.get(i).getIrudia());
 	    	assertEquals(abestiakTest.get(i).getAbestiIzena(), abestiak.get(i).getAbestiIzena());

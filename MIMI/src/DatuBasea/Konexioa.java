@@ -19,7 +19,11 @@ public class Konexioa {
         try {
 //            Class.forName("com.mysql.cj.jdbc.Driver");
 
+<<<<<<< HEAD
            String url = "jdbc:mysql://10.5.6.108/MIMI";
+=======
+            String url = "jdbc:mysql://10.5.6.108/MIMI";
+>>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
             String user = "admin";
             String pass = "1234";
             

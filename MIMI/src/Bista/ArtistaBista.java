@@ -102,8 +102,6 @@ public class ArtistaBista extends JFrame {
 		contentPane.add(listMusika);
 
 		model = new DefaultListModel<String>();
-		System.out.println(albumak.toString());
-		System.out.println(artistaIzena);
 
 		for (int i = 0; i < albumak.size(); i++) {
 			model.addElement(albumak.get(i).getIzenburua());
@@ -115,17 +113,15 @@ public class ArtistaBista extends JFrame {
 
 					albumIzena = (String) listMusika.getSelectedValue();
 					for (int i = 0; i < albumak.size(); i++) {
-						System.out.println("del prog : "+ albumIzena);
-						System.out.println("del prog : " + albumak.get(i).getIzenburua());
 
 						if (albumIzena.equals(albumak.get(i).getIzenburua())) {
-							System.out.println("Son el mismo");
+
 							Album album = new Album();
 							album = albumak.get(i);
 							BistakArgitaratu.AlbumBistaJoan(bz, album);
 							dispose();
 							break;
-						}else {
+						} else {
 							System.out.println("NO Son el mismo");
 
 						}

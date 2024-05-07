@@ -127,9 +127,9 @@ public class BistakArgitaratu {
 			e.printStackTrace();
 		}
 	}
-	public static void ErreproduktoreaBistaJoan(Bezero bz, int selectedValue, List<Abesti> abestiak, Album album) {
+	public static void ErreproduktoreaBistaJoan(Bezero bz, List<Abesti> abestiak, Album album, int index) {
 		try {
-			ErreproduktoreaBista frame = new ErreproduktoreaBista(bz, selectedValue, abestiak, album);
+			ErreproduktoreaBista frame = new ErreproduktoreaBista(bz, abestiak, album, index);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

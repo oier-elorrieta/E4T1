@@ -1,8 +1,18 @@
 package funtzioak;
 
+import Modelo.Podcast;
 
+/**
+ * Klase honek podcast-ekin lotutako funtzioak gordetzen ditu.
+ */
 public class PodcastBistaFuntzioak {
 
+	/**
+	 * String bat jaso eta " - " karakterearen arabera banatuta dagoen izena itzultzen du.
+	 * 
+	 * @param izena podcast-aren izena
+	 * @return izenaSplit banatutako izena
+	 */
 	public static String splitIzenaPodcast(String izena) {
 		String izenaSplit = "";
 		String[] splitKatea = izena.split(" - ");
@@ -14,6 +24,10 @@ public class PodcastBistaFuntzioak {
 		}
 		return izenaSplit;
 	}
+	
+	/**
+	 * Podcast-ak hautatzeko aukera ematen duen metodoa.
+	 */
 	public static void selekzioaHautatu() {
 	
 	}
