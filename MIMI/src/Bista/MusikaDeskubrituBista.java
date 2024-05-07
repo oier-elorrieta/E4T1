@@ -103,9 +103,8 @@ public class MusikaDeskubrituBista extends JFrame {
 					 artistaIzena = (String) listMusika.getSelectedValue();
 					 albumak = AbeslariDao.musikariarenAlbum(artistaIzena);
 					 BistakArgitaratu.ArtistaBistaJoan(artistaIzena,albumak,bz);
-		        	dispose();
-					 System.out.println(albumak.toString());
-					System.out.println(artistaIzena);
+					 dispose();
+	
 				}
 			}
  

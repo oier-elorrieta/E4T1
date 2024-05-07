@@ -44,7 +44,7 @@ public class IragarkiBista extends JFrame {
 	 * 
 	 */
 
-	public IragarkiBista(Bezero bz, int indizea, List<Abesti> abestiak, Album album) {
+	public IragarkiBista(Bezero bz, List<Abesti> abestiak, Album album) {
 		setResizable(false);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,9 +112,9 @@ public class IragarkiBista extends JFrame {
 					((Timer) e.getSource()).stop();
 
 					dispose();
-					System.out.println(indizea + " indice del boton (IragarkiBista)");
+					System.out.println(Player.indizea + " indice del boton (IragarkiBista)");
 
-					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, indizea, abestiak, album);
+					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, Player.indizea);
 
 				}
 

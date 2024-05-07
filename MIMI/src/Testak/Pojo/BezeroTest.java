@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import org.junit.Test;
 
-import Modelo.Abesti;
 import Modelo.Audio.Mota;
 import Modelo.*;
 
@@ -291,9 +290,9 @@ public class BezeroTest {
 
 	@Test
 	public void testGetPlayArray() {
-		ArrayList<Abesti> playArray = new ArrayList<>();
+		ArrayList<Playlist> playArray = new ArrayList<>();
 		playArray.add(new Abesti(null,null,null,Mota.abestia,null, "Abesti1", "Album1", "Kolaboratzaile1"));
-		PremiumBezeroa bezero = new PremiumBezeroa("BZ001", "Pedro", "Garcia", "pedrus", "kk", null, "2023-04-04",
+		PremiumBezeroa bezero = new PremiumBezeroa("BZ001", "Pedro", "Garcia", "pedrus", "kk", "2004-01-23", "2023-04-04",
 				playArray, "2024-04-04", "Premium", "ES");
 		assertEquals(playArray, bezero.getPlayArray());
 	}
