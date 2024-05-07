@@ -239,11 +239,11 @@ public class Bezero  {
      *
      * @return Bezeroaren errepresentazio katea.
      */
-    @Override
+	@Override
 	public String toString() {
 		return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile=" + erabiltzaile
 				+ ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData
-				+ ", playArray=" + playArray.toArray() + ", mota=" + mota + ", Hizkuntza=" + hizkuntza + "]";
+				+ ", playArray=" + playArray + ", mota=" + mota + ", hizkuntza=" + hizkuntza + "]";
 	}
 
     //---------------- EQUALS ---------------- //
@@ -273,6 +273,8 @@ public class Bezero  {
 				&& Objects.equals(mota, other.mota) && Objects.equals(pasahitza, other.pasahitza)
 				&& Objects.equals(playArray, other.playArray);
 	}
+
+
 
 	
 }

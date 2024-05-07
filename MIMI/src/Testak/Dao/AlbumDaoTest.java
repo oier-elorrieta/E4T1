@@ -71,7 +71,7 @@ public class AlbumDaoTest {
 	    	//Hay que mirar como testear las fotos.
 	    	// se testea cada atributo por que las fotos salta el equals
 	    	// creo que hay que convertirlo a string y compararlos en el equals
-	    	assertEquals(abestiakTest.get(i).getId(), abestiak.get(i).getId());
+	    	assertEquals(abestiakTest.get(i).getid_abesti(), abestiak.get(i).getId());
 	    	assertEquals(abestiakTest.get(i).getMota(), abestiak.get(i).getMota());
 //	    	assertEquals(abestiakTest.get(i).getIrudia(), abestiak.get(i).getIrudia());
 	    	assertEquals(abestiakTest.get(i).getAbestiIzena(), abestiak.get(i).getAbestiIzena());
