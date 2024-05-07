@@ -23,10 +23,7 @@ import Modelo.Podcaster;
 public class BistakArgitaratu {
 
 	/**
-	 * 
 	 * Metodo honek Login bistara eramaten gaitu.
-	 * 
-	 * 
 	 */
 	public static void loginJoan() {
 
@@ -40,10 +37,7 @@ public class BistakArgitaratu {
 	}
 
 	/**
-	 * 
 	 * Metodo honek Erregistro bistara eramaten gaitu.
-	 * 
-	 * 
 	 */
 	public static void erregistroraJoan() {
 
@@ -57,10 +51,7 @@ public class BistakArgitaratu {
 	}
 
 	/**
-	 * 
 	 * Metodo honek Menu bistara eramaten gaitu.
-	 * 
-	 * 
 	 */
 	public static void MenuJoan(Bezero bz) {
 
@@ -73,6 +64,9 @@ public class BistakArgitaratu {
 
 	}
 
+	/**
+	 * Metodo honek MusikaDeskubritu bistara eramaten gaitu.
+	 */
 	public static void MusikaDeskubrituJoan(Bezero bz) {
 		try {
 			MusikaDeskubrituBista frame = new MusikaDeskubrituBista(bz);
@@ -82,6 +76,12 @@ public class BistakArgitaratu {
 		}
 	}
 
+	/**
+	 * Metodo honek ArtistaBista bistara eramaten gaitu.
+	 * @param artistaIzena Artista izena
+	 * @param albumak Albumen lista
+	 * @param bz Bezero objektua
+	 */
 	public static void ArtistaBistaJoan(String artistaIzena, List<Album> albumak, Bezero bz) {
 		try {
 			ArtistaBista frame = new ArtistaBista(artistaIzena, albumak, bz);
@@ -91,6 +91,9 @@ public class BistakArgitaratu {
 		}
 	}
 
+	/**
+	 * Metodo honek PodcastDeskubritu bistara eramaten gaitu.
+	 */
 	public static void PodcastDeskubrituJoan(Bezero bz) {
 		try {
 			PodcastDeskubrituBista frame = new PodcastDeskubrituBista(bz);
@@ -100,6 +103,11 @@ public class BistakArgitaratu {
 		}
 	}
 
+	/**
+	 * Metodo honek PodcasterBista bistara eramaten gaitu.
+	 * @param podcaster Podcaster objektua
+	 * @param bz Bezero objektua
+	 */
 	public static void PodcasterBistaJoan(Podcaster podcaster, Bezero bz) {
 		try {
 			PodcasterBista frame = new PodcasterBista(podcaster, bz);
@@ -110,6 +118,10 @@ public class BistakArgitaratu {
 		}
 	}
 
+	/**
+	 * Metodo honek ProfilaBista bistara eramaten gaitu.
+	 * @param bz Bezero objektua
+	 */
 	public static void ProfilaBistaJoan(Bezero bz) {
 		try {
 			ProfilaBista frame = new ProfilaBista(bz);
@@ -119,6 +131,11 @@ public class BistakArgitaratu {
 		}
 	}
 
+	/**
+	 * Metodo honek AlbumBista bistara eramaten gaitu.
+	 * @param bz Bezero objektua
+	 * @param album Album objektua
+	 */
 	public static void AlbumBistaJoan(Bezero bz, Album album) {
 		try {
 			AlbumBista frame = new AlbumBista(bz,album);
@@ -127,6 +144,14 @@ public class BistakArgitaratu {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * Metodo honek ErreproduktoreaBista bistara eramaten gaitu.
+	 * @param bz Bezero objektua
+	 * @param selectedValue Hautatutako balioa
+	 * @param abestiak Abestiak lista
+	 * @param album Album objektua
+	 */
 	public static void ErreproduktoreaBistaJoan(Bezero bz, int selectedValue, List<Abesti> abestiak, Album album) {
 		try {
 			ErreproduktoreaBista frame = new ErreproduktoreaBista(bz, selectedValue, abestiak, album);
@@ -135,8 +160,11 @@ public class BistakArgitaratu {
 			e.printStackTrace();
 		}
 	}
-	
 
+	/**
+	 * Metodo honek PlaylistBista bistara eramaten gaitu.
+	 * @param bz Bezero objektua
+	 */
 	public static void PlaylistBistaraJoan(Bezero bz) {
 		try {
 			PlaylistBista frame = new PlaylistBista(bz);
@@ -144,12 +172,17 @@ public class BistakArgitaratu {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
-	public static void PodcastErreproduktoreraJoan(Bezero bz, int selectedValue, List<Podcast> podcastak) {
+
+	/**
+	 * Metodo honek PodcastErreproduktoreBista bistara eramaten gaitu.
+	 * @param bz Bezero objektua
+	 * @param podcast Podcast objektua
+	 * @param podcastak Podcast-en lista
+	 */
+	public static void PodcastErreproduktoreraJoan(Bezero bz, Podcast podcast, List<Podcast> podcastak) {
 		try {
-			PodcastErreproduktoreBista frame = new PodcastErreproduktoreBista(bz, selectedValue, podcastak);
+			PodcastErreproduktoreBista frame = new PodcastErreproduktoreBista(bz, podcast, podcastak);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
