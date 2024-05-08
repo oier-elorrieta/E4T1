@@ -5,25 +5,19 @@ import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
 import java.sql.Time;
 import java.time.Year;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
->>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
 
 import javax.swing.JOptionPane;
 
 import Modelo.Bezero;
 import Modelo.Playlist;
 import funtzioak.ErregistratuF;
-<<<<<<< HEAD
-=======
 import Modelo.Audio.Mota;
->>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
+
 
 public class PlaylistDao {
 	
@@ -59,11 +53,7 @@ public static ArrayList<Playlist> PlayListAtera(Bezero bz) throws SQLException {
 	return playlistArray;
 }
 
-<<<<<<< HEAD
 public static void InsertAbestiPlaylist(String selectedPlaylist, String idAudioLike) throws SQLException {
-=======
-public static void InsertAbestiPlaylist(String selectedPlaylist , String idAudioLike) throws SQLException {
->>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
 	
 	String idList = "";
 
@@ -101,11 +91,7 @@ public static void InsertAbestiPlaylist(String selectedPlaylist , String idAudio
 
 			con.close();
 
-<<<<<<< HEAD
 			 JOptionPane.showMessageDialog(null, selectedPlaylist + "playlistera sartu duzu");
-=======
-			 JOptionPane.showMessageDialog(null,selectedPlaylist +  " zerrendan sartu duzu");
->>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
