@@ -158,8 +158,21 @@ public class PlayerPodcast {
 	}
 
 	public int getIndizea() {
-		// TODO Auto-generated method stub
 		return indizea;
 	}
+	
+	public String denbora() {
+
+		        long position = klipa.getMicrosecondPosition();
+		        long duration = klipa.getMicrosecondLength();
+		        long remaining = duration - position;
+		        long milliseconds = remaining / 1_000;
+		        long seconds = milliseconds / 1000;
+		        long minutes = seconds / 60;
+		        long remainingSeconds = seconds % 60;
+		        return String.format("%02d:%02d", minutes, remainingSeconds);
+		       
+			      
+			    }
 
 }
