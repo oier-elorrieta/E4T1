@@ -113,16 +113,9 @@ public class BezeroTest {
 		ArrayList<Playlist> playArray = new ArrayList<>();
 		playArray.add(new Playlist("PL001","Rock Hits",null));
 		FreeBezero bezero = new FreeBezero("BZ003", "mimi", "talde", "mimitalde", "password", "2024-04-19",
-<<<<<<< HEAD
 				"2024-04-20",playArray, null, null);
-		String expectedToString = "Bezero [id=BZ003, izena=mimi, abizena=talde, erabiltzaile=mimitalde, pasahitza=password, jaioData=2024-04-19, erregisData=2024-04-20, playArray=" + bezero.getPlayArray() + ", mota=null, Hizkuntza=null]";;
-=======
-				"2024-04-20", new ArrayList<>(), null, null);
-		String expectedToString = "Bezero [id=BZ003, izena=mimi, abizena=talde, erabiltzaile=mimitalde, pasahitza=password, jaioData=2024-04-19, erregisData=2024-04-20, playArray=[], mota=null, hizkuntza=null]\r\n"
-				+ "";
-		;
+		String expectedToString = "Bezero [id=BZ003, izena=mimi, abizena=talde, erabiltzaile=mimitalde, pasahitza=password, jaioData=2024-04-19, erregisData=2024-04-20, playArray=" + bezero.getPlayArray() + ", mota=null, Hizkuntza=null]";
 		System.out.println(bezero.toString());
->>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
 		assertEquals(expectedToString, bezero.toString());
 
 	}
@@ -297,14 +290,8 @@ public class BezeroTest {
 	@Test
 	public void testGetPlayArray() {
 		ArrayList<Playlist> playArray = new ArrayList<>();
-<<<<<<< HEAD
 		playArray.add(new Playlist("PL01","rock Hits",null));
-		PremiumBezeroa bezero = new PremiumBezeroa("BZ001", "Pedro", "Garcia", "pedrus", "kk", null, "2023-04-04",
-=======
-		
-		playArray.add(new Abesti(null,null,null,Mota.abestia,null, "Abesti1", "Album1", "Kolaboratzaile1"));
 		PremiumBezeroa bezero = new PremiumBezeroa("BZ001", "Pedro", "Garcia", "pedrus", "kk", "2004-01-23", "2023-04-04",
->>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
 				playArray, "2024-04-04", "Premium", "ES");
 		assertEquals(playArray, bezero.getPlayArray());
 	}

@@ -27,275 +27,186 @@ import java.awt.Font;
 
 public class ErreproduktoreaBista extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private Player player;
-	private JLabel lblIrudi;
-	private JLabel lblInfo;
-	private String idAudioLike;
-	private ArrayList<Playlist> playlistArray;
-	private JButton btnAbestiAtzera;
-	private JButton btnAbestiAurrera;
+private static final long serialVersionUID = 1L;
+private JPanel contentPane;
+private Player player;
+private JLabel lblIrudi;
+private JLabel lblInfo;
+private String idAudioLike;
+private ArrayList<Playlist> playlistArray;
+private JButton btnAbestiAtzera;
+private JButton btnAbestiAurrera;
 
-	public ErreproduktoreaBista(Bezero bz, List<Abesti> abestiak, Album album, int index) throws SQLException {
-		setResizable(false);
+public ErreproduktoreaBista(Bezero bz, List<Abesti> abestiak, Album album, int index) throws SQLException {
+setResizable(false);
 
-		player = new Player(abestiak, bz, index);
-		player.play();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1009, 500);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+player = new Player(abestiak, bz, index);
+player.play();
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setBounds(100, 100, 1009, 500);
+contentPane = new JPanel();
+contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+setContentPane(contentPane);
+contentPane.setLayout(null);
 
-		lblInfo = new JLabel("");
-		lblInfo.setBounds(148, 401, 670, 60);
-		contentPane.add(lblInfo);
+lblInfo = new JLabel("");
+lblInfo.setBounds(148, 401, 670, 60);
+contentPane.add(lblInfo);
 
-		// Info hasieratu
-		player.ateraInformazioa(lblInfo, Player.indizea, abestiak);
+// Info hasieratu
+player.ateraInformazioa(lblInfo, Player.indizea, abestiak);
 
-		lblIrudi = new JLabel("");
-		lblIrudi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIrudi.setBounds(332, 66, 319, 290);
-		contentPane.add(lblIrudi);
+lblIrudi = new JLabel("");
+lblIrudi.setHorizontalAlignment(SwingConstants.CENTER);
+lblIrudi.setBounds(332, 66, 319, 290);
+contentPane.add(lblIrudi);
 
-		JButton btnAtzera = new JButton("ATZERA");
-		btnAtzera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				player.pause();
-				dispose();
-				BistakArgitaratu.AlbumBistaJoan(bz, album);
+JButton btnAtzera = new JButton("ATZERA");
+btnAtzera.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+player.pause();
+dispose();
+BistakArgitaratu.AlbumBistaJoan(bz, album);
 
-			}
-		});
-		btnAtzera.setBounds(10, 11, 128, 23);
-		contentPane.add(btnAtzera);
+}
+});
+btnAtzera.setBounds(10, 11, 128, 23);
+contentPane.add(btnAtzera);
 
-		JButton btnProfila = new JButton(bz.getErabiltzaile());
-		btnProfila.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				player.pause();
-				BistakArgitaratu.ProfilaBistaJoan(bz);
-				dispose();
-			}
-		});
-		btnProfila.setBounds(855, 11, 128, 23);
-		contentPane.add(btnProfila);
+JButton btnProfila = new JButton(bz.getErabiltzaile());
+btnProfila.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+player.pause();
+BistakArgitaratu.ProfilaBistaJoan(bz);
+dispose();
+}
+});
+btnProfila.setBounds(855, 11, 128, 23);
+contentPane.add(btnProfila);
 
-		JLabel lblNewLabel = new JLabel("Musika Erreproduktorea");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(148, 15, 697, 39);
-		contentPane.add(lblNewLabel);
+JLabel lblNewLabel = new JLabel("Musika Erreproduktorea");
+lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+lblNewLabel.setBounds(148, 15, 697, 39);
+contentPane.add(lblNewLabel);
 
-		player.ateraArgazkia(lblIrudi, Player.indizea, abestiak);
+player.ateraArgazkia(lblIrudi, Player.indizea, abestiak);
 
-		JButton btnMenu = new JButton("Menua");
-		btnMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					playlistArray = PlaylistDao.PlayListAtera(bz);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
+JButton btnMenu = new JButton("Menua");
+btnMenu.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+try {
+playlistArray = PlaylistDao.PlayListAtera(bz);
+} catch (SQLException e1) {
+e1.printStackTrace();
+}
 
-<<<<<<< HEAD
-                  if (selectedPlaylist != null && selectedPlaylist.length() > 0) {
-                      System.out.println("Playlist aukeratua: " + selectedPlaylist + " " +idAudioLike);
-                      try {
-						PlaylistDao.InsertAbestiPlaylist(selectedPlaylist,idAudioLike);
-=======
-				idAudioLike = abestiak.get(Player.indizea).getId();
+idAudioLike = abestiak.get(Player.indizea).getId();
 
-				String[] playlistNames = new String[playlistArray.size()];
-				for (int i = 0; i < playlistArray.size(); i++) {
-					playlistNames[i] = playlistArray.get(i).getIzena();
-					System.out.println(playlistNames[i]);
+String[] playlistNames = new String[playlistArray.size()];
+for (int i = 0; i < playlistArray.size(); i++) {
+playlistNames[i] = playlistArray.get(i).getIzena();
+System.out.println(playlistNames[i]);
 
-				}
+}
 
-				String selectedPlaylist = (String) JOptionPane.showInputDialog(ErreproduktoreaBista.this,
-						"Aukeratu Playlist:", "Aukeratu Playlist-a", JOptionPane.QUESTION_MESSAGE, null, playlistNames,
-						playlistNames[0]);
+String selectedPlaylist = (String) JOptionPane.showInputDialog(ErreproduktoreaBista.this,
+"Aukeratu Playlist:", "Aukeratu Playlist-a", JOptionPane.QUESTION_MESSAGE, null, playlistNames,
+playlistNames[0]);
 
-				if (selectedPlaylist != null && selectedPlaylist.length() > 0) {
-					System.out.println("Playlist aukeratua: " + selectedPlaylist + " " + idAudioLike);
-					try {
-						PlaylistDao.InsertAbestiPlaylist(selectedPlaylist, idAudioLike);
->>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-<<<<<<< HEAD
-                  }
-        		
-            }
-        });
-        btnMenu.setBounds(252, 366, 89, 23);
-        contentPane.add(btnMenu);
-        
-        JButton btnPlay = new JButton("Play");
-        btnPlay.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                idAudioLike = abestiak.get(indizea).getId();
-                player.play();
-                if(btnPlay.getText() == "Play") {
-                    btnPlay.setText("Pause");
-                }else if (btnPlay.getText() == "Pause") {
-                    btnPlay.setText("Play");
-                }
-            }
-        });
-        btnPlay.setBounds(450, 366, 89, 23);
-        contentPane.add(btnPlay);
-        
-        JButton btnAbestiAtzera = new JButton("<");
-        btnAbestiAtzera.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	   player.aurreko();   
-                   try {
-                       indizea++;
-                       if (indizea >= abestiak.size()) {
-                           indizea = 0;
-                       }
-                       player.ateraArgazkia(lblIrudi, indizea, abestiak);
-                       player.ateraInformazioa(lblInfo, indizea, abestiak);
-                   } catch (SQLException e1) {
-                       e1.printStackTrace();
-                   }
-               }
-        });
-        btnAbestiAtzera.setBounds(351, 366, 89, 23);
-        contentPane.add(btnAbestiAtzera);
-        
-        JButton btnAbestiAurrera = new JButton(">");
-        btnAbestiAurrera.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                 player.next();
-                 try {
-                     indizea++;
-                     if (indizea >= abestiak.size()) {
-                         indizea = 0;
-                     }
-                     player.ateraArgazkia(lblIrudi, indizea, abestiak);
-                     player.ateraInformazioa(lblInfo, indizea, abestiak);
-                 } catch (SQLException e1) {
-                     e1.printStackTrace();
-                 }
-            }
-        });
-        btnAbestiAurrera.setBounds(548, 366, 89, 23);
-        contentPane.add(btnAbestiAurrera);
-        
-        JButton btnLike = new JButton("    ❤️");
-        btnLike.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                
-                idAudioLike = abestiak.get(indizea).getId();
-                
-                try {
-                    gustukoakDao.GutokoInsert(bz, idAudioLike);
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-                
-                
-            }
-        });
-        btnLike.setBounds(647, 366, 76, 23);
-        contentPane.add(btnLike);
-      
-    }
-=======
-				}
+if (selectedPlaylist != null && selectedPlaylist.length() > 0) {
+System.out.println("Playlist aukeratua: " + selectedPlaylist + " " + idAudioLike);
+try {
+PlaylistDao.InsertAbestiPlaylist(selectedPlaylist, idAudioLike);
+} catch (SQLException e1) {
+// TODO Auto-generated catch block
+e1.printStackTrace();
+}
+}
 
-			}
-		});
-		btnMenu.setBounds(252, 366, 89, 23);
-		contentPane.add(btnMenu);
+}
+});
+btnMenu.setBounds(252, 366, 89, 23);
+contentPane.add(btnMenu);
 
-		JButton btnPlay = new JButton("Play");
-		btnPlay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+JButton btnPlay = new JButton("Play");
+btnPlay.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
 
-				idAudioLike = abestiak.get(Player.indizea).getId();
-				player.play();
-				if (btnPlay.getText() == "Play") {
-					btnPlay.setText("Pause");
-				} else if (btnPlay.getText() == "Pause") {
-					btnPlay.setText("Play");
-				}
-			}
-		});
-		btnPlay.setBounds(450, 366, 89, 23);
-		contentPane.add(btnPlay);
+idAudioLike = abestiak.get(Player.indizea).getId();
+player.play();
+if (btnPlay.getText() == "Play") {
+btnPlay.setText("Pause");
+} else if (btnPlay.getText() == "Pause") {
+btnPlay.setText("Play");
+}
+}
+});
+btnPlay.setBounds(450, 366, 89, 23);
+contentPane.add(btnPlay);
 
-		btnAbestiAtzera = new JButton("<");
-		btnAbestiAtzera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				try {
-					player.aurreko(lblInfo, lblIrudi, abestiak);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				System.out.println(Player.indizea + " indice del boton (no dentro de anuncio)");
-				if (bz.getMota().equals("free")) {
-					player.murrizketaHasieratu(btnAbestiAurrera, btnAbestiAtzera, bz, abestiak, album);
-					player.stop();
-					dispose();
-				}
-			}
-		});
-		btnAbestiAtzera.setBounds(351, 366, 89, 23);
-		contentPane.add(btnAbestiAtzera);
+btnAbestiAtzera = new JButton("<");
+btnAbestiAtzera.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
 
-		btnAbestiAurrera = new JButton(">");
-		btnAbestiAurrera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				try {
-					player.next(lblInfo, lblIrudi, abestiak);
+try {
+player.aurreko(lblInfo, lblIrudi, abestiak);
+} catch (SQLException e1) {
+// TODO Auto-generated catch block
+e1.printStackTrace();
+}
+System.out.println(Player.indizea + " indice del boton (no dentro de anuncio)");
+if (bz.getMota().equals("free")) {
+player.murrizketaHasieratu(btnAbestiAurrera, btnAbestiAtzera, bz, abestiak, album);
+player.stop();
+dispose();
+}
+}
+});
+btnAbestiAtzera.setBounds(351, 366, 89, 23);
+contentPane.add(btnAbestiAtzera);
 
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				if (bz.getMota().equals("free")) {
-					player.murrizketaHasieratu(btnAbestiAurrera, btnAbestiAtzera, bz, abestiak, album);
-					player.stop();
-					dispose();
-				}
+btnAbestiAurrera = new JButton(">");
+btnAbestiAurrera.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
 
-			}
-		});
-		btnAbestiAurrera.setBounds(548, 366, 89, 23);
-		contentPane.add(btnAbestiAurrera);
+try {
+player.next(lblInfo, lblIrudi, abestiak);
 
-		JButton btnLike = new JButton("    ❤️");
-		btnLike.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+} catch (SQLException e1) {
+// TODO Auto-generated catch block
+e1.printStackTrace();
+}
+if (bz.getMota().equals("free")) {
+player.murrizketaHasieratu(btnAbestiAurrera, btnAbestiAtzera, bz, abestiak, album);
+player.stop();
+dispose();
+}
 
-				idAudioLike = abestiak.get(Player.indizea).getId();
+}
+});
+btnAbestiAurrera.setBounds(548, 366, 89, 23);
+contentPane.add(btnAbestiAurrera);
 
-				try {
-					gustukoakDao.GutokoInsert(bz, idAudioLike);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
+JButton btnLike = new JButton("    ❤️");
+btnLike.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
 
-			}
-		});
-		btnLike.setBounds(647, 366, 76, 23);
-		contentPane.add(btnLike);
-		System.out.println("las canciones " + abestiak.toString());
+idAudioLike = abestiak.get(Player.indizea).getId();
 
-	}
+try {
+gustukoakDao.GutokoInsert(bz, idAudioLike);
+} catch (SQLException e1) {
+e1.printStackTrace();
+}
 
->>>>>>> b77b1ca48e28e368ba8ad6aa49f0103b002081a2
+}
+});
+btnLike.setBounds(647, 366, 76, 23);
+contentPane.add(btnLike);
+System.out.println("las canciones " + abestiak.toString());
+
+}
+
 }

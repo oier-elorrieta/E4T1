@@ -1,9 +1,10 @@
-
 package Modelo;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import java.sql.Blob;
+import java.sql.SQLException;
 
 /**
  * 
@@ -13,170 +14,183 @@ import java.sql.Blob;
 
 public abstract class Artista {
 
-	protected String id;
-	protected String izena;
-	protected String info;
-	protected Blob irudia;
+    protected String id;
+    protected String izena;
+    protected String info;
+    protected Blob irudia;
 
-	public Artista() {
+    public Artista() {
 
-	}
+    }
 
-	// ---------------- ERAIKITZAILEA ---------------- //
+    // ---------------- ERAIKITZAILEA ---------------- //
 
-	/**
-	 * 
-	 * Artistaaren eraikitzailea.
-	 *
-	 * @param id    Artistaaren identifikazioa.
-	 * @param izena Artistaaren izena.
-	 * @param info  Artistaaren informazioa.
-	 * 
-	 */
+    /**
+     * 
+     * Artistaaren eraikitzailea.
+     *
+     * @param id    Artistaaren identifikazioa.
+     * @param izena Artistaaren izena.
+     * @param info  Artistaaren informazioa.
+     * 
+     */
 
-	public Artista(String id, String izena, String info, Blob irudia) {
+    public Artista(String id, String izena, String info, Blob irudia) {
 
-		this.id = id;
+        this.id = id;
 
-		this.izena = izena;
+        this.izena = izena;
 
-		this.info = info;
+        this.info = info;
 
-		this.irudia = irudia;
+        this.irudia = irudia;
 
-	}
+    }
 
-	// ---------------- GETTERS eta SETTERS ---------------- //
+    // ---------------- GETTERS eta SETTERS ---------------- //
 
-	/**
-	 * 
-	 * Artistaaren identifikazioa itzultzen du.
-	 * 
-	 * 
-	 * 
-	 * @return Artistaaren identifikazioa.
-	 * 
-	 */
+    /**
+     * 
+     * Artistaaren identifikazioa itzultzen du.
+     * 
+     * 
+     * 
+     * @return Artistaaren identifikazioa.
+     * 
+     */
 
-	public String getId() {
+    public String getId() {
 
-		return id;
+        return id;
 
-	}
+    }
 
-	/**
-	 * Artistaaren identifikazioa ezartzen du.
-	 * 
-	 * @param id Berria izango den artistaaren identifikazioa.
-	 */
+    /**
+     * Artistaaren identifikazioa ezartzen du.
+     * 
+     * @param id Berria izango den artistaaren identifikazioa.
+     */
 
-	public void setId(String id) {
+    public void setId(String id) {
 
-		this.id = id;
+        this.id = id;
 
-	}
+    }
 
-	/**
-	 * Artistaaren izena itzultzen du.
-	 * 
-	 * @return Artistaaren izena.
-	 */
+    /**
+     * Artistaaren izena itzultzen du.
+     * 
+     * @return Artistaaren izena.
+     */
 
-	public String getIzena() {
+    public String getIzena() {
 
-		return izena;
+        return izena;
 
-	}
+    }
 
-	/**
-	 * Artistaaren izena ezartzen du.
-	 * 
-	 * @param izena Berria izango den artistaaren izena.
-	 */
+    /**
+     * Artistaaren izena ezartzen du.
+     * 
+     * @param izena Berria izango den artistaaren izena.
+     */
 
-	public void setIzena(String izena) {
+    public void setIzena(String izena) {
 
-		this.izena = izena;
+        this.izena = izena;
 
-	}
+    }
 
-	/**
-	 * Artistaaren informazioa itzultzen du.
-	 * 
-	 * @return Artistaaren informazioa.
-	 */
+    /**
+     * Artistaaren informazioa itzultzen du.
+     * 
+     * @return Artistaaren informazioa.
+     */
 
-	public String getInfo() {
+    public String getInfo() {
 
-		return info;
+        return info;
 
-	}
+    }
 
-	/**
-	 * Artistaaren informazioa ezartzen du.
-	 * 
-	 * @param info Berria izango den artistaaren informazioa.
-	 */
+    /**
+     * Artistaaren informazioa ezartzen du.
+     * 
+     * @param info Berria izango den artistaaren informazioa.
+     */
 
-	public void setInfo(String info) {
+    public void setInfo(String info) {
 
-		this.info = info;
+        this.info = info;
 
-	}
+    }
 
-	/**
-	 * Artistaaren irudia itzultzen du.
-	 * 
-	 * @return
-	 */
-	public Blob getIrudia() {
-		return irudia;
-	}
+    /**
+     * Artistaaren irudia itzultzen du.
+     * 
+     * @return
+     */
+    public Blob getIrudia() {
+        return irudia;
+    }
 
-	/**
-	 * Artistaaren irudia ezartzen du.
-	 * 
-	 * @param irudia
-	 */
-	public void setIrudia(Blob irudia) {
-		this.irudia = irudia;
-	}
+    /**
+     * Artistaaren irudia ezartzen du.
+     * 
+     * @param irudia
+     */
+    public void setIrudia(Blob irudia) {
+        this.irudia = irudia;
+    }
 
-	// ---------------- ToString ---------------- //
+    // ---------------- ToString ---------------- //
 
-	/**
-	 * Artistaaren errepresentazio katea itzultzen du.
-	 * 
-	 * @return Artistaaren errepresentazio katea.
-	 */
+    /**
+     * Artistaaren errepresentazio katea itzultzen du.
+     * 
+     * @return Artistaaren errepresentazio katea.
+     */
 
-	@Override
+    @Override
 
-	public String toString() {
+    public String toString() {
 
-		return "[id=" + id + ", izena=" + izena + ", info=" + info + "]";
+        return "[id=" + id + ", izena=" + izena + ", info=" + info + "]";
 
-	}
+    }
+    
+    
+    
 
-	// ---------------- EQUALS ---------------- //
+    // ---------------- EQUALS ---------------- //
 
-	/**
-	 * Bi artistak berdinak ala ez aztertzen du.
-	 * 
-	 * @param obj Beste artista bat.
-	 * @return Bi artistak berdinak badira true, bestela false.
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Artista other = (Artista) obj;
-		return Objects.equals(id, other.id) && Objects.equals(info, other.info) && Objects.equals(irudia, other.irudia)
-				&& Objects.equals(izena, other.izena);
-	}
+    /**
+     * Bi artistak berdinak ala ez aztertzen du.
+     * 
+     * @param obj Beste artista bat.
+     * @return Bi artistak berdinak badira true, bestela false.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Artista other = (Artista) obj;
+        try {
+            // Convertir Blob a arrays de bytes
+            byte[] thisBytes = this.irudia.getBytes(1, (int) this.irudia.length());
+            byte[] otherBytes = other.irudia.getBytes(1, (int) other.irudia.length());
+            // Comparar arrays de bytes y otros campos
+            return Objects.equals(id, other.id) && Objects.equals(info, other.info) && Arrays.equals(thisBytes, otherBytes)
+                    && Objects.equals(izena, other.izena);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 }
