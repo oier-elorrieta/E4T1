@@ -7,12 +7,15 @@ import javax.swing.border.EmptyBorder;
 import Modelo.Bezero;
 import Modelo.Podcast;
 import funtzioak.BistakArgitaratu;
+import funtzioak.Player;
 import funtzioak.PlayerPodcast;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -23,13 +26,15 @@ public class PodcastErreproduktoreBista extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private PlayerPodcast playerPodcast;
+    private JLabel lblDenbora;
+    private Timer timer;
 
     public PodcastErreproduktoreBista(Bezero bz, int selectedValue, List<Podcast> podcastList) throws SQLException {
 		setResizable(false);
 
         // Player (Klipa hasten du hautatutako abesti zerrendarekin (album / playlist))
         playerPodcast = new PlayerPodcast(bz,selectedValue, podcastList);
-        
+        playerPodcast.play();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1009, 585);
         contentPane = new JPanel();
@@ -92,11 +97,16 @@ public class PodcastErreproduktoreBista extends JFrame {
         btnMenu.setBounds(252, 366, 89, 23);
         contentPane.add(btnMenu);
         
-        JButton btnPlay = new JButton("Play");
+        JButton btnPlay = new JButton("Pause");
         btnPlay.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                playerPodcast.play();
-            }
+        	public void actionPerformed(ActionEvent e) {
+				playerPodcast.play();
+				if (btnPlay.getText().equals("Play")) {
+					btnPlay.setText("Pause");
+				} else if (btnPlay.getText().equals("Pause")) {
+					btnPlay.setText("Play");
+				}
+			}
         });
         btnPlay.setBounds(450, 366, 89, 23);
         contentPane.add(btnPlay);
@@ -146,5 +156,22 @@ public class PodcastErreproduktoreBista extends JFrame {
         });
         btnLike.setBounds(647, 366, 76, 23);
         contentPane.add(btnLike);
+        
+        lblDenbora = new JLabel("");
+		lblDenbora.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDenbora.setBounds(267, 342, 54, 14);
+		contentPane.add(lblDenbora);
+
+		timer = new Timer();
+
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				String denbora = playerPodcast.denbora();
+				if (denbora != null) {
+					lblDenbora.setText(denbora.toString());
+				}
+			}
+		}, 0, 1000);
     }
 }
