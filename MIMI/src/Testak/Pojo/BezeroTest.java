@@ -114,9 +114,8 @@ public class BezeroTest {
 		playArray.add(new Playlist("PL001","Rock Hits",null));
 		FreeBezero bezero = new FreeBezero("BZ003", "mimi", "talde", "mimitalde", "password", "2024-04-19",
 				"2024-04-20",playArray, null, null);
-		String expectedToString = "Bezero [id=BZ003, izena=mimi, abizena=talde, erabiltzaile=mimitalde, pasahitza=password, jaioData=2024-04-19, erregisData=2024-04-20, playArray=" + bezero.getPlayArray() + ", mota=null, Hizkuntza=null]";
-		System.out.println(bezero.toString());
-		assertEquals(expectedToString, bezero.toString());
+		String expectedToStringFree = "Bezero [id=BZ003, izena=mimi, abizena=talde, erabiltzaile=mimitalde, pasahitza=password, jaioData=2024-04-19, erregisData=2024-04-20, playArray=" + bezero.getPlayArray() + ", mota=null, hizkuntza=null]";
+		assertEquals(expectedToStringFree, bezero.toString());
 
 	}
 
@@ -332,7 +331,7 @@ public class BezeroTest {
 	playArray3.add(new Playlist(null,null,null));
 		PremiumBezeroa bezero = new PremiumBezeroa("BZ001", "Pedro", "Garcia", "pedrus", "kk", null, null,playArray3,
 				"2024-04-04", "Premium", "ES");
-		String expectedToString = "Bezero [id=BZ001, izena=Pedro, abizena=Garcia, erabiltzaile=pedrus, pasahitza=kk, jaioData=null, erregisData=null, playArray=" + playArray3 +", mota=Premium, Hizkuntza=ES]premiumMuga=2024-04-04]";
+		String expectedToString = "Bezero [id=BZ001, izena=Pedro, abizena=Garcia, erabiltzaile=pedrus, pasahitza=kk, jaioData=null, erregisData=null, playArray=" + playArray3 +", mota=Premium, hizkuntza=ES]premiumMuga=2024-04-04]";
 		assertEquals(expectedToString, bezero.toString());
 	}
 

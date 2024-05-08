@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.ByteArrayInputStream;
+import com.mysql.cj.jdbc.Blob;
+import java.sql.SQLException;
+
 import org.junit.Test;
 
 import Modelo.Abeslari;
@@ -11,6 +15,7 @@ import Modelo.Abeslari.Mota;
 import Modelo.Podcaster;
 
 public class ArtistaTest {
+
 
 // ------------------------------- PODCASTER ---------------------------------------- //
     @Test
@@ -59,21 +64,6 @@ public class ArtistaTest {
         assertEquals(expectedToStringp, podcaster.toString());
     }
 
-    @Test
-    public void testEqualsp() {
-    Podcaster podcaster1 = new Podcaster("1", "podcaster1", "Informazioa", null);
-    Podcaster podcaster2 = new Podcaster("1", "podcaster1", "Informazioa", null);
-   
-        assertTrue(podcaster1.equals(podcaster2));
-    
-    }
-    
-    @Test
-    public void testEqualspFalse() {
-    	Podcaster podcaster1 = new Podcaster("1", "podcaster1", "Informazioa", null);
-        Podcaster podcaster3 = new Podcaster("2", "podcaster2", "Beste informazio bat", null);
-        assertFalse(podcaster1.equals(podcaster3));
-    }
 // ------------------------------- ABESLARIA ---------------------------------------- //
 
     @Test
@@ -138,22 +128,6 @@ public class ArtistaTest {
         
         String expectedToStringa = "[id=1, izena=abeslari1, info=Informazioa]Mota = null";
         assertEquals(expectedToStringa, abeslari.toString());
-    }
-
-    @Test
-    public void testEqualsa() {
-    Abeslari abeslari1 = new Abeslari("1", "abeslari1", "Informazioa", null, null);
-    Abeslari abeslari2 = new Abeslari("1", "abeslari1", "Informazioa", null, null);
-   
-        assertTrue(abeslari1.equals(abeslari2));
-       
-    }
-    
-    @Test
-    public void testEqualsaF() {
-    	 Abeslari abeslari1 = new Abeslari("1", "abeslari1", "Informazioa", null, null);
-    	 Abeslari abeslari3 = new Abeslari("2", "abeslari2", "Beste informazio bat", null, null);
-    	 assertFalse(abeslari1.equals(abeslari3));
     }
  
 

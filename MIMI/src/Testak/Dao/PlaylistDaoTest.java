@@ -1,6 +1,7 @@
 package Testak.Dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -18,26 +19,31 @@ import Modelo.Playlist;
 public class PlaylistDaoTest {
 
     @Test
-    public void testPlayListAtera() {
+    public void testPlayListAtera() throws SQLException {
         Bezero erabiltzailea = new Bezero();
         erabiltzailea.setId("BZ001");
         
-        List<Playlist> playlistZerrenda = new ArrayList<>();
-        
-        try {
-            List<Playlist> emaitza = PlaylistDao.PlayListAtera(erabiltzailea, playlistZerrenda);
+            List<Playlist> emaitza = PlaylistDao.PlayListAtera(erabiltzailea);
             
             assertNotNull(emaitza);
-            
-            assertTrue(emaitza.size() > 0);
-            
+            assertFalse(emaitza.isEmpty());
             Playlist lehenengoa = emaitza.get(0);
-            assertNotNull(lehenengoa.getId());
-            assertNotNull(lehenengoa.getIzena());
+            System.out.println(lehenengoa);
             
-        } catch (SQLException e) {
-            e.printStackTrace();
-            fail("SQL errore bat gertatu da: " + e.getMessage());
-        }
+            
+            assertEquals(lehenengoa.getId(), "PL001");
+            assertEquals(lehenengoa.getIzena(), "Rock Hits");
+            assertEquals(lehenengoa.getAbestiList(), null);
+            
+    }
+    
+    @Test
+    public void testPlayListInsert() throws SQLException {
+    	
+    	String playlist = "";
+    	
+    	String audio = "";
+    	
+    	assertFalse(PlaylistDao.InsertAbestiPlaylist(playlist,audio));
     }
 }

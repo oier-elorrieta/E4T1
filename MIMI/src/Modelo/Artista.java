@@ -179,6 +179,13 @@ public abstract class Artista {
         if (getClass() != obj.getClass())
             return false;
         Artista other = (Artista) obj;
+        if (irudia == null && other.irudia != null) {
+            return false;
+        }
+        if (irudia != null && !irudia.equals(other.irudia)) {
+            return false;
+        }
+        
         try {
             // Convertir Blob a arrays de bytes
             byte[] thisBytes = this.irudia.getBytes(1, (int) this.irudia.length());

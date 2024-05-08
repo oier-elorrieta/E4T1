@@ -236,7 +236,7 @@ public class BezeroDao {
 			}
 		}
 
-		PremiumTabla(berriaPre);
+//		PremiumTabla(berriaPre);
 	}
 
 	/**
@@ -246,27 +246,27 @@ public class BezeroDao {
 	 * @param berriaPre PremiumBezeroa objektua, sartu nahi den bezeroaren datuekin.
 	 * @throws SQLException SQL errore bat gertatzen bada.
 	 */
-	public static void PremiumTabla(PremiumBezeroa berriaPre) throws SQLException {
-
-		try (Connection con = Konexioa.konexioa()) {
-
-			String Premiumtabla = "insert into premium (IdBezeroa,iraungitzedata) values (?,?)";
-
-			try {
-				PreparedStatement preparedStatement = con.prepareStatement(Premiumtabla);
-				preparedStatement.setString(1, berriaPre.getId());
-				preparedStatement.setDate(2,
-						new java.sql.Date(ErregistratuF.StringtoDate(berriaPre.getPremiumMuga()).getTime()));
-
-				preparedStatement.executeUpdate();
-
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
-
-		}
-
-	}
+//	public static void PremiumTabla(PremiumBezeroa berriaPre) throws SQLException {
+//
+//		try (Connection con = Konexioa.konexioa()) {
+//
+//			String Premiumtabla = "insert into premium (IdBezeroa,iraungitzedata) values (?,?)";
+//
+//			try {
+//				PreparedStatement preparedStatement = con.prepareStatement(Premiumtabla);
+//				preparedStatement.setString(1, berriaPre.getId());
+//				preparedStatement.setDate(2,
+//						new java.sql.Date(ErregistratuF.StringtoDate(berriaPre.getPremiumMuga()).getTime()));
+//
+//				preparedStatement.executeUpdate();
+//
+//			} catch (SQLException e) {
+//				System.out.println(e.getMessage());
+//			}
+//
+//		}
+//
+//	}
 	
 	public static void BezeroUpdate(Bezero bz, JTextField textIzena, JTextField textAbizena, JTextField textErabiltzalea, JPasswordField textPasahitza) throws SQLException {
 		
@@ -275,7 +275,6 @@ public class BezeroDao {
 			String izena = textIzena.getText();
 			String abizena = textAbizena.getText();
 			String erabil = textErabiltzalea.getText();
-			@SuppressWarnings("deprecation")
 			String pasa = textPasahitza.getText();
 
 

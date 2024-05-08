@@ -53,7 +53,7 @@ public static ArrayList<Playlist> PlayListAtera(Bezero bz) throws SQLException {
 	return playlistArray;
 }
 
-public static void InsertAbestiPlaylist(String selectedPlaylist, String idAudioLike) throws SQLException {
+public static boolean InsertAbestiPlaylist(String selectedPlaylist, String idAudioLike) throws SQLException {
 	
 	String idList = "";
 
@@ -95,9 +95,11 @@ public static void InsertAbestiPlaylist(String selectedPlaylist, String idAudioL
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+			return false;
 		}
 	}
 	
+	return true;
 }
 }
 

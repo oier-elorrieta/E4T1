@@ -196,7 +196,7 @@ public void actionPerformed(ActionEvent e) {
 idAudioLike = abestiak.get(Player.indizea).getId();
 
 try {
-gustukoakDao.GutokoInsert(bz, idAudioLike);
+gustukoakDao.DagoEdoEz(bz, idAudioLike);
 } catch (SQLException e1) {
 e1.printStackTrace();
 }
