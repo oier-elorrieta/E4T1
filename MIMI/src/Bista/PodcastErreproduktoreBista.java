@@ -163,7 +163,8 @@ public class PodcastErreproduktoreBista extends JFrame {
 		contentPane.add(lblDenbora);
 
 		timer = new Timer();
-
+		
+		// Segundu bakoitzero ikusten du Kliparen ze posizioan dauden denbora erakutziz
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {

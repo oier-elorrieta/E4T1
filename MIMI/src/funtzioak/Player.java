@@ -202,8 +202,7 @@ public class Player {
 	}
 
 	public String denbora() {
-//	
-//	    if (klipa != null && klipa.isRunning()) {
+
 	        long position = klipa.getMicrosecondPosition();
 	        long duration = klipa.getMicrosecondLength();
 	        long remaining = duration - position;
@@ -217,7 +216,7 @@ public class Player {
 		    }
   
 	    
-//	}
+
 	}
 
 
