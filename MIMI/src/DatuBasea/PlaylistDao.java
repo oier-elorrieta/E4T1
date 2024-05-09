@@ -91,7 +91,8 @@ public static boolean InsertAbestiPlaylist(String selectedPlaylist, String idAud
 
 			con.close();
 
-			 JOptionPane.showMessageDialog(null, selectedPlaylist + "playlistera sartu duzu");
+			 JOptionPane.showMessageDialog(null, selectedPlaylist + " playlistera sartu duzu");
+			
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

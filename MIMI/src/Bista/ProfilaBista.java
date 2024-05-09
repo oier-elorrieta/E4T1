@@ -139,6 +139,8 @@ public class ProfilaBista extends TxantiloiaBista {
 		JButton btnErosiPremium = new JButton("Erosi Premium");
 		btnErosiPremium.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				BezeroDao.BezeroaPremiumEdoEz(bz);
 			}
 		});
 		btnErosiPremium.setBounds(304, 275, 144, 23);
@@ -148,7 +150,7 @@ public class ProfilaBista extends TxantiloiaBista {
 				try {
 					BezeroDao.BezeroUpdate(bz, textIzena, textAbizena, textErabiltzalea, textPasahitza);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 			}

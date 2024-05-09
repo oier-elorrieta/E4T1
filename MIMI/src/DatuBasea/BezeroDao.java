@@ -236,7 +236,7 @@ public class BezeroDao {
 			}
 		}
 
-//		PremiumTabla(berriaPre);
+		PremiumTabla(berriaPre);
 	}
 
 	/**
@@ -246,27 +246,27 @@ public class BezeroDao {
 	 * @param berriaPre PremiumBezeroa objektua, sartu nahi den bezeroaren datuekin.
 	 * @throws SQLException SQL errore bat gertatzen bada.
 	 */
-//	public static void PremiumTabla(PremiumBezeroa berriaPre) throws SQLException {
-//
-//		try (Connection con = Konexioa.konexioa()) {
-//
-//			String Premiumtabla = "insert into premium (IdBezeroa,iraungitzedata) values (?,?)";
-//
-//			try {
-//				PreparedStatement preparedStatement = con.prepareStatement(Premiumtabla);
-//				preparedStatement.setString(1, berriaPre.getId());
-//				preparedStatement.setDate(2,
-//						new java.sql.Date(ErregistratuF.StringtoDate(berriaPre.getPremiumMuga()).getTime()));
-//
-//				preparedStatement.executeUpdate();
-//
-//			} catch (SQLException e) {
-//				System.out.println(e.getMessage());
-//			}
-//
-//		}
-//
-//	}
+	public static void PremiumTabla(PremiumBezeroa berriaPre) throws SQLException {
+
+		try (Connection con = Konexioa.konexioa()) {
+
+			String Premiumtabla = "insert into premium (IdBezeroa,iraungitzedata) values (?,?)";
+
+			try {
+				PreparedStatement preparedStatement = con.prepareStatement(Premiumtabla);
+				preparedStatement.setString(1, berriaPre.getId());
+				preparedStatement.setDate(2,
+						new java.sql.Date(ErregistratuF.StringtoDate(berriaPre.getPremiumMuga()).getTime()));
+
+				preparedStatement.executeUpdate();
+
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+
+		}
+
+	}
 	
 	public static void BezeroUpdate(Bezero bz, JTextField textIzena, JTextField textAbizena, JTextField textErabiltzalea, JPasswordField textPasahitza) throws SQLException {
 		
@@ -296,5 +296,66 @@ public class BezeroDao {
 			e1.printStackTrace();
 		}
 	}
+	
+	
+public static boolean BezeroUpdatePremium (Bezero bz) {
+	
+	try (Connection con = Konexioa.konexioa()) {
+
+
+		String update = "Update Bezeroa set mota = 'premium' where IdBezeroa ='" + bz.getId()+"';";
+
+
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement(update);
+		
+
+			preparedStatement.executeUpdate();
+			
+			JOptionPane.showMessageDialog(null, "Orain urte bat premium duzu");
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+	} catch (SQLException e1) {	
+		e1.printStackTrace();
+		return false;
+	}
+	
+	return true;
+	
+}
+
+public static boolean BezeroaPremiumEdoEz (Bezero bz) {
+	
+	boolean dago = false;
+	try (Connection con = Konexioa.konexioa()) {
+
+		String kontsulta = "select idBezeroa from premium where IdBezeroa = '" + bz.getId() +  "';";
+
+		try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				while (rs.next()) {
+					
+					JOptionPane.showMessageDialog(null, bz.getErabiltzaile() + " itzaron behar duzu hurrengo urterarte");
+					 dago = true;
+
+				}
+				if (dago == false) {
+					BezeroUpdatePremium (bz);
+				}
+
+			}
+
+		}
+	} catch (SQLException e) {
+		System.out.println(e.getMessage());
+	}
+	return true;
+	
+}
 
 }

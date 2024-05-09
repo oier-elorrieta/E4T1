@@ -154,7 +154,7 @@ public class ErregistratuF {
 	
 	public static String LocalDatetoString () {
 		
-		LocalDate localDate = LocalDate.now();//For reference
+		LocalDate localDate = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String formattedString = localDate.format(formatter);
 		
