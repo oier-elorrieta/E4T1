@@ -308,7 +308,7 @@ public class ErregistroBista extends JFrame {
 				erregistroBezero = new FreeBezero();
 				
 				
-				 if(ErregistratuF.PasahitzaBedina(pasahitzaPass, konfirmarPass) == true) {
+				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true) {
 
 				ErregistratuF.sortuBezeroa(erregistroBezero, txtIzena, txtAbizena, txtErabiltzaile, pasahitzaPass,
 						selectDate, txtErregistro, AukeratuHizkuntza);
@@ -337,7 +337,9 @@ public class ErregistroBista extends JFrame {
 
 				berriaPre = new PremiumBezeroa();
 				
-				 if(ErregistratuF.PasahitzaBedina(pasahitzaPass, konfirmarPass) == true) {
+				BezeroDao.Bezeroaexistitu(txtErabiltzaile);
+				
+				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true) {
 
 				ErregistratuF.PremiumErosi(premiumMuga.format(gaurkoData), txtIzena, txtAbizena, txtErabiltzaile,
 						pasahitzaPass, selectDate, txtErregistro, AukeratuHizkuntza, berriaPre);

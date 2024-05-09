@@ -105,6 +105,9 @@ public class ErreproduktoreaBista extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
+				
+				
+				if(playlistArray.size() > 0) {
 
 				idAudioLike = abestiak.get(Player.indizea).getId();
 
@@ -129,6 +132,9 @@ public class ErreproduktoreaBista extends JFrame {
 					}
 				}
 
+			}else {
+				JOptionPane.showMessageDialog(null, "Ez daukazu playlistak");
+			}
 			}
 		});
 		btnMenu.setBounds(252, 366, 89, 23);

@@ -358,4 +358,32 @@ public static boolean BezeroaPremiumEdoEz (Bezero bz) {
 	
 }
 
+
+public static void Bezeroaexistitu (JTextField txtErabiltzaile) {
+	
+	boolean dago = false;
+	try (Connection con = Konexioa.konexioa()) {
+
+		String kontsulta = "select erabiltzailea from Bezeroa where erabiltzailea = '" + txtErabiltzaile  +  "';";
+
+		try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				while (rs.next()) {
+					
+					JOptionPane.showMessageDialog(null, txtErabiltzaile + " existitzen da");
+					txtErabiltzaile.setText("");
+					 dago = true;
+
+				}
+
+			}
+
+		}
+	} catch (SQLException e) {
+		System.out.println(e.getMessage());
+	}
+}
+
 }

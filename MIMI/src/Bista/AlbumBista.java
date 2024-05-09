@@ -79,9 +79,18 @@ public class AlbumBista extends JFrame {
 		deskribapenaTextPane.setBackground(SystemColor.control);
 		deskribapenaTextPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		deskribapenaTextPane.setEditable(false);
-		deskribapenaTextPane.setText(
-				"Kolaboratzaileak: " + album.getKolaboratzaileak() + "\nArgitaratze Data: " + album.getArgitaratzea()
-						+ "\nKanta kopurua: " + abestiak.size() + "\nIraupena: " + album.getAlbumIraupena());
+
+		String info = "Kolaboratzaile : ";
+		if (album.getKolaboratzaileak() != null) {
+			info += album.getKolaboratzaileak();
+		} else {
+			info += "Ez dauka ";
+		}
+		info += "\nArgitaratze Data: " + album.getArgitaratzea() + "\nKanta kopurua: " + abestiak.size()
+				+ "\nIraupena: " + album.getAlbumIraupena();
+
+		deskribapenaTextPane.setText(info);
+
 		deskribapenaTextPane.setBounds(398, 53, 332, 514);
 		contentPane.add(deskribapenaTextPane);
 

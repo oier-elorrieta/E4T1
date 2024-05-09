@@ -135,7 +135,7 @@ public class ErregistratuF {
 		return erregistroBezero;
 	}
 	
-	public static boolean PasahitzaBedina(JPasswordField pasahitzaPass, JPasswordField konfirmarPass) {
+	public static boolean PasahitzaBerdina(JPasswordField pasahitzaPass, JPasswordField konfirmarPass) {
 		
 		boolean pasahitzaOK = false;
 		    
@@ -147,6 +147,7 @@ public class ErregistratuF {
 		    } else {
 		        JOptionPane.showMessageDialog(null, "Pasahitza ez da berdina");
 		        konfirmarPass.setText("");
+		        pasahitzaPass.setText("");
 		    }
 		    
 		return pasahitzaOK;
@@ -162,4 +163,6 @@ public class ErregistratuF {
 		return formattedString;
 		
 	}
+	
+	
 }

@@ -145,9 +145,12 @@ public class ProfilaBista extends TxantiloiaBista {
 		});
 		btnErosiPremium.setBounds(304, 275, 144, 23);
 		contentPane.add(btnErosiPremium);
+		
+		
 		btnGorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					ErregistratuF.PasahitzaBerdina(textPasahitza, textKonfirmatu);
 					BezeroDao.BezeroUpdate(bz, textIzena, textAbizena, textErabiltzalea, textPasahitza);
 				} catch (SQLException e1) {
 					
