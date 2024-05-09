@@ -80,17 +80,19 @@ public class ErregistratuF {
 	 * @return sortutako PremiumBezero objektua
 	 */
 	@SuppressWarnings("deprecation")
-	public static PremiumBezeroa PremiumErosi(String premiumMuga, JTextField txtIzena, JTextField txtAbizena,
+	public static PremiumBezeroa PremiumErosi(LocalDate premiumMuga, JTextField txtIzena, JTextField txtAbizena,
 			JTextField txtErabiltzaile, JPasswordField pasahitzaPass, Date selectDate, JTextField txtErregistro,
 			JTextField AukeratuHizkuntza, PremiumBezeroa berriaPre) {
-
+		
+		LocalDatetoString(premiumMuga);
+		
 		berriaPre.setIzena(txtIzena.getText());
 		berriaPre.setAbizena(txtAbizena.getText());
 		berriaPre.setErabiltzaile(txtErabiltzaile.getText());
 		berriaPre.setPasahitza(pasahitzaPass.getText());
 		berriaPre.setJaioData(DatetoString(selectDate));
 		berriaPre.setErregisData(txtErregistro.getText());
-		berriaPre.setPremiumMuga(premiumMuga);
+		berriaPre.setPremiumMuga(LocalDatetoString(premiumMuga));
 		berriaPre.setMota("premium");
 		berriaPre.setHizkuntza(AukeratuHizkuntza.getText());
 
@@ -153,15 +155,21 @@ public class ErregistratuF {
 		return pasahitzaOK;
 }
 	
-	public static String LocalDatetoString () {
+	public static String LocalDatetoString (LocalDate localDate) {
 		
-		LocalDate localDate = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String formattedString = localDate.format(formatter);
 		
 		
 		return formattedString;
 		
+	}
+	
+	public static DateTimeFormatter LocalDateFormatua() {
+		
+		DateTimeFormatter gaurkoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		return gaurkoData;
 	}
 	
 	

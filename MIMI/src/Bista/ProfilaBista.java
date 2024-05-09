@@ -3,6 +3,8 @@ package Bista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +23,7 @@ import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JSplitPane;
 
@@ -33,6 +36,7 @@ public class ProfilaBista extends TxantiloiaBista {
 	private JTextField textErabiltzalea;
 	private JPasswordField textPasahitza;
 	private JPasswordField textKonfirmatu;
+	private JTextField textPremiumMuga;
 
 
 	/**
@@ -79,7 +83,7 @@ public class ProfilaBista extends TxantiloiaBista {
 		
 		textAbizena = new JTextField(bz.getAbizena());
 		textAbizena.setEditable(false);
-		textAbizena.setBounds(508, 111, 138, 20);
+		textAbizena.setBounds(497, 111, 138, 20);
 		contentPane.add(textAbizena);
 		textAbizena.setColumns(10);
 		
@@ -94,6 +98,22 @@ public class ProfilaBista extends TxantiloiaBista {
 		textErabiltzalea.setBounds(183, 155, 123, 20);
 		contentPane.add(textErabiltzalea);
 		textErabiltzalea.setColumns(10);
+		
+		
+		JLabel lblPremiumMuga = new JLabel("Premium Muga");
+		lblPremiumMuga.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPremiumMuga.setBounds(383, 152, 115, 20);
+		contentPane.add(lblPremiumMuga);
+		
+		
+		LocalDate premiumMuga = LocalDate.now().plusYears(1);
+		textPremiumMuga = new JTextField(premiumMuga.format(ErregistratuF.LocalDateFormatua()));
+		textPremiumMuga.setEditable(false);
+		textPremiumMuga.setBounds(502, 155, 133, 20);
+		contentPane.add(textPremiumMuga);
+		textPremiumMuga.setColumns(10);
+		
+		
 		
 		JLabel ProfilaPasahitza = new JLabel("Pasahitza");
 		ProfilaPasahitza.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -145,6 +165,7 @@ public class ProfilaBista extends TxantiloiaBista {
 		});
 		btnErosiPremium.setBounds(304, 275, 144, 23);
 		contentPane.add(btnErosiPremium);
+		
 		
 		
 		btnGorde.addActionListener(new ActionListener() {

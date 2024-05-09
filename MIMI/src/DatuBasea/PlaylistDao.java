@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.Year;
 import java.util.Calendar;
 import java.util.List;
@@ -70,8 +71,8 @@ public static boolean InsertAbestiPlaylist(String selectedPlaylist, String idAud
 	
 	
 	
-	
-	String gaurString = ErregistratuF.LocalDatetoString();
+	LocalDate localDate = LocalDate.now();
+	String gaurString = ErregistratuF.LocalDatetoString(localDate);
 	
 	System.out.println(gaurString);
 	

@@ -298,34 +298,55 @@ public class BezeroDao {
 	}
 	
 	
-public static boolean BezeroUpdatePremium (Bezero bz) {
-	
-	try (Connection con = Konexioa.konexioa()) {
+	public static Bezero BezeroUpdatePremium(Bezero bz) {
 
 
-		String update = "Update Bezeroa set mota = 'premium' where IdBezeroa ='" + bz.getId()+"';";
+
+		try (Connection con = Konexioa.konexioa()) {
 
 
-		try {
-			PreparedStatement preparedStatement = con.prepareStatement(update);
-		
 
-			preparedStatement.executeUpdate();
-			
-			JOptionPane.showMessageDialog(null, "Orain urte bat premium duzu");
+			String update = "Update Bezeroa set mota = 'premium' where IdBezeroa ='" + bz.getId() + "';";
 
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+
+
+			try {
+
+				PreparedStatement preparedStatement = con.prepareStatement(update);
+
+
+
+				preparedStatement.executeUpdate();
+
+
+
+				JOptionPane.showMessageDialog(null, "Orain urte bat premium duzu");
+
+
+
+				bz.setMota("premium");
+
+			} catch (SQLException e) {
+
+				System.out.println(e.getMessage());
+
+			}
+
+
+
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+
 		}
 
-	} catch (SQLException e1) {	
-		e1.printStackTrace();
-		return false;
+
+
+		return bz;
+
+
+
 	}
-	
-	return true;
-	
-}
 
 public static boolean BezeroaPremiumEdoEz (Bezero bz) {
 	
@@ -359,12 +380,13 @@ public static boolean BezeroaPremiumEdoEz (Bezero bz) {
 }
 
 
-public static void Bezeroaexistitu (JTextField txtErabiltzaile) {
+public static boolean Bezeroaexistitu (JTextField txtErabiltzaile) {
 	
-	boolean dago = false;
+	
+	boolean dago = true;
 	try (Connection con = Konexioa.konexioa()) {
 
-		String kontsulta = "select erabiltzailea from Bezeroa where erabiltzailea = '" + txtErabiltzaile  +  "';";
+		String kontsulta = "select erabiltzailea from Bezeroa where erabiltzailea = '" + txtErabiltzaile.getText()  +  "';";
 
 		try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 
@@ -372,9 +394,9 @@ public static void Bezeroaexistitu (JTextField txtErabiltzaile) {
 
 				while (rs.next()) {
 					
-					JOptionPane.showMessageDialog(null, txtErabiltzaile + " existitzen da");
+					JOptionPane.showMessageDialog(null, txtErabiltzaile.getText() + " existitzen da");
 					txtErabiltzaile.setText("");
-					 dago = true;
+					 dago = false;
 
 				}
 
@@ -384,6 +406,7 @@ public static void Bezeroaexistitu (JTextField txtErabiltzaile) {
 	} catch (SQLException e) {
 		System.out.println(e.getMessage());
 	}
+	return dago;
 }
 
 }

@@ -137,6 +137,7 @@ public class ErregistroBista extends JFrame {
 		txtErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				denaBeteta();
+				
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, txtErabiltzaile, 30, SpringLayout.SOUTH, txtIzena);
@@ -244,9 +245,9 @@ public class ErregistroBista extends JFrame {
 		lblErregistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		getContentPane().add(lblErregistro);
 
-		DateTimeFormatter gaurkoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
 
-		txtErregistro = new JTextField(LocalDate.now().format(gaurkoData));
+		txtErregistro = new JTextField(LocalDate.now().format(ErregistratuF.LocalDateFormatua()));
 		txtErregistro.setEditable(false);
 		springLayout.putConstraint(SpringLayout.NORTH, txtErregistro, 418, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, txtErregistro, -41, SpringLayout.NORTH, txtErregistro);
@@ -263,7 +264,7 @@ public class ErregistroBista extends JFrame {
 		getContentPane().add(lblPremium);
 
 		LocalDate premiumMuga = LocalDate.now().plusYears(1);
-		txtPremium = new JTextField(premiumMuga.format(gaurkoData));
+		txtPremium = new JTextField(premiumMuga.format(ErregistratuF.LocalDateFormatua()));
 		txtPremium.setEditable(false);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtErregistro, -37, SpringLayout.NORTH, txtPremium);
 		springLayout.putConstraint(SpringLayout.NORTH, txtPremium, 4, SpringLayout.NORTH, lblPremium);
@@ -304,11 +305,12 @@ public class ErregistroBista extends JFrame {
 		btnGorde.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				
 
 				erregistroBezero = new FreeBezero();
 				
 				
-				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true) {
+				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true && BezeroDao.Bezeroaexistitu(txtErabiltzaile) == true) {
 
 				ErregistratuF.sortuBezeroa(erregistroBezero, txtIzena, txtAbizena, txtErabiltzaile, pasahitzaPass,
 						selectDate, txtErregistro, AukeratuHizkuntza);
@@ -337,11 +339,10 @@ public class ErregistroBista extends JFrame {
 
 				berriaPre = new PremiumBezeroa();
 				
-				BezeroDao.Bezeroaexistitu(txtErabiltzaile);
 				
-				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true) {
+				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true && BezeroDao.Bezeroaexistitu(txtErabiltzaile) == true) {
 
-				ErregistratuF.PremiumErosi(premiumMuga.format(gaurkoData), txtIzena, txtAbizena, txtErabiltzaile,
+				ErregistratuF.PremiumErosi(premiumMuga, txtIzena, txtAbizena, txtErabiltzaile,
 						pasahitzaPass, selectDate, txtErregistro, AukeratuHizkuntza, berriaPre);
 
 				try {
