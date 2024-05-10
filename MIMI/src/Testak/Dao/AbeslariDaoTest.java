@@ -18,6 +18,7 @@ import DatuBasea.AbeslariDao;
 import DatuBasea.Konexioa;
 import Modelo.Abeslari;
 import Modelo.Album;
+import funtzioak.DateFuntzioak;
 import funtzioak.ErregistratuF;
 import Modelo.Abeslari.Mota;
 
@@ -53,7 +54,7 @@ public class AbeslariDaoTest {
 	    
 	    assertEquals(album.get(0).getId(), "ESAL1");
 	    assertEquals(album.get(0).getIzenburua(), "Estopía");
-	    assertEquals(album.get(0).getArgitaratzea(), ErregistratuF.StringtoDate(argitaratze));
+	    assertEquals(album.get(0).getArgitaratzea(),DateFuntzioak.StringtoDate(argitaratze));
 	    assertEquals(album.get(0).getAbestiKopurua(), 0);
 	    assertEquals(album.get(0).getGeneroa(), "Pop/Rock");
 	    assertEquals(album.get(0).getIdMusikaria(), "EST01");

@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import DatuBasea.BezeroDao;
 import Modelo.Bezero;
+import funtzioak.BistakArgitaratu;
 import funtzioak.DateFuntzioak;
 import funtzioak.ErregistratuF;
 
@@ -52,6 +53,7 @@ public class ProfilaBista extends TxantiloiaBista {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				BistakArgitaratu.MenuJoan(bz);
 				dispose();
 			}
 		});

@@ -133,7 +133,7 @@ public class BezeroDaoTest {
     @Test
     public void testBezeroUpdate() throws SQLException {
         FreeBezero existitzenDena = new FreeBezero();
-        existitzenDena.setId("BZ001");
+        existitzenDena.setId("BZ002");
         JTextField textIzena = new JTextField("IzenaBerria");
         JTextField textAbizena = new JTextField("AbizenaBerria");
         JTextField textErabiltzalea = new JTextField("ErabiltzaileBerria");
@@ -142,4 +142,52 @@ public class BezeroDaoTest {
         BezeroDao.BezeroUpdate(existitzenDena, textIzena, textAbizena, textErabiltzalea, textPasahitza);
 
     }
+    
+  
+    
+    
+    @Test
+    public void testBezeroPremiumEdoEz() throws SQLException {
+
+       PremiumBezeroa  pm2 = new PremiumBezeroa();
+       PremiumBezeroa  pm1 = new PremiumBezeroa();
+        pm2.setId("BZ005");
+        pm1.setId("BZ006");
+        
+        assertTrue(BezeroDao.BezeroaPremiumEdoEz(pm1));
+        
+        assertTrue(BezeroDao.BezeroaPremiumEdoEz(pm2));
+       
+
+    }
+    
+    @Test
+    public void testBezeroUpdatePremium() throws SQLException {
+       PremiumBezeroa  existitzenDena = new PremiumBezeroa();
+        existitzenDena.setId("BZ002");
+
+        BezeroDao.BezeroUpdatePremium(existitzenDena);
+
+    }
+    
+    
+    @Test
+    public void testBezeroaexistitu() throws SQLException {
+       PremiumBezeroa  existitzenDena = new PremiumBezeroa();
+        existitzenDena.setId("BZ002");
+
+        JTextField txtErabiltzaile1 = new JTextField();
+        JTextField txtErabiltzaile2 = new JTextField();
+        txtErabiltzaile2.setText("juan");
+        
+        txtErabiltzaile1.setText("a");
+        
+        
+        assertFalse(BezeroDao.Bezeroaexistitu(txtErabiltzaile1));
+        
+        assertTrue(BezeroDao.Bezeroaexistitu(txtErabiltzaile2));
+        
+
+    }
+    
 }
