@@ -29,7 +29,6 @@ public class Konexioa {
 //            String pass = "";
 
             konektatua = DriverManager.getConnection(url, user, pass); 
-            System.out.println("konektatuta");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Tira la db");

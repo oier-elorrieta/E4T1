@@ -42,23 +42,13 @@ public class ProfilaBista extends TxantiloiaBista {
 	public ProfilaBista(Bezero bz) {
 		setResizable(false);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 774, 418);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MenuJoan(bz);
-				dispose();
-			}
-		});
-		btnAtzera.setBounds(5, 5, 177, 36);
-		contentPane.add(btnAtzera);
 		
 		JLabel ProfilaIzena = new JLabel("Izena");
 		ProfilaIzena.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -174,6 +164,8 @@ public class ProfilaBista extends TxantiloiaBista {
 					
 					e1.printStackTrace();
 				}
+				
+				dispose();
 			}
 		});
 		
@@ -186,6 +178,7 @@ public class ProfilaBista extends TxantiloiaBista {
 				textErabiltzalea.setEditable(true);
 				textPasahitza.setEditable(true);
 				textKonfirmatu.setEditable(true);
+				
 			}
 		});
 

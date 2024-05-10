@@ -108,7 +108,6 @@ public class AlbumBista extends JFrame {
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BistakArgitaratu.ProfilaBistaJoan(bz);
-				dispose();
 			}
 		});
 		btnPerfil.setBounds(572, 11, 177, 23);

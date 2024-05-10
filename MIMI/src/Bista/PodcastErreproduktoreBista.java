@@ -65,7 +65,6 @@ public class PodcastErreproduktoreBista extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 playerPodcast.pause();
                 BistakArgitaratu.ProfilaBistaJoan(bz);
-                dispose();
             }
         });
         contentPane.add(btnProfila);

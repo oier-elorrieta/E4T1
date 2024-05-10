@@ -41,9 +41,13 @@ public class PodcasterBista extends JFrame {
 		btnAtzera.setBounds(5, 5, 132, 23);
 		contentPane.add(btnAtzera);
 
-		JButton btnPerfil = new JButton(bz.getErabiltzaile());
-		btnPerfil.setBounds(572, 5, 177, 23);
-		contentPane.add(btnPerfil);
+		JButton btnProfila = new JButton("PROFILA");
+		btnProfila.setBounds(327, 10, 99, 29);
+		btnProfila.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 BistakArgitaratu.ProfilaBistaJoan(bz);
+			}
+		});
 
 		JLabel lblTitulua = new JLabel(podcaster.getIzena());
 		lblTitulua.setFont(new Font("Tahoma", Font.BOLD, 20));

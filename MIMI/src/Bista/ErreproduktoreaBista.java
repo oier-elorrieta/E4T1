@@ -192,7 +192,6 @@ public class ErreproduktoreaBista extends JFrame {
 
 				BistakArgitaratu.ProfilaBistaJoan(bz);
 
-				dispose();
 
 			}
 
@@ -215,59 +214,45 @@ public class ErreproduktoreaBista extends JFrame {
 		player.ateraArgazkia(lblIrudi, Player.indizea, abestiak);
 
 		JButton btnMenu = new JButton("Menua");
+        btnMenu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    playlistArray = PlaylistDao.PlayListAtera(bz);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                
+                
+                if(playlistArray.size() > 0) {
 
-		btnMenu.addActionListener(new ActionListener() {
+                idAudioLike = abestiak.get(Player.indizea).getId();
 
-			public void actionPerformed(ActionEvent e) {
+                String[] playlistNames = new String[playlistArray.size()];
+                for (int i = 0; i < playlistArray.size(); i++) {
+                    playlistNames[i] = playlistArray.get(i).getIzena();
+                    System.out.println(playlistNames[i]);
 
-				try {
+                }
 
-					playlistArray = PlaylistDao.PlayListAtera(bz);
+                String selectedPlaylist = (String) JOptionPane.showInputDialog(ErreproduktoreaBista.this,
+                        "Aukeratu Playlist:", "Aukeratu Playlist-a", JOptionPane.QUESTION_MESSAGE, null, playlistNames,
+                        playlistNames[0]);
 
-				} catch (SQLException e1) {
+                if (selectedPlaylist != null && selectedPlaylist.length() > 0) {
+                    System.out.println("Playlist aukeratua: " + selectedPlaylist + " " + idAudioLike);
+                    try {
+                        PlaylistDao.InsertAbestiPlaylist(selectedPlaylist, idAudioLike);
+                    } catch (SQLException e1) {
+// TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                }
 
-					e1.printStackTrace();
-
-				}
-
-				idAudioLike = abestiak.get(Player.indizea).getId();
-
-				String[] playlistNames = new String[playlistArray.size()];
-
-				for (int i = 0; i < playlistArray.size(); i++) {
-
-					playlistNames[i] = playlistArray.get(i).getIzena();
-
-					System.out.println(playlistNames[i]);
-
-				}
-
-				String selectedPlaylist = (String) JOptionPane.showInputDialog(ErreproduktoreaBista.this,
-
-						"Aukeratu Playlist:", "Aukeratu Playlist-a", JOptionPane.QUESTION_MESSAGE, null, playlistNames,
-
-						playlistNames[0]);
-
-				if (selectedPlaylist != null && selectedPlaylist.length() > 0) {
-
-					System.out.println("Playlist aukeratua: " + selectedPlaylist + " " + idAudioLike);
-
-					try {
-
-						PlaylistDao.InsertAbestiPlaylist(selectedPlaylist, idAudioLike);
-
-					} catch (SQLException e1) {
-
-						e1.printStackTrace();
-
-					}
-
-				}
-
-			}
-
-		});
-
+            }else {
+                JOptionPane.showMessageDialog(null, "Ez daukazu playlistak");
+            }
+            }
+        });
 		btnMenu.setBounds(252, 366, 89, 23);
 
 		contentPane.add(btnMenu);

@@ -64,7 +64,6 @@ public class MenuaBista extends JFrame {
 		btnprofila.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 BistakArgitaratu.ProfilaBistaJoan(bz);
-				 
 			}
 				
 				

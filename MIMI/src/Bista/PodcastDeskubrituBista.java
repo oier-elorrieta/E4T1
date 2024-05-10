@@ -74,9 +74,13 @@ public class PodcastDeskubrituBista extends JFrame {
 		btnAtzera.setFont(new Font("Sitka Text", Font.PLAIN, 16));
 		splitPane_1.setLeftComponent(btnAtzera);
 
-		JButton btnNewButton = new JButton("PROFILA");
-		btnNewButton.setFont(new Font("Sitka Text", Font.PLAIN, 16));
-		splitPane_1.setRightComponent(btnNewButton);
+		JButton btnProfila = new JButton("PROFILA");
+		btnProfila.setBounds(327, 10, 99, 29);
+		btnProfila.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 BistakArgitaratu.ProfilaBistaJoan(bz);
+			}
+		});
 
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);

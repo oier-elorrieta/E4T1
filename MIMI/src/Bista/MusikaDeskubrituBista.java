@@ -78,7 +78,6 @@ public class MusikaDeskubrituBista extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BistakArgitaratu.ProfilaBistaJoan(bz);
-				dispose();
 			}
 		});
 		btnNewButton.setFont(new Font("Sitka Text", Font.PLAIN, 16));
