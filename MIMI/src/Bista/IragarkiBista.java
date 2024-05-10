@@ -94,7 +94,7 @@ public class IragarkiBista extends JFrame {
 
 
 
-	public IragarkiBista(Bezero bz, List<Abesti> abestiak, Album album) {
+	public IragarkiBista(Bezero bz, List<Abesti> abestiak, Album album,  String artistaIzena, List<Album> albumak) {
 
 		setResizable(false);
 
@@ -188,7 +188,7 @@ public class IragarkiBista extends JFrame {
 
 					System.out.println(Player.indizea + " indice del boton (IragarkiBista)");
 
-					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, Player.indizea);
+					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, Player.indizea,artistaIzena,albumak);
 
 				}
 

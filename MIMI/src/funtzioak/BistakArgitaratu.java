@@ -72,6 +72,7 @@ public class BistakArgitaratu {
 		}
 
 	}
+	
 
 	public static void MusikaDeskubrituJoan(Bezero bz) {
 		try {
@@ -81,6 +82,16 @@ public class BistakArgitaratu {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void MusikaDeskubrituItxi(Bezero bz) {
+		try {
+			MusikaDeskubrituBista frame = new MusikaDeskubrituBista(bz);
+			frame.setVisible(false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	public static void ArtistaBistaJoan(String artistaIzena, List<Album> albumak, Bezero bz) {
 		try {

@@ -13,6 +13,7 @@ import Modelo.Bezero;
 import Modelo.FreeBezero;
 import Modelo.PremiumBezeroa;
 import funtzioak.BistakArgitaratu;
+import funtzioak.DateFuntzioak;
 import funtzioak.ErregistratuF;
 
 public class BezeroDao {
@@ -180,9 +181,9 @@ public class BezeroDao {
 				preparedStatement.setString(5, erregistroBezero.getErabiltzaile());
 				preparedStatement.setString(6, erregistroBezero.getPasahitza());
 				preparedStatement.setDate(7,
-						new java.sql.Date(ErregistratuF.StringtoDate(erregistroBezero.getJaioData()).getTime()));
+						new java.sql.Date(DateFuntzioak.StringtoDate(erregistroBezero.getJaioData()).getTime()));
 				preparedStatement.setDate(8,
-						new java.sql.Date(ErregistratuF.StringtoDate(erregistroBezero.getErregisData()).getTime()));
+						new java.sql.Date(DateFuntzioak.StringtoDate(erregistroBezero.getErregisData()).getTime()));
 				preparedStatement.setString(9, erregistroBezero.getMota());
 
 				preparedStatement.executeUpdate();
@@ -222,9 +223,9 @@ public class BezeroDao {
 				preparedStatement.setString(5, berriaPre.getErabiltzaile());
 				preparedStatement.setString(6, berriaPre.getPasahitza());
 				preparedStatement.setDate(7,
-						new java.sql.Date(ErregistratuF.StringtoDate(berriaPre.getJaioData()).getTime()));
+						new java.sql.Date(DateFuntzioak.StringtoDate(berriaPre.getJaioData()).getTime()));
 				preparedStatement.setDate(8,
-						new java.sql.Date(ErregistratuF.StringtoDate(berriaPre.getErregisData()).getTime()));
+						new java.sql.Date(DateFuntzioak.StringtoDate(berriaPre.getErregisData()).getTime()));
 				preparedStatement.setString(9, berriaPre.getMota());
 
 				preparedStatement.executeUpdate();
@@ -256,7 +257,7 @@ public class BezeroDao {
 				PreparedStatement preparedStatement = con.prepareStatement(Premiumtabla);
 				preparedStatement.setString(1, berriaPre.getId());
 				preparedStatement.setDate(2,
-						new java.sql.Date(ErregistratuF.StringtoDate(berriaPre.getPremiumMuga()).getTime()));
+						new java.sql.Date(DateFuntzioak.StringtoDate(berriaPre.getPremiumMuga()).getTime()));
 
 				preparedStatement.executeUpdate();
 

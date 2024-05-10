@@ -41,6 +41,7 @@ public class LoginBista extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		
 
 		JPanel Titulua = new JPanel();
 		contentPane.add(Titulua, BorderLayout.NORTH);

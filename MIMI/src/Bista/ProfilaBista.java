@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,16 +13,13 @@ import javax.swing.border.EmptyBorder;
 
 import DatuBasea.BezeroDao;
 import Modelo.Bezero;
-import Modelo.PremiumBezeroa;
-import funtzioak.BistakArgitaratu;
+import funtzioak.DateFuntzioak;
 import funtzioak.ErregistratuF;
 
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JSplitPane;
 
@@ -37,7 +33,7 @@ public class ProfilaBista extends TxantiloiaBista {
 	private JPasswordField textPasahitza;
 	private JPasswordField textKonfirmatu;
 	private JTextField textPremiumMuga;
-
+	LocalDate premiumMuga = LocalDate.now().plusYears(1);
 
 	/**
 	 * Create the frame.
@@ -56,7 +52,6 @@ public class ProfilaBista extends TxantiloiaBista {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MenuJoan(bz);
 				dispose();
 			}
 		});
@@ -106,8 +101,8 @@ public class ProfilaBista extends TxantiloiaBista {
 		contentPane.add(lblPremiumMuga);
 		
 		
-		LocalDate premiumMuga = LocalDate.now().plusYears(1);
-		textPremiumMuga = new JTextField(premiumMuga.format(ErregistratuF.LocalDateFormatua()));
+		
+		textPremiumMuga = new JTextField(premiumMuga.format(DateFuntzioak.LocalDateFormatua()));
 		textPremiumMuga.setEditable(false);
 		textPremiumMuga.setBounds(502, 155, 133, 20);
 		contentPane.add(textPremiumMuga);

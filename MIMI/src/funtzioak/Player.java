@@ -243,9 +243,9 @@ public class Player {
      * @param album Album objektua
      */
     public void murrizketaHasieratu(JButton btnAbestiAurrera, JButton btnAbestiAtzera, Bezero bz, List<Abesti> abestiak,
-            Album album) {
+            Album album, String artistaIzena, List<Album> albumak) {
         try {
-            IragarkiBista frame = new IragarkiBista(bz, abestiak, album);
+            IragarkiBista frame = new IragarkiBista(bz, abestiak, album,artistaIzena,albumak);
             frame.setVisible(true);
         } catch (Exception ex) {
             ex.printStackTrace();

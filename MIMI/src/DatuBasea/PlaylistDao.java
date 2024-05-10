@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 import Modelo.Bezero;
 import Modelo.Playlist;
+import funtzioak.DateFuntzioak;
 import funtzioak.ErregistratuF;
 import Modelo.Audio.Mota;
 
@@ -72,7 +73,7 @@ public static boolean InsertAbestiPlaylist(String selectedPlaylist, String idAud
 	
 	
 	LocalDate localDate = LocalDate.now();
-	String gaurString = ErregistratuF.LocalDatetoString(localDate);
+	String gaurString = DateFuntzioak.LocalDatetoString(localDate);
 	
 	System.out.println(gaurString);
 	
@@ -84,7 +85,7 @@ public static boolean InsertAbestiPlaylist(String selectedPlaylist, String idAud
 			preparedStatement.setString(1,idAudioLike);
 			preparedStatement.setString(2,idList);
 			preparedStatement.setDate(3,
-					new java.sql.Date(ErregistratuF.StringtoDate(gaurString).getTime()));
+					new java.sql.Date(DateFuntzioak.StringtoDate(gaurString).getTime()));
 
 			preparedStatement.executeUpdate();
 

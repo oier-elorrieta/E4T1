@@ -31,6 +31,7 @@ import DatuBasea.BezeroDao;
 import Modelo.FreeBezero;
 import Modelo.PremiumBezeroa;
 import funtzioak.BistakArgitaratu;
+import funtzioak.DateFuntzioak;
 import funtzioak.ErregistratuF;
 
 public class ErregistroBista extends JFrame {
@@ -50,7 +51,7 @@ public class ErregistroBista extends JFrame {
 	private PremiumBezeroa berriaPre;
 	private JButton btnErosi;
 	private JButton btnGorde;
-
+	LocalDate premiumMuga = LocalDate.now().plusYears(1);
 	
 	public ErregistroBista() {
 	
@@ -247,7 +248,7 @@ public class ErregistroBista extends JFrame {
 
 		
 
-		txtErregistro = new JTextField(LocalDate.now().format(ErregistratuF.LocalDateFormatua()));
+		txtErregistro = new JTextField(LocalDate.now().format(DateFuntzioak.LocalDateFormatua()));
 		txtErregistro.setEditable(false);
 		springLayout.putConstraint(SpringLayout.NORTH, txtErregistro, 418, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, txtErregistro, -41, SpringLayout.NORTH, txtErregistro);
@@ -263,8 +264,8 @@ public class ErregistroBista extends JFrame {
 		lblPremium.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		getContentPane().add(lblPremium);
 
-		LocalDate premiumMuga = LocalDate.now().plusYears(1);
-		txtPremium = new JTextField(premiumMuga.format(ErregistratuF.LocalDateFormatua()));
+	
+		txtPremium = new JTextField(premiumMuga.format(DateFuntzioak.LocalDateFormatua()));
 		txtPremium.setEditable(false);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtErregistro, -37, SpringLayout.NORTH, txtPremium);
 		springLayout.putConstraint(SpringLayout.NORTH, txtPremium, 4, SpringLayout.NORTH, lblPremium);

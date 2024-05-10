@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
-import java.awt.Toolkit;
+
 
 public class MenuaBista extends JFrame {
 
@@ -25,7 +25,6 @@ public class MenuaBista extends JFrame {
 
 	public MenuaBista(Bezero bz) {
 		setResizable(false);
-
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(MenuaBista.class.getResource("/media.img/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 913, 484);
@@ -34,6 +33,7 @@ public class MenuaBista extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -60,15 +60,17 @@ public class MenuaBista extends JFrame {
 		btnAtzera.setFont(new Font("Sitka Text", Font.PLAIN, 16));
 		splitPane_1.setLeftComponent(btnAtzera);
 		
-		JButton btnNewButton = new JButton("PROFILA");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnprofila = new JButton("PROFILA");
+		btnprofila.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 BistakArgitaratu.ProfilaBistaJoan(bz);
-				dispose();
+				 
 			}
+				
+				
 		});
-		btnNewButton.setFont(new Font("Sitka Text", Font.PLAIN, 16));
-		splitPane_1.setRightComponent(btnNewButton);
+		btnprofila.setFont(new Font("Sitka Text", Font.PLAIN, 16));
+		splitPane_1.setRightComponent(btnprofila);
 		
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setOrientation(JSplitPane.VERTICAL_SPLIT);

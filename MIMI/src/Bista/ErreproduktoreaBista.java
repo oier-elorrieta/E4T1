@@ -320,7 +320,7 @@ public class ErreproduktoreaBista extends JFrame {
 
 				if (bz.getMota().equals("free")) {
 
-					player.murrizketaHasieratu(btnAbestiAurrera, btnAbestiAtzera, bz, abestiak, album);
+					player.murrizketaHasieratu(btnAbestiAurrera, btnAbestiAtzera, bz, abestiak, album, artistaIzena,albumak);
 
 					player.stop();
 
@@ -354,7 +354,7 @@ public class ErreproduktoreaBista extends JFrame {
 
 				if (bz.getMota().equals("free")) {
 
-					player.murrizketaHasieratu(btnAbestiAurrera, btnAbestiAtzera, bz, abestiak, album);
+					player.murrizketaHasieratu(btnAbestiAurrera, btnAbestiAtzera, bz, abestiak, album,artistaIzena,albumak);
 
 					player.stop();
 
