@@ -22,22 +22,14 @@ import Modelo.PremiumBezeroa;
 
 public class BezeroDaoTest {
     
-    private JTextField textFieldErabiltzailea;
-    private JPasswordField passwordFieldPasahitza;
-    
-    @Before
-    public void setUp() {
-        textFieldErabiltzailea = new JTextField();
-        passwordFieldPasahitza = new JPasswordField();
-    }
     
     @Test
-    public void testLoginKomprobatu() {
+    public void testLoginKomprobatu() throws SQLException {
         String id = "1";
         String izena = "Jon";
         String abizena = "Doe";
-        String erabiltzailea = "jon.doe@example.com";
-        String pasahitza = "password";
+        String erabiltzailea = "b";
+        String pasahitza = "b";
         String mota = "mota";
 
         Bezero bz = new Bezero(id, izena, abizena, erabiltzailea, pasahitza, null, null, null, mota, null);
@@ -50,42 +42,9 @@ public class BezeroDaoTest {
         assertEquals(pasahitza, bz.getPasahitza());
         assertEquals(mota, bz.getMota());
 
-        JTextField textFieldErabiltzaileaOK = new JTextField("erabiltzailea");
-        JPasswordField passwordFieldPasahitzaOK = new JPasswordField("pasahitza");
-        
-        try {
-            BezeroDao.LoginKomprobatu(textFieldErabiltzaileaOK, passwordFieldPasahitzaOK);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        JTextField textFieldErabiltzaileaFail = new JTextField("usuarioincorrecto");
-        JPasswordField passwordFieldPasahitzaFail = new JPasswordField("contraseñaincorrecta");
-        try {
-            BezeroDao.LoginKomprobatu(textFieldErabiltzaileaFail, passwordFieldPasahitzaFail);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        JTextField textFieldErabiltzaileaException = new JTextField("usuario");
-        JPasswordField passwordFieldPasahitzaException = new JPasswordField("contraseña");
-        try {
-            BezeroDao.LoginKomprobatu(textFieldErabiltzaileaException, passwordFieldPasahitzaException);
-        } catch (SQLException e) {
-            assertTrue(e instanceof SQLException);
-        }
-
-        JTextField textFieldErabiltzaileaEmpty = new JTextField("");
-        JPasswordField passwordFieldPasahitzaEmpty = new JPasswordField("");
-        try {
-            BezeroDao.LoginKomprobatu(textFieldErabiltzaileaEmpty, passwordFieldPasahitzaEmpty);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        assertTrue(BezeroDao.LoginKomprobatu(erabiltzailea, pasahitza));
+        assertFalse(BezeroDao.LoginKomprobatu("a", "abc"));
     }
-
-
 
 	@Test
     public void testHizkuntzaAtera() {

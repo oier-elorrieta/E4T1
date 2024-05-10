@@ -165,7 +165,6 @@ public class ProfilaBista extends TxantiloiaBista {
 					e1.printStackTrace();
 				}
 				
-				dispose();
 			}
 		});
 		

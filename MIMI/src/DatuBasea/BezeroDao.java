@@ -33,12 +33,9 @@ public class BezeroDao {
 	 *                               JPasswordField objektua.
 	 * @throws SQLException SQL errore bat gertatzen bada.
 	 */
-	public static boolean LoginKomprobatu(JTextField textFieldErabiltzailea, JPasswordField passwordFieldPasahitza)
+	public static boolean LoginKomprobatu(String erabiltzailea , String pasahitza)
 			throws SQLException {
 		boolean loginOK = false;
-
-		String erabiltzailea = textFieldErabiltzailea.getText();
-		String pasahitza = new String(passwordFieldPasahitza.getPassword());
 
 		try (Connection con = Konexioa.konexioa()) {
 			String kontsulta = "select * from Bezeroa";
@@ -64,8 +61,6 @@ public class BezeroDao {
 					}
 					if (loginOK == false) {
 						JOptionPane.showMessageDialog(null, "Erabiltzailea edo pasahitza txarto idatzi dituzu");
-						textFieldErabiltzailea.setText("");
-						passwordFieldPasahitza.setText("");
 
 					}
 

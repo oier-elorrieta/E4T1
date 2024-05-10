@@ -30,6 +30,9 @@ public class LoginBista extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldErabiltzailea;
 	private JPasswordField passwordFieldPasahitza;
+	private String pasahitza;
+	private String erabiltzailea;
+
 
 	public LoginBista() {
 
@@ -61,12 +64,17 @@ public class LoginBista extends JFrame {
 		panel.add(textFieldErabiltzailea);
 		textFieldErabiltzailea.setColumns(10);
 
+		passwordFieldPasahitza = new JPasswordField();
+		
+		
+		
 		JButton btnLog = new JButton("Login");
 		btnLog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				erabiltzailea = textFieldErabiltzailea.getText();
+				pasahitza = passwordFieldPasahitza.getText();
 				try {
-					if(BezeroDao.LoginKomprobatu(textFieldErabiltzailea, passwordFieldPasahitza))
+					if(BezeroDao.LoginKomprobatu(erabiltzailea, pasahitza));
 						dispose();
 					
 				} catch (SQLException e1) {
@@ -77,8 +85,6 @@ public class LoginBista extends JFrame {
 		});
 		btnLog.setBounds(532, 352, 115, 36);
 		panel.add(btnLog);
-
-		passwordFieldPasahitza = new JPasswordField();
 
 		passwordFieldPasahitza.addKeyListener(new KeyAdapter() {
 			@Override
@@ -98,7 +104,7 @@ public class LoginBista extends JFrame {
 
 		passwordFieldPasahitza.setBounds(657, 210, 163, 20);
 		panel.add(passwordFieldPasahitza);
-
+		
 		JButton btnErregistro = new JButton("Erregistratu");
 		btnErregistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
