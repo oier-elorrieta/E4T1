@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 
 import Modelo.Bezero;
 import Modelo.Podcast;
+import Modelo.Podcaster;
 import funtzioak.BistakArgitaratu;
 import funtzioak.Player;
 import funtzioak.PlayerPodcast;
@@ -29,7 +30,7 @@ public class PodcastErreproduktoreBista extends JFrame {
     private JLabel lblDenbora;
     private Timer timer;
 
-    public PodcastErreproduktoreBista(Bezero bz, int selectedValue, List<Podcast> podcastList) throws SQLException {
+    public PodcastErreproduktoreBista(Bezero bz, int selectedValue, List<Podcast> podcastList, Podcaster podcaster) throws SQLException {
 		setResizable(false);
 
         // Player (Klipa hasten du hautatutako abesti zerrendarekin (album / playlist))
@@ -51,24 +52,15 @@ public class PodcastErreproduktoreBista extends JFrame {
         playerPodcast.ateraInformazioa(lblInfo, selectedValue, podcastList);
         
         JLabel lblIrudi = new JLabel("");
-        lblIrudi.setHorizontalAlignment(SwingConstants.CENTER);
         lblIrudi.setBounds(332, 66, 319, 290);
+        lblIrudi.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lblIrudi);
         playerPodcast.ateraArgazkia(lblIrudi, selectedValue, podcastList);
         
-        JButton btnAtzera = new JButton("ATZERA");
-        btnAtzera.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                playerPodcast.pause();
-                dispose();
-                BistakArgitaratu.MenuJoan(bz);
-                
-            }
-        });
-        btnAtzera.setBounds(10, 11, 128, 23);
-        contentPane.add(btnAtzera);
+       
         
         JButton btnProfila = new JButton(bz.getErabiltzaile());
+        btnProfila.setBounds(855, 11, 128, 23);
         btnProfila.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 playerPodcast.pause();
@@ -76,17 +68,17 @@ public class PodcastErreproduktoreBista extends JFrame {
                 dispose();
             }
         });
-        btnProfila.setBounds(855, 11, 128, 23);
         contentPane.add(btnProfila);
         
         JLabel lblNewLabel = new JLabel("Podcast Erreproduktorea");
+        lblNewLabel.setBounds(148, 15, 697, 39);
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setBounds(148, 15, 697, 39);
         contentPane.add(lblNewLabel);
         
         
         JButton btnMenu = new JButton("Menua");
+        btnMenu.setBounds(252, 366, 89, 23);
         btnMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 playerPodcast.pause();
@@ -94,10 +86,10 @@ public class PodcastErreproduktoreBista extends JFrame {
                 dispose();
             }
         });
-        btnMenu.setBounds(252, 366, 89, 23);
         contentPane.add(btnMenu);
         
         JButton btnPlay = new JButton("Pause");
+        btnPlay.setBounds(450, 366, 89, 23);
         btnPlay.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 				playerPodcast.play();
@@ -108,10 +100,10 @@ public class PodcastErreproduktoreBista extends JFrame {
 				}
 			}
         });
-        btnPlay.setBounds(450, 366, 89, 23);
         contentPane.add(btnPlay);
         
         JButton btnAbestiAtzera = new JButton("<");
+        btnAbestiAtzera.setBounds(351, 366, 89, 23);
         btnAbestiAtzera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 playerPodcast.aurreko();
@@ -123,10 +115,10 @@ public class PodcastErreproduktoreBista extends JFrame {
 				} // Llamar a ateraInformazioa nuevamente
             }
         });
-        btnAbestiAtzera.setBounds(351, 366, 89, 23);
         contentPane.add(btnAbestiAtzera);
         
         JButton btnAbestiAurrera = new JButton(">");
+        btnAbestiAurrera.setBounds(548, 366, 89, 23);
         btnAbestiAurrera.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 playerPodcast.next();
@@ -138,10 +130,10 @@ public class PodcastErreproduktoreBista extends JFrame {
 				} // Llamar a ateraInformazioa nuevamente
             }
         });
-        btnAbestiAurrera.setBounds(548, 366, 89, 23);
         contentPane.add(btnAbestiAurrera);
         
         JButton btnLike = new JButton("x1");
+        btnLike.setBounds(647, 366, 76, 23);
         btnLike.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(btnLike.getText()=="x1") {
@@ -154,13 +146,23 @@ public class PodcastErreproduktoreBista extends JFrame {
                 }
             }
         });
-        btnLike.setBounds(647, 366, 76, 23);
         contentPane.add(btnLike);
         
         lblDenbora = new JLabel("");
+        lblDenbora.setBounds(267, 342, 54, 14);
 		lblDenbora.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDenbora.setBounds(267, 342, 54, 14);
 		contentPane.add(lblDenbora);
+		
+		JButton btnAtzera = new JButton("ATZERA");
+		btnAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				playerPodcast.pause();
+                dispose();
+                BistakArgitaratu.PodcasterBistaJoan(podcaster, bz);
+			}
+		});
+		btnAtzera.setBounds(10, 11, 105, 23);
+		contentPane.add(btnAtzera);
 
 		timer = new Timer();
 		

@@ -118,7 +118,7 @@ public class ArtistaBista extends JFrame {
 
 							Album album = new Album();
 							album = albumak.get(i);
-							BistakArgitaratu.AlbumBistaJoan(bz, album);
+							BistakArgitaratu.AlbumBistaJoan(bz, album, artistaIzena, albumak);
 							dispose();
 							break;
 						} else {

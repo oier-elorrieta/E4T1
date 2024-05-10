@@ -85,7 +85,7 @@ public class PodcasterBista extends JFrame {
                
                  
                     if (selectedValue >= 0) {
-                        BistakArgitaratu.PodcastErreproduktoreraJoan(bz, selectedValue, podcastList);
+                        BistakArgitaratu.PodcastErreproduktoreraJoan(bz, selectedValue, podcastList,podcaster);
                         dispose();
                     } else {
                         System.out.println("Abestiaren izena ez da aurkitu.");

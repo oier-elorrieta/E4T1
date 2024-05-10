@@ -34,7 +34,7 @@ public class AlbumBista extends JFrame {
 	private DefaultListModel<String> model;
 	private List<Abesti> abestiak;
 
-	public AlbumBista(Bezero bz, Album album) throws SQLException {
+	public AlbumBista(Bezero bz, Album album, String artistaIzena, List<Album> albumak) throws SQLException {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 775, 633);
@@ -63,7 +63,7 @@ public class AlbumBista extends JFrame {
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 
-					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, listMusika.getSelectedIndex());
+					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, listMusika.getSelectedIndex(),artistaIzena,albumak);
 					dispose();
 
 				}
@@ -97,7 +97,7 @@ public class AlbumBista extends JFrame {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MenuJoan(bz);
+				BistakArgitaratu.ArtistaBistaJoan(artistaIzena,albumak, bz);
 				dispose();
 			}
 		});

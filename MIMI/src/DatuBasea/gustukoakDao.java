@@ -20,14 +20,7 @@ public class gustukoakDao {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
 
-						String idaudio = rs.getString("IdAudio");
-						String bezero = rs.getString("IdBezeroa");
-						System.out.println("no entra");
-						GustukoDelete(bz, idAudioLike);
 						ezabatuta = true;
-					}
-					if (ezabatuta == false) {
-						GustukoInsert(bz, idAudioLike);
 					}
 				}
 			}

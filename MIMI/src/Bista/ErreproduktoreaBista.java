@@ -74,7 +74,7 @@ public class ErreproduktoreaBista extends JFrame {
 
 	private Timer timer;
 
-	public ErreproduktoreaBista(Bezero bz, List<Abesti> abestiak, Album album, int index) throws SQLException {
+	public ErreproduktoreaBista(Bezero bz, List<Abesti> abestiak, Album album, int index, String artistaIzena, List<Album> albumak) throws SQLException {
 
 		setResizable(false);
 
@@ -118,7 +118,7 @@ public class ErreproduktoreaBista extends JFrame {
 
 		btnLike = new JButton("");
 
-		// Comprobar si la canción está en la lista de favoritos
+		idAudioLike = abestiak.get(Player.indizea).getId();
 
 		if (gustukoakDao.DagoEdoEz(bz, idAudioLike)) {
 
@@ -141,11 +141,11 @@ public class ErreproduktoreaBista extends JFrame {
 					if (gustukoakDao.DagoEdoEz(bz, idAudioLike) == true) {
 
 						btnLike.setText("  ❤️");
-
+						gustukoakDao.GustukoDelete(bz, idAudioLike);
 					} else {
 
 						btnLike.setText(" ❌ ");
-
+						gustukoakDao.GustukoInsert(bz, idAudioLike);
 					}
 
 				} catch (SQLException e1) {
@@ -172,7 +172,7 @@ public class ErreproduktoreaBista extends JFrame {
 
 				dispose();
 
-				BistakArgitaratu.AlbumBistaJoan(bz, album);
+				BistakArgitaratu.AlbumBistaJoan(bz, album,artistaIzena,albumak);
 
 			}
 

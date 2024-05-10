@@ -98,7 +98,7 @@ public class PodcastDeskubrituBista extends JFrame {
 						if(podcasterIzena.equals(podcasterList.get(i).getIzena())) {
 					        podcaster  = podcasterList.get(i);
 					        System.out.println(podcaster.toString());
-					        BistakArgitaratu.PodcasterBistaJoan(podcaster , bz);
+					        BistakArgitaratu.PodcasterBistaJoan(podcaster, bz);
 					        dispose();
 					   
 					        break;

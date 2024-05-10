@@ -119,17 +119,17 @@ public class BistakArgitaratu {
 		}
 	}
 
-	public static void AlbumBistaJoan(Bezero bz, Album album) {
+	public static void AlbumBistaJoan(Bezero bz, Album album, String artistaIzena, List<Album> albumak) {
 		try {
-			AlbumBista frame = new AlbumBista(bz,album);
+			AlbumBista frame = new AlbumBista(bz,album, artistaIzena, albumak);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public static void ErreproduktoreaBistaJoan(Bezero bz, List<Abesti> abestiak, Album album, int index) {
+	public static void ErreproduktoreaBistaJoan(Bezero bz, List<Abesti> abestiak, Album album, int index, String artistaIzena, List<Album> albumak) {
 		try {
-			ErreproduktoreaBista frame = new ErreproduktoreaBista(bz, abestiak, album, index);
+			ErreproduktoreaBista frame = new ErreproduktoreaBista(bz, abestiak, album, index,artistaIzena,albumak);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -147,9 +147,9 @@ public class BistakArgitaratu {
 		
 	}
 	
-	public static void PodcastErreproduktoreraJoan(Bezero bz, int selectedValue, List<Podcast> podcastak) {
+	public static void PodcastErreproduktoreraJoan(Bezero bz, int selectedValue, List<Podcast> podcastak, Podcaster podcaster) {
 		try {
-			PodcastErreproduktoreBista frame = new PodcastErreproduktoreBista(bz, selectedValue, podcastak);
+			PodcastErreproduktoreBista frame = new PodcastErreproduktoreBista(bz, selectedValue, podcastak,podcaster);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
