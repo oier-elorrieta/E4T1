@@ -184,18 +184,7 @@ public class ErreproduktoreaBista extends JFrame {
 
 		JButton btnProfila = new JButton(bz.getErabiltzaile());
 
-		btnProfila.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-				player.pause();
-
-				BistakArgitaratu.ProfilaBistaJoan(bz);
-
-
-			}
-
-		});
+		
 
 		btnProfila.setBounds(855, 11, 128, 23);
 
@@ -312,6 +301,19 @@ public class ErreproduktoreaBista extends JFrame {
 					dispose();
 
 				}
+
+			}
+
+		});
+		btnProfila.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				player.pause();
+				btnPlay.setText("Play");
+
+				BistakArgitaratu.ProfilaBistaJoan(bz);
+
 
 			}
 

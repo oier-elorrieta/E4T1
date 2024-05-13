@@ -61,12 +61,7 @@ public class PodcastErreproduktoreBista extends JFrame {
         
         JButton btnProfila = new JButton(bz.getErabiltzaile());
         btnProfila.setBounds(855, 11, 128, 23);
-        btnProfila.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                playerPodcast.pause();
-                BistakArgitaratu.ProfilaBistaJoan(bz);
-            }
-        });
+       
         contentPane.add(btnProfila);
         
         JLabel lblNewLabel = new JLabel("Podcast Erreproduktorea");
@@ -160,6 +155,14 @@ public class PodcastErreproduktoreBista extends JFrame {
                 BistakArgitaratu.PodcasterBistaJoan(podcaster, bz);
 			}
 		});
+		 btnProfila.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                playerPodcast.pause();
+	                btnPlay.setText("Play");
+	                BistakArgitaratu.ProfilaBistaJoan(bz);
+	            }
+	        });
+		
 		btnAtzera.setBounds(10, 11, 105, 23);
 		contentPane.add(btnAtzera);
 
