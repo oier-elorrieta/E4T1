@@ -130,5 +130,14 @@ public class ArtistaTest {
         assertEquals(expectedToStringa, abeslari.toString());
     }
  
+    
+    @Test
+    public void testToEquals() {
+        Abeslari abeslari = new Abeslari("1", "abeslari1", "Informazioa", null, null);
+        Abeslari abeslar2 = new Abeslari("1", "abeslari1", "Informazioa", null, null);
+
+     
+        assertEquals(abeslari, abeslar2);
+    }
 
 }

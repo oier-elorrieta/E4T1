@@ -7,6 +7,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.sql.Time;
+
 import Modelo.Abesti;
 import Modelo.Audio.Mota;
 
@@ -65,18 +68,22 @@ public class AbestiTest {
         assertEquals("Abesti2", abesti.getAbestiIzena());
     }
 
-//    @Test
-//    public void testGetIraupena() {
-//        Abesti abesti = new Abesti(null,115,null,Mota.abestia,null, "Abesti1", "Album1", "Kolaboratzaile1");
-//        assertEquals(3.5, abesti.getIraupena(), 0.001);
-//    }
-//
-//    @Test
-//    public void testSetIraupena() {
-//        Abesti abesti = new Abesti("0", null, 0.0, null, null);
-//        abesti.setIraupena(4.0);
-//        assertEquals(4.0, abesti.getIraupena(), 0.001);
-//    }
+    @Test
+    public void testGetIraupena() {
+        Time iraupena = new Time(1);
+        Abesti abesti = new Abesti("1", iraupena, null, Mota.abestia, "1", "Abesti1", "Album1", "Kolaboratzaile1");
+        assertEquals(iraupena, abesti.getIraupena());
+    }
+
+    @Test
+    public void testSetIraupena() {
+        Time iraupena = new Time(1);
+        Abesti abesti = new Abesti("1", null, null, Mota.abestia, "1", "Abesti1", "Album1", "Kolaboratzaile1");
+        abesti.setIraupena(iraupena);
+        assertEquals(iraupena, abesti.getIraupena());
+    
+
+    }
 
     @Test
     public void testGetAlbumIzena() {

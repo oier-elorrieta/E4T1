@@ -27,13 +27,13 @@ public class AlbumDaoTest {
 	    assertNotNull(abestiak);
 	    assertFalse(abestiak.isEmpty());
 	    
-	    System.out.println(abestiak.get(0).toString());
+	    Time iraupena = new Time(00,02,46);
 	   
 	    	assertEquals(abestiak.get(0).getId(),"XIAU3");
 	    	assertEquals(abestiak.get(0).getid_abesti(), "XIAU3");
 	    	assertEquals(abestiak.get(0).getMota(), Mota.abestia);
 	    	assertEquals(abestiak.get(0).getAbestiIzena(), "Azken Rokanrola");
-	    	assertEquals(abestiak.get(0).getIraupena(), abestiak.get(0).getIraupena());
+	    	assertEquals(abestiak.get(0).getIraupena(), iraupena);
 	    	assertEquals(abestiak.get(0).getKolaboratzaile(), null);
 	    
 	}

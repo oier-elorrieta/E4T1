@@ -116,25 +116,26 @@ public class AlbumTest {
 	}
 
 	@Test
-	public void testGetAlbumIraupena() {
-		Time duration = Time.valueOf("00:30:00");
+    public void testGetAlbumIraupena() {
+        Time iraupena = new Time(1);
+        Album album = new Album("Album_id", "Los del Rio Grandes Exitos", null, 10, "POP", "Id_DelRio",
+                "Antonio Romero Monge y Rafael Ruiz", iraupena);
 
-		Album album = new Album("Album_id", "Los del Rio Grandes Exitos", null, 10, "POP", "Id_DelRio",
-				"Antonio Romero Monge y Rafael Ruiz", duration);
+        assertEquals(iraupena, album.getAlbumIraupena());
+    
 
-		assertEquals(duration, album.getAlbumIraupena());
-	}
+    }
 
-	@Test
-	public void testSetAlbumIraupena() {
-		Time duration = Time.valueOf("00:30:00");
+    @Test
+    public void testSetAlbumIraupena() {
+        Time iraupena = new Time(1);
 
-		Album album = new Album("Album_id", "Los del Rio Grandes Exitos", null, 10, "POP", "Id_DelRio",
-				"Antonio Romero Monge y Rafael Ruiz", null);
+        Album album = new Album("Album_id", "Los del Rio Grandes Exitos", null, 10, "POP", "Id_DelRio",
+                "Antonio Romero Monge y Rafael Ruiz", null);
 
-		album.setAlbumIraupena(duration);
-		assertEquals(duration, album.getAlbumIraupena());
-	} 
+        album.setAlbumIraupena(iraupena);
+        assertEquals(iraupena, album.getAlbumIraupena());
+    }
 
 	@Test
 	public void testEquals() {

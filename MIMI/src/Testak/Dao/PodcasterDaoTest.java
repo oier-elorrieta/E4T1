@@ -47,11 +47,14 @@ public class PodcasterDaoTest {
 
 		assertNotNull(podcastTestDao);
 		assertFalse(podcastTestDao.isEmpty());
+		
+		Time time = new Time(0,7,25);
+		
 
 		// Salta el equals de todo el objeto a la vez
 			assertEquals(podcastTestDao.get(0).getId_Podcast(), "QMAU1");
 			assertEquals(podcastTestDao.get(0).getId(),"QMAU1");
-			assertEquals(podcastTestDao.get(0).getIraupena(), podcastTestDao.get(0).getIraupena());
+			assertEquals(podcastTestDao.get(0).getIraupena(),time);
 			assertEquals(podcastTestDao.get(0).getKolaboratzaile(), null);
 			assertEquals(podcastTestDao.get(0).getMota(), Mota.podcast);
 			assertEquals(podcastTestDao.get(0).getPodcast_izena(), "Odio a Taylor Swift");

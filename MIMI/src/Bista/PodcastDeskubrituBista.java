@@ -75,6 +75,7 @@ public class PodcastDeskubrituBista extends JFrame {
 		splitPane_1.setLeftComponent(btnAtzera);
 
 		JButton btnProfila = new JButton("PROFILA");
+		splitPane_1.setRightComponent(btnProfila);
 		btnProfila.setBounds(327, 10, 99, 29);
 		btnProfila.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
