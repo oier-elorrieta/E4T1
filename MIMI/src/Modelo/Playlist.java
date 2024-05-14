@@ -49,6 +49,10 @@ public class Playlist {
 
 	// ---------------- GETTERS eta SETTERS ---------------- //
 
+	public Playlist() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * 
 	 * Playlist-aren identifikazioa lortzen du.

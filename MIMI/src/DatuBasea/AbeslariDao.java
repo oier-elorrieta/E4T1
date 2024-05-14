@@ -12,22 +12,23 @@ import java.util.List;
 import Modelo.Abeslari;
 import Modelo.Abeslari.Mota;
 import Modelo.Album;
+import Modelo.Playlist;
 
 public class AbeslariDao {
 
 	public static List<Abeslari> musikariakAtera() {
 		List<Abeslari> musikariak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "SELECT * FROM Musikaria";
+			String kontsulta = "SELECT * FROM musikaria";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
 						Abeslari abeslari = new Abeslari();
-						String id = rs.getString("Idmusikaria");
-						String izenArtistikoa = rs.getString("IzenArtistikoa");
-						Blob irudia = rs.getBlob("Irudia");
-						String deskribapena = rs.getString("Deskribapena");
-						String Ezaugarria = rs.getString("Ezaugarria");
+						String id = rs.getString("idmusikaria");
+						String izenArtistikoa = rs.getString("izenartistikoa");
+						Blob irudia = rs.getBlob("irudia");
+						String deskribapena = rs.getString("deskribapena");
+						String Ezaugarria = rs.getString("ezaugarria");
 						abeslari.setId(id);
 						abeslari.setIzena(izenArtistikoa);
 						if (Ezaugarria.equals("bakarlaria")) {
@@ -53,19 +54,19 @@ public class AbeslariDao {
 		List<Album> albumak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
 
-			String kontsulta = "SELECT * FROM Album inner join Musikaria USING (Idmusikaria) WHERE idMusikaria = (SELECT Idmusikaria from Musikaria WHERE IzenArtistikoa like '"
+			String kontsulta = "SELECT * FROM album inner join musikaria USING (idmusikaria) WHERE idmusikaria = (SELECT idmusikaria from musikaria WHERE izenartistikoa like '"
 					+ artistaIzena + "');";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
 
-						String id = rs.getString("IdAlbum");
-						String izenburua = rs.getString("Izenburua");
+						String id = rs.getString("idalbum");
+						String izenburua = rs.getString("izenburua");
 						Date argitaratzea = rs.getDate("urtea");
 						String generoa = rs.getString("generoa");
-						String idmusikaria = rs.getString("Idmusikaria");
-						String kolaboratzaileak = rs.getString("Kolaboratzaileak");
-						Time albumIraupena = rs.getTime("Iraupena");
+						String idmusikaria = rs.getString("idmusikaria");
+						String kolaboratzaileak = rs.getString("kolaboratzaileak");
+						Time albumIraupena = rs.getTime("iraupena");
 						
 
 					
@@ -81,5 +82,29 @@ public class AbeslariDao {
 
 		return albumak;
 
+	}
+	
+	public static String AbeslariaAteraPlayList (Playlist playlist) {
+		
+		String abeslaria = "";
+		try (Connection con = Konexioa.konexioa()) {
+
+			String kontsulta = "select izenartistikoa FROM musikaria inner join album using (idmusikaria) inner join abestia USING(idalbum) inner join audio USING (idaudio) INNER join playlist_abestiak USING (idaudio) inner join playlist USING (idlist) where idlist ='" + playlist.getId() + "';";
+			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+				try (ResultSet rs = pstmt.executeQuery()) {
+					while (rs.next()) {
+						
+						abeslaria = rs.getString("izenartistikoa");
+				
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return abeslaria;
+	
+	
 	}
 }

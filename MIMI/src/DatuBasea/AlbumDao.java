@@ -20,18 +20,18 @@ public class AlbumDao {
 		List<Abesti> abestiak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
 			System.out.println(album);
-			String kontsulta = "SELECT * FROM Audio inner join Abestia USING (IdAudio) inner join Album USING (IdAlbum) WHERE Izenburua ='" + album + "';";
+			String kontsulta = "SELECT * FROM audio inner join abestia USING (idaudio) inner join album USING (idalbum) WHERE izenburua ='" + album + "';";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
 
-						Time argitaratzea = rs.getTime("Iraupena");
-						Blob irudia = rs.getBlob("Irudia");
+						Time argitaratzea = rs.getTime("iraupena");
+						Blob irudia = rs.getBlob("irudia");
 						String mota = rs.getString("mota");
-						String idAudio = rs.getString("IdAudio");
-						String abestiIzena = rs.getString("Izena");
-						String albumIzena = rs.getString("Izenburua");
-						String kolaboratzaile = rs.getString("Kolaboratzaileak");
+						String idAudio = rs.getString("idaudio");
+						String abestiIzena = rs.getString("izena");
+						String albumIzena = rs.getString("izenburua");
+						String kolaboratzaile = rs.getString("kolaboratzaileak");
 						
 						if(mota.equals("abestia")) {
 							Abesti abesti = new Abesti(idAudio,argitaratzea,irudia,Mota.abestia,idAudio,abestiIzena,albumIzena,kolaboratzaile);

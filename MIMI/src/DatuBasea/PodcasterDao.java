@@ -1,38 +1,22 @@
 package DatuBasea;
-
-
-
 import java.sql.Blob;
-
 import java.sql.Connection;
-
 import java.sql.Date;
-
 import java.sql.PreparedStatement;
-
 import java.sql.ResultSet;
-
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
-
 import java.util.List;
-
 import Modelo.Abeslari;
-
 import Modelo.Abeslari.Mota;
-
 import Modelo.Album;
 import Modelo.Audio;
 import Modelo.Podcast;
 
 import Modelo.Podcaster;
 
-
-
 public class PodcasterDao {
-
-
 
 	public static List<Podcaster> podcakasterAtera() {
 
@@ -40,7 +24,7 @@ public class PodcasterDao {
 
 		try (Connection con = Konexioa.konexioa()) {
 
-			String kontsulta = "SELECT * FROM Podcaster";
+			String kontsulta = "SELECT * FROM podcaster";
 
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 
@@ -49,27 +33,16 @@ public class PodcasterDao {
 					while (rs.next()) {
 
 						Podcaster podcaster = new Podcaster();
-
-						String id = rs.getString("IdPodcaster");
-
-						String izenArtistikoa = rs.getString("IzenArtistikoa");
-
-						Blob irudia = rs.getBlob("Irudia");
-
-						String deskribapena = rs.getString("Deskribapena");
-
+						String id = rs.getString("idpodcaster");
+						String izenArtistikoa = rs.getString("izenartistikoa");
+						Blob irudia = rs.getBlob("irudia");
+						String deskribapena = rs.getString("deskribapena");
 						podcaster.setId(id);
-
 						podcaster.setIzena(izenArtistikoa);
-
 						podcaster.setInfo(deskribapena);
-
 						podcaster.setIrudia(irudia);
-
 						podcasterList.add(podcaster);
-
 					}
-
 				}
 
 			}
@@ -80,13 +53,9 @@ public class PodcasterDao {
 
 		}
 
-
-
 		return podcasterList;
 
 	}
-
-
 
 	public static List<Podcast> podcastLortu(String podcasterIzena) {
 
@@ -94,10 +63,7 @@ public class PodcasterDao {
 
 		try (Connection con = Konexioa.konexioa()) {
 
-
-
-			String kontsulta = "select * from Audio inner join Podcast using(idAudio) inner join Podcaster using (idPodcaster) where IzenArtistikoa = '"
-
+			String kontsulta = "select * from audio inner join podcast using(idaudio) inner join podcaster using (idpodcaster) where izenartistikoa = '"
 					+ podcasterIzena + "';";
 
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
@@ -106,46 +72,25 @@ public class PodcasterDao {
 
 					while (rs.next()) {
 
-
-						String IdAudio = rs.getString("IdAudio");
-						
+						String IdAudio = rs.getString("idaudio");
 						String podcast_izena = rs.getString("izena");
+						String kolaboratzaileak = rs.getString("kolaboratzaileak");
+						Time iraupena = rs.getTime("iraupena");			
+						Blob Irudia = rs.getBlob("irudia");
 
-						String kolaboratzaileak = rs.getString("Kolaboratzaileak");
+						Podcast pod = new Podcast(IdAudio, iraupena, Irudia, Audio.Mota.podcast, IdAudio, podcast_izena,
+								kolaboratzaileak);
 
-						Time iraupena = rs.getTime("Iraupena");;
-						
-						Blob Irudia = rs.getBlob("Irudia");
-						
-						
-			
-					
-						Podcast pod = new  Podcast(IdAudio,iraupena, Irudia, Audio.Mota.podcast, IdAudio,podcast_izena, kolaboratzaileak);
-					
-						
-						
-
-
-
-					podcast.add(pod);
-
+						podcast.add(pod);
 					}
-
 				}
-
 			}
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-
 		}
-
-
-
 		return podcast;
-
-
 
 	}
 

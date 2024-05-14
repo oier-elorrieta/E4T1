@@ -94,7 +94,7 @@ public class MenuaBista extends JFrame {
 		JButton btnNirePlay = new JButton("Nire PlayList-ak");
 		btnNirePlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.PlaylistBistaraJoan(bz);
+				BistakArgitaratu.NirePlaylistBistaraJoan(bz);
 				dispose();
 			}
 		});

@@ -9,7 +9,8 @@ import Bista.ErreproduktoreaBista;
 import Bista.LoginBista;
 import Bista.MenuaBista;
 import Bista.MusikaDeskubrituBista;
-import Bista.PlaylistBista;
+import Bista.NirePlaylistBista;
+//import Bista.PlaylistAbestiakBista;
 import Bista.PodcastDeskubrituBista;
 import Bista.PodcastErreproduktoreBista;
 import Bista.PodcasterBista;
@@ -17,6 +18,7 @@ import Bista.ProfilaBista;
 import Modelo.Abesti;
 import Modelo.Album;
 import Modelo.Bezero;
+import Modelo.Playlist;
 import Modelo.Podcast;
 import Modelo.Podcaster;
 
@@ -148,9 +150,9 @@ public class BistakArgitaratu {
 	}
 	
 
-	public static void PlaylistBistaraJoan(Bezero bz) {
+	public static void NirePlaylistBistaraJoan(Bezero bz) {
 		try {
-			PlaylistBista frame = new PlaylistBista(bz);
+			NirePlaylistBista frame = new NirePlaylistBista(bz);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -166,4 +168,14 @@ public class BistakArgitaratu {
 			e.printStackTrace();
 		}
 	}
+	
+//	public static void PlaylistAbestiraJoan(Bezero bz, Playlist playlist) {
+//		try {
+//			PlaylistAbestiakBista frame = new PlaylistAbestiakBista(bz, playlist);
+//			frame.setVisible(true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
 }

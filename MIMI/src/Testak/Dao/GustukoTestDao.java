@@ -44,17 +44,26 @@ public class GustukoTestDao {
 	
 	
 	@Test
-	public void testGustukoZerrendaBegiratu() throws SQLException {
+	public void testGustukoZerrendaBegiratuTrue() throws SQLException {
+		
+		Bezero bz1 = new Bezero("BZ002", null, null, null, null, null, null, null, null, null);
+		
+		
+		String abs2 = "TSAU2";
+				
+		assertTrue(gustukoakDao.DagoEdoEz(bz1,abs2));
+	}
+	@Test
+	public void testGustukoZerrendaBegiratuFalse() throws SQLException {
 		
 		Bezero bz1 = new Bezero("BZ002", null, null, null, null, null, null, null, null, null);
 		
 		String abs1 = "TSAU3";
 		
-		String abs2 = "TSAU2";
 		
 		assertFalse(gustukoakDao.DagoEdoEz(bz1, abs1));
 		
-		assertTrue(gustukoakDao.DagoEdoEz(bz1,abs2));
+		
 	}
 
 	

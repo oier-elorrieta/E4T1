@@ -32,15 +32,14 @@ public class AbeslariDaoTest {
 	    List<Abeslari> musikariak = AbeslariDao.musikariakAtera();
 	    
 	    // musikariak ez direla nuluek eta hutsik ez daudela egiaztatu.
-	    assertNotNull(musikariak);
-	    assertFalse(musikariak.isEmpty());
+		assertNotNull(musikariak);
+		assertFalse(musikariak.isEmpty());
 	    //Salta el equals de todo el objeto a la vez
 	    	assertEquals(musikariak.get(0).getIzena(), "Bulego");
 	    	assertEquals(musikariak.get(0).getId(),"BUL01");
 	    	assertEquals(musikariak.get(0).getInfo(),"Euskal Herriko indie musika eskenean kokatzen den taldea da. Bere soinuak elektronika eta rock estiloak uztartzen ditu, eta testuak gehienbat euskara daude. Bulegok, gai sozial eta politikoak jorratzen dituen kantak egin ditu, eta musika-ekintza sozial gisa ere jarduten du, bertako komunitatearekin harreman zuzenak izateko ahaleginak eginez. Taldeak modernotasun eta tradizioak batzen ditu, eta euren musikak euskal kulturaren eta gizarteko errealitatearen ardatz nagusiak hartzen ditu.");
 	    	assertEquals(musikariak.get(0).getMota(),Mota.Taldea);
-	    	//assertEquals(musikariak.get(i).getIrudia(), musikariakTest.get(i).getIrudia());
-	    // lortuAreatoakTEST() metodoaren emaitzak eta AbeslariDao-rena berdina direla egiaztatu.
+	    	
 	}
 
 	@Test

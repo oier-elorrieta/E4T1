@@ -51,10 +51,11 @@ public class ErregistroBista extends JFrame {
 	private PremiumBezeroa berriaPre;
 	private JButton btnErosi;
 	private JButton btnGorde;
+	private String Erabil;
 	LocalDate premiumMuga = LocalDate.now().plusYears(1);
-	
+
 	public ErregistroBista() {
-	
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 864, 694);
@@ -138,7 +139,7 @@ public class ErregistroBista extends JFrame {
 		txtErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				denaBeteta();
-				
+
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, txtErabiltzaile, 30, SpringLayout.SOUTH, txtIzena);
@@ -206,7 +207,7 @@ public class ErregistroBista extends JFrame {
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 
 		Calendar today = Calendar.getInstance();
-        today.add(Calendar.YEAR, -14); // Gutxienez 14 urte eduki behar ditu
+		today.add(Calendar.YEAR, -14); // Gutxienez 14 urte eduki behar ditu
 		model.setDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
 		model.setSelected(true);
 		datePanel.getModel().setSelected(true);
@@ -246,8 +247,6 @@ public class ErregistroBista extends JFrame {
 		lblErregistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		getContentPane().add(lblErregistro);
 
-		
-
 		txtErregistro = new JTextField(LocalDate.now().format(DateFuntzioak.LocalDateFormatua()));
 		txtErregistro.setEditable(false);
 		springLayout.putConstraint(SpringLayout.NORTH, txtErregistro, 418, SpringLayout.NORTH, getContentPane());
@@ -264,7 +263,6 @@ public class ErregistroBista extends JFrame {
 		lblPremium.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		getContentPane().add(lblPremium);
 
-	
 		txtPremium = new JTextField(premiumMuga.format(DateFuntzioak.LocalDateFormatua()));
 		txtPremium.setEditable(false);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtErregistro, -37, SpringLayout.NORTH, txtPremium);
@@ -306,25 +304,28 @@ public class ErregistroBista extends JFrame {
 		btnGorde.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
+				Erabil = txtErabiltzaile.getText();
 
 				erregistroBezero = new FreeBezero();
-				
-				
-				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true && BezeroDao.Bezeroaexistitu(txtErabiltzaile) == true) {
 
-				ErregistratuF.sortuBezeroa(erregistroBezero, txtIzena, txtAbizena, txtErabiltzaile, pasahitzaPass,
-						selectDate, txtErregistro, AukeratuHizkuntza);
+				if (ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true
+						&& BezeroDao.Bezeroaexistitu(Erabil) == true) {
 
-				try {
-					BezeroDao.InsertFree(erregistroBezero);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+					ErregistratuF.sortuBezeroa(erregistroBezero, txtIzena, txtAbizena, txtErabiltzaile, pasahitzaPass,
+							selectDate, txtErregistro, AukeratuHizkuntza);
+
+					try {
+						BezeroDao.InsertFree(erregistroBezero);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+
+					BistakArgitaratu.loginJoan();
+					dispose();
+				} else {
+					txtErabiltzaile.setText("");
+
 				}
-
-				BistakArgitaratu.loginJoan();
-				dispose();
-			}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnGorde, -52, SpringLayout.SOUTH, getContentPane());
@@ -337,24 +338,24 @@ public class ErregistroBista extends JFrame {
 		btnErosi.setEnabled(false);
 		btnErosi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				Erabil = txtErabiltzaile.getText();
 				berriaPre = new PremiumBezeroa();
-				
-				
-				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true && BezeroDao.Bezeroaexistitu(txtErabiltzaile) == true) {
 
-				ErregistratuF.PremiumErosi(premiumMuga, txtIzena, txtAbizena, txtErabiltzaile,
-						pasahitzaPass, selectDate, txtErregistro, AukeratuHizkuntza, berriaPre);
+				if (ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true
+						&& BezeroDao.Bezeroaexistitu(Erabil) == true) {
 
-				try {
-					BezeroDao.InsertPremium(berriaPre);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+					ErregistratuF.PremiumErosi(premiumMuga, txtIzena, txtAbizena, txtErabiltzaile, pasahitzaPass,
+							selectDate, txtErregistro, AukeratuHizkuntza, berriaPre);
+
+					try {
+						BezeroDao.InsertPremium(berriaPre);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+
+					BistakArgitaratu.loginJoan();
+					dispose();
 				}
-
-				BistakArgitaratu.loginJoan();
-				dispose();
-			}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnErosi, 0, SpringLayout.NORTH, btnGorde);

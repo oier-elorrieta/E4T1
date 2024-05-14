@@ -38,16 +38,16 @@ public class BezeroDao {
 		boolean loginOK = false;
 
 		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "select * from Bezeroa";
+			String kontsulta = "select * from bezeroa";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
 						String erabiltzaileaDB = rs.getString("erabiltzailea");
 						String pasahitzaDB = rs.getString("pasahitza");
-						String id_bezero = rs.getString("IdBezeroa");
+						String id_bezero = rs.getString("idbezeroa");
 						String mota = rs.getString("mota");
-						String izena = rs.getString("Izena");
-						String abizena = rs.getString("Abizena");
+						String izena = rs.getString("izena");
+						String abizena = rs.getString("abizena");
 							Bezero bz = new Bezero(id_bezero, izena, abizena, erabiltzaileaDB, pasahitzaDB, null, null, null, mota, null);
 
 					
@@ -82,7 +82,7 @@ public class BezeroDao {
 		String[] hiz = null;
 		int cont = 0;
 		try (Connection con = Konexioa.konexioa()) {
-			String countSql = "SELECT COUNT(*) AS total FROM Hizkuntza";
+			String countSql = "SELECT COUNT(*) AS total FROM hizkuntza";
 			try (PreparedStatement sta = con.prepareStatement(countSql)) {
 				try (ResultSet res = sta.executeQuery()) {
 					if (res.next()) {
@@ -93,12 +93,12 @@ public class BezeroDao {
 
 			hiz = new String[cont];
 
-			String kontsulta = "SELECT idHizkuntza FROM Hizkuntza";
+			String kontsulta = "SELECT idhizkuntza FROM hizkuntza";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					int index = 0;
 					while (rs.next()) {
-						String id = rs.getString("idHizkuntza");
+						String id = rs.getString("idhizkuntza");
 
 						hiz[index] = id;
 						index++;
@@ -123,7 +123,7 @@ public class BezeroDao {
 		String idberria = "";
 		try (Connection con = Konexioa.konexioa()) {
 
-			String kontsulta = "select idBezeroa from Bezeroa order by idBezeroa desc limit 1";
+			String kontsulta = "select idbezeroa from bezeroa order by idbezeroa desc limit 1";
 
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 
@@ -131,7 +131,7 @@ public class BezeroDao {
 
 					while (rs.next()) {
 
-						String id = rs.getString("idBezeroa");
+						String id = rs.getString("idbezeroa");
 
 						String zenbakiaStr = id.substring(2);
 						int zbk = Integer.parseInt(zenbakiaStr);
@@ -165,7 +165,7 @@ public class BezeroDao {
 
 		try (Connection con = Konexioa.konexioa()) {
 
-			String insert = "insert into Bezeroa (IdBezeroa, Izena, Abizena, Hizkuntza, erabiltzailea, pasahitza, jaiotzedata, Erregistrodata, mota) values (?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into bezeroa (idbezeroa, izena, abizena, hizkuntza, erabiltzailea, pasahitza, jaiotzedata, erregistrodata, mota) values (?,?,?,?,?,?,?,?,?)";
 
 			try {
 				PreparedStatement preparedStatement = con.prepareStatement(insert);
@@ -207,7 +207,7 @@ public class BezeroDao {
 
 		try (Connection con = Konexioa.konexioa()) {
 
-			String insert = "insert into Bezeroa (IdBezeroa, Izena, Abizena, Hizkuntza, erabiltzailea, pasahitza, jaiotzedata, Erregistrodata, mota) values (?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into bezeroa (idbezeroa, izena, abizena, hizkuntza, erabiltzailea, pasahitza, jaiotzedata, erregistrodata, mota) values (?,?,?,?,?,?,?,?,?)";
 
 			try {
 				PreparedStatement preparedStatement = con.prepareStatement(insert);
@@ -246,7 +246,7 @@ public class BezeroDao {
 
 		try (Connection con = Konexioa.konexioa()) {
 
-			String Premiumtabla = "insert into premium (IdBezeroa,iraungitzedata) values (?,?)";
+			String Premiumtabla = "insert into premium (idbezeroa,iraungitzedata) values (?,?)";
 
 			try {
 				PreparedStatement preparedStatement = con.prepareStatement(Premiumtabla);
@@ -274,7 +274,7 @@ public class BezeroDao {
 			String pasa = textPasahitza.getText();
 
 
-			String update = "Update Bezeroa set izena='" + izena + "', Abizena='" + abizena + "', erabiltzailea='" + erabil + "', pasahitza='" + pasa +"' where IdBezeroa='" + bz.getId() + "';" ;
+			String update = "Update bezeroa set izena='" + izena + "', abizena='" + abizena + "', erabiltzailea='" + erabil + "', pasahitza='" + pasa +"' where idbezeroa='" + bz.getId() + "';" ;
 
 	
 			try {
@@ -302,7 +302,7 @@ public class BezeroDao {
 
 
 
-			String update = "Update Bezeroa set mota = 'premium' where IdBezeroa ='" + bz.getId() + "';";
+			String update = "update bezeroa set mota = 'premium' where idbezeroa ='" + bz.getId() + "';";
 
 
 
@@ -349,7 +349,7 @@ public static boolean BezeroaPremiumEdoEz (Bezero bz) {
 	boolean dago = false;
 	try (Connection con = Konexioa.konexioa()) {
 
-		String kontsulta = "select idBezeroa from premium where IdBezeroa = '" + bz.getId() +  "';";
+		String kontsulta = "select idbezeroa from premium where idbezeroa = '" + bz.getId() +  "';";
 
 		try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 
@@ -376,13 +376,13 @@ public static boolean BezeroaPremiumEdoEz (Bezero bz) {
 }
 
 
-public static boolean Bezeroaexistitu (JTextField txtErabiltzaile) {
+public static boolean Bezeroaexistitu (String Erabil) {
 	
 	
 	boolean dago = true;
 	try (Connection con = Konexioa.konexioa()) {
 
-		String kontsulta = "select erabiltzailea from Bezeroa where erabiltzailea = '" + txtErabiltzaile.getText()  +  "';";
+		String kontsulta = "select erabiltzailea from bezeroa where erabiltzailea = '" + Erabil  +  "';";
 
 		try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 
@@ -390,8 +390,8 @@ public static boolean Bezeroaexistitu (JTextField txtErabiltzaile) {
 
 				while (rs.next()) {
 					
-					JOptionPane.showMessageDialog(null, txtErabiltzaile.getText() + " existitzen da");
-					txtErabiltzaile.setText("");
+					JOptionPane.showMessageDialog(null, Erabil + " existitzen da");
+				
 					 dago = false;
 
 				}

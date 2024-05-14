@@ -14,7 +14,7 @@ public class gustukoakDao {
 	public static boolean DagoEdoEz(Bezero bz, String idAudioLike) throws SQLException {
 		boolean ezabatuta = false;
 		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "SELECT * from gustukoak where IdAudio = '" + idAudioLike + "' and IdBezeroa = '"
+			String kontsulta = "SELECT * from gustukoak where idaudio = '" + idAudioLike + "' and idbezeroa = '"
 					+ bz.getId() + "';";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
@@ -34,7 +34,7 @@ public class gustukoakDao {
 
 		try (Connection con = Konexioa.konexioa()) {
 
-			String insert = "insert into gustukoak (IdBezeroa, IdAudio) values (?,?)";
+			String insert = "insert into gustukoak (idbezeroa, idaudio) values (?,?)";
 
 			try {
 				PreparedStatement preparedStatement = con.prepareStatement(insert);
@@ -62,7 +62,7 @@ public class gustukoakDao {
 
 		try (Connection con = Konexioa.konexioa()) {
 
-			String delete = "Delete from gustukoak where IdAudio ='" + idAudioLike + "' and IdBezeroa = '" + bz.getId()
+			String delete = "Delete from gustukoak where idaudio ='" + idAudioLike + "' and idbezeroa = '" + bz.getId()
 					+ "';";
 
 			try {
