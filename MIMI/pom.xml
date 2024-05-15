@@ -6,7 +6,6 @@
 	<artifactId>MIMI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
-		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -18,7 +17,6 @@
 	        <artifactId>jdatepicker</artifactId>
 	        <version>1.3.4</version>
     	</dependency>
-    	
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -33,9 +31,9 @@
 		</plugins>
 		<resources>
             <resource>
-                <directory>src</directory>
+                <directory>src/media/img</directory>
                 <includes>
-                    <include>img/*.png</include>
+                    <include>*.png</include>
                 </includes>
             </resource>
         </resources>

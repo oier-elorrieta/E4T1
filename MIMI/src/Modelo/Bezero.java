@@ -1,14 +1,14 @@
 
 package Modelo;
 
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * Klasea Bezero bat ordezkatzen du, erabiltzailea bezala.
  */
-public  abstract class Bezero  {
+public class Bezero  {
     protected String id;
     protected String izena;
     protected String abizena;
@@ -16,9 +16,9 @@ public  abstract class Bezero  {
     protected String pasahitza;
     protected String jaioData;
     protected String erregisData;
-    protected ArrayList<Abesti> playArray;
+    protected ArrayList<Playlist> playArray;
     protected String mota;
-	protected String hizkuntza;
+    protected String hizkuntza;
 
     //---------------- ERAIKITZAILEA ---------------- //
 
@@ -34,7 +34,7 @@ public  abstract class Bezero  {
      * @param erregisData  Bezeroaren erregisData.
      * @param playArray    Bezeroaren abesti lista.
      */
-    public Bezero(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData, String erregisData, ArrayList<Abesti> playArray, String mota, String hizkuntza) {
+    public Bezero(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData, String erregisData, ArrayList<Playlist> playArray, String mota, String hizkuntza) {
         this.id = id;
         this.izena = izena;
         this.abizena = abizena;
@@ -202,17 +202,17 @@ public  abstract class Bezero  {
      *
      * @return Bezeroaren abesti lista.
      */
-    public ArrayList<Abesti> getPlayArray() {
+    public ArrayList<Playlist> getPlayArray() {
         return playArray;
     }
 
     /**
      * Bezeroaren abesti lista ezartzen du.
      *
-     * @param playArray Bezeroaren abesti lista.
+     * @param playlistArray Bezeroaren abesti lista.
      */
-    public void setPlayArray(ArrayList<Abesti> playArray) {
-        this.playArray = playArray;
+    public void setPlayArray(ArrayList<Playlist> playlistArray) {
+        this.playArray = playlistArray;
     }
     
     /**
@@ -233,19 +233,20 @@ public  abstract class Bezero  {
     }
 
     //---------------- ToString ---------------- //
-
-    /**
-     * Bezeroaren errepresentazio katea itzultzen du.
-     *
-     * @return Bezeroaren errepresentazio katea.
-     */
-    @Override
+    
+	@Override
 	public String toString() {
 		return "Bezero [id=" + id + ", izena=" + izena + ", abizena=" + abizena + ", erabiltzaile=" + erabiltzaile
 				+ ", pasahitza=" + pasahitza + ", jaioData=" + jaioData + ", erregisData=" + erregisData
 				+ ", playArray=" + playArray + ", mota=" + mota + ", hizkuntza=" + hizkuntza + "]";
 	}
 
+    /**
+     * Bezeroaren errepresentazio katea itzultzen du.
+     *
+     * @return Bezeroaren errepresentazio katea.
+     */
+	
     //---------------- EQUALS ---------------- //
 
     
@@ -273,6 +274,10 @@ public  abstract class Bezero  {
 				&& Objects.equals(mota, other.mota) && Objects.equals(pasahitza, other.pasahitza)
 				&& Objects.equals(playArray, other.playArray);
 	}
+
+
+
+
 
 	
 }

@@ -49,6 +49,10 @@ public class Playlist {
 
 	// ---------------- GETTERS eta SETTERS ---------------- //
 
+	public Playlist() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * 
 	 * Playlist-aren identifikazioa lortzen du.
@@ -140,13 +144,9 @@ public class Playlist {
 	 *
 	 * @return Playlist-aren errepresentazio katea.
 	 */
-
 	@Override
-
 	public String toString() {
-
 		return "Playlist [id=" + id + ", izena=" + izena + ", abestiList=" + abestiList + "]";
-
 	}
 
 	// ---------------- EQUALS ---------------- //
@@ -183,6 +183,8 @@ public class Playlist {
 		return Objects.equals(abestiList, other.abestiList) && id == other.id && Objects.equals(izena, other.izena);
 
 	}
+
+
 
 }
 

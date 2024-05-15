@@ -9,9 +9,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Modelo.Bezero;
 import Modelo.FreeBezero;
 import Modelo.PremiumBezeroa;
 import funtzioak.BistakArgitaratu;
+import funtzioak.DateFuntzioak;
 import funtzioak.ErregistratuF;
 
 public class BezeroDao {
@@ -31,32 +33,34 @@ public class BezeroDao {
 	 *                               JPasswordField objektua.
 	 * @throws SQLException SQL errore bat gertatzen bada.
 	 */
-	public static void LoginKomprobatu(JTextField textFieldErabiltzailea, JPasswordField passwordFieldPasahitza)
+	public static boolean LoginKomprobatu(String erabiltzailea , String pasahitza)
 			throws SQLException {
 		boolean loginOK = false;
 
-		String erabiltzailea = textFieldErabiltzailea.getText();
-		String pasahitza = new String(passwordFieldPasahitza.getPassword());
-
 		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "select erabiltzailea,pasahitza from Bezeroa";
+			String kontsulta = "select * from bezeroa";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
 						String erabiltzaileaDB = rs.getString("erabiltzailea");
 						String pasahitzaDB = rs.getString("pasahitza");
+						String id_bezero = rs.getString("idbezeroa");
+						String mota = rs.getString("mota");
+						String izena = rs.getString("izena");
+						String abizena = rs.getString("abizena");
+							Bezero bz = new Bezero(id_bezero, izena, abizena, erabiltzaileaDB, pasahitzaDB, null, null, null, mota, null);
+
+					
 
 						if (erabiltzailea.equals(erabiltzaileaDB) && pasahitza.equals(pasahitzaDB)) {
 							loginOK = true;
 							JOptionPane.showMessageDialog(null, "Sesioa hasi da modu egokian");
-							BistakArgitaratu.MenuJoan();
-
+							BistakArgitaratu.MenuJoan(bz);
+							
 						}
 					}
 					if (loginOK == false) {
 						JOptionPane.showMessageDialog(null, "Erabiltzailea edo pasahitza txarto idatzi dituzu");
-						textFieldErabiltzailea.setText("");
-						passwordFieldPasahitza.setText("");
 
 					}
 
@@ -65,7 +69,7 @@ public class BezeroDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		return loginOK;
 	}
 
 	/**
@@ -78,7 +82,7 @@ public class BezeroDao {
 		String[] hiz = null;
 		int cont = 0;
 		try (Connection con = Konexioa.konexioa()) {
-			String countSql = "SELECT COUNT(*) AS total FROM Hizkuntza";
+			String countSql = "SELECT COUNT(*) AS total FROM hizkuntza";
 			try (PreparedStatement sta = con.prepareStatement(countSql)) {
 				try (ResultSet res = sta.executeQuery()) {
 					if (res.next()) {
@@ -89,12 +93,12 @@ public class BezeroDao {
 
 			hiz = new String[cont];
 
-			String kontsulta = "SELECT idHizkuntza FROM Hizkuntza";
+			String kontsulta = "SELECT idhizkuntza FROM hizkuntza";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					int index = 0;
 					while (rs.next()) {
-						String id = rs.getString("idHizkuntza");
+						String id = rs.getString("idhizkuntza");
 
 						hiz[index] = id;
 						index++;
@@ -119,7 +123,7 @@ public class BezeroDao {
 		String idberria = "";
 		try (Connection con = Konexioa.konexioa()) {
 
-			String kontsulta = "select idBezeroa from Bezeroa order by idBezeroa desc limit 1";
+			String kontsulta = "select idbezeroa from bezeroa order by idbezeroa desc limit 1";
 
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 
@@ -127,7 +131,7 @@ public class BezeroDao {
 
 					while (rs.next()) {
 
-						String id = rs.getString("idBezeroa");
+						String id = rs.getString("idbezeroa");
 
 						String zenbakiaStr = id.substring(2);
 						int zbk = Integer.parseInt(zenbakiaStr);
@@ -161,7 +165,7 @@ public class BezeroDao {
 
 		try (Connection con = Konexioa.konexioa()) {
 
-			String insert = "insert into Bezeroa (IdBezeroa, Izena, Abizena, Hizkuntza, erabiltzailea, pasahitza, jaiotzedata, Erregistrodata, mota) values (?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into bezeroa (idbezeroa, izena, abizena, hizkuntza, erabiltzailea, pasahitza, jaiotzedata, erregistrodata, mota) values (?,?,?,?,?,?,?,?,?)";
 
 			try {
 				PreparedStatement preparedStatement = con.prepareStatement(insert);
@@ -172,9 +176,9 @@ public class BezeroDao {
 				preparedStatement.setString(5, erregistroBezero.getErabiltzaile());
 				preparedStatement.setString(6, erregistroBezero.getPasahitza());
 				preparedStatement.setDate(7,
-						new java.sql.Date(ErregistratuF.StringtoDate(erregistroBezero.getJaioData()).getTime()));
+						new java.sql.Date(DateFuntzioak.StringtoDate(erregistroBezero.getJaioData()).getTime()));
 				preparedStatement.setDate(8,
-						new java.sql.Date(ErregistratuF.StringtoDate(erregistroBezero.getErregisData()).getTime()));
+						new java.sql.Date(DateFuntzioak.StringtoDate(erregistroBezero.getErregisData()).getTime()));
 				preparedStatement.setString(9, erregistroBezero.getMota());
 
 				preparedStatement.executeUpdate();
@@ -203,7 +207,7 @@ public class BezeroDao {
 
 		try (Connection con = Konexioa.konexioa()) {
 
-			String insert = "insert into Bezeroa (IdBezeroa, Izena, Abizena, Hizkuntza, erabiltzailea, pasahitza, jaiotzedata, Erregistrodata, mota) values (?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into bezeroa (idbezeroa, izena, abizena, hizkuntza, erabiltzailea, pasahitza, jaiotzedata, erregistrodata, mota) values (?,?,?,?,?,?,?,?,?)";
 
 			try {
 				PreparedStatement preparedStatement = con.prepareStatement(insert);
@@ -214,9 +218,9 @@ public class BezeroDao {
 				preparedStatement.setString(5, berriaPre.getErabiltzaile());
 				preparedStatement.setString(6, berriaPre.getPasahitza());
 				preparedStatement.setDate(7,
-						new java.sql.Date(ErregistratuF.StringtoDate(berriaPre.getJaioData()).getTime()));
+						new java.sql.Date(DateFuntzioak.StringtoDate(berriaPre.getJaioData()).getTime()));
 				preparedStatement.setDate(8,
-						new java.sql.Date(ErregistratuF.StringtoDate(berriaPre.getErregisData()).getTime()));
+						new java.sql.Date(DateFuntzioak.StringtoDate(berriaPre.getErregisData()).getTime()));
 				preparedStatement.setString(9, berriaPre.getMota());
 
 				preparedStatement.executeUpdate();
@@ -242,13 +246,13 @@ public class BezeroDao {
 
 		try (Connection con = Konexioa.konexioa()) {
 
-			String Premiumtabla = "insert into premium (IdBezeroa,iraungitzedata) values (?,?)";
+			String Premiumtabla = "insert into premium (idbezeroa,iraungitzedata) values (?,?)";
 
 			try {
 				PreparedStatement preparedStatement = con.prepareStatement(Premiumtabla);
 				preparedStatement.setString(1, berriaPre.getId());
 				preparedStatement.setDate(2,
-						new java.sql.Date(ErregistratuF.StringtoDate(berriaPre.getPremiumMuga()).getTime()));
+						new java.sql.Date(DateFuntzioak.StringtoDate(berriaPre.getPremiumMuga()).getTime()));
 
 				preparedStatement.executeUpdate();
 
@@ -259,5 +263,146 @@ public class BezeroDao {
 		}
 
 	}
+	
+	public static void BezeroUpdate(Bezero bz, JTextField textIzena, JTextField textAbizena, JTextField textErabiltzalea, JPasswordField textPasahitza) throws SQLException {
+		
+		try (Connection con = Konexioa.konexioa()) {
+			
+			String izena = textIzena.getText();
+			String abizena = textAbizena.getText();
+			String erabil = textErabiltzalea.getText();
+			String pasa = textPasahitza.getText();
+
+
+			String update = "Update bezeroa set izena='" + izena + "', abizena='" + abizena + "', erabiltzailea='" + erabil + "', pasahitza='" + pasa +"' where idbezeroa='" + bz.getId() + "';" ;
+
+	
+			try {
+				PreparedStatement preparedStatement = con.prepareStatement(update);
+			
+
+				preparedStatement.executeUpdate();
+
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+
+		} catch (SQLException e1) {
+		
+			e1.printStackTrace();
+		}
+	}
+	
+	
+	public static Bezero BezeroUpdatePremium(Bezero bz) {
+
+
+
+		try (Connection con = Konexioa.konexioa()) {
+
+
+
+			String update = "update bezeroa set mota = 'premium' where idbezeroa ='" + bz.getId() + "';";
+
+
+
+			try {
+
+				PreparedStatement preparedStatement = con.prepareStatement(update);
+
+
+
+				preparedStatement.executeUpdate();
+
+
+
+				JOptionPane.showMessageDialog(null, "Orain urte bat premium duzu");
+
+
+
+				bz.setMota("premium");
+
+			} catch (SQLException e) {
+
+				System.out.println(e.getMessage());
+
+			}
+
+
+
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+
+		}
+
+
+
+		return bz;
+
+
+
+	}
+
+public static boolean BezeroaPremiumEdoEz (Bezero bz) {
+	
+	boolean dago = false;
+	try (Connection con = Konexioa.konexioa()) {
+
+		String kontsulta = "select idbezeroa from premium where idbezeroa = '" + bz.getId() +  "';";
+
+		try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				while (rs.next()) {
+					
+					JOptionPane.showMessageDialog(null, bz.getErabiltzaile() + " itzaron behar duzu hurrengo urterarte");
+					 dago = true;
+
+				}
+				if (dago == false) {
+					BezeroUpdatePremium (bz);
+				}
+
+			}
+
+		}
+	} catch (SQLException e) {
+		System.out.println(e.getMessage());
+	}
+	return true;
+	
+}
+
+
+public static boolean Bezeroaexistitu (String Erabil) {
+	
+	
+	boolean dago = true;
+	try (Connection con = Konexioa.konexioa()) {
+
+		String kontsulta = "select erabiltzailea from bezeroa where erabiltzailea = '" + Erabil  +  "';";
+
+		try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				while (rs.next()) {
+					
+					JOptionPane.showMessageDialog(null, Erabil + " existitzen da");
+				
+					 dago = false;
+
+				}
+
+			}
+
+		}
+	} catch (SQLException e) {
+		System.out.println(e.getMessage());
+	}
+	return dago;
+}
 
 }

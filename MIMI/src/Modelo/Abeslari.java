@@ -1,5 +1,7 @@
 package Modelo;
 
+import com.mysql.cj.jdbc.Blob;
+
 /**
  * 
  * Abeslari bat ordezkatzen duen klasea, artista motako bat da.
@@ -18,20 +20,25 @@ public class Abeslari extends Artista {
 
 	// ---------------- ERAIKITZAILEA ---------------- //
 
+	public Abeslari(){
+
+	}
+	
+	
 	/**
 	 * 
 	 * Abeslariaren klaseko eraikitzailea.
 	 * 
 	 * @param id    Abeslariren IDa.
-	 * @param izena Abeslariren izena.
+	 * @param izena Abeslariren izsena.
 	 * @param info  Abeslariri buruzko informazioa.
 	 * @param mota  Abeslariren mota (Bakarlari edo Taldea).
 	 * 
 	 */
 
-	public Abeslari(String id, String izena, String info, Mota mota) {
+	public Abeslari(String id, String izena, String info, Blob irudia, Mota mota) {
 
-		super(id, izena, info);
+		super(id, izena, info, irudia);
 
 		this.mota = mota;
 

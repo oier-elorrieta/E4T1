@@ -1,26 +1,21 @@
 package Bista;
 
-import java.awt.EventQueue;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
-import funtzioak.ErregistratuF;
 
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.SpringLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
-import javax.swing.JSplitPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class MenuaBista extends JFrame {
 
@@ -28,10 +23,9 @@ public class MenuaBista extends JFrame {
 	private JPanel contentPane;
 
 
-	/**
-	 * Create the frame.
-	 */
-	public MenuaBista() {
+	public MenuaBista(Bezero bz) {
+		setResizable(false);
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(MenuaBista.class.getResource("/media.img/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 913, 484);
 		contentPane = new JPanel();
@@ -39,6 +33,7 @@ public class MenuaBista extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -65,9 +60,16 @@ public class MenuaBista extends JFrame {
 		btnAtzera.setFont(new Font("Sitka Text", Font.PLAIN, 16));
 		splitPane_1.setLeftComponent(btnAtzera);
 		
-		JButton btnNewButton = new JButton("PROFILA");
-		btnNewButton.setFont(new Font("Sitka Text", Font.PLAIN, 16));
-		splitPane_1.setRightComponent(btnNewButton);
+		JButton btnprofila = new JButton("PROFILA");
+		btnprofila.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 BistakArgitaratu.ProfilaBistaJoan(bz);
+			}
+				
+				
+		});
+		btnprofila.setFont(new Font("Sitka Text", Font.PLAIN, 16));
+		splitPane_1.setRightComponent(btnprofila);
 		
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -90,14 +92,33 @@ public class MenuaBista extends JFrame {
 		splitPane_5.setRightComponent(panel_1);
 		
 		JButton btnNirePlay = new JButton("Nire PlayList-ak");
+		btnNirePlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BistakArgitaratu.NirePlaylistBistaraJoan(bz);
+				dispose();
+			}
+		});
 		btnNirePlay.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		splitPane_5.setLeftComponent(btnNirePlay);
 		
 		JButton btnPDeskubritu = new JButton("Podcastak Deskubritu");
+		btnPDeskubritu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				BistakArgitaratu.PodcastDeskubrituJoan(bz);
+				dispose();
+			}
+		});
 		btnPDeskubritu.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		splitPane_4.setLeftComponent(btnPDeskubritu);
 		
 		JButton btnMDeskubritu = new JButton("Musika Deskubritu");
+		btnMDeskubritu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BistakArgitaratu.MusikaDeskubrituJoan(bz);
+				dispose();
+			}
+		});
 		btnMDeskubritu.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		splitPane_3.setLeftComponent(btnMDeskubritu);
 		

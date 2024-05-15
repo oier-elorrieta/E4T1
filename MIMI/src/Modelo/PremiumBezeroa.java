@@ -1,7 +1,6 @@
 
 package Modelo;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -25,13 +24,13 @@ public class PremiumBezeroa extends Bezero {
 	 * @param jaioData     Bezeroaren jaioData.
 	 * @param erregisData  Bezeroaren erregisData.
 	 * @param playArray    Bezeroaren abesti lista.
-	 * @param PremiumMuga  Premium bezeroaren premium muga data.
+	 * @param premiumMuga  Premium bezeroaren premium muga data.
 	 */
 	public PremiumBezeroa(String id, String izena, String abizena, String erabiltzaile, String pasahitza, String jaioData,
-			String erregisData, ArrayList<Abesti> playArray, String premiumMuga, String mota, String hizkuntza ) {
-		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota, hizkuntza);
+			String erregisData, ArrayList<Playlist> playArray, String PremiumMuga, String mota, String Hizkuntza ) {
+		super(id, izena, abizena, erabiltzaile, pasahitza, jaioData, erregisData, playArray, mota, Hizkuntza);
 
-		this.premiumMuga = premiumMuga;
+		this.premiumMuga = PremiumMuga;
 	}
 	
 	
@@ -71,7 +70,7 @@ public class PremiumBezeroa extends Bezero {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + ", premiumMuga=" + premiumMuga + "]";
+		return super.toString() + "premiumMuga=" + premiumMuga + "]";
 	}
 
 	// ---------------- EQUALS ---------------- //
@@ -91,7 +90,7 @@ public class PremiumBezeroa extends Bezero {
 		if (getClass() != obj.getClass())
 			return false;
 		PremiumBezeroa other = (PremiumBezeroa) obj;
-		return Objects.equals(this.premiumMuga, other.premiumMuga);
+		return Objects.equals(premiumMuga, other.premiumMuga);
 	}
 
 }

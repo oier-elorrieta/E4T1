@@ -1,7 +1,10 @@
-
 package Modelo;
 
+import java.util.Arrays;
 import java.util.Objects;
+
+import java.sql.Blob;
+import java.sql.SQLException;
 
 /**
  * 
@@ -10,136 +13,161 @@ import java.util.Objects;
  */
 
 public abstract class Artista {
-	
-	protected String id;
-	protected String izena;
-	protected String info;
 
-	// ---------------- ERAIKITZAILEA ---------------- //
+    protected String id;
+    protected String izena;
+    protected String info;
+    protected Blob irudia;
 
-	/**
-	 * 
-	 * Artistaaren eraikitzailea.
-	 *
-	 * @param id    Artistaaren identifikazioa.
-	 * @param izena Artistaaren izena.
-	 * @param info  Artistaaren informazioa.
-	 * 
-	 */
+    public Artista() {
 
-	public Artista(String id, String izena, String info) {
+    }
 
-		this.id = id;
+    // ---------------- ERAIKITZAILEA ---------------- //
 
-		this.izena = izena;
+    /**
+     * 
+     * Artistaaren eraikitzailea.
+     *
+     * @param id    Artistaaren identifikazioa.
+     * @param izena Artistaaren izena.
+     * @param info  Artistaaren informazioa.
+     * 
+     */
 
-		this.info = info;
+    public Artista(String id, String izena, String info, Blob irudia) {
 
-	}
+        this.id = id;
 
-	// ---------------- GETTERS eta SETTERS ---------------- //
+        this.izena = izena;
 
-	/**
-	 * 
-	 * Artistaaren identifikazioa itzultzen du.
-	 * 
-	 * 
-	 * 
-	 * @return Artistaaren identifikazioa.
-	 * 
-	 */
+        this.info = info;
 
-	public String getId() {
+        this.irudia = irudia;
 
-		return id;
+    }
 
-	}
+    // ---------------- GETTERS eta SETTERS ---------------- //
 
-	/**
-	 * Artistaaren identifikazioa ezartzen du.
-	 * 
-	 * @param id Berria izango den artistaaren identifikazioa.
-	 */
+    /**
+     * 
+     * Artistaaren identifikazioa itzultzen du.
+     * 
+     * 
+     * 
+     * @return Artistaaren identifikazioa.
+     * 
+     */
 
-	public void setId(String id) {
+    public String getId() {
 
-		this.id = id;
+        return id;
 
-	}
+    }
 
-	/**
-	 * Artistaaren izena itzultzen du.
-	 * 
-	 * @return Artistaaren izena.
-	 */
+    /**
+     * Artistaaren identifikazioa ezartzen du.
+     * 
+     * @param id Berria izango den artistaaren identifikazioa.
+     */
 
-	public String getIzena() {
+    public void setId(String id) {
 
-		return izena;
+        this.id = id;
 
-	}
+    }
 
-	/**
-	 * Artistaaren izena ezartzen du.
-	 * 
-	 * @param izena Berria izango den artistaaren izena.
-	 */
+    /**
+     * Artistaaren izena itzultzen du.
+     * 
+     * @return Artistaaren izena.
+     */
 
-	public void setIzena(String izena) {
+    public String getIzena() {
 
-		this.izena = izena;
+        return izena;
 
-	}
+    }
 
-	/**
-	 * Artistaaren informazioa itzultzen du.
-	 * 
-	 * @return Artistaaren informazioa.
-	 */
+    /**
+     * Artistaaren izena ezartzen du.
+     * 
+     * @param izena Berria izango den artistaaren izena.
+     */
 
-	public String getInfo() {
+    public void setIzena(String izena) {
 
-		return info;
+        this.izena = izena;
 
-	}
+    }
 
-	/**
-	 * Artistaaren informazioa ezartzen du.
-	 * 
-	 * @param info Berria izango den artistaaren informazioa.
-	 */
+    /**
+     * Artistaaren informazioa itzultzen du.
+     * 
+     * @return Artistaaren informazioa.
+     */
 
-	public void setInfo(String info) {
+    public String getInfo() {
 
-		this.info = info;
+        return info;
 
-	}
+    }
 
-	// ---------------- ToString ---------------- //
+    /**
+     * Artistaaren informazioa ezartzen du.
+     * 
+     * @param info Berria izango den artistaaren informazioa.
+     */
 
-	/**
-	 * Artistaaren errepresentazio katea itzultzen du.
-	 * 
-	 * @return Artistaaren errepresentazio katea.
-	 */
+    public void setInfo(String info) {
 
-	@Override
+        this.info = info;
 
-	public String toString() {
+    }
 
-		return "[id=" + id + ", izena=" + izena + ", info=" + info + "]";
+    /**
+     * Artistaaren irudia itzultzen du.
+     * 
+     * @return
+     */
+    public Blob getIrudia() {
+        return irudia;
+    }
 
-	}
+    /**
+     * Artistaaren irudia ezartzen du.
+     * 
+     * @param irudia
+     */
+    public void setIrudia(Blob irudia) {
+        this.irudia = irudia;
+    }
 
-	// ---------------- EQUALS ---------------- //
+    // ---------------- ToString ---------------- //
 
-	/**
-	 * Bi artistak berdinak ala ez aztertzen du.
-	 * 
-	 * @param obj Beste artista bat.
-	 * @return Bi artistak berdinak badira true, bestela false.
-	 */
+    /**
+     * Artistaaren errepresentazio katea itzultzen du.
+     * 
+     * @return Artistaaren errepresentazio katea.
+     */
 
+    @Override
+
+    public String toString() {
+
+        return "[id=" + id + ", izena=" + izena + ", info=" + info + "]";
+
+    }
+    
+
+    // ---------------- EQUALS ---------------- //
+
+    /**
+     * Bi artistak berdinak ala ez aztertzen du.
+     * 
+     * @param obj Beste artista bat.
+     * @return Bi artistak berdinak badira true, bestela false.
+     */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -149,8 +177,9 @@ public abstract class Artista {
 		if (getClass() != obj.getClass())
 			return false;
 		Artista other = (Artista) obj;
-		return id == other.id && Objects.equals(info, other.info) && Objects.equals(izena, other.izena);
-
+		return Objects.equals(id, other.id) && Objects.equals(info, other.info) && Objects.equals(izena, other.izena);
 	}
+    
+
 
 }

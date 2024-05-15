@@ -1,6 +1,8 @@
 
 package Modelo;
 
+import java.sql.Blob;
+import java.sql.Time;
 import java.util.Objects;
 
 /**
@@ -10,17 +12,22 @@ import java.util.Objects;
  * 
  */
 
-public class Podcast {
+public class Podcast extends Audio {
 
-	private String id;
+	private String id_podcast;
 
 	private String podcast_izena;
 
 	private String kolaboratzaile;
 
-	private Double iraupena;
-
 	// ---------------- ERAIKITZAILEA ---------------- //
+
+	public Podcast(String id, Time iraupena, Blob irudia, Mota mota, String id_podcast,String podcast_izena,String kolaboratzaile ) {
+		super(id, iraupena, irudia, mota);
+		this.id_podcast = id_podcast;
+		this.podcast_izena = podcast_izena;
+		this.kolaboratzaile = kolaboratzaile;
+	}
 
 	/**
 	 * 
@@ -38,93 +45,68 @@ public class Podcast {
 	 * 
 	 */
 
-	public Podcast(String id, String podcast_izena, String kolaboratzaile, Double iraupena) {
+	// ---------------- GETTERS eta SETTERS ---------------- //
 
+	
+
+	public Podcast() {
 		super();
-
-		this.id = id;
-
-		this.podcast_izena = podcast_izena;
-
-		kolaboratzaile = kolaboratzaile;
-
-		this.iraupena = iraupena;
-
 	}
 
-    // ---------------- GETTERS eta SETTERS ---------------- //
+	/**
+	 * Podcast-aren identifikazioa lortzen du.
+	 *
+	 * @return Podcast-aren identifikazioa.
+	 */
+	public String getId_Podcast() {
+		return id_podcast;
+	}
 
-    /**
-     * Podcast-aren identifikazioa lortzen du.
-     *
-     * @return Podcast-aren identifikazioa.
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * Podcast-aren identifikazioa ezartzen du.
+	 *
+	 * @param id Podcast-aren identifikazioa.
+	 */
+	public void setId_Podcast(String id) {
+		this.id_podcast = id;
+	}
 
-    /**
-     * Podcast-aren identifikazioa ezartzen du.
-     *
-     * @param id Podcast-aren identifikazioa.
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+	/**
+	 * Podcast-aren izena lortzen du.
+	 *
+	 * @return Podcast-aren izena.
+	 */
+	public String getPodcast_izena() {
+		return podcast_izena;
+	}
 
-    /**
-     * Podcast-aren izena lortzen du.
-     *
-     * @return Podcast-aren izena.
-     */
-    public String getPodcast_izena() {
-        return podcast_izena;
-    }
+	/**
+	 * Podcast-aren izena ezartzen du.
+	 *
+	 * @param podcast_izena Podcast-aren izena.
+	 */
+	public void setPodcast_izena(String podcast_izena) {
+		this.podcast_izena = podcast_izena;
+	}
 
-    /**
-     * Podcast-aren izena ezartzen du.
-     *
-     * @param podcast_izena Podcast-aren izena.
-     */
-    public void setPodcast_izena(String podcast_izena) {
-        this.podcast_izena = podcast_izena;
-    }
+	/**
+	 * Kolaboratzailearen izena lortzen du.
+	 *
+	 * @return Kolaboratzailearen izena.
+	 */
+	public String getKolaboratzaile() {
+		return kolaboratzaile;
+	}
 
-    /**
-     * Kolaboratzailearen izena lortzen du.
-     *
-     * @return Kolaboratzailearen izena.
-     */
-    public String getKolaboratzaile() {
-        return kolaboratzaile;
-    }
+	/**
+	 * Kolaboratzailearen izena ezartzen du.
+	 *
+	 * @param kolaboratzaile Kolaboratzailearen izena.
+	 */
+	public void setKolaboratzaile(String kolaboratzaile) {
+		this.kolaboratzaile = kolaboratzaile;
+	}
 
-    /**
-     * Kolaboratzailearen izena ezartzen du.
-     *
-     * @param kolaboratzaile Kolaboratzailearen izena.
-     */
-    public void setKolaboratzaile(String kolaboratzaile) {
-        kolaboratzaile = kolaboratzaile;
-    }
-
-    /**
-     * Podcast-aren iraupena minututan lortzen du.
-     *
-     * @return Podcast-aren iraupena minututan.
-     */
-    public Double getIraupena() {
-        return iraupena;
-    }
-
-    /**
-     * Podcast-aren iraupena minututan ezartzen du.
-     *
-     * @param iraupena Podcast-aren iraupena minututan.
-     */
-    public void setIraupena(Double iraupena) {
-        this.iraupena = iraupena;
-    }
 
 	// ---------------- ToString ---------------- //
 
@@ -140,15 +122,13 @@ public class Podcast {
 
 	public String toString() {
 
-		return "Podcast [id=" + id + ", podcast_izena=" + podcast_izena + ", Kolaboratzaile=" + kolaboratzaile
-
-				+ ", iraupena=" + iraupena + "]";
+		return super.toString() + "Podcast [id=" + id_podcast + ", podcast_izena=" + podcast_izena + ", kolaboratzaile=" + kolaboratzaile
++ "]";
 
 	}
 
-	// ---------------- EQUALS ---------------- //
 
-	
+	// ---------------- EQUALS ---------------- //
 
 	/**
 	 * 
@@ -162,29 +142,18 @@ public class Podcast {
 	 * 
 	 */
 
+
 	@Override
-
 	public boolean equals(Object obj) {
-
 		if (this == obj)
-
 			return true;
-
-		if (obj == null)
-
+		if (!super.equals(obj))
 			return false;
-
 		if (getClass() != obj.getClass())
-
 			return false;
-
 		Podcast other = (Podcast) obj;
-
-		return Objects.equals(kolaboratzaile, other.kolaboratzaile) && id == other.id
-
-				&& Objects.equals(iraupena, other.iraupena) && Objects.equals(podcast_izena, other.podcast_izena);
-
+		return Objects.equals(id_podcast, other.id_podcast) && Objects.equals(kolaboratzaile, other.kolaboratzaile)
+				&& Objects.equals(podcast_izena, other.podcast_izena);
 	}
 
 }
-
