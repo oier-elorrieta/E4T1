@@ -63,6 +63,22 @@ public class LoginBista extends JFrame {
 		textFieldErabiltzailea.setColumns(10);
 
 		passwordFieldPasahitza = new JPasswordField();
+		
+		JLabel lblNewLabel = new JLabel("Erabiltzailea: ");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setBounds(532, 153, 89, 14);
+		panel.add(lblNewLabel);
+
+		JLabel lblPasahitza = new JLabel("Pasahitza:");
+		lblPasahitza.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPasahitza.setBounds(532, 211, 89, 14);
+		panel.add(lblPasahitza);
+
+		JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 12));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Bezeroa", "Administratzailea" }));
+		comboBox.setBounds(657, 280, 163, 22);
+		panel.add(comboBox);
 
 		JButton btnLog = new JButton("Login");
 		btnLog.addActionListener(new ActionListener() {
@@ -70,12 +86,23 @@ public class LoginBista extends JFrame {
 				erabiltzailea = textFieldErabiltzailea.getText();
 				pasahitza = passwordFieldPasahitza.getText();
 				try {
-					if (BezeroDao.LoginKomprobatu(erabiltzailea, pasahitza)) {
-						dispose();
-					} else {
-						textFieldErabiltzailea.setText("");
-						passwordFieldPasahitza.setText("");
-
+					if (comboBox.getSelectedIndex() == 0) {
+						if (BezeroDao.LoginKomprobatu(erabiltzailea, pasahitza)) {
+							dispose();
+						}else {
+							textFieldErabiltzailea.setText("");
+							passwordFieldPasahitza.setText("");
+						}
+						
+					} else if (comboBox.getSelectedIndex() == 1) {
+						
+						if(BezeroDao.AdminLoginKonprobatu(erabiltzailea, pasahitza)) {
+							dispose();
+						}else {
+							textFieldErabiltzailea.setText("");
+							passwordFieldPasahitza.setText("");
+						}
+						
 					}
 
 				} catch (SQLException e1) {
@@ -122,21 +149,7 @@ public class LoginBista extends JFrame {
 		btnErregistro.setBounds(657, 352, 119, 36);
 		panel.add(btnErregistro);
 
-		JLabel lblNewLabel = new JLabel("Erabiltzailea: ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(532, 153, 89, 14);
-		panel.add(lblNewLabel);
-
-		JLabel lblPasahitza = new JLabel("Pasahitza:");
-		lblPasahitza.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPasahitza.setBounds(532, 211, 89, 14);
-		panel.add(lblPasahitza);
-
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 12));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Bezeroa", "Administratzailea" }));
-		comboBox.setBounds(657, 280, 163, 22);
-		panel.add(comboBox);
+	
 	}
 
 }

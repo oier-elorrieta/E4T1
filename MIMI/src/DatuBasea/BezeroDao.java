@@ -71,6 +71,39 @@ public class BezeroDao {
 		}
 		return loginOK;
 	}
+	
+	public static boolean AdminLoginKonprobatu(String erabiltzailea , String pasahitza) throws SQLException {
+		boolean loginOK = false;
+
+		try (Connection con = Konexioa.konexioa()) {
+			String kontsulta = "select * from admintaula";
+			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+				try (ResultSet rs = pstmt.executeQuery()) {
+					while (rs.next()) {
+						String erabiltzaileaDB = rs.getString("erabiltzailea");
+						String pasahitzaDB = rs.getString("pasahitza");
+
+					
+
+						if (erabiltzailea.equals(erabiltzaileaDB) && pasahitza.equals(pasahitzaDB)) {
+							loginOK = true;
+							JOptionPane.showMessageDialog(null, "Sesioa hasi da modu egokian");
+							BistakArgitaratu.AdminMenuaJoan();
+							
+						}
+					}
+					if (loginOK == false) {
+						JOptionPane.showMessageDialog(null, "Erabiltzailea edo pasahitza txarto idatzi dituzu");
+
+					}
+
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return loginOK;
+	}
 
 	/**
 	 * HizkuntzaAtera metodoa erabiliko da datu basean dauden hizkuntzen zerrenda

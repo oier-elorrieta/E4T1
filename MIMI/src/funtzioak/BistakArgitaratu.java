@@ -2,10 +2,12 @@ package funtzioak;
 
 import java.util.List;
 
+import Bista.AdminMenua;
 import Bista.AlbumBista;
 import Bista.ArtistaBista;
 import Bista.ErregistroBista;
 import Bista.ErreproduktoreaBista;
+import Bista.EstatistikaBista;
 import Bista.LoginBista;
 import Bista.MenuaBista;
 import Bista.MusikaDeskubrituBista;
@@ -177,4 +179,25 @@ public class BistakArgitaratu {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void EstatistikaBistaJoan() {
+		try {
+			EstatistikaBista  frame = new EstatistikaBista();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void AdminMenuaJoan() {
+		
+		try {
+			AdminMenua frame = new AdminMenua();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }
