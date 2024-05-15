@@ -26,6 +26,10 @@ import Modelo.Podcast;
 import Modelo.Podcaster;
 
 public class BistakArgitaratu {
+	
+	
+	
+	
     public static void loginJoan() {
         try {
             LoginBista frame = new LoginBista();
@@ -89,16 +93,6 @@ public class BistakArgitaratu {
         }
     }
 
-    public static void PodcasterBistaJoan(Podcaster podcaster, Bezero bz) {
-        try {
-            PodcasterBista frame = new PodcasterBista(podcaster, bz);
-            frame.setVisible(true);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void ProfilaBistaJoan(Bezero bz) {
         try {
             ProfilaBista frame = new ProfilaBista(bz);
@@ -144,69 +138,11 @@ public class BistakArgitaratu {
         }
     }
 
-<<<<<<< HEAD
 	public static void PodcasterBistaJoan(Podcaster podcaster, Bezero bz) {
 		try {
 			PodcasterBista frame = new PodcasterBista(podcaster, bz);
 			frame.setVisible(true);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void ProfilaBistaJoan(Bezero bz) {
-		try {
-			ProfilaBista frame = new ProfilaBista(bz);
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void AlbumBistaJoan(Bezero bz, Album album, String artistaIzena, List<Album> albumak) {
-		try {
-			AlbumBista frame = new AlbumBista(bz, album, artistaIzena, albumak);
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void ErreproduktoreaBistaJoan(Bezero bz, List<Abesti> abestiak, Album album, int index,
-			String artistaIzena, List<Album> albumak) {
-		try {
-			ErreproduktoreaBista frame = new ErreproduktoreaBista(bz, abestiak, album, index, artistaIzena, albumak);
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void NirePlaylistBistaraJoan(Bezero bz) {
-		try {
-			NirePlaylistBista frame = new NirePlaylistBista(bz);
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public static void PodcastErreproduktoreraJoan(Bezero bz, int selectedValue, List<Podcast> podcastak,
-			Podcaster podcaster) {
-		try {
-			PodcastErreproduktoreBista frame = new PodcastErreproduktoreBista(bz, selectedValue, podcastak, podcaster);
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void PlaylistAbestiraJoan(Bezero bz, Playlist playlista) {
-		try {
-			PlaylistAbestiakBista frame = new PlaylistAbestiakBista(bz,playlista);
-			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -232,11 +168,12 @@ public class BistakArgitaratu {
 		
 	}
 
-=======
     public static void PlaylistAbestiraJoan(Bezero bz, Playlist playlista) {
+    	
         try {
             PlaylistAbestiakBista frame = new PlaylistAbestiakBista(bz, playlista);
             frame.setVisible(true);
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -251,6 +188,4 @@ public class BistakArgitaratu {
         }
     }
     
-    
->>>>>>> b41cd951c9550a7fb8bac80c9fb0030a2fdd1f03
 }
