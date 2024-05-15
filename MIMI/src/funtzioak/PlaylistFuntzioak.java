@@ -66,7 +66,7 @@ public class PlaylistFuntzioak {
 				bW.write("ABESTI HAU ENTZUN- " + lista.getAbestiList().get(id).getAbestiIzena() + " - "+ erreprodukzioak + " - " + abeslaria.get(id) + " - " + lista.getAbestiList().get(id).getIraupena());
 				bW.newLine();
 				
-			JOptionPane.showMessageDialog(null, "Playlist exportatu egin da , path: " + fileAbestiak.getAbsolutePath());
+			JOptionPane.showMessageDialog(null, "Abestia ondo kompartitu egin da , path: " + fileAbestiak.getAbsolutePath());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

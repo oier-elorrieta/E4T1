@@ -13,8 +13,9 @@ import Modelo.Podcaster;
 import Modelo.Bezero;
 import Modelo.Podcast;
 import funtzioak.BistakArgitaratu;
+import funtzioak.Inabegazioa;
 
-public class PodcasterBista extends JFrame {
+public class PodcasterBista extends JFrame implements Inabegazioa {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -41,7 +42,6 @@ public class PodcasterBista extends JFrame {
 		btnAtzera.setBounds(5, 5, 132, 23);
 		contentPane.add(btnAtzera);
 
-
 		JLabel lblTitulua = new JLabel(podcaster.getIzena());
 		lblTitulua.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblTitulua.setHorizontalAlignment(SwingConstants.CENTER);
@@ -65,7 +65,7 @@ public class PodcasterBista extends JFrame {
 
 		model = new DefaultListModel<>();
 
-		// Aquí se elimina la redefinición de podcastList
+		// Aquï¿½ se elimina la redefiniciï¿½n de podcastList
 		podcastList = PodcasterDao.podcastLortu(podcaster.getIzena());
 
 		for (Podcast podcast : podcastList) {
@@ -77,17 +77,16 @@ public class PodcasterBista extends JFrame {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
-                	
-                    int selectedValue = listMusika.getSelectedIndex();
-               
-                 
-                    if (selectedValue >= 0) {
-                        BistakArgitaratu.PodcastErreproduktoreraJoan(bz, selectedValue, podcastList,podcaster);
-                        dispose();
-                    } else {
-                        System.out.println("Abestiaren izena ez da aurkitu.");
-                    }
-                }
+
+					int selectedValue = listMusika.getSelectedIndex();
+
+					if (selectedValue >= 0) {
+						BistakArgitaratu.PodcastErreproduktoreraJoan(bz, selectedValue, podcastList, podcaster);
+						dispose();
+					} else {
+						System.out.println("Abestiaren izena ez da aurkitu.");
+					}
+				}
 			}
 		});
 
@@ -98,16 +97,21 @@ public class PodcasterBista extends JFrame {
 		deskribapenaTextPane.setText(podcaster.getInfo());
 		deskribapenaTextPane.setBounds(398, 53, 332, 514);
 		contentPane.add(deskribapenaTextPane);
-		
+
 		JButton btnProfila = new JButton(bz.getErabiltzaile());
 		btnProfila.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-					 BistakArgitaratu.ProfilaBistaJoan(bz);
-				
+
+				profila(bz);
 			}
 		});
 		btnProfila.setBounds(641, 5, 89, 23);
 		contentPane.add(btnProfila);
+	}
+
+	@Override
+	public void profila(Bezero bz) {
+		BistakArgitaratu.ProfilaBistaJoan(bz);
+
 	}
 }

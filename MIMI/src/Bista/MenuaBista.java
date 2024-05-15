@@ -15,9 +15,10 @@ import javax.swing.border.EmptyBorder;
 
 import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
+import funtzioak.Inabegazioa;
 
 
-public class MenuaBista extends JFrame {
+public class MenuaBista extends JFrame implements Inabegazioa {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -25,7 +26,6 @@ public class MenuaBista extends JFrame {
 
 	public MenuaBista(Bezero bz) {
 		setResizable(false);
-		//setIconImage(Toolkit.getDefaultToolkit().getImage(MenuaBista.class.getResource("/media.img/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 913, 484);
 		contentPane = new JPanel();
@@ -63,7 +63,7 @@ public class MenuaBista extends JFrame {
 		JButton btnprofila = new JButton("PROFILA");
 		btnprofila.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 BistakArgitaratu.ProfilaBistaJoan(bz);
+			profila(bz);
 			}
 				
 				
@@ -125,6 +125,13 @@ public class MenuaBista extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(null);
 		splitPane_2.setLeftComponent(panel_2);
+	}
+
+
+	@Override
+	public void profila(Bezero bz) {
+        BistakArgitaratu.ProfilaBistaJoan(bz);
+		
 	}
 
 }

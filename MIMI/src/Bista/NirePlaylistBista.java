@@ -20,9 +20,10 @@ import DatuBasea.NirePlaylistDao;
 import Modelo.Bezero;
 import Modelo.Playlist;
 import funtzioak.BistakArgitaratu;
+import funtzioak.Inabegazioa;
 import funtzioak.PlaylistFuntzioak;
 
-public class NirePlaylistBista extends JFrame {
+public class NirePlaylistBista extends JFrame implements Inabegazioa {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -54,8 +55,7 @@ public class NirePlaylistBista extends JFrame {
 		JButton btnProfila = new JButton(bz.getErabiltzaile());
 		btnProfila.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.ProfilaBistaJoan(bz);
-				dispose();
+				profila(bz);
 			}
 		});
 		btnProfila.setBounds(895, 11, 89, 23);
@@ -213,6 +213,12 @@ public class NirePlaylistBista extends JFrame {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+	}
+
+	@Override
+	public void profila(Bezero bz) {
+        BistakArgitaratu.ProfilaBistaJoan(bz);
+
 	}
 
 }

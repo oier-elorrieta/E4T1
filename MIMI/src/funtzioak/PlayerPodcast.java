@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import Modelo.Bezero;
 import Modelo.Podcast;
 
-public class PlayerPodcast {
+public class PlayerPodcast implements Iplayer {
 	private List<File> podcastListPlayer;
 	private int indizea = 0;
 	private Clip klipa;
@@ -41,7 +41,7 @@ public class PlayerPodcast {
 
 			podcastListPlayer.add(0, selectedPodcast);
 		} else {
-			System.out.println("Error al inicializar la lista de reproducción.");
+			System.out.println("Error al inicializar la lista de reproducciï¿½n.");
 		}
 
 		// Inicializa el Clip
@@ -147,13 +147,13 @@ public class PlayerPodcast {
 					// Aumentar la velocidad a x2 (2.0f)
 					control.setValue(2.0f);
 				} else {
-					System.out.println("No se puede ajustar la velocidad de reproducción.");
+					System.out.println("No se puede ajustar la velocidad de reproducciï¿½n.");
 				}
 			} else {
 				System.out.println("El control de velocidad no es compatible con este clip de audio.");
 			}
 		} else {
-			System.out.println("No hay ningún clip de audio abierto para ajustar la velocidad.");
+			System.out.println("No hay ningï¿½n clip de audio abierto para ajustar la velocidad.");
 		}
 	}
 
