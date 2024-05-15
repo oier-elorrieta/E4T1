@@ -23,7 +23,7 @@ import java.util.TimerTask;
  * Player klasea abestiak erreproduzitzeko eta kontrolatzeko erabiltzen da.
  * Klase honek abestiak kargatzen ditu, erreproduzitzen ditu, eta kontrola egiten du (aurrekoa, hurrengoa, pausa, etab.).
  */
-public class Player {
+public class Player implements Iplayer {
 
     private List<File> abestiakPlayer;
     public static int indizea;
@@ -54,7 +54,7 @@ public class Player {
             abestiakPlayer.remove(selectedSong);
             abestiakPlayer.add(0, selectedSong);
         } else {
-            System.out.println("Error al inicializar la lista de reproducción.");
+            System.out.println("Error al inicializar la lista de reproducciï¿½n.");
         }
 
         if (selectedSong != null) {

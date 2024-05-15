@@ -12,6 +12,7 @@ import Modelo.Abesti;
 import Modelo.Album;
 import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
+import funtzioak.Inabegazioa;
 import funtzioak.Player;
 
 import javax.swing.JList;
@@ -27,7 +28,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class AlbumBista extends JFrame {
+public class AlbumBista extends JFrame implements Inabegazioa {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -107,7 +108,7 @@ public class AlbumBista extends JFrame {
 		JButton btnPerfil = new JButton(bz.getErabiltzaile());
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.ProfilaBistaJoan(bz);
+				profila(bz);
 			}
 		});
 		btnPerfil.setBounds(572, 11, 177, 23);
@@ -130,5 +131,10 @@ public class AlbumBista extends JFrame {
 			System.out.println("Txarto");
 		}
 		return izenaSplit;
+	}
+
+	@Override
+	public void profila(Bezero bz) {
+		  BistakArgitaratu.ProfilaBistaJoan(bz);		
 	}
 }

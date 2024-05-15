@@ -23,56 +23,35 @@ import funtzioak.Inabegazioa;
 import funtzioak.Player;
 
 import javax.swing.JButton;
-
 import java.awt.event.ActionListener;
-
 import java.sql.SQLException;
-
 import java.util.ArrayList;
-
 import java.util.List;
-
 import java.util.Timer;
-
 import java.util.TimerTask;
-
 import java.awt.event.ActionEvent;
-
 import javax.swing.JLabel;
-
 import javax.swing.JOptionPane;
-
 import javax.swing.SwingConstants;
-
 import java.awt.Font;
 
-public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
+public class PlaylistErreproduktoreBista extends JFrame implements Inabegazioa {
 
 	private static final long serialVersionUID = 1L;
-
 	private JPanel contentPane;
-
 	private Player player;
-
 	private JLabel lblIrudi;
-
 	private JLabel lblInfo;
-
 	private String idAudioLike;
-
 	private ArrayList<Playlist> playlistArray;
-
 	private JButton btnAbestiAtzera;
-
 	private JButton btnAbestiAurrera;
-
 	private JButton btnLike;
-
 	private JLabel lblDenbora;
-
 	private Timer timer;
 
-	public ErreproduktoreaBista(Bezero bz, List<Abesti> abestiak, Album album, int index, String artistaIzena, List<Album> albumak) throws SQLException {
+	public PlaylistErreproduktoreBista(Bezero bz, List<Abesti> abestiak, Album album, int index, String artistaIzena,
+			List<Album> albumak, Playlist playlist) throws SQLException {
 
 		setResizable(false);
 
@@ -170,7 +149,7 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 				dispose();
 
-				BistakArgitaratu.AlbumBistaJoan(bz, album, artistaIzena, albumak);
+				BistakArgitaratu.PlaylistAbestiraJoan(bz, playlist);
 
 			}
 
@@ -218,7 +197,7 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 					}
 
-					String selectedPlaylist = (String) JOptionPane.showInputDialog(ErreproduktoreaBista.this,
+					String selectedPlaylist = (String) JOptionPane.showInputDialog(PlaylistErreproduktoreBista.this,
 							"Aukeratu Playlist:", "Aukeratu Playlist-a", JOptionPane.QUESTION_MESSAGE, null,
 							playlistNames, playlistNames[0]);
 
@@ -386,8 +365,8 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 	@Override
 	public void profila(Bezero bz) {
-        BistakArgitaratu.ProfilaBistaJoan(bz);
-		
+		BistakArgitaratu.ProfilaBistaJoan(bz);
+
 	}
 
 }

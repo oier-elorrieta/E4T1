@@ -26,13 +26,14 @@ import Modelo.Album;
 import Modelo.Bezero;
 import Modelo.FreeBezero;
 import funtzioak.BistakArgitaratu;
+import funtzioak.Inabegazioa;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-public class ArtistaBista extends JFrame {
+public class ArtistaBista extends JFrame implements Inabegazioa{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -74,7 +75,7 @@ public class ArtistaBista extends JFrame {
 		JButton btnPerfil = new JButton(bz.getErabiltzaile());
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.ProfilaBistaJoan(bz);
+				profila(bz);
 			}
 		});
 		btnPerfil.setBounds(572, 5, 177, 23);
@@ -142,6 +143,11 @@ public class ArtistaBista extends JFrame {
 		deskribapenaTextPane.setBounds(398, 53, 332, 514);
 		contentPane.add(deskribapenaTextPane);
 
+	}
+
+	@Override
+	public void profila(Bezero bz) {
+        BistakArgitaratu.ProfilaBistaJoan(bz);
 	}
 
 }

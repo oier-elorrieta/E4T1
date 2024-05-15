@@ -22,21 +22,22 @@ import Modelo.Abeslari;
 import Modelo.Album;
 import Modelo.Bezero;
 import funtzioak.BistakArgitaratu;
+import funtzioak.Inabegazioa;
+
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 
-public class MusikaDeskubrituBista extends JFrame {
+public class MusikaDeskubrituBista extends JFrame implements Inabegazioa {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static List<Abeslari> musikariak;
 	private DefaultListModel<String> model;
 	public static String artistaIzena;
-    public List<Album> albumak;
+	public List<Album> albumak;
 
 	public MusikaDeskubrituBista(Bezero bz) {
 		setResizable(false);
-
 
 		musikariak = AbeslariDao.musikariakAtera();
 
@@ -77,7 +78,7 @@ public class MusikaDeskubrituBista extends JFrame {
 		JButton btnNewButton = new JButton("PROFILA");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.ProfilaBistaJoan(bz);
+				profila(bz);
 			}
 		});
 		btnNewButton.setFont(new Font("Sitka Text", Font.PLAIN, 16));
@@ -98,17 +99,23 @@ public class MusikaDeskubrituBista extends JFrame {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
-		
-					 artistaIzena = (String) listMusika.getSelectedValue();
-					 albumak = AbeslariDao.musikariarenAlbum(artistaIzena);
-					 BistakArgitaratu.ArtistaBistaJoan(artistaIzena,albumak,bz);
-					 dispose();
-	
+
+					artistaIzena = (String) listMusika.getSelectedValue();
+					albumak = AbeslariDao.musikariarenAlbum(artistaIzena);
+					BistakArgitaratu.ArtistaBistaJoan(artistaIzena, albumak, bz);
+					dispose();
+
 				}
 			}
- 
+
 		});
 		listMusika.setModel(model);
+
+	}
+
+	@Override
+	public void profila(Bezero bz) {
+        BistakArgitaratu.ProfilaBistaJoan(bz);
 
 	}
 }

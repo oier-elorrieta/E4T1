@@ -49,4 +49,42 @@ public class AlbumDao {
 		return abestiak;
 
 	}
+	
+	public static Album lortuAlbumaIdAudio(String idAudio) {
+		Album album = new Album();
+		try (Connection con = Konexioa.konexioa()) {
+			String kontsulta = "SELECT album.* FROM album INNER JOIN abestia USING (idalbum) WHERE abestia.idaudio = '"
+					+ idAudio + "';";
+			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+				try (ResultSet rs = pstmt.executeQuery()) {
+					while (rs.next()) {
+
+						String id = rs.getString("idalbum");
+						String izenburua = rs.getString("izenburua");
+						Date argitaratzea = rs.getDate("urtea");
+						String generoa = rs.getString("generoa");
+						String idmusikaria = rs.getString("idmusikaria");
+						String kolaboratzaileak = rs.getString("kolaboratzaileak");
+						Time albumIraupena = rs.getTime("iraupena");
+
+						album.setAlbumIraupena(albumIraupena);
+						album.setArgitaratzea(argitaratzea);
+						album.setGeneroa(generoa);
+						album.setId(id);
+						album.setIdMusikaria(idmusikaria);
+						album.setIzenburua(izenburua);
+						album.setKolaboratzaileak(kolaboratzaileak);
+
+					}
+
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return album;
+
+	}
+
 }
