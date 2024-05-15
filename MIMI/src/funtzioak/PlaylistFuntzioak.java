@@ -61,12 +61,12 @@ public class PlaylistFuntzioak {
 		return playlista;
 	}
 	
-	public static void AbestiakExportatu(Playlist lista, int erreprodukzioak, ArrayList<String> abeslaria, int id) {
+	public static void AbestiakExportatu(Playlist lista, ArrayList<Integer> erreprodukzioak, ArrayList<String> abeslaria, int id) {
 		try (BufferedWriter bW = new BufferedWriter(new FileWriter(fileAbestiak))) {
-				bW.write("ABESTI HAU ENTZUN- " + lista.getAbestiList().get(id).getAbestiIzena() + " - "+ erreprodukzioak + " - " + abeslaria.get(id) + " - " + lista.getAbestiList().get(id).getIraupena());
+				bW.write("ABESTI HAU ENTZUN- " + lista.getAbestiList().get(id).getAbestiIzena() + " - "+ erreprodukzioak.get(id) + " - " + abeslaria.get(id) + " - " + lista.getAbestiList().get(id).getIraupena());
 				bW.newLine();
 				
-			JOptionPane.showMessageDialog(null, "Abestia ondo kompartitu egin da , path: " + fileAbestiak.getAbsolutePath());
+			JOptionPane.showMessageDialog(null, "Playlist exportatu egin da , path: " + fileAbestiak.getAbsolutePath());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

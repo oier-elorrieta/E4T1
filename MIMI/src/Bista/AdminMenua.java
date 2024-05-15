@@ -46,6 +46,12 @@ public class AdminMenua extends JFrame {
 		splitPane.setRightComponent(panel);
 		
 		JButton btnAtzera = new JButton("ATZERA");
+		btnAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BistakArgitaratu.loginJoan();
+				dispose();
+			}
+		});
 		panel.add(btnAtzera);
 		
 		JSplitPane splitPane_2 = new JSplitPane();
