@@ -186,7 +186,6 @@ public class IragarkiBista extends JFrame {
 
 					dispose();
 
-					System.out.println(Player.indizea + " indice del boton (IragarkiBista)");
 
 					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, Player.indizea,artistaIzena,albumak);
 

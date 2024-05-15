@@ -14,6 +14,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import Modelo.Bezero;
 import Modelo.Podcast;
@@ -41,7 +42,8 @@ public class PlayerPodcast implements Iplayer {
 
 			podcastListPlayer.add(0, selectedPodcast);
 		} else {
-			System.out.println("Error al inicializar la lista de reproducci�n.");
+
+			JOptionPane.showMessageDialog(null, "Ez daude podkast, barkatu", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 		// Inicializa el Clip
@@ -95,7 +97,8 @@ public class PlayerPodcast implements Iplayer {
 		if (klipa != null && klipa.isRunning()) {// Klipa irekita badago eta erreproduzitzen badago, gelditzen du
 			klipa.stop();
 		} else {
-			System.out.println("Ez dago abestirik erreproduzitzen.");
+			JOptionPane.showMessageDialog(null, "Ez dago abestirik erreproduzitzen.", "Error", JOptionPane.ERROR_MESSAGE);
+			
 		}
 	}
 
@@ -122,9 +125,7 @@ public class PlayerPodcast implements Iplayer {
 	    Podcast p = podcastak.get(indizea);
 	    
 	    String info = "Podcast : " + p.getPodcast_izena() + " / Iraupena : "  + p.getIraupena() + " / Kolaboratzaile : ";
-	    System.out.println(p.getKolaboratzaile());
 	    if(p.getKolaboratzaile() == null ) {
-	        System.out.println("Es null");
 	    } else {
 	        info += p.getKolaboratzaile();
 	    }

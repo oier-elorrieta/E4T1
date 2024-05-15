@@ -9,7 +9,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import DatuBasea.AbeslariDao;
+import DatuBasea.AlbumDao;
 import DatuBasea.NirePlaylistDao;
+import Modelo.Album;
 import Modelo.Bezero;
 import Modelo.Playlist;
 import funtzioak.BistakArgitaratu;
@@ -86,6 +88,7 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 				if (listAbestiPlaylist.getSelectedIndex() >= 0) {
 					btnEzabatu.setEnabled(true);
 					btnExportatu.setEnabled(true);
+					btnSartu.setEnabled(true);
 				}
 			}
 		}
@@ -151,10 +154,26 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 		btnEzabatu.setEnabled(false);
 		btnExportatu.setEnabled(false);
 		
-		btnSartu = new JButton("Erreprodukzitu");
+		btnSartu = new JButton("Erreproduzitu");
 		btnSartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.PlaylistErreproduktoreBistaJoan(bz, null, null, ABORT, getName(), null, playlist);
+				ArrayList<Album> albumak = new ArrayList<Album>();
+				if (listAbestiPlaylist.getSelectedIndex() == -1) {
+					JOptionPane.showMessageDialog(null, "Ez duzu ezer aukeratu erreprodukzioa hasteko");
+				} else {
+					for (int i = 0; i < lista.getAbestiList().size(); i++) {
+						albumak.add(AlbumDao.lortuAlbumaIdAudio(lista.getAbestiList().get(i).getid_abesti()));
+					}
+					BistakArgitaratu.PlaylistErreproduktoreBistaJoan(bz, NirePlaylistDao.lortuAbestiListaId(lista),
+							albumak.get(listAbestiPlaylist.getSelectedIndex()), listAbestiPlaylist.getSelectedIndex(),
+							playlist.getIzena(), albumak, playlist);
+
+				    dispose();
+					btnExportatu.setEnabled(false);
+					btnExportatu.setEnabled(false);
+					btnEzabatu.setEnabled(false);
+				}
+
 			}
 		});
 		btnSartu.setFont(new Font("Dialog", Font.PLAIN, 17));

@@ -72,7 +72,8 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 	private Timer timer;
 
-	public ErreproduktoreaBista(Bezero bz, List<Abesti> abestiak, Album album, int index, String artistaIzena, List<Album> albumak) throws SQLException {
+	public ErreproduktoreaBista(Bezero bz, List<Abesti> abestiak, Album album, int index, String artistaIzena,
+			List<Album> albumak) throws SQLException {
 
 		setResizable(false);
 
@@ -136,14 +137,18 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 				try {
 
-					if (gustukoakDao.DagoEdoEz(bz, idAudioLike) == true) {
+					if (gustukoakDao.DagoEdoEz(bz, idAudioLike)) {
 
 						btnLike.setText("  ❤️");
+
 						gustukoakDao.GustukoDelete(bz, idAudioLike);
+
 					} else {
 
 						btnLike.setText(" ❌ ");
+
 						gustukoakDao.GustukoInsert(bz, idAudioLike);
+
 					}
 
 				} catch (SQLException e1) {
@@ -196,7 +201,7 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 		contentPane.add(lblNewLabel);
 
-		player.ateraArgazkia(lblIrudi, Player.indizea, abestiak);
+		player.ateraArgazkia(bz, lblIrudi, Player.indizea, abestiak);
 
 		JButton btnMenu = new JButton("Menua");
 		btnMenu.addActionListener(new ActionListener() {
@@ -214,7 +219,6 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 					String[] playlistNames = new String[playlistArray.size()];
 					for (int i = 0; i < playlistArray.size(); i++) {
 						playlistNames[i] = playlistArray.get(i).getIzena();
-						System.out.println(playlistNames[i]);
 
 					}
 
@@ -223,7 +227,6 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 							playlistNames, playlistNames[0]);
 
 					if (selectedPlaylist != null && selectedPlaylist.length() > 0) {
-						System.out.println("Playlist aukeratua: " + selectedPlaylist + " " + idAudioLike);
 						try {
 							PlaylistDao.InsertAbestiPlaylist(selectedPlaylist, idAudioLike);
 							JOptionPane.showMessageDialog(null, selectedPlaylist + " playlistera sartu duzu");
@@ -278,7 +281,7 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 				try {
 
-					player.aurreko(lblInfo, lblIrudi, abestiak);
+					player.aurreko(bz, lblInfo, lblIrudi, abestiak);
 
 				} catch (SQLException e1) {
 
@@ -286,7 +289,6 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 				}
 
-				System.out.println(Player.indizea + " indice del boton (no dentro de anuncio)");
 
 				if (bz.getMota().equals("free")) {
 
@@ -327,7 +329,7 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 				try {
 
-					player.next(lblInfo, lblIrudi, abestiak);
+					player.next(bz, lblInfo, lblIrudi, abestiak);
 
 				} catch (SQLException e1) {
 
@@ -386,8 +388,8 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 	@Override
 	public void profila(Bezero bz) {
-        BistakArgitaratu.ProfilaBistaJoan(bz);
-		
+		BistakArgitaratu.ProfilaBistaJoan(bz);
+
 	}
 
 }

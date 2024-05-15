@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -122,8 +123,7 @@ public class ArtistaBista extends JFrame implements Inabegazioa{
 							dispose();
 							break;
 						} else {
-							System.out.println("NO Son el mismo");
-
+							JOptionPane.showMessageDialog(null, "Aukeratu album bat", "Errorea", JOptionPane.ERROR_MESSAGE);
 						}
 
 					}

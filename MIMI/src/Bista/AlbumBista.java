@@ -126,7 +126,6 @@ public class AlbumBista extends JFrame implements Inabegazioa {
 		String[] splitKatea = izena.split(" - ");
 		if (splitKatea.length >= 1) {
 			izenaSplit = splitKatea[0];
-			System.out.println("Abestiaren izena: " + izenaSplit);
 		} else {
 			System.out.println("Txarto");
 		}

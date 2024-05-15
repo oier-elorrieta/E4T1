@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import com.google.protobuf.Timestamp;
 
 import Bista.IragarkiBista;
+import DatuBasea.PlaylistDao;
 import Modelo.Abesti;
 import Modelo.Album;
 import Modelo.Bezero;
@@ -98,6 +99,7 @@ public class Player implements Iplayer {
                     AudioInputStream audioStream = AudioSystem.getAudioInputStream(unekoAbestia);
                     klipa.open(audioStream);
                     klipa.start();
+                  
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
                     e.printStackTrace();
                 }
@@ -117,15 +119,17 @@ public class Player implements Iplayer {
      * @param abestiak Abestiak gordetzeko List objektua.
      * @throws SQLException SQL errorea gertatzen bada.
      */
-    public void aurreko(JLabel lblInfo, JLabel lblIrudi, List<Abesti> abestiak) throws SQLException {
+    public void aurreko(Bezero bz,JLabel lblInfo, JLabel lblIrudi, List<Abesti> abestiak) throws SQLException {
         indizea--;
         if (indizea < 0) {
             indizea = abestiakPlayer.size() - 1;
         }
         stop();
         play();
-        ateraArgazkia(lblIrudi, indizea, abestiak);
+        ateraArgazkia(bz,lblIrudi, indizea, abestiak);
         ateraInformazioa(lblInfo, indizea, abestiak);
+        
+      
     }
 
     /**
@@ -138,15 +142,16 @@ public class Player implements Iplayer {
      * @param abestiak abestiakPlayer listako abestiak
      * @throws SQLException SQL errore bat gertatzen bada
      */
-    public void next(JLabel lblInfo, JLabel lblIrudi, List<Abesti> abestiak) throws SQLException {
+    public void next(Bezero bz, JLabel lblInfo, JLabel lblIrudi, List<Abesti> abestiak) throws SQLException {
         indizea++;
         if (indizea >= abestiakPlayer.size()) {
             indizea = 0;
         }
         stop();
         play();
-        ateraArgazkia(lblIrudi, indizea, abestiak);
+        ateraArgazkia(bz,lblIrudi, indizea, abestiak);
         ateraInformazioa(lblInfo, indizea, abestiak);
+      
     }
 
     /**
@@ -187,11 +192,16 @@ public class Player implements Iplayer {
      * @param abestiak Abestiak zerrenda, non abestien informazioa gordeta dagoen.
      * @throws SQLException SQL errore bat gertatzen bada.
      */
-    public void ateraArgazkia(JLabel lblIrudi, int indizea, List<Abesti> abestiak) throws SQLException {
+    public void ateraArgazkia(Bezero bz, JLabel lblIrudi, int indizea, List<Abesti> abestiak) throws SQLException {
         String filename = kenduWav(abestiakPlayer.get(indizea).getName());
         for (Abesti abesti : abestiak) {
             if (abesti.getid_abesti().equals(filename)) {
                 lblIrudi.setIcon(new ImageIcon(abesti.getIrudia().getBytes(1, (int) abesti.getIrudia().length())));
+                try {
+     		       PlaylistDao.InsertErreprodukzioak(bz, abesti.getid_abesti()); 
+     		    } catch (SQLException e) {
+     		        e.printStackTrace();
+     		    }
                 break;
             }
         }
