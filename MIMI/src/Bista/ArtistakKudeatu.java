@@ -91,7 +91,6 @@ public class ArtistakKudeatu extends JFrame {
 				try {
 					ArtistaSortu(playlistModel,listMusikaria,musikariak);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

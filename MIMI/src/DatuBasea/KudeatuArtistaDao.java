@@ -62,7 +62,7 @@ public class KudeatuArtistaDao {
 	    try (Connection con = Konexioa.konexioa()) {
 	        String kontsulta = "{CALL musikariagehitu(?, ?,?,?)}";
 	        try (CallableStatement cstmt = con.prepareCall(kontsulta)) {
-	        	cstmt.setString(1, ArtistaIzenBerri.substring(0,2).toUpperCase() + "01");
+	        	cstmt.setString(1, ArtistaIzenBerri.substring(0,3).toUpperCase() + "01");
 	        	cstmt.setString(2, ArtistaIzenBerri);
 	        	cstmt.setString(3, selectedMota);
 	        	cstmt.setString(4, textua);

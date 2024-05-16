@@ -17,7 +17,7 @@ import Modelo.Abesti;
 import Modelo.Audio.Mota;
 
 public class AbestiaKudeatuDao {
-	
+
 	public static List<Abesti> AbestiakAtera() {
 		List<Abesti> abestiak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
@@ -33,13 +33,13 @@ public class AbestiaKudeatuDao {
 						String abestiIzena = rs.getString("izena");
 						String albumIzena = rs.getString("izenburua");
 						String kolaboratzaile = rs.getString("kolaboratzaileak");
-						
-						if(mota.equals("abestia")) {
-							Abesti abesti = new Abesti(idAudio,argitaratzea,irudia,Mota.abestia,idAudio,abestiIzena,albumIzena,kolaboratzaile);
+
+						if (mota.equals("abestia")) {
+							Abesti abesti = new Abesti(idAudio, argitaratzea, irudia, Mota.abestia, idAudio,
+									abestiIzena, albumIzena, kolaboratzaile);
 							abestiak.add(abesti);
 						}
 
-						
 					}
 				}
 			}
@@ -50,7 +50,7 @@ public class AbestiaKudeatuDao {
 		return abestiak;
 
 	}
-	
+
 	public static void ezabatuAbestia(int id, List<Abesti> lista) {
 
 		try (Connection con = Konexioa.konexioa()) {
@@ -61,7 +61,7 @@ public class AbestiaKudeatuDao {
 
 				int rowsDeleted = pstmt.executeUpdate();
 				if (rowsDeleted > 0) {
-					
+
 					JOptionPane.showMessageDialog(null, "Abestia ezabatu da!");
 
 				} else {
@@ -73,10 +73,10 @@ public class AbestiaKudeatuDao {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	public static boolean AbestiaBegiratuDagoen(String selectedArtista, String AbestiaIzenBerri) {
 		boolean dago = false;
-		
+
 		try (Connection con = Konexioa.konexioa()) {
 			String kontsulta = "SELECT au.izena, m.izenartistikoa from audio au inner join abestia using (idaudio) inner join album using (idalbum) inner join musikaria m using (idmusikaria);";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
@@ -85,7 +85,7 @@ public class AbestiaKudeatuDao {
 
 						String abestia = rs.getString("izena");
 						String artista = rs.getString("izenartistikoa");
-						
+
 						if (abestia == AbestiaIzenBerri && artista == selectedArtista) {
 							dago = true;
 						}
@@ -97,21 +97,22 @@ public class AbestiaKudeatuDao {
 		}
 		return dago;
 
-}
+	}
+
 	public static boolean SortuAbestia(String selectedArtista, String AbestiaIzenBerri) throws SQLException {
-		 boolean inserted = false;
-	    Time time = new Time (0,2,52);
-	    try (Connection con = Konexioa.konexioa()) {
-	        String kontsulta = "{CALL abestiagehitu(?,?,?,?)}";
-	        try (CallableStatement cstmt = con.prepareCall(kontsulta)) {
-	        	cstmt.setString(1, AbestiaIzenBerri.substring(0,2).toUpperCase() + "AU01");	        	
-	        	cstmt.setString(2, AbestiaIzenBerri);
-	        	cstmt.setTime(3,time);
-	        	cstmt.setString(4, "abestia");
-	        	
-	        	 inserted = cstmt.executeUpdate() > 0;
-	        }
-	    }
+		boolean inserted = false;
+		Time time = new Time(0, 2, 52);
+		try (Connection con = Konexioa.konexioa()) {
+			String kontsulta = "{CALL abestiagehitu(?,?,?,?)}";
+			try (CallableStatement cstmt = con.prepareCall(kontsulta)) {
+				cstmt.setString(1, AbestiaIzenBerri.substring(0, 2).toUpperCase() + "AU01");
+				cstmt.setString(2, AbestiaIzenBerri);
+				cstmt.setTime(3, time);
+				cstmt.setString(4, "abestia");
+
+				inserted = cstmt.executeUpdate() > 0;
+			}
+		}
 		return inserted;
 	}
 }
