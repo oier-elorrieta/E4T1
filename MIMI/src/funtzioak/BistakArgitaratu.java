@@ -111,9 +111,9 @@ public class BistakArgitaratu {
         }
     }
 
-    public static void ErreproduktoreaBistaJoan(Bezero bz, List<Abesti> abestiak, Album album, int index, String artistaIzena, List<Album> albumak) {
+    public static void ErreproduktoreaBistaJoan(Bezero bz, List<Abesti> abestiak, Album album, int index, String artistaIzena, List<Album> albumak, Boolean iragarkia) {
         try {
-            ErreproduktoreaBista frame = new ErreproduktoreaBista(bz, abestiak, album, index, artistaIzena, albumak);
+            ErreproduktoreaBista frame = new ErreproduktoreaBista(bz, abestiak, album, index, artistaIzena, albumak, iragarkia);
             frame.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();

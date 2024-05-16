@@ -122,8 +122,6 @@ public class ArtistaBista extends JFrame implements Inabegazioa{
 							BistakArgitaratu.AlbumBistaJoan(bz, album, artistaIzena, albumak);
 							dispose();
 							break;
-						} else {
-							JOptionPane.showMessageDialog(null, "Aukeratu album bat", "Errorea", JOptionPane.ERROR_MESSAGE);
 						}
 
 					}

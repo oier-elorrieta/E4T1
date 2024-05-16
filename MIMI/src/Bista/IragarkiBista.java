@@ -1,24 +1,14 @@
 package Bista;
 
-
-
 import java.awt.BorderLayout;
 
-
-
 import javax.swing.ImageIcon;
-
+import javax.swing.JButton;
 import javax.swing.JFrame;
-
-
 
 import javax.swing.JPanel;
 
-
-
 import javax.swing.border.EmptyBorder;
-
-
 
 import Modelo.Abesti;
 
@@ -32,69 +22,44 @@ import funtzioak.Player;
 
 import javax.swing.JLabel;
 
-
-
 import java.awt.Font;
 
 import java.awt.Image;
 
-
-
 import javax.swing.SwingConstants;
-
-
 
 import javax.swing.JProgressBar;
 
-
-
 import javax.swing.Timer;
 
-
-
 import java.awt.event.ActionEvent;
-
-
 
 import java.awt.event.ActionListener;
 
 import java.util.List;
 
-
-
 public class IragarkiBista extends JFrame {
-
-
 
 	private static final long serialVersionUID = 1L;
 
-
-
 	private JPanel contentPane;
-
-
 
 	private JProgressBar progressBar;
 
-
-
 	private Timer timer;
 
-
-
 	/**
-
 	 * 
-
+	 * 
+	 * 
 	 * Create the frame.
-
 	 * 
-
+	 * 
+	 * 
 	 */
 
-
-
-	public IragarkiBista(Bezero bz, List<Abesti> abestiak, Album album,  String artistaIzena, List<Album> albumak) {
+	public IragarkiBista(Bezero bz, List<Abesti> abestiak, Album album, String artistaIzena, List<Album> albumak,
+			JButton btnAbestiAurrera, JButton btnAbestiAtzera) {
 
 		setResizable(false);
 
@@ -110,35 +75,19 @@ public class IragarkiBista extends JFrame {
 
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		
+		String imagePath = "src/media/img/colacao2.png";
 
-	
+		ImageIcon icon = new ImageIcon(imagePath);
 
-        String imagePath = "src/media/img/colacao2.png";
+		Image image = icon.getImage();
 
+		Image scaledImage = image.getScaledInstance(800, 400, Image.SCALE_SMOOTH);
 
+		ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
+		JLabel lblIrudia = new JLabel(scaledIcon);
 
-
-        ImageIcon icon = new ImageIcon(imagePath);
-
-        Image image = icon.getImage();
-
-        Image scaledImage = image.getScaledInstance(800, 400, Image.SCALE_SMOOTH);
-
-        ImageIcon scaledIcon = new ImageIcon(scaledImage);
-
-
-
-        JLabel lblIrudia = new JLabel(scaledIcon);
-
-        contentPane.add(lblIrudia, BorderLayout.CENTER);
-
-	
-
-    
-
-		
+		contentPane.add(lblIrudia, BorderLayout.CENTER);
 
 		contentPane.add(lblIrudia, BorderLayout.CENTER);
 
@@ -152,7 +101,7 @@ public class IragarkiBista extends JFrame {
 
 		progressBar = new JProgressBar();
 
-		contentPane.add(progressBar, BorderLayout.SOUTH);		
+		contentPane.add(progressBar, BorderLayout.SOUTH);
 
 		Player player = new Player();
 
@@ -185,17 +134,15 @@ public class IragarkiBista extends JFrame {
 					((Timer) e.getSource()).stop();
 
 					dispose();
-
-
-					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, Player.indizea,artistaIzena,albumak);
+					Player.botoiakDesgaitu(btnAbestiAurrera, btnAbestiAtzera);
+					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, Player.indizea, artistaIzena,
+							albumak, (Player.iragarkia = true));
 
 				}
 
 			}
 
 		});
-
-
 
 		timer.start();
 

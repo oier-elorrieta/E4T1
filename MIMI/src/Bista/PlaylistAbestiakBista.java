@@ -16,6 +16,7 @@ import Modelo.Bezero;
 import Modelo.Playlist;
 import funtzioak.BistakArgitaratu;
 import funtzioak.Inabegazioa;
+import funtzioak.Player;
 import funtzioak.PlaylistFuntzioak;
 
 import javax.swing.DefaultListModel;
@@ -167,7 +168,6 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 					BistakArgitaratu.PlaylistErreproduktoreBistaJoan(bz, NirePlaylistDao.lortuAbestiListaId(lista),
 							albumak.get(listAbestiPlaylist.getSelectedIndex()), listAbestiPlaylist.getSelectedIndex(),
 							playlist.getIzena(), albumak, playlist);
-
 				    dispose();
 					btnExportatu.setEnabled(false);
 					btnExportatu.setEnabled(false);
@@ -190,8 +190,7 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 	}
 	@Override
 	public void profila(Bezero bz) {
-		// TODO Auto-generated method stub
-		
+        BistakArgitaratu.ProfilaBistaJoan(bz);		
 	}
 
 	}

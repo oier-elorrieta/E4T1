@@ -58,7 +58,6 @@ public class PlaylistErreproduktoreBista extends JFrame implements Inabegazioa {
 		player = new Player(abestiak, bz, index);
 
 		player.play();
-		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -256,14 +255,15 @@ public class PlaylistErreproduktoreBista extends JFrame implements Inabegazioa {
 
 				try {
 
-					player.aurreko(bz,lblInfo, lblIrudi, abestiak);
+					player.aurreko(bz, lblInfo, lblIrudi, abestiak);
+					btnPlay.setText("Pause");
+
 
 				} catch (SQLException e1) {
 
 					e1.printStackTrace();
 
 				}
-
 
 				if (bz.getMota().equals("free")) {
 
@@ -275,6 +275,7 @@ public class PlaylistErreproduktoreBista extends JFrame implements Inabegazioa {
 					dispose();
 
 				}
+				
 
 			}
 
@@ -304,7 +305,8 @@ public class PlaylistErreproduktoreBista extends JFrame implements Inabegazioa {
 
 				try {
 
-					player.next(bz,lblInfo, lblIrudi, abestiak);
+					player.next(bz, lblInfo, lblIrudi, abestiak);
+					btnPlay.setText("Pause");
 
 				} catch (SQLException e1) {
 
@@ -312,16 +314,8 @@ public class PlaylistErreproduktoreBista extends JFrame implements Inabegazioa {
 
 				}
 
-				if (bz.getMota().equals("free")) {
 
-					player.murrizketaHasieratu(btnAbestiAurrera, btnAbestiAtzera, bz, abestiak, album, artistaIzena,
-							albumak);
-
-					player.stop();
-
-					dispose();
-
-				}
+				
 
 			}
 
@@ -358,7 +352,7 @@ public class PlaylistErreproduktoreBista extends JFrame implements Inabegazioa {
 			}
 
 		}, 0, 1000);
-
+		
 	}
 
 	@Override

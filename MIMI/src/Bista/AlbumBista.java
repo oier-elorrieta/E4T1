@@ -64,7 +64,7 @@ public class AlbumBista extends JFrame implements Inabegazioa {
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 
-					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, listMusika.getSelectedIndex(),artistaIzena,albumak);
+					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, listMusika.getSelectedIndex(),artistaIzena,albumak, (Player.iragarkia = false));
 					dispose();
 
 				}

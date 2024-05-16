@@ -73,7 +73,7 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 	private Timer timer;
 
 	public ErreproduktoreaBista(Bezero bz, List<Abesti> abestiak, Album album, int index, String artistaIzena,
-			List<Album> albumak) throws SQLException {
+			List<Album> albumak, Boolean iragarkia) throws SQLException {
 
 		setResizable(false);
 
@@ -119,15 +119,7 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 		idAudioLike = abestiak.get(Player.indizea).getId();
 
-		if (gustukoakDao.DagoEdoEz(bz, idAudioLike)) {
-
-			btnLike.setText(" ❌ ");
-
-		} else {
-
-			btnLike.setText(" ❤️ ");
-
-		}
+		likebotoiaeguneratu(abestiak, bz);
 
 		btnLike.addActionListener(new ActionListener() {
 
@@ -282,13 +274,24 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 				try {
 
 					player.aurreko(bz, lblInfo, lblIrudi, abestiak);
+					btnPlay.setText("Pause");
 
 				} catch (SQLException e1) {
 
 					e1.printStackTrace();
 
 				}
+				try {
 
+					likebotoiaeguneratu(abestiak, bz);
+
+				} catch (SQLException e1) {
+
+					// TODO Auto-generated catch block
+
+					e1.printStackTrace();
+
+				}
 
 				if (bz.getMota().equals("free")) {
 
@@ -300,6 +303,7 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 					dispose();
 
 				}
+				
 
 			}
 
@@ -330,13 +334,24 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 				try {
 
 					player.next(bz, lblInfo, lblIrudi, abestiak);
+					btnPlay.setText("Pause");
 
 				} catch (SQLException e1) {
 
 					e1.printStackTrace();
 
 				}
+				try {
 
+					likebotoiaeguneratu(abestiak, bz);
+
+				} catch (SQLException e1) {
+
+					// TODO Auto-generated catch block
+
+					e1.printStackTrace();
+
+				}
 				if (bz.getMota().equals("free")) {
 
 					player.murrizketaHasieratu(btnAbestiAurrera, btnAbestiAtzera, bz, abestiak, album, artistaIzena,
@@ -347,6 +362,7 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 					dispose();
 
 				}
+				
 
 			}
 
@@ -384,6 +400,25 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 		}, 0, 1000);
 
+		if (bz.getMota().equals("free") && iragarkia) {
+			Player.botoiakDesgaitu(btnAbestiAurrera, btnAbestiAtzera);
+		}
+
+	}
+
+	private void likebotoiaeguneratu(List<Abesti> abestiak, Bezero bz) throws SQLException {
+
+		idAudioLike = abestiak.get(Player.indizea).getId();
+
+		if (gustukoakDao.DagoEdoEz(bz, idAudioLike)) {
+
+			btnLike.setText(" ❌ ");
+
+		} else {
+
+			btnLike.setText(" ❤️");
+
+		}
 	}
 
 	@Override
