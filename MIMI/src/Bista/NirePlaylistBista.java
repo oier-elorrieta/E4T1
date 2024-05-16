@@ -22,6 +22,8 @@ import Modelo.Playlist;
 import funtzioak.BistakArgitaratu;
 import funtzioak.Inabegazioa;
 import funtzioak.PlaylistFuntzioak;
+import javax.swing.AbstractListModel;
+import javax.swing.ListSelectionModel;
 
 public class NirePlaylistBista extends JFrame implements Inabegazioa {
 
@@ -84,7 +86,7 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 			playlistModel.addElement(playlista.getIzena());
 		}
 		listPlaylist.setModel(playlistModel);
-
+		JButton btnImportatu = new JButton("Importatu");
 		JButton btnSortu = new JButton("Berria Sortu");
 		btnSortu.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 17));
 		btnSortu.addActionListener(new ActionListener() {
@@ -105,6 +107,7 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 
 				// Birkargatu Lista Modelo berriarekin
 				listPlaylist.setModel(playlistModel);
+				playListMugaIkusi(bz, listPlaylist, btnSortu, btnImportatu);
 
 				
 				btnEzabatu.setEnabled(false);
@@ -137,6 +140,8 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 
 					// Birkargatu Lista Modelo berriarekin
 					listPlaylist.setModel(playlistModel);
+					playListMugaIkusi(bz, listPlaylist, btnSortu, btnImportatu);
+
 
 					btnEzabatu.setEnabled(false);
 					btnExportatu.setEnabled(false);
@@ -148,7 +153,7 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 		btnEzabatu.setBounds(730, 148, 240, 41);
 		contentPane.add(btnEzabatu);
 
-		JButton btnImportatu = new JButton("Importatu");
+		
 		btnImportatu.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 17));
 		btnImportatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,6 +172,7 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 
 				// Birkargatu Lista Modelo berriarekin
 				listPlaylist.setModel(playlistModel);
+				playListMugaIkusi(bz, listPlaylist, btnSortu, btnImportatu);
 
 				btnEzabatu.setEnabled(false);
 				btnExportatu.setEnabled(false);
@@ -212,6 +218,17 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 		btnSartu.setEnabled(false);
 
 	}
+	public static void playListMugaIkusi(Bezero bz, JList lista, JButton btnSortu, JButton btnImportatu) {
+	    if (bz.getMota().equals("free") && lista.getModel().getSize() >= 3) {
+	        btnSortu.setEnabled(false);
+	        btnImportatu.setEnabled(false);
+	    } else {
+	        btnSortu.setEnabled(true);
+	        btnImportatu.setEnabled(true);
+
+	    }
+	}
+
 
 	public static void PlaylistSortu(Bezero bz, DefaultListModel<String> playlistModel, JList<String> listPlaylist,
 			List<Playlist> listak, boolean expo) {
@@ -219,25 +236,6 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 		try {
 			// Crear la nueva playlist
 			Playlist playlista = NirePlaylistDao.sortuPlaylist(bz, playListIzenBerri);
-
-			// Volver a obtener la lista de playlists
-			listak = NirePlaylistDao.nirePlaylistAtera(bz);
-
-			// Limpiar el modelo actual
-			playlistModel.clear();
-
-			// Agregar las playlists actualizadas al modelo
-			for (Playlist playlist : listak) {
-				playlistModel.addElement(playlist.getIzena());
-			}
-
-			// Actualizar la lista JList con el nuevo modelo
-			listPlaylist.setModel(playlistModel);
-
-			// Ahora, importar los elementos a la nueva playlist
-			if (expo == true) {
-				PlaylistFuntzioak.PlaylistaImportatu(playlista);
-			}
 
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -249,5 +247,4 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
         BistakArgitaratu.ProfilaBistaJoan(bz);
 
 	}
-
 }
