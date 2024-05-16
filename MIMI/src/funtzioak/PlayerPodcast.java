@@ -19,11 +19,21 @@ import javax.swing.JOptionPane;
 import Modelo.Bezero;
 import Modelo.Podcast;
 
+/**
+ * PlayerPodcast klasea Iplayer interfazea implementatzen du.
+ * Klase honek podcastak erreproduzitzeko funtzionalitateak eskaintzen ditu.
+ */
 public class PlayerPodcast implements Iplayer {
 	private List<File> podcastListPlayer;
 	private int indizea = 0;
 	private Clip klipa;
 
+	/**
+	 * PlayerPodcast klasearen eraikitzailea.
+	 * @param bz Bezero objektua
+	 * @param selectedValue hautatutako podcastaren indizea
+	 * @param podcastak podcasten zerrenda
+	 */
 	public PlayerPodcast(Bezero bz, int selectedValue, List<Podcast> podcastak) {
 		podcastListPlayer = new ArrayList<>();
 		File selectedPodcast = null;
@@ -39,10 +49,8 @@ public class PlayerPodcast implements Iplayer {
 		}
 
 		if (!podcastListPlayer.isEmpty() && selectedPodcast != null) {
-
 			podcastListPlayer.add(0, selectedPodcast);
 		} else {
-
 			JOptionPane.showMessageDialog(null, "Ez daude podkast, barkatu", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -54,14 +62,17 @@ public class PlayerPodcast implements Iplayer {
 		}
 	}
 
+	/**
+	 * Erreproduzitu aukeratutako podcasta.
+	 */
 	public void play() {
 		File unekoAbestia = podcastListPlayer.get(indizea);
 		if (klipa != null) {
-			if (klipa.isOpen()) { // Klipa irekita dagoen begiratzen du
+			if (klipa.isOpen()) {
 				if (klipa.isRunning()) {
 					pause();
 				} else {
-					klipa.start(); // Klipa irekita badago baina geldituta badago, berriro hasten du
+					klipa.start();
 				}
 			} else {
 				try {
@@ -75,6 +86,9 @@ public class PlayerPodcast implements Iplayer {
 		}
 	}
 
+	/**
+	 * Aurreko podcastera joan.
+	 */
 	public void aurreko() {
 		indizea--;
 		if (indizea < 0) {
@@ -84,6 +98,9 @@ public class PlayerPodcast implements Iplayer {
 		play();
 	}
 
+	/**
+	 * Hurrengo podcastera joan.
+	 */
 	public void next() {
 		indizea++;
 		if (indizea >= podcastListPlayer.size()) {
@@ -93,15 +110,20 @@ public class PlayerPodcast implements Iplayer {
 		play();
 	}
 
+	/**
+	 * Erreproduzitzen ari den podcasta pausatu.
+	 */
 	public void pause() {
-		if (klipa != null && klipa.isRunning()) {// Klipa irekita badago eta erreproduzitzen badago, gelditzen du
+		if (klipa != null && klipa.isRunning()) {
 			klipa.stop();
 		} else {
 			JOptionPane.showMessageDialog(null, "Ez dago abestirik erreproduzitzen.", "Error", JOptionPane.ERROR_MESSAGE);
-			
 		}
 	}
 
+	/**
+	 * Erreproduzitzen ari den podcasta gelditu.
+	 */
 	public void stop() {
 		if (klipa != null) {
 			klipa.stop();
@@ -109,6 +131,13 @@ public class PlayerPodcast implements Iplayer {
 		}
 	}
 
+	/**
+	 * Aukeratutako podcastaren argazkia ateratu.
+	 * @param lblIrudi JLabel objektua argazkiaren bistaratzea
+	 * @param indizea aukeratutako podcastaren indizea
+	 * @param podcastak podcasten zerrenda
+	 * @throws SQLException SQL errorea
+	 */
 	public void ateraArgazkia(JLabel lblIrudi, int indizea, List<Podcast> podcastak) throws SQLException {
 		String filename = kenduWav(podcastListPlayer.get(indizea).getName());
 		for (int i = 0; i < podcastak.size(); i++) {
@@ -117,63 +146,77 @@ public class PlayerPodcast implements Iplayer {
 						podcastak.get(i).getIrudia().getBytes(1, (int) podcastak.get(i).getIrudia().length())));
 			}
 		}
-		
-
 	}
 
+	/**
+	 * Aukeratutako podcastaren informazioa ateratu.
+	 * @param lblInfo JLabel objektua informazioaren bistaratzea
+	 * @param indizea aukeratutako podcastaren indizea
+	 * @param podcastak podcasten zerrenda
+	 * @throws SQLException SQL errorea
+	 */
 	public void ateraInformazioa(JLabel lblInfo, int indizea, List<Podcast> podcastak) throws SQLException {
-	    Podcast p = podcastak.get(indizea);
-	    
-	    String info = "Podcast : " + p.getPodcast_izena() + " / Iraupena : "  + p.getIraupena() + " / Kolaboratzaile : ";
-	    if(p.getKolaboratzaile() == null ) {
-	    } else {
-	        info += p.getKolaboratzaile();
-	    }
-	    
-	    lblInfo.setText(info);
+		Podcast p = podcastak.get(indizea);
+
+		String info = "Podcast : " + p.getPodcast_izena() + " / Iraupena : "  + p.getIraupena() + " / Kolaboratzaile : ";
+		if(p.getKolaboratzaile() == null ) {
+		} else {
+			info += p.getKolaboratzaile();
+		}
+
+		lblInfo.setText(info);
 	}
 
-
-
+	/**
+	 * Wav formatua kendu fitxategiaren izenetik.
+	 * @param filename fitxategiaren izena
+	 * @return wav formatua kendutako fitxategiaren izena
+	 */
 	public String kenduWav(String filename) {
 		String[] tarteak = filename.split("\\.");
 		return tarteak[0];
 	}
 
+	/**
+	 * Erreproduzitzen ari den podcastaren abiadura azkartu.
+	 */
 	public void bizkortu() {
 		if (klipa != null && klipa.isOpen()) {
 			if (klipa.isControlSupported(FloatControl.Type.VOLUME)) {
 				FloatControl control = (FloatControl) klipa.getControl(FloatControl.Type.VOLUME);
 				if (control != null) {
-					// Aumentar la velocidad a x2 (2.0f)
 					control.setValue(2.0f);
 				} else {
-					System.out.println("No se puede ajustar la velocidad de reproducci�n.");
+					System.out.println("No se puede ajustar la velocidad de reproducción.");
 				}
 			} else {
 				System.out.println("El control de velocidad no es compatible con este clip de audio.");
 			}
 		} else {
-			System.out.println("No hay ning�n clip de audio abierto para ajustar la velocidad.");
+			System.out.println("No hay ningún clip de audio abierto para ajustar la velocidad.");
 		}
 	}
 
+	/**
+	 * Aukeratutako podcastaren indizea itzuli.
+	 * @return aukeratutako podcastaren indizea
+	 */
 	public int getIndizea() {
 		return indizea;
 	}
-	
+
+	/**
+	 * Erreproduzitzen ari den podcastaren denbora itzuli.
+	 * @return erreproduzitzen ari den podcastaren denbora
+	 */
 	public String denbora() {
-
-		        long position = klipa.getMicrosecondPosition();
-		        long duration = klipa.getMicrosecondLength();
-		        long remaining = duration - position;
-		        long milliseconds = remaining / 1_000;
-		        long seconds = milliseconds / 1000;
-		        long minutes = seconds / 60;
-		        long remainingSeconds = seconds % 60;
-		        return String.format("%02d:%02d", minutes, remainingSeconds);
-		       
-			      
-			    }
-
+		long position = klipa.getMicrosecondPosition();
+		long duration = klipa.getMicrosecondLength();
+		long remaining = duration - position;
+		long milliseconds = remaining / 1_000;
+		long seconds = milliseconds / 1000;
+		long minutes = seconds / 60;
+		long remainingSeconds = seconds % 60;
+		return String.format("%02d:%02d", minutes, remainingSeconds);
+	}
 }

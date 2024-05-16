@@ -8,20 +8,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import Modelo.Abesti;
 import Modelo.Playlist;
 import DatuBasea.PlaylistDao;
 import DatuBasea.NirePlaylistDao;
 
+/**
+ * {@code PlaylistFuntzioak} klasea {@link Playlist} objektuekin lan egiteko funtzioak eskaintzen ditu.
+ */
 public class PlaylistFuntzioak {
 
 	private static final File filePlaylist = new File("Playlistak.txt");
 	private static final File fileAbestiak = new File("Abestiak.txt");
 	
-
+	/**
+	 * {@link Playlist} objektua fitxategi batean esportatzen du.
+	 * 
+	 * @param playlista esportatu nahi den {@link Playlist} objektua
+	 */
 	public static void PlaylistaExportatu(Playlist playlista) {
 		try (BufferedWriter bW = new BufferedWriter(new FileWriter(filePlaylist))) {
 			NirePlaylistDao.lortuAbestiakIdPlaylist(playlista);
@@ -42,6 +47,13 @@ public class PlaylistFuntzioak {
 		}
 	}
 
+	/**
+	 * {@link Playlist} objektua fitxategi batetik inportatzen du.
+	 * 
+	 * @param playlista inportatu nahi den {@link Playlist} objektua
+	 * @return inportatutako {@link Playlist} objektua
+	 * @throws SQLException SQL errore bat gertatzen bada
+	 */
 	public static Playlist PlaylistaImportatu(Playlist playlista) throws SQLException {
 		ArrayList<Abesti> abestiList = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(filePlaylist))) {
@@ -61,6 +73,14 @@ public class PlaylistFuntzioak {
 		return playlista;
 	}
 	
+	/**
+	 * {@link Playlist} objektuaren abesti bat fitxategi batean esportatzen du.
+	 * 
+	 * @param lista esportatu nahi den {@link Playlist} objektua
+	 * @param erreprodukzioak abestiaren erreprodukzio kopurua
+	 * @param abeslaria abestiaren abeslaria
+	 * @param id abestiaren identifikadorea
+	 */
 	public static void AbestiakExportatu(Playlist lista, ArrayList<Integer> erreprodukzioak, ArrayList<String> abeslaria, int id) {
 		try (BufferedWriter bW = new BufferedWriter(new FileWriter(fileAbestiak))) {
 				bW.write("ABESTI HAU ENTZUN- " + lista.getAbestiList().get(id).getAbestiIzena() + " - "+ erreprodukzioak.get(id) + " - " + abeslaria.get(id) + " - " + lista.getAbestiList().get(id).getIraupena());
