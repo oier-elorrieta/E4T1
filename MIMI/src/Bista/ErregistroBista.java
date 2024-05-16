@@ -202,7 +202,7 @@ public class ErregistroBista extends JFrame {
 		Properties properties = new Properties();
 		properties.put("text.today", "Hoy");
 		properties.put("text.month", "Mes");
-		properties.put("text.year", "Año");
+		properties.put("text.year", "Aï¿½o");
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 
 		Calendar today = Calendar.getInstance();
@@ -311,7 +311,7 @@ public class ErregistroBista extends JFrame {
 				erregistroBezero = new FreeBezero();
 				
 				
-				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true && BezeroDao.Bezeroaexistitu(txtErabiltzaile) == true) {
+				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true && BezeroDao.Bezeroaexistitu(txtErabiltzaile.getText()) == true) {
 
 				ErregistratuF.sortuBezeroa(erregistroBezero, txtIzena, txtAbizena, txtErabiltzaile, pasahitzaPass,
 						selectDate, txtErregistro, AukeratuHizkuntza);
@@ -324,6 +324,9 @@ public class ErregistroBista extends JFrame {
 
 				BistakArgitaratu.loginJoan();
 				dispose();
+			}else {
+				txtErabiltzaile.setText("");
+				
 			}
 			}
 		});
@@ -341,7 +344,7 @@ public class ErregistroBista extends JFrame {
 				berriaPre = new PremiumBezeroa();
 				
 				
-				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true && BezeroDao.Bezeroaexistitu(txtErabiltzaile) == true) {
+				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true && BezeroDao.Bezeroaexistitu(txtErabiltzaile.getText()) == true) {
 
 				ErregistratuF.PremiumErosi(premiumMuga, txtIzena, txtAbizena, txtErabiltzaile,
 						pasahitzaPass, selectDate, txtErregistro, AukeratuHizkuntza, berriaPre);

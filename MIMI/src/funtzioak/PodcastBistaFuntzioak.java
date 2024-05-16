@@ -25,10 +25,5 @@ public class PodcastBistaFuntzioak {
 		return izenaSplit;
 	}
 	
-	/**
-	 * Podcast-ak hautatzeko aukera ematen duen metodoa.
-	 */
-	public static void selekzioaHautatu() {
-	
-	}
+
 }

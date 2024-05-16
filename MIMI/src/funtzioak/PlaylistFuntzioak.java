@@ -15,17 +15,22 @@ import DatuBasea.PlaylistDao;
 import DatuBasea.NirePlaylistDao;
 
 /**
- * {@code PlaylistFuntzioak} klasea {@link Playlist} objektuekin lan egiteko funtzioak eskaintzen ditu.
+ * PlaylistFuntzioak klaseak Playlist objektuak fitxategi batean esportatzeko eta inportatzeko funtzioak ditu.
+ * Klase honek Playlist objektuak fitxategi batean esportatzeko eta inportatzeko funtzioak ditu.
  */
 public class PlaylistFuntzioak {
 
 	private static final File filePlaylist = new File("Playlistak.txt");
 	private static final File fileAbestiak = new File("Abestiak.txt");
 	
+	
 	/**
-	 * {@link Playlist} objektua fitxategi batean esportatzen du.
+	 * PlaylistaExportatu metodoa, emandako Playlist objektua fitxategi batean esportatzen du.
+	 *
+	 * @param playlista Esportatu nahi den Playlist objektua.
 	 * 
-	 * @param playlista esportatu nahi den {@link Playlist} objektua
+	 * idatzi abestiak.txt fitxategian abestiak eta abestiaren informazioa 
+	 * 
 	 */
 	public static void PlaylistaExportatu(Playlist playlista) {
 		try (BufferedWriter bW = new BufferedWriter(new FileWriter(filePlaylist))) {
@@ -48,11 +53,15 @@ public class PlaylistFuntzioak {
 	}
 
 	/**
-	 * {@link Playlist} objektua fitxategi batetik inportatzen du.
+	 * PlaylistaImportatu metodoa, fitxategi batean dauden abestiak Playlist objektuan sartzen ditu.
+	 *
+	 * @param playlista Importatu nahi den Playlist objektua.
+	 * @return Playlist objektua
+	 * @throws SQLException
 	 * 
-	 * @param playlista inportatu nahi den {@link Playlist} objektua
-	 * @return inportatutako {@link Playlist} objektua
-	 * @throws SQLException SQL errore bat gertatzen bada
+	 * PlayListDAO lortuAbestiakIdPlaylist metodoa erabiliz abestiak lortu eta sartu
+	 * 
+	 * JOptionPane-ek mezua pantailaratzen du
 	 */
 	public static Playlist PlaylistaImportatu(Playlist playlista) throws SQLException {
 		ArrayList<Abesti> abestiList = new ArrayList<>();
@@ -74,12 +83,19 @@ public class PlaylistFuntzioak {
 	}
 	
 	/**
-	 * {@link Playlist} objektuaren abesti bat fitxategi batean esportatzen du.
+	 * AbestiakExportatu metodoa, emandako Playlist objektuaren hautatutako abestia fitxategi batean esportatzen du.
 	 * 
-	 * @param lista esportatu nahi den {@link Playlist} objektua
-	 * @param erreprodukzioak abestiaren erreprodukzio kopurua
-	 * @param abeslaria abestiaren abeslaria
-	 * @param id abestiaren identifikadorea
+	 *
+	 * @param lista Esportatu nahi den Playlist objektua.
+	 * @param erreprodukzioak erreprodukzio kopurua
+	 * @param abeslaria abeslariaren izena
+	 * @param id abestiaren id-a
+	 * 
+	 * idatzi abestiak.txt fitxategian abestiak eta abestiaren informazioa 
+	 * 
+	 * 
+	 * JOptionPane-ek mezua pantailaratzen du
+	 * 
 	 */
 	public static void AbestiakExportatu(Playlist lista, ArrayList<Integer> erreprodukzioak, ArrayList<String> abeslaria, int id) {
 		try (BufferedWriter bW = new BufferedWriter(new FileWriter(fileAbestiak))) {

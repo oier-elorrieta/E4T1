@@ -13,9 +13,25 @@ import java.util.List;
 import Modelo.Abesti;
 import Modelo.Album;
 import Modelo.Audio.Mota;
-
+/**
+ * 
+ * AlbumDao klasea albumen datuak kudeatzeko erabiltzen da.
+ * 
+ * albumarenAbestiak metodoak albumaren abestiak itzultzen ditu.
+ * 
+ * lortuAlbumaIdAudio metodoak idAudio bat emanda, albuma itzultzen du.
+ * 
+ */
 public class AlbumDao {
 	
+	/**
+	 * Albumaren abestiak itzultzen dituen metodoa.
+	 *
+	 * Albumaren izenburua emanda, albumaren abestiak itzultzen ditu.
+	 * 
+	 * @param album Albumaren izenburua
+	 * @return Abestiak listan gordetzen dituen ArrayList bat
+	 */
 	public static List<Abesti> albumarenAbestiak(String album) {
 		List<Abesti> abestiak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
@@ -49,6 +65,15 @@ public class AlbumDao {
 
 	}
 	
+	/**
+	 * IdAudio bat emanda, albuma itzultzen duen metodoa.
+	 * 
+	 * @param idAudio Audioaren ID-a
+	 * 
+	 * @return Album objektua
+	 * 
+	 * Albumak izenburua, argitaratze data, generoa, musikariaren ID-a, kolaboratzaileak eta albumaren iraupena gordetzen ditu.
+	 */
 	public static Album lortuAlbumaIdAudio(String idAudio) {
 		Album album = new Album();
 		try (Connection con = Konexioa.konexioa()) {

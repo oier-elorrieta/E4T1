@@ -78,10 +78,10 @@ public class BezeroDaoTest {
     public void testBezeroUpdate() throws SQLException {
         FreeBezero existitzenDena = new FreeBezero();
         existitzenDena.setId("BZ002");
-        JTextField textIzena = new JTextField("IzenaBerria");
-        JTextField textAbizena = new JTextField("AbizenaBerria");
-        JTextField textErabiltzalea = new JTextField("ErabiltzaileBerria");
-        JPasswordField textPasahitza = new JPasswordField("berria_pasahitza");
+        String textIzena = new String("IzenaBerria");
+        String textAbizena = new String("AbizenaBerria");
+        String textErabiltzalea = new String("ErabiltzaileBerria");
+        String textPasahitza = new String("berria_pasahitza");
 
         BezeroDao.BezeroUpdate(existitzenDena, textIzena, textAbizena, textErabiltzalea, textPasahitza);
 
@@ -128,9 +128,9 @@ public class BezeroDaoTest {
         txtErabiltzaile1.setText("a");
         
         
-        assertFalse(BezeroDao.Bezeroaexistitu(txtErabiltzaile1));
+        assertFalse(BezeroDao.Bezeroaexistitu(txtErabiltzaile1.getText()));
         
-        assertTrue(BezeroDao.Bezeroaexistitu(txtErabiltzaile2));
+        assertTrue(BezeroDao.Bezeroaexistitu(txtErabiltzaile2.getText()));
         
 
     }

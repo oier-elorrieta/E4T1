@@ -104,8 +104,12 @@ public class AbestiaKudeatuDao {
 	    try (Connection con = Konexioa.konexioa()) {
 	        String kontsulta = "{CALL abestiagehitu(?,?,?,?)}";
 	        try (CallableStatement cstmt = con.prepareCall(kontsulta)) {
+<<<<<<< HEAD
 	        	cstmt.setString(1, AbestiaIzenBerri.substring(1,3).toUpperCase() + "AU01");
 	        	cstmt.setString(2, AbestiaIzenBerri);
+=======
+	        	cstmt.setString(1, AbestiaIzenBerri.substring(0,2).toUpperCase() + "AU01");	        	cstmt.setString(2, AbestiaIzenBerri);
+>>>>>>> 590494bb5871199ba59cdad7439cef192eb9a40e
 	        	cstmt.setTime(3,time);
 	        	cstmt.setString(4, "abestia");
 	        	

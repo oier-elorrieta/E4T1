@@ -8,9 +8,26 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import Modelo.Bezero;
-
+/**
+ * 
+ * GustokoakDao klasea gustukoak taularekin eragin duen funtzioak kudeatzeko erabiltzen da.
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 public class gustukoakDao {
 
+	/**
+	 * Metodo honek gustukoak taulan idAudioLike parametroaren eta bz parametroaren arabera aurkitzen duen erregistroa itzultzen du.
+	 * 
+	 * @param bz Bezero objektua
+	 * @param idAudioLike Audioaren identifikazioa
+	 * @return true, gustukoak taulan erregistroa aurkitzen bada; false, bestela
+	 * @throws SQLException SQL errorea gertatzen bada
+	 */
 	public static boolean DagoEdoEz(Bezero bz, String idAudioLike) throws SQLException {
 		boolean ezabatuta = false;
 		try (Connection con = Konexioa.konexioa()) {
@@ -30,6 +47,14 @@ public class gustukoakDao {
 		return ezabatuta;
 	}
 
+	/**
+	 * Metodo honek gustukoak taulan sartzen du bezeroa eta audioaren id
+	 * 
+	 * @param bz           Bezero objektua, gustukoak taulan sartzeko erabiltzen den bezeroa.
+	 * @param idAudioLike  String motako parametroa, gustukoak taulan sartzeko erabiltzen den audioaren identifikadorea.
+	 * @return             boolean motako balioa, true itzultzen du ondo sartu bada gustukoak taulan, false itzultzen du bestela.
+	 * @throws SQLException SQL errore bat gertatzen bada.
+	 */
 	public static boolean GustukoInsert(Bezero bz, String idAudioLike) throws SQLException {
 
 		try (Connection con = Konexioa.konexioa()) {
@@ -58,6 +83,13 @@ public class gustukoakDao {
 
 	}
 
+	/**
+	 * Metodo honek gustukoak taulatik erregistro bat ezabatzen du, emandako bezeroaren eta audioaren identifikadoreak erabiliz.
+	 *
+	 * @param bz           Bezero objektua, gustukoak taulan ezabatu nahi den bezeroa identifikatzeko.
+	 * @param idAudioLike  Audioaren identifikadorea, gustukoak taulan ezabatu nahi den audioa identifikatzeko.
+	 * @return             True itzultzen du ondo ezabatu bada, false itzultzen du bestela.
+	 */
 	public static boolean GustukoDelete(Bezero bz, String idAudioLike) {
 
 		try (Connection con = Konexioa.konexioa()) {
