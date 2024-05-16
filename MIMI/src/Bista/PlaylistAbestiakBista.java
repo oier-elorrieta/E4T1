@@ -40,8 +40,10 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 	private JButton btnExportatu;
 	private JButton btnSartu;
 	private ArrayList<Integer> erreprodukzioak = new ArrayList<>();
-
- public PlaylistAbestiakBista(Bezero bz, Playlist playlist) {
+    /**
+     * Create the frame.
+     */
+    public PlaylistAbestiakBista(Bezero bz, Playlist playlist) {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1010, 500);
@@ -153,11 +155,9 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 		btnEzabatu.setEnabled(false);
 		btnExportatu.setEnabled(false);
 		
-
-		btnSartu = new JButton("Erreprodukzitu");
+		btnSartu = new JButton("Erreproduzitu");
 		btnSartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.PlaylistErreproduktoreBistaJoan(bz, null, null, ABORT, getName(), null, playlist);
 				ArrayList<Album> albumak = new ArrayList<Album>();
 				if (listAbestiPlaylist.getSelectedIndex() == -1) {
 					JOptionPane.showMessageDialog(null, "Ez duzu ezer aukeratu erreprodukzioa hasteko");
@@ -173,7 +173,7 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 					btnExportatu.setEnabled(false);
 					btnEzabatu.setEnabled(false);
 				}
-				
+
 			}
 		});
 		btnSartu.setFont(new Font("Dialog", Font.PLAIN, 17));
@@ -187,11 +187,10 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 		btnExportatu.setEnabled(false);
 		btnSartu.setEnabled(false);
 
-	} 
+	}
 	@Override
 	public void profila(Bezero bz) {
         BistakArgitaratu.ProfilaBistaJoan(bz);		
 	}
-    }
-		
-	
+
+	}
