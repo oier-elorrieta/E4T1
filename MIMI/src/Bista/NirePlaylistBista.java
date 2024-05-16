@@ -19,6 +19,7 @@ import javax.swing.event.ListSelectionListener;
 import DatuBasea.NirePlaylistDao;
 import Modelo.Bezero;
 import Modelo.Playlist;
+import Salbuespenak.PlaylistIzenaHutza;
 import funtzioak.BistakArgitaratu;
 import funtzioak.Inabegazioa;
 import funtzioak.PlaylistFuntzioak;
@@ -93,7 +94,7 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 			public void actionPerformed(ActionEvent e) {
 				PlaylistSortu(bz, playlistModel, listPlaylist, listak, false);
 				listPlaylist.setModel(playlistModel);
-				
+
 				// Berriro lortu PlayList zerrenda
 				listak = NirePlaylistDao.nirePlaylistAtera(bz);
 
@@ -109,7 +110,6 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 				listPlaylist.setModel(playlistModel);
 				playListMugaIkusi(bz, listPlaylist, btnSortu, btnImportatu);
 
-				
 				btnEzabatu.setEnabled(false);
 				btnExportatu.setEnabled(false);
 				btnSartu.setEnabled(false);
@@ -142,7 +142,6 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 					listPlaylist.setModel(playlistModel);
 					playListMugaIkusi(bz, listPlaylist, btnSortu, btnImportatu);
 
-
 					btnEzabatu.setEnabled(false);
 					btnExportatu.setEnabled(false);
 					btnSartu.setEnabled(false);
@@ -153,7 +152,6 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 		btnEzabatu.setBounds(730, 148, 240, 41);
 		contentPane.add(btnEzabatu);
 
-		
 		btnImportatu.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 17));
 		btnImportatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -218,33 +216,55 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 		btnSartu.setEnabled(false);
 
 	}
-	public static void playListMugaIkusi(Bezero bz, JList lista, JButton btnSortu, JButton btnImportatu) {
-	    if (bz.getMota().equals("free") && lista.getModel().getSize() >= 3) {
-	        btnSortu.setEnabled(false);
-	        btnImportatu.setEnabled(false);
-	    } else {
-	        btnSortu.setEnabled(true);
-	        btnImportatu.setEnabled(true);
 
-	    }
+	public static void playListMugaIkusi(Bezero bz, JList lista, JButton btnSortu, JButton btnImportatu) {
+		if (bz.getMota().equals("free") && lista.getModel().getSize() >= 3) {
+			btnSortu.setEnabled(false);
+			btnImportatu.setEnabled(false);
+		} else {
+			btnSortu.setEnabled(true);
+			btnImportatu.setEnabled(true);
+
+		}
 	}
 
-
 	public static void PlaylistSortu(Bezero bz, DefaultListModel<String> playlistModel, JList<String> listPlaylist,
-			List<Playlist> listak, boolean expo) {
-		String playListIzenBerri = JOptionPane.showInputDialog("Ze izen jarri nahi diozu?");
-		try {
-			// Crear la nueva playlist
-			Playlist playlista = NirePlaylistDao.sortuPlaylist(bz, playListIzenBerri);
 
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+			List<Playlist> listak, boolean expo) {
+
+		String playListIzenBerri = JOptionPane.showInputDialog("Ze izen jarri nahi diozu?");
+
+		try {
+
+			if (playListIzenBerri == null || playListIzenBerri.equals("")) {
+
+				throw new PlaylistIzenaHutza();
+
+			} else {
+
+				try {
+
+					Playlist playlista = NirePlaylistDao.sortuPlaylist(bz, playListIzenBerri);
+
+				} catch (SQLException e1) {
+
+					e1.printStackTrace();
+
+				}
+
+			}
+
+			// Crear la nueva playlist
+
+		} catch (PlaylistIzenaHutza ex) {
+
 		}
+
 	}
 
 	@Override
 	public void profila(Bezero bz) {
-        BistakArgitaratu.ProfilaBistaJoan(bz);
+		BistakArgitaratu.ProfilaBistaJoan(bz);
 
 	}
 }

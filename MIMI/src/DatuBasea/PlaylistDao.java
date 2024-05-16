@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import Modelo.Bezero;
 import Modelo.Playlist;
+import Salbuespenak.DatubaseErroreaKeyDupe;
 import funtzioak.DateFuntzioak;
 
 public class PlaylistDao {
@@ -39,20 +40,34 @@ public class PlaylistDao {
 			e.printStackTrace();
 		}
 		return playlistArray;
-	} 
-	
-	
-	public static boolean InsertErreprodukzioak(Bezero bz, String idAudio) throws SQLException {
-	    boolean inserted = false;
-	    try (Connection con = Konexioa.konexioa()) {
-	        String kontsulta = "{CALL erreprodukzioagehitu(?, ?)}";
-	        try (CallableStatement cstmt = con.prepareCall(kontsulta)) {
-	            cstmt.setString(1, bz.getId());
-	            cstmt.setString(2, idAudio);
-	            inserted = cstmt.executeUpdate() > 0;
-	        }
-	    }
-	    return inserted;
+	}
+
+	public static boolean InsertErreprodukzioak(Bezero bz, String idAudio) throws SQLException, DatubaseErroreaKeyDupe {
+
+		boolean inserted = false;
+
+		try (Connection con = Konexioa.konexioa()) {
+
+			String kontsulta = "{CALL erreprodukzioagehitu(?, ?)}";
+
+			try (CallableStatement cstmt = con.prepareCall(kontsulta)) {
+
+				cstmt.setString(1, bz.getId());
+
+				cstmt.setString(2, idAudio);
+
+				inserted = cstmt.executeUpdate() > 0;
+
+			}
+
+		} catch (SQLException ex) {
+
+			throw new DatubaseErroreaKeyDupe();
+
+		}
+
+		return inserted;
+
 	}
 
 	public static boolean InsertAbestiPlaylist(String selectedPlaylist, String idAudioLike) throws SQLException {
@@ -95,5 +110,5 @@ public class PlaylistDao {
 
 		return true;
 	}
-	
+
 }
