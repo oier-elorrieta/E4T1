@@ -288,6 +288,12 @@ public class BistakArgitaratu {
         }
     }
     
+    /**
+     * Metodo honek AbestiakKudeatuJoan funtzioa inplementatzen du.
+     * AbestiakKudeatuJoan funtzioak AbestiaKudeatuBista klasearen instantzia sortzen du eta bistaren ikusgarritasuna aktibatzen du.
+     * 
+     * @throws Exception salbuespena gertatzen bada
+     */
     public static void AbestiakKudeatuJoan() {
         try {
         	AbestiaKudeatuBista frame = new AbestiaKudeatuBista();

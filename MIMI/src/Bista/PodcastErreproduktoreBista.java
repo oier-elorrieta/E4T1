@@ -102,6 +102,7 @@ public class PodcastErreproduktoreBista extends JFrame implements Inabegazioa {
 				playerPodcast.aurreko();
 				try {
 					playerPodcast.ateraInformazioa(lblInfo, playerPodcast.getIndizea(), podcastList);
+					btnPlay.setText("Pause");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -117,6 +118,8 @@ public class PodcastErreproduktoreBista extends JFrame implements Inabegazioa {
 				playerPodcast.next();
 				try {
 					playerPodcast.ateraInformazioa(lblInfo, playerPodcast.getIndizea(), podcastList);
+					btnPlay.setText("Pause");
+
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

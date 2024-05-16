@@ -314,6 +314,10 @@ public static void ezabatuAbestiaPlayList(int selectedIndex, Playlist lista) {
 	}
 }
 
+public static void lortuGustukoak(Bezero bz) {
+	
+}
+
 
 	
 }

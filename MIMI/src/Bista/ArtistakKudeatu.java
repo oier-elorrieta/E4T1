@@ -64,9 +64,9 @@ public class ArtistakKudeatu extends JFrame {
         contentPane.add(btnAtzera);
         
         JLabel lblTitle = new JLabel("Artistak Kudeatu");
-        lblTitle.setFont(new Font("Monospaced", Font.PLAIN, 60));
+        lblTitle.setFont(new Font("Monospaced", Font.PLAIN, 56));
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitle.setBounds(119, 11, 759, 55);
+        lblTitle.setBounds(120, 11, 759, 41);
         contentPane.add(lblTitle);
         
         musikariak = AbeslariDao.musikariakAtera();

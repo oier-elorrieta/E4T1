@@ -9,9 +9,9 @@ import javax.swing.JTextField;
 
 import Modelo.FreeBezero;
 import Modelo.PremiumBezeroa;
+import Salbuespenak.PasahitzaEzBerdina;
 
 public class ErregistratuF {
-
 
 	/**
 	 * PremiumBezeroa klasea erabiltzailearen premium bezeroaren informazioa
@@ -41,9 +41,9 @@ public class ErregistratuF {
 	public static PremiumBezeroa PremiumErosi(LocalDate premiumMuga, JTextField txtIzena, JTextField txtAbizena,
 			JTextField txtErabiltzaile, JPasswordField pasahitzaPass, Date selectDate, JTextField txtErregistro,
 			JTextField AukeratuHizkuntza, PremiumBezeroa berriaPre) {
-		
+
 		DateFuntzioak.LocalDatetoString(premiumMuga);
-		
+
 		berriaPre.setIzena(txtIzena.getText());
 		berriaPre.setAbizena(txtAbizena.getText());
 		berriaPre.setErabiltzaile(txtErabiltzaile.getText());
@@ -94,25 +94,26 @@ public class ErregistratuF {
 
 		return erregistroBezero;
 	}
-	
+
 	public static boolean PasahitzaBerdina(JPasswordField pasahitzaPass, JPasswordField konfirmarPass) {
-		
+
 		boolean pasahitzaOK = false;
-		    
-		    String pasahitza = new String(pasahitzaPass.getPassword());
-		    String konfirmazioa = new String(konfirmarPass.getPassword());
-		    
-		    if (pasahitza.equals(konfirmazioa)) {
-		        pasahitzaOK = true;
-		    } else {
-		        JOptionPane.showMessageDialog(null, "Pasahitza ez da berdina");
-		        konfirmarPass.setText("");
-		        pasahitzaPass.setText("");
-		    }
-		    
+
+		String pasahitza = new String(pasahitzaPass.getPassword());
+		String konfirmazioa = new String(konfirmarPass.getPassword());
+		try {
+			if (pasahitza.equals(konfirmazioa)) {
+				pasahitzaOK = true;
+			} else {
+				throw new PasahitzaEzBerdina();
+			}
+
+		} catch (PasahitzaEzBerdina ex) {
+			konfirmarPass.setText("");
+			pasahitzaPass.setText("");
+		}
+
 		return pasahitzaOK;
-}
-	
-	
-	
+	}
+
 }
