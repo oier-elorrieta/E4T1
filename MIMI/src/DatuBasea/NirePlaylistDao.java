@@ -63,7 +63,7 @@ public class NirePlaylistDao {
 				preparedStatement.executeUpdate();
 
 			} catch (SQLException e) {
-				System.out.println(e.getMessage());
+				JOptionPane.showMessageDialog(null, "Zure playlistaren izena handiegia da!");
 			}
 		}
 		return lista;
