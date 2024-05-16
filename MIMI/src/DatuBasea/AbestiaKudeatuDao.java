@@ -97,7 +97,6 @@ public class AbestiaKudeatuDao {
 		}
 		return dago;
 
-<<<<<<< HEAD
 }
 	public static String SortuAbestia(String selectedArtista, String AbestiaIzenBerri) throws SQLException {
 		
@@ -194,23 +193,4 @@ public class AbestiaKudeatuDao {
 		}
 	}
 		
-=======
-	}
-
-	public static boolean SortuAbestia(String selectedArtista, String AbestiaIzenBerri) throws SQLException {
-		boolean inserted = false;
-		Time time = new Time(0, 2, 52);
-		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "{CALL abestiagehitu(?,?,?,?)}";
-			try (CallableStatement cstmt = con.prepareCall(kontsulta)) {
-				cstmt.setString(1, AbestiaIzenBerri.substring(0, 2).toUpperCase() + "AU01");
-				cstmt.setString(2, AbestiaIzenBerri);
-				cstmt.setTime(3, time);
-				cstmt.setString(4, "abestia");
-
-				inserted = cstmt.executeUpdate() > 0;
-			}
-		}
-		return inserted;
->>>>>>> 6550db734a5346d81d7d265dec23bcfc624aa7bd
 	}

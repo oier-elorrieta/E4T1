@@ -25,13 +25,10 @@ import DatuBasea.AbeslariDao;
 import DatuBasea.KudeatuArtistaDao;
 import Modelo.Abeslari;
 import funtzioak.BistakArgitaratu;
-<<<<<<< HEAD
 import funtzioak.PlaylistFuntzioak;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSplitPane;
-=======
->>>>>>> 6550db734a5346d81d7d265dec23bcfc624aa7bd
 
 public class ArtistakKudeatu extends JFrame {
 

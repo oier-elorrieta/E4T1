@@ -17,13 +17,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import DatuBasea.AbeslariDao;
 import DatuBasea.AbestiaKudeatuDao;
-<<<<<<< HEAD
 import DatuBasea.AlbumDao;
 import DatuBasea.KudeatuArtistaDao;
-=======
->>>>>>> 6550db734a5346d81d7d265dec23bcfc624aa7bd
 import Modelo.Abeslari;
 import Modelo.Abesti;
 import Modelo.Album;
