@@ -56,7 +56,7 @@ public class PlaylistFuntzioTest {
 		try (BufferedReader br = new BufferedReader(new FileReader("abestiak.txt"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				assertEquals("ABESTI HAU ENTZUN- Mockingbird - 1 - Eminem - 00:04:10", line);
+				assertEquals("ABESTI HAU ENTZUN- Mockingbird - "+erreprodukzioak.get(0)+" - Eminem - 00:04:10", line);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
