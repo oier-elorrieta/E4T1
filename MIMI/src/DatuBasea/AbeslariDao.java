@@ -14,8 +14,18 @@ import Modelo.Abeslari.Mota;
 import Modelo.Album;
 import Modelo.Playlist;
 
+/**
+ * AbeslariDao klasea musikarien datuak kudeatzeko erabiltzen da.
+ */
 public class AbeslariDao {
 
+	/**
+	 * musikariakAtera metodoa musikari guztien zerrenda itzultzen du.
+	 *
+	 * Datu basean dauden musikari guztien informazioa lortu eta itzultzen du.
+	 * 
+	 * @return musikariak Musikarien zerrenda
+	 */
 	public static List<Abeslari> musikariakAtera() {
 		List<Abeslari> musikariak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
@@ -50,6 +60,14 @@ public class AbeslariDao {
 		return musikariak;
 	}
 
+	/**
+	 * Emandako artista izenaren albumak itzultzen dituen metodoa.
+	 *
+	 * Datu basean dauden album guztien informazioa lortu eta itzultzen du.
+	 * 
+	 * @param artistaIzena artista izena
+	 * @return albumen lista, artista izenaren albumak gordetzen dituen ArrayList bat
+	 */
 	public static List<Album> musikariarenAlbum(String artistaIzena) {
 		List<Album> albumak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
@@ -84,6 +102,12 @@ public class AbeslariDao {
 
 	}
 	
+	/**
+	 * AbeslariaAteraPlayList metodoa, Playlist bat hartuta, abeslarien izenak itzultzen ditu.
+	 *
+	 * @param playlist Playlist objektua, abeslarien izenak lortzeko erabiliko dena.
+	 * @return ArrayList<String> objektua, abeslarien izenak gordetzeko erabiliko dena.
+	 */
 	public static  ArrayList<String> AbeslariaAteraPlayList (Playlist playlist) {
 		
 		ArrayList<String> abeslaria = new ArrayList<>();

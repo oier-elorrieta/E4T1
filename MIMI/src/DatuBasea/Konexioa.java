@@ -3,7 +3,12 @@ package DatuBasea;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/**
+ * 
+ * Datu basearekin konexioa sortzeko klasea.
+ * 
+ * Sortu eta itxi konexioa.
+ */
 public class Konexioa {
 
     static String respuesta;
@@ -14,6 +19,10 @@ public class Konexioa {
      * Metodo honek konexioa sortzen du datu-basearekin.
      *
      * @return konexioa sortutako Connection objektua
+     * 
+     * @throws SQLException SQL errore bat gertatzen bada
+     * 
+     *
      */
     public static Connection konexioa() {
         try {
@@ -36,11 +45,9 @@ public class Konexioa {
 		return konektatua;
     }
     
-    /**
-     * It closes the connection to the database.
-     * 
-     * @throws SQLException if an error occurs while closing the connection
-     */
+   /**
+    * Konexioa itzi duen metodoa.
+    */
     public static void konexioaExit() {
     	try {
 	        konektatua.close();

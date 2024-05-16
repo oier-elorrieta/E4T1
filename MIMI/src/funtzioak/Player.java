@@ -4,6 +4,7 @@ import javax.sound.sampled.*;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import com.google.protobuf.Timestamp;
 
@@ -26,6 +27,7 @@ import java.util.TimerTask;
  * Player klasea abestiak erreproduzitzeko eta kontrolatzeko erabiltzen da.
  * Klase honek abestiak kargatzen ditu, erreproduzitzen ditu, eta kontrola
  * egiten du (aurrekoa, hurrengoa, pausa, etab.).
+ * klasea Iplayer interfazea implementatzen du.
  */
 public class Player implements Iplayer {
 
@@ -59,7 +61,8 @@ public class Player implements Iplayer {
 			abestiakPlayer.remove(selectedSong);
 			abestiakPlayer.add(0, selectedSong);
 		} else {
-			System.out.println("Error al inicializar la lista de reproducci�n.");
+			JOptionPane.showMessageDialog(null,
+					"Ezin duzu abestia erreproduzitu", "Error", 0);
 		}
 
 		if (selectedSong != null) {

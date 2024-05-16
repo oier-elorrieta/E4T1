@@ -27,10 +27,10 @@ public class BezeroDao {
 	 * pasahitza datu basean ez badira aurkitzen, errore mezua erakusten du eta
 	 * sartutako eremuak husten ditu.
 	 *
-	 * @param textFieldErabiltzailea Erabiltzailearen erabiltzailea sartzen duen
-	 *                               JTextField objektua.
-	 * @param passwordFieldPasahitza Erabiltzailearen pasahitza sartzen duen
-	 *                               JPasswordField objektua.
+	 * @param erabiltzailea  Erabiltzailearen erabiltzailea sartzen duen
+	 *                             
+	 * @param  pasahitza Erabiltzailearen pasahitza sartzen duen
+	 *                              
 	 * @throws SQLException SQL errore bat gertatzen bada.
 	 */
 	public static boolean LoginKomprobatu(String erabiltzailea , String pasahitza)
@@ -72,6 +72,16 @@ public class BezeroDao {
 		return loginOK;
 	}
 	
+	/**
+	 * AdminLoginKonprobatu metodoa erabiltzailea eta pasahitza konprobatzeko erabiltzen da.
+	 * 
+	 * @param erabiltzailea Erabiltzailearen izena
+	 * @param pasahitza Erabiltzailearen pasahitza
+	 * @return true baldin eta erabiltzailea eta pasahitza egokiak diren, false bestela
+	 * @throws SQLException SQL errorea gertatzen bada
+	 * 
+	 * JOptionPane-ek mezua pantailaratzen du
+	 */
 	public static boolean AdminLoginKonprobatu(String erabiltzailea , String pasahitza) throws SQLException {
 		boolean loginOK = false;
 
@@ -147,6 +157,8 @@ public class BezeroDao {
 
 	/**
 	 * Hartu bezeroaren azken id-a eta sortu berriaren id-a.
+	 * 
+	 * Metodo honek datu basean dauden bezeroen azken id-a hartzen du eta berri bat sortzeko erabiliko den id-a sortzen du.
 	 * 
 	 * @return Bezeroaren azken id-a + 1-ekoa formatu egokian (BZ001, BZ002, ...)
 	 * @throws SQLException SQL errore bat gertatzen bada
@@ -297,17 +309,20 @@ public class BezeroDao {
 
 	}
 	
-	public static void BezeroUpdate(Bezero bz, JTextField textIzena, JTextField textAbizena, JTextField textErabiltzalea, JPasswordField textPasahitza) throws SQLException {
+	/**
+	 * Metodo honek Bezero objektua jasotzen du eta datu basean sartzen du.
+	 *
+	 * @param bz Bezero objektua, sartu nahi den bezeroaren datuekin.
+	 * @throws SQLException SQL errore bat gertatzen bada.
+	 */
+	public static void BezeroUpdate(Bezero bz, String izena, String abizena, String erabiltzalea, String pasahitza) throws SQLException {
 		
 		try (Connection con = Konexioa.konexioa()) {
 			
-			String izena = textIzena.getText();
-			String abizena = textAbizena.getText();
-			String erabil = textErabiltzalea.getText();
-			String pasa = textPasahitza.getText();
 
 
-			String update = "Update bezeroa set izena='" + izena + "', abizena='" + abizena + "', erabiltzailea='" + erabil + "', pasahitza='" + pasa +"' where idbezeroa='" + bz.getId() + "';" ;
+
+			String update = "Update bezeroa set izena='" + izena + "', abizena='" + abizena + "', erabiltzailea='" + erabiltzalea + "', pasahitza='" + pasahitza +"' where idbezeroa='" + bz.getId() + "';" ;
 
 	
 			try {
@@ -327,6 +342,15 @@ public class BezeroDao {
 	}
 	
 	
+	/**
+	 * Bezero klasea errepresentatzen duen objektua.
+	 * Bezeroa free mota bada, premium erosi ondoren premium mota bihurtuko da.
+	 * 
+	 * Datu basean bezeroaren mota aldatzen du.
+	 *
+	 * @param bz Bezero objektua
+	 * @return Bezero objektua mota premium bihurtuta
+	 */
 	public static Bezero BezeroUpdatePremium(Bezero bz) {
 
 
@@ -377,6 +401,12 @@ public class BezeroDao {
 
 	}
 
+/**
+ * BezeroaPremiumEdoEz metodoa, bezeroa premium erabiltzailea den edo ez egiaztatzen du.
+ *
+ * @param bz Bezero objektua, bezeroaren datuak gordetzeko erabiliko den objektua.
+ * @return true, bezeroa premium erabiltzailea den edo ez egiaztatzean.
+ */
 public static boolean BezeroaPremiumEdoEz (Bezero bz) {
 	
 	boolean dago = false;
@@ -408,14 +438,20 @@ public static boolean BezeroaPremiumEdoEz (Bezero bz) {
 	
 }
 
-
-public static boolean Bezeroaexistitu (JTextField txtErabiltzaile) {
+/**
+ * Bezeroaexistitu metodoa, bezeroa existitzen den edo ez egiaztatzen du.
+ * 
+ * @param erabiltzaile Erabiltzailearen erabiltzailea
+ * 
+ * @return true, bezeroa existitzen den edo ez egiaztatzean.
+ */
+public static boolean Bezeroaexistitu (String erabiltzaile) {
 	
 	
 	boolean dago = true;
 	try (Connection con = Konexioa.konexioa()) {
 
-		String kontsulta = "select erabiltzailea from bezeroa where erabiltzailea = '" + txtErabiltzaile.getText()  +  "';";
+		String kontsulta = "select erabiltzailea from bezeroa where erabiltzailea = '" + erabiltzaile  +  "';";
 
 		try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 
@@ -423,8 +459,8 @@ public static boolean Bezeroaexistitu (JTextField txtErabiltzaile) {
 
 				while (rs.next()) {
 					
-					JOptionPane.showMessageDialog(null, txtErabiltzaile.getText() + " existitzen da");
-					txtErabiltzaile.setText("");
+					JOptionPane.showMessageDialog(null, erabiltzaile + " existitzen da");
+					
 					 dago = false;
 
 				}

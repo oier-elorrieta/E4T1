@@ -50,8 +50,9 @@ public class PlayerPodcast implements Iplayer {
 
 		if (!podcastListPlayer.isEmpty() && selectedPodcast != null) {
 			podcastListPlayer.add(0, selectedPodcast);
-		} else {
-			JOptionPane.showMessageDialog(null, "Ez daude podkast, barkatu", "Error", JOptionPane.ERROR_MESSAGE);
+		}else {
+			JOptionPane.showMessageDialog(null,
+					"Ezin duzu podkast erreproduzitu", "Error", 0);
 		}
 
 		// Inicializa el Clip

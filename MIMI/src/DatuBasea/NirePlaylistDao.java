@@ -19,6 +19,12 @@ import Modelo.Audio.Mota;
 import funtzioak.DateFuntzioak;
 
 public class NirePlaylistDao {
+	/**
+	 * Metodo honek bezero baten playlist-ak itzultzen ditu.
+	 *
+	 * @param bz Bezero objektua
+	 * @return Playlist lista
+	 */
 	public static List<Playlist> nirePlaylistAtera(Bezero bz) {
 		List<Playlist> lista = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
@@ -42,6 +48,10 @@ public class NirePlaylistDao {
 		return lista;
 	}
 
+	/**
+	 * Playlist klasea errepresentatzen duen objektua.
+	 * Playlist-ak id, izena eta sorrerako data ditu.
+	 */
 	public static Playlist sortuPlaylist(Bezero bz, String izena) throws SQLException {
 		Playlist lista = new Playlist();
 		java.util.Date sorreradata = DateFuntzioak.StringtoDate(DateFuntzioak.LocalDatetoString(LocalDate.now()));
@@ -69,6 +79,12 @@ public class NirePlaylistDao {
 		return lista;
 	}
 
+	/**
+	 * Hartu azkeneko erabiltzailearen identifikadorea eta sortu berri den erabiltzailearen identifikadorea.
+	 * 
+	 * @return Sortutako erabiltzailearen identifikadorea
+	 * @throws SQLException SQL errore bat gertatu ezkero
+	 */
 	public static String hartuIdPlaylist() throws SQLException {
 
 		String idberria = "";
@@ -103,6 +119,13 @@ public class NirePlaylistDao {
 
 	}
 
+	/**
+	 * Metodo honek, emandako bezeroaren playlist bat ezabatzen du.
+	 *
+	 * @param bz     Bezero objektua, playlista ezabatzeko erabiltzen den bezeroa.
+	 * @param id     Ezabatu nahi den playlistaren identifikadorea.
+	 * @param listak Playlist-ak gordetzeko erabiltzen den lista.
+	 */
 	public static void ezabatuPlayList(Bezero bz, int id, List<Playlist> listak) {
 
 		try (Connection con = Konexioa.konexioa()) {
@@ -128,6 +151,9 @@ public class NirePlaylistDao {
 		}
 	}
 
+	/**
+	 * Playlist klasea abestiak gordetzeko erabiltzen da.
+	 */
 	public static Playlist lortuAbestiakIdPlaylist(Playlist playlist) {
 		ArrayList<Abesti> abestiak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
@@ -161,6 +187,12 @@ public class NirePlaylistDao {
 
 	}
 
+	/**
+	 * Lortu abestiak zerrenda id-aren arabera.
+	 * 
+	 * @param playlist Playlist objektua, abestiak lortzeko erabiliko den zerrenda.
+	 * @return Abesti objektuen ArrayList bat, lortutako abestiak gordetzeko.
+	 */
 	public static ArrayList<Abesti> lortuAbestiListaId(Playlist playlist) {
 		ArrayList<Abesti> abestiak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
@@ -194,7 +226,12 @@ public class NirePlaylistDao {
 		return abestiak;
 
 	}
-	
+
+	/**
+	 * Abesti klasea abestiak gordetzeko erabiliko da. 
+	 * Klase honek abestiaren atributuak gordetzen ditu eta abestiaren informazioa eskuratzeko metodoak eskaintzen ditu.
+	 * @param IdAudio Audioaren identifikadorea
+	 */
 	public static Abesti abestiakIdExpo(String IdAudio) {
 		Abesti abesti = null;
 		try (Connection con = Konexioa.konexioa()) {
@@ -224,14 +261,17 @@ public class NirePlaylistDao {
 		}
 		return abesti;
 	}
-	
-	
-	public static Playlist AteraPlaylistAbestiak (Playlist playlist) {
+
+	/**
+	 * Playlist klasea musika-zerrenda bat errepresentatzen du.
+	 */
+	public static Playlist AteraPlaylistAbestiak(Playlist playlist) {
 
 		ArrayList<Abesti> ab = new ArrayList<>();
-		
+
 		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "SELECT a.iraupena,p.idlist,a.idaudio,a.izena,al.izenburua,al.kolaboratzaileak FROM musikaria m inner join album al using (idmusikaria) inner join abestia USING(idalbum) inner join audio a USING (idaudio) INNER join playlist_abestiak USING (idaudio) inner join playlist p USING (idlist) where idlist = '"+ playlist.getId() +"';";
+			String kontsulta = "SELECT a.iraupena,p.idlist,a.idaudio,a.izena,al.izenburua,al.kolaboratzaileak FROM musikaria m inner join album al using (idmusikaria) inner join abestia USING(idalbum) inner join audio a USING (idaudio) INNER join playlist_abestiak USING (idaudio) inner join playlist p USING (idlist) where idlist = '"
+					+ playlist.getId() + "';";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
@@ -241,83 +281,90 @@ public class NirePlaylistDao {
 						String abestiIzena = rs.getString("izena");
 						String albumIzena = rs.getString("izenburua");
 						String kolaboratzaile = rs.getString("kolaboratzaileak");
-						
-						
-						Abesti abesti = new Abesti(idAudio,iraupena,irudia, Mota.abestia,idAudio,abestiIzena,albumIzena,kolaboratzaile);
+
+						Abesti abesti = new Abesti(idAudio, iraupena, irudia, Mota.abestia, idAudio, abestiIzena,
+								albumIzena, kolaboratzaile);
 						ab.add(abesti);
-						
 
 					}
-					
+
 					playlist.setAbestiList(ab);
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		return playlist;
-		
+
 	}
-	
-public static  ArrayList<Integer> ErreprodukzioakAtera (Playlist playlist) {
-		
-	ArrayList<Integer> erreprodukzioak = new ArrayList<>();
+
+	/**
+	 * ErreprodukzioakAtera metodoa, playlist baten abestiak erreprodukzio kopurua itzultzen duen metodoa.
+	 *
+	 * @param playlist Playlist objektua, abestiak gordetzen dituen lista.
+	 * @return ArrayList<Integer> objektua, abesti bakoitzaren erreprodukzio kopurua gordetzen duen lista.
+	 */
+	public static ArrayList<Integer> ErreprodukzioakAtera(Playlist playlist) {
+
+		ArrayList<Integer> erreprodukzioak = new ArrayList<>();
 		int count = 0;
-		
+
 		try (Connection con = Konexioa.konexioa()) {
-			for(int i = 0; i < playlist.getAbestiList().size(); i++) {
-			String kontsulta = "SELECT count(*) FROM erreprodukzioak where idaudio = '" + playlist.getAbestiList().get(i).getid_abesti() + "';";
-			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
-				try (ResultSet rs = pstmt.executeQuery()) {
-					while (rs.next()) {
-						count = rs.getInt("count(*)");
-					
-					 erreprodukzioak.add(count);
+			for (int i = 0; i < playlist.getAbestiList().size(); i++) {
+				String kontsulta = "SELECT count(*) FROM erreprodukzioak where idaudio = '"
+						+ playlist.getAbestiList().get(i).getid_abesti() + "';";
+				try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+					try (ResultSet rs = pstmt.executeQuery()) {
+						while (rs.next()) {
+							count = rs.getInt("count(*)");
+
+							erreprodukzioak.add(count);
+						}
+
 					}
-			
 				}
-			}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return erreprodukzioak;
-		
-		
-		
+
 	}
 
-public static void ezabatuAbestiaPlayList(int selectedIndex, Playlist lista) {
-	
-	try (Connection con = Konexioa.konexioa()) {
-		String selekzioa = lista.getAbestiList().get(selectedIndex).getId();
+	/**
+	 * Metodo honek aukeratutako abestia ezabatzen du NirePlaylistDao klasean.
+	 *
+	 * @param selectedIndex ezabatu nahi den abestiaren posizioa
+	 * @param lista         abestiak gordetzeko erabiltzen den Playlist objektua
+	 */
+	public static void ezabatuAbestiaPlayList(int selectedIndex, Playlist lista) {
 
-		System.out.println(selekzioa);
+		try (Connection con = Konexioa.konexioa()) {
+			String selekzioa = lista.getAbestiList().get(selectedIndex).getId();
 
-		String kontsulta = "DELETE FROM playlist_abestiak WHERE idaudio= '" + selekzioa + "';";
-		try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+			System.out.println(selekzioa);
 
-			int rowsDeleted = pstmt.executeUpdate();
-			if (rowsDeleted > 0) {
-				lista.getAbestiList().remove(lista.getAbestiList().get(selectedIndex));
-				JOptionPane.showMessageDialog(null, "Abestia ezabatu da!");
+			String kontsulta = "DELETE FROM playlist_abestiak WHERE idaudio= '" + selekzioa + "';";
+			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 
-			} else {
-				JOptionPane.showMessageDialog(null, "Ez da ezer ezabatu!");
+				int rowsDeleted = pstmt.executeUpdate();
+				if (rowsDeleted > 0) {
+					lista.getAbestiList().remove(lista.getAbestiList().get(selectedIndex));
+					JOptionPane.showMessageDialog(null, "Abestia ezabatu da!");
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Ez da ezer ezabatu!");
+				}
 			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 		}
-
-	} catch (SQLException e) {
-		System.out.println(e.getMessage());
 	}
-}
 
-public static void lortuGustukoak(Bezero bz) {
-	
-}
+	public static void lortuGustukoak(Bezero bz) {
 
+	}
 
-	
 }

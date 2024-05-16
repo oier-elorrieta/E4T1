@@ -34,6 +34,13 @@ public class ProfilaBista extends TxantiloiaBista {
 	private JPasswordField textPasahitza;
 	private JPasswordField textKonfirmatu;
 	private JTextField textPremiumMuga;
+	private String izena;
+	private String abizena;
+	private String erabiltzailea;
+	private String pasahitza;
+	private String konfirmatu;
+	
+	
 	LocalDate premiumMuga = LocalDate.now().plusYears(1);
 
 	/**
@@ -158,8 +165,15 @@ public class ProfilaBista extends TxantiloiaBista {
 		btnGorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ErregistratuF.PasahitzaBerdina(textPasahitza, textKonfirmatu);
-					BezeroDao.BezeroUpdate(bz, textIzena, textAbizena, textErabiltzalea, textPasahitza);
+					
+					pasahitza = new String(textPasahitza.getPassword());
+					konfirmatu = new String(textKonfirmatu.getPassword());			
+					izena = textIzena.getText();
+					abizena = textAbizena.getText();
+					erabiltzailea = textErabiltzalea.getText();
+				
+					BezeroDao.BezeroUpdate(bz, izena, abizena, erabiltzailea, pasahitza);
+				
 				} catch (SQLException e1) {
 					
 					e1.printStackTrace();

@@ -17,6 +17,12 @@ import Modelo.Bezero;
 public class KudeatuArtistaDao {
 	
 
+	/**
+	 * Artista bat ezabatzeko metodoa.
+	 *
+	 * @param id    Ezabatu nahi den artistaaren identifikadorea.
+	 * @param lista Abeslarien zerrenda, non artista bat aurkitzen den.
+	 */
 	public static void ezabatuArtista(int id, List<Abeslari> lista) {
 
 		try (Connection con = Konexioa.konexioa()) {
@@ -42,6 +48,15 @@ public class KudeatuArtistaDao {
 		}
 	}
 	
+	/**
+	 * Artista bat gehitzeko metodoa.
+	 *
+	 * @param textua           Artistaaren testua
+	 * @param ArtistaIzenBerri Artista berriaren izena
+	 * @param selectedMota     Artista mota hautatua
+	 * @return                 True, gehitzea ondo gertatu bada; false, bestela
+	 * @throws SQLException   SQL errorea gertatzen bada
+	 */
 	public static boolean InsertArtista(String textua, String ArtistaIzenBerri, String selectedMota) throws SQLException {
 	    boolean inserted = false;
 	    try (Connection con = Konexioa.konexioa()) {

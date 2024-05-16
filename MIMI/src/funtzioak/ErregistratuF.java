@@ -95,6 +95,19 @@ public class ErregistratuF {
 		return erregistroBezero;
 	}
 
+	/**
+	 * PasahitzaBerdina metodoa bi pasahitzak berdinak diren konprobatzen du.
+	 *
+	 * @param pasahitzaPass    lehenengo pasahitzaren JPasswordField objektua
+	 * @param konfirmarPass    bigarren pasahitzaren JPasswordField objektua
+	 * @return                 true, pasahitzak berdinak diren adierazten du; false, bestela
+	 * 
+	 * @throws PasahitzaEzBerdina pasahitzak ezberdinak direnean 
+	 * 
+	 * konfirmarPass.setText("") eta pasahitzaPass.setText("") egiten dira jarritako pasahitzak kenduz
+	 * 
+	 * 
+	 */
 	public static boolean PasahitzaBerdina(JPasswordField pasahitzaPass, JPasswordField konfirmarPass) {
 
 		boolean pasahitzaOK = false;
