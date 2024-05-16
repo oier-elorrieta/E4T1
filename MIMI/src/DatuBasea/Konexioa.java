@@ -24,7 +24,7 @@ public class Konexioa {
 //            String pass = "1234";
             
 
-            String url = "jdbc:mysql://localhost:3306/mimi";
+            String url = "jdbc:mysql://localhost:3307/mimi";
             String user = "root";
             String pass = "";
 
