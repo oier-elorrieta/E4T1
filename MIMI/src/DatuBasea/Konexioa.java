@@ -18,13 +18,13 @@ public class Konexioa {
     public static Connection konexioa() {
         try {
 //            Class.forName("com.mysql.cj.jdbc.Driver");
-
+//
             String url = "jdbc:mysql://10.5.6.108/mimi";
             String user = "admin";
             String pass = "1234";
             
 
-//            String url = "jdbc:mysql://localhost:3306/mimi";
+//            String url = "jdbc:mysql://localhost:3307/mimi";
 //            String user = "root";
 //            String pass = "";
 

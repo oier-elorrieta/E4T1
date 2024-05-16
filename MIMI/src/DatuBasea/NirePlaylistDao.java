@@ -2,7 +2,6 @@ package DatuBasea;
 
 import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +13,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import Modelo.Abesti;
-import Modelo.Album;
 import Modelo.Bezero;
 import Modelo.Playlist;
 import Modelo.Audio.Mota;
@@ -133,7 +131,7 @@ public class NirePlaylistDao {
 	public static Playlist lortuAbestiakIdPlaylist(Playlist playlist) {
 		ArrayList<Abesti> abestiak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "SELECT * FROM `mimi`.`audio` inner join playlist_abestiak USING (idaudio) inner join abestia USING (idaudio) INNER JOIN album USING (idalbum) WHERE idlist = '"
+			String kontsulta = "SELECT * FROM `mimi`.`audio` inner join playlist_abestiak USING (idaudio) WHERE idlist = '"
 					+ playlist.getId() + "' ORDER BY `idaudio` ASC";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
@@ -144,12 +142,10 @@ public class NirePlaylistDao {
 						String mota = rs.getString("mota");
 						String idAudio = rs.getString("idaudio");
 						String abestiIzena = rs.getString("izena");
-						String albumIzena = rs.getString("izenburua");
-						String kolaboratzaile = rs.getString("kolaboratzaileak");
 
 						if (mota.equals("abestia")) {
 							Abesti abesti = new Abesti(idAudio, argitaratzea, irudia, Mota.abestia, idAudio,
-									abestiIzena, albumIzena, kolaboratzaile);
+									abestiIzena, null, null);
 							abestiak.add(abesti);
 						}
 
@@ -162,40 +158,6 @@ public class NirePlaylistDao {
 		playlist.setAbestiList(abestiak);
 
 		return playlist;
-
-	}
-
-	public static ArrayList<Abesti> lortuAbestiListaId(Playlist playlist) {
-		ArrayList<Abesti> abestiak = new ArrayList<>();
-		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "SELECT * FROM `mimi`.`audio` inner join playlist_abestiak USING (idaudio) inner join abestia USING (idaudio) INNER JOIN album USING (idalbum) WHERE idlist = '"
-					+ playlist.getId() + "' ORDER BY `idaudio` ASC";
-			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
-				try (ResultSet rs = pstmt.executeQuery()) {
-					while (rs.next()) {
-
-						Time argitaratzea = rs.getTime("iraupena");
-						Blob irudia = rs.getBlob("irudia");
-						String mota = rs.getString("mota");
-						String idAudio = rs.getString("idaudio");
-						String abestiIzena = rs.getString("izena");
-						String albumIzena = rs.getString("izenburua");
-						String kolaboratzaile = rs.getString("kolaboratzaileak");
-
-						if (mota.equals("abestia")) {
-							Abesti abesti = new Abesti(idAudio, argitaratzea, irudia, Mota.abestia, idAudio,
-									abestiIzena, albumIzena, kolaboratzaile);
-							abestiak.add(abesti);
-						}
-
-					}
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return abestiak;
 
 	}
 
@@ -228,14 +190,14 @@ public class NirePlaylistDao {
 		}
 		return abesti;
 	}
-
-	public static Playlist AteraPlaylistAbestiak(Playlist playlist) {
+	
+	
+	public static Playlist AteraPlaylistAbestiak (Playlist playlist) {
 
 		ArrayList<Abesti> ab = new ArrayList<>();
-
+		
 		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "SELECT a.iraupena,p.idlist,a.idaudio,a.izena,al.izenburua,al.kolaboratzaileak FROM musikaria m inner join album al using (idmusikaria) inner join abestia USING(idalbum) inner join audio a USING (idaudio) INNER join playlist_abestiak USING (idaudio) inner join playlist p USING (idlist) where idlist = '"
-					+ playlist.getId() + "';";
+			String kontsulta = "SELECT a.iraupena,p.idlist,a.idaudio,a.izena,al.izenburua,al.kolaboratzaileak FROM musikaria m inner join album al using (idmusikaria) inner join abestia USING(idalbum) inner join audio a USING (idaudio) INNER join playlist_abestiak USING (idaudio) inner join playlist p USING (idlist) where idlist = '"+ playlist.getId() +"';";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
@@ -245,69 +207,79 @@ public class NirePlaylistDao {
 						String abestiIzena = rs.getString("izena");
 						String albumIzena = rs.getString("izenburua");
 						String kolaboratzaile = rs.getString("kolaboratzaileak");
-
-						Abesti abesti = new Abesti(idAudio, iraupena, irudia, Mota.abestia, idAudio, abestiIzena,
-								albumIzena, kolaboratzaile);
+						
+						
+						Abesti abesti = new Abesti(idAudio,iraupena,irudia, Mota.abestia,idAudio,abestiIzena,albumIzena,kolaboratzaile);
 						ab.add(abesti);
+						
 
 					}
-
+					
 					playlist.setAbestiList(ab);
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
+		
 		return playlist;
-
+		
 	}
-
-	public static int ErreprodukzioakAtera(Playlist playlist) {
-
-		int erreprodukzioak = 0;
+	
+public static  ArrayList<Integer> ErreprodukzioakAtera (Playlist playlist) {
+		
+	ArrayList<Integer> erreprodukzioak = new ArrayList<>();
+		int count = 0;
+		
 		try (Connection con = Konexioa.konexioa()) {
-			String kontsulta = "SELECT count(*) FROM playlist INNER join playlist_abestiak USING (idlist) inner join erreprodukzioak using(idaudio) where idlist = '"
-					+ playlist.getId() + "';";
+			for(int i = 0; i < playlist.getAbestiList().size(); i++) {
+			String kontsulta = "SELECT count(*) FROM erreprodukzioak where idaudio = '" + playlist.getAbestiList().get(i).getid_abesti() + "';";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {
 					while (rs.next()) {
-						erreprodukzioak = rs.getInt("count(*)");
-
+						count = rs.getInt("count(*)");
+					
+					 erreprodukzioak.add(count);
 					}
-
+			
 				}
+			}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return erreprodukzioak;
-
+		
+		
+		
 	}
 
-	public static void ezabatuAbestiaPlayList(int selectedIndex, Playlist lista) {
+public static void ezabatuAbestiaPlayList(int selectedIndex, Playlist lista) {
+	
+	try (Connection con = Konexioa.konexioa()) {
+		String selekzioa = lista.getAbestiList().get(selectedIndex).getId();
 
-		try (Connection con = Konexioa.konexioa()) {
-			String selekzioa = lista.getAbestiList().get(selectedIndex).getId();
+		System.out.println(selekzioa);
 
-			System.out.println(selekzioa);
+		String kontsulta = "DELETE FROM playlist_abestiak WHERE idaudio= '" + selekzioa + "';";
+		try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 
-			String kontsulta = "DELETE FROM playlist_abestiak WHERE idaudio= '" + selekzioa + "';";
-			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+			int rowsDeleted = pstmt.executeUpdate();
+			if (rowsDeleted > 0) {
+				lista.getAbestiList().remove(lista.getAbestiList().get(selectedIndex));
+				JOptionPane.showMessageDialog(null, "Abestia ezabatu da!");
 
-				int rowsDeleted = pstmt.executeUpdate();
-				if (rowsDeleted > 0) {
-					lista.getAbestiList().remove(lista.getAbestiList().get(selectedIndex));
-					JOptionPane.showMessageDialog(null, "Abestia ezabatu da!");
-
-				} else {
-					JOptionPane.showMessageDialog(null, "Ez da ezer ezabatu!");
-				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Ez da ezer ezabatu!");
 			}
-
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 		}
-	}
 
+	} catch (SQLException e) {
+		System.out.println(e.getMessage());
+	}
+}
+
+
+	
 }

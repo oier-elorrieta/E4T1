@@ -1,6 +1,7 @@
 package Bista;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,13 +16,15 @@ import javax.swing.border.EmptyBorder;
 
 import funtzioak.BistakArgitaratu;
 
-public class AdminMenua extends JFrame {
+public class MusikaKudeatu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	
-	
-	public AdminMenua() {
+
+	/**
+	 * Create the frame.
+	 */
+	public MusikaKudeatu() {
 		setResizable(false);
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(MenuaBista.class.getResource("/media.img/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +40,7 @@ public class AdminMenua extends JFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		contentPane.add(splitPane, BorderLayout.NORTH);
 		
-		JLabel lblMenua = new JLabel("Kudeaketa Menua");
+		JLabel lblMenua = new JLabel("Musika Kudeatu");
 		splitPane.setLeftComponent(lblMenua);
 		lblMenua.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMenua.setFont(new Font("Monospaced", Font.PLAIN, 60));
@@ -48,7 +51,7 @@ public class AdminMenua extends JFrame {
 		JButton btnAtzera = new JButton("ATZERA");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.loginJoan();
+				BistakArgitaratu.AdminMenuaJoan();
 				dispose();
 			}
 		});
@@ -74,17 +77,17 @@ public class AdminMenua extends JFrame {
 		panel_1.setBorder(null);
 		splitPane_5.setRightComponent(panel_1);
 		
-		JButton btnEstatistikak = new JButton("Estatistikak");
-		btnEstatistikak.addActionListener(new ActionListener() {
+		JButton btnArtistak = new JButton("Artistak kudeatu");
+		btnArtistak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.EstatistikaBistaJoan();
+				BistakArgitaratu.ArtistakKudeatuJoan();
 				dispose();
 			}
 		});
-		btnEstatistikak.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		splitPane_5.setLeftComponent(btnEstatistikak);
+		btnArtistak.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		splitPane_5.setLeftComponent(btnArtistak);
 		
-		JButton btnPDeskubritu = new JButton("Podcastak Kudeatu");
+		JButton btnPDeskubritu = new JButton("Abestiak Kudeatu");
 		btnPDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -94,10 +97,9 @@ public class AdminMenua extends JFrame {
 		btnPDeskubritu.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		splitPane_4.setLeftComponent(btnPDeskubritu);
 		
-		JButton btnMKudeatu = new JButton("Musika Kudeatu");
+		JButton btnMKudeatu = new JButton("Albumak Kudeatu");
 		btnMKudeatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.MusikaKudeatuJoan();
 				dispose();
 			}
 		});
@@ -108,7 +110,5 @@ public class AdminMenua extends JFrame {
 		panel_2.setBorder(null);
 		splitPane_2.setLeftComponent(panel_2);
 	}
-
-
 
 }

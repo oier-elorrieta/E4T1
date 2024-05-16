@@ -5,12 +5,14 @@ import java.util.List;
 import Bista.AdminMenua;
 import Bista.AlbumBista;
 import Bista.ArtistaBista;
+import Bista.ArtistakKudeatu;
 import Bista.ErregistroBista;
 import Bista.ErreproduktoreaBista;
 import Bista.EstatistikaBista;
 import Bista.LoginBista;
 import Bista.MenuaBista;
 import Bista.MusikaDeskubrituBista;
+import Bista.MusikaKudeatu;
 import Bista.NirePlaylistBista;
 import Bista.PlaylistAbestiakBista;
 import Bista.PlaylistErreproduktoreBista;
@@ -66,14 +68,6 @@ public class BistakArgitaratu {
         }
     }
 
-    public static void MusikaDeskubrituItxi(Bezero bz) {
-        try {
-            MusikaDeskubrituBista frame = new MusikaDeskubrituBista(bz);
-            frame.setVisible(false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void ArtistaBistaJoan(String artistaIzena, List<Album> albumak, Bezero bz) {
         try {
@@ -186,6 +180,26 @@ public class BistakArgitaratu {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public static void MusikaKudeatuJoan () {
+    	
+    	 try {
+         	MusikaKudeatu frame = new MusikaKudeatu();
+             frame.setVisible(true);
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+    }
+    
+    public static void ArtistakKudeatuJoan () {
+    	
+    	try {
+    		ArtistakKudeatu frame = new ArtistakKudeatu();
+    		frame.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+    	}
     }
     
 }
