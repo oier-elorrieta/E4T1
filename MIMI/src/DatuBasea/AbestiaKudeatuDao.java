@@ -1,6 +1,7 @@
 package DatuBasea;
 
 import java.sql.Blob;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import Modelo.Abeslari;
 import Modelo.Abesti;
 import Modelo.Audio.Mota;
 
@@ -59,6 +61,7 @@ public class AbestiaKudeatuDao {
 
 				int rowsDeleted = pstmt.executeUpdate();
 				if (rowsDeleted > 0) {
+					
 					JOptionPane.showMessageDialog(null, "Abestia ezabatu da!");
 
 				} else {
@@ -70,5 +73,45 @@ public class AbestiaKudeatuDao {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public static boolean AbestiaBegiratuDagoen(String selectedArtista, String AbestiaIzenBerri) {
+		boolean dago = false;
+		
+		try (Connection con = Konexioa.konexioa()) {
+			String kontsulta = "SELECT au.izena, m.izenartistikoa from audio au inner join abestia using (idaudio) inner join album using (idalbum) inner join musikaria m using (idmusikaria);";
+			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+				try (ResultSet rs = pstmt.executeQuery()) {
+					while (rs.next()) {
 
+						String abestia = rs.getString("izena");
+						String artista = rs.getString("izenartistikoa");
+						
+						if (abestia == AbestiaIzenBerri && artista == selectedArtista) {
+							dago = true;
+						}
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dago;
+
+}
+	public static boolean SortuAbestia(String selectedArtista, String AbestiaIzenBerri) throws SQLException {
+		 boolean inserted = false;
+	    Time time = new Time (0,2,52);
+	    try (Connection con = Konexioa.konexioa()) {
+	        String kontsulta = "{CALL abestiagehitu(?,?,?,?)}";
+	        try (CallableStatement cstmt = con.prepareCall(kontsulta)) {
+	        	cstmt.setString(1, AbestiaIzenBerri.substring(0,2).toUpperCase() + "AU01");
+	        	cstmt.setString(2, AbestiaIzenBerri);
+	        	cstmt.setTime(3,time);
+	        	cstmt.setString(4, "abestia");
+	        	
+	        	 inserted = cstmt.executeUpdate() > 0;
+	        }
+	    }
+		return inserted;
+	}
 }

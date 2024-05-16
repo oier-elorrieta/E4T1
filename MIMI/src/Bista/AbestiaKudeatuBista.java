@@ -37,6 +37,7 @@ public class AbestiaKudeatuBista extends JFrame {
 	private JButton btnEditatu;
 	private JButton btnSartu;
 	private List<Abesti> abestiak = new ArrayList<>();
+	private List<Abeslari> musikariak = new ArrayList<>();
 	/**
 	 * Create the frame.
 	 */
@@ -72,21 +73,26 @@ public class AbestiaKudeatuBista extends JFrame {
 		scrollPane.setBounds(22, 77, 657, 351);
 		contentPane.add(scrollPane);
 		
-		JList<String> listMusikaria = new JList<String>();
-		listMusikaria.setFont(new Font("Dialog", Font.PLAIN, 14));
-		scrollPane.setViewportView(listMusikaria);
+		JList<String> listAbestiak = new JList<String>();
+		listAbestiak.setFont(new Font("Dialog", Font.PLAIN, 14));
+		scrollPane.setViewportView(listAbestiak);
 
 		DefaultListModel<String> playlistModel = new DefaultListModel<String>();
 		for (int i = 0; i < abestiak.size(); i++) {
 			playlistModel.addElement(abestiak.get(i).getAbestiIzena());
 		}
 		
-		listMusikaria.setModel(playlistModel);
+		listAbestiak.setModel(playlistModel);
 		
 		btnSartu = new JButton("Berria sartu");
 		btnSartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					AbestiaSortu(playlistModel,listAbestiak,musikariak,abestiak);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnSartu.setFont(new Font("Dialog", Font.PLAIN, 17));
@@ -100,10 +106,10 @@ public class AbestiaKudeatuBista extends JFrame {
 		btnEzabatu.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 17));
 		btnEzabatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (listMusikaria.getSelectedIndex() == -1) {
+				if (listAbestiak.getSelectedIndex() == -1) {
 					JOptionPane.showMessageDialog(null, "Ez duzu ezer aukeratu ezabatzeko");
 				} else {
-					AbestiaKudeatuDao.ezabatuAbestia(listMusikaria.getSelectedIndex(), abestiak);
+					AbestiaKudeatuDao.ezabatuAbestia(listAbestiak.getSelectedIndex(), abestiak);
 
 					// Berriro lortu PlayList zerrenda
 			
@@ -116,7 +122,7 @@ public class AbestiaKudeatuBista extends JFrame {
 					}
 
 					// Birkargatu Lista Modelo berriarekin
-					listMusikaria.setModel(playlistModel);
+					listAbestiak.setModel(playlistModel);
 
 					btnEzabatu.setEnabled(false);
 
@@ -148,56 +154,43 @@ public class AbestiaKudeatuBista extends JFrame {
 		btnEzabatu.setEnabled(false);
 		btnEditatu.setEnabled(false);
 		
+		musikariak = AbeslariDao.musikariakAtera();
+		
 		
 	}
 	
-	public static void ArtistaSortu(DefaultListModel<String> playlistModel, JList<String> listmusikaria, List<Abeslari> listak) throws SQLException {
-		String ArtistaIzenBerri = JOptionPane.showInputDialog("Ze izen jarri nahi diozu?");
-		String textua = "";
-		String[] ArtistaMota = new String[2];
-		ArtistaMota[0] = "Bakarlaria";
-		ArtistaMota[1] = "Taldea";
-
-		String selectedMota = (String) JOptionPane.showInputDialog(null,
-				"Aukeratu Mota:", "Aukeratu Mota", JOptionPane.QUESTION_MESSAGE, null,
-				ArtistaMota, ArtistaMota[0]);
+	public static void AbestiaSortu(DefaultListModel<String> playlistModel, JList<String> listAbestiak, List<Abeslari> musikariak, List<Abesti> abestiak) throws SQLException {
+		String AbestiaIzenBerri = JOptionPane.showInputDialog("Ze izen jarri nahi diozu?");
 		
-		JTextArea textArea = new JTextArea(10, 30); // 10 filas y 30 columnas
-        textArea.setLineWrap(true); // Permitir el ajuste de línea
-        textArea.setWrapStyleWord(true); // Ajuste de línea en las palabras
-        
-        // Encapsular el JTextArea en un JScrollPane
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        
-        // Mostrar el JOptionPane con el JScrollPane
-        int result = JOptionPane.showConfirmDialog(null, scrollPane, 
-                "Ingrese su texto:", JOptionPane.OK_CANCEL_OPTION, 
-                JOptionPane.PLAIN_MESSAGE);
-        
-        // Manejar la respuesta del usuario
-        if (result == JOptionPane.OK_OPTION) {
-            // Obtener el texto ingresado
-             textua = textArea.getText();
-        } else {
-            // El usuario canceló la operación
-            JOptionPane.showMessageDialog(null, "ez duzu ezer idatzi");
-        }
+		String[] musikariIzena = new String[musikariak.size()];
+		for (int i = 0; i < musikariak.size(); i++) {
+			musikariIzena[i] = musikariak.get(i).getIzena();
 
-		if (selectedMota != null && selectedMota.length() > 0) {
-			KudeatuArtistaDao.InsertArtista(textua, ArtistaIzenBerri, selectedMota);
-		listak = AbeslariDao.musikariakAtera();
+		}
+
+		String selectedArtista = (String) JOptionPane.showInputDialog(null,
+				"Aukeratu Artista", "Aukeratu Artista", JOptionPane.QUESTION_MESSAGE, null,
+				musikariIzena, musikariIzena[0]);
+
+		if (selectedArtista != null && selectedArtista.length() > 0) {
+			if (AbestiaKudeatuDao.AbestiaBegiratuDagoen(AbestiaIzenBerri, selectedArtista) == true) {
+				JOptionPane.showMessageDialog(null, "Abesti ahu badago");
+			}else {
+				AbestiaKudeatuDao.SortuAbestia(selectedArtista,AbestiaIzenBerri);
+			abestiak = AbestiaKudeatuDao.AbestiakAtera();
 
 		// Limpiar el modelo actual
-		playlistModel.clear();
+			playlistModel.clear();
 
 		// Agregar las playlists actualizadas al modelo
-		for (int i = 0; i < listak.size(); i++) {
-			playlistModel.addElement(listak.get(i).getIzena());
+		for (int i = 0; i < abestiak.size(); i++) {
+			playlistModel.addElement(abestiak.get(i).getAbestiIzena());
 		}
 
 		// Actualizar la lista JList con el nuevo modelo
-		listmusikaria.setModel(playlistModel);
+		listAbestiak.setModel(playlistModel);
 	}
+		}
 
 	}
 }
