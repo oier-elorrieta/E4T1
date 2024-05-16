@@ -32,6 +32,9 @@ import Modelo.Bezero;
 import Modelo.Playlist;
 import funtzioak.BistakArgitaratu;
 import funtzioak.PlaylistFuntzioak;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JSplitPane;
 
 public class ArtistakKudeatu extends JFrame {
 
@@ -41,6 +44,7 @@ public class ArtistakKudeatu extends JFrame {
 	private JButton btnEditatu;
 	private JButton btnSartu;
 	private List<Abeslari> musikariak = new ArrayList<>();
+	private String selectedAukera;
 
 	public ArtistakKudeatu() {
 		
@@ -70,10 +74,22 @@ public class ArtistakKudeatu extends JFrame {
         contentPane.add(lblTitle);
         
         musikariak = AbeslariDao.musikariakAtera();
-        
-        JList<String> listMusikaria = new JList<String>();
-        listMusikaria.addListSelectionListener(new ListSelectionListener() {
-        public void valueChanged(ListSelectionEvent e) {
+
+		DefaultListModel<String> playlistModel = new DefaultListModel<String>();
+		for (int i = 0; i < musikariak.size(); i++) {
+			playlistModel.addElement(musikariak.get(i).getIzena());
+		}
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 106, 690, 319);
+		contentPane.add(scrollPane);
+		
+		
+		JList<String> listMusikaria = new JList<String>();
+		scrollPane.setViewportView(listMusikaria);
+		listMusikaria.setBounds(215, 14, 0, 0);
+		listMusikaria.addListSelectionListener(new ListSelectionListener() {
+		public void valueChanged(ListSelectionEvent e) {
 			if (!e.getValueIsAdjusting()) {
 				if (listMusikaria.getSelectedIndex() >= 0) {
 					btnEzabatu.setEnabled(true);
@@ -82,21 +98,15 @@ public class ArtistakKudeatu extends JFrame {
 			}
 		}
 	});
-        listMusikaria.setFont(new Font("Source Sans Pro Semibold", Font.PLAIN, 14));
-        listMusikaria.setBounds(10, 58, 682, 379);
-		contentPane.add(listMusikaria);
-
-		DefaultListModel<String> playlistModel = new DefaultListModel<String>();
-		for (int i = 0; i < musikariak.size(); i++) {
-			playlistModel.addElement(musikariak.get(i).getIzena());
-		}
+		listMusikaria.setFont(new Font("Source Sans Pro Semibold", Font.PLAIN, 14));
 		listMusikaria.setModel(playlistModel);
 		
 		btnSartu = new JButton("Berria sartu");
 		btnSartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ArtistaSortu(playlistModel,listMusikaria,musikariak);
+					ArtistaSortu(musikariak);
+					Berregin (playlistModel,listMusikaria,musikariak);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -117,19 +127,7 @@ public class ArtistakKudeatu extends JFrame {
 					JOptionPane.showMessageDialog(null, "Ez duzu ezer aukeratu ezabatzeko");
 				} else {
 					KudeatuArtistaDao.ezabatuArtista(listMusikaria.getSelectedIndex(), musikariak);
-
-					// Berriro lortu PlayList zerrenda
-			
-					// Modeloa ezabatu
-					playlistModel.clear();
-
-					// Berriro kargatu modeloa
-					for (int i = 0; i < musikariak.size(); i++) {
-						playlistModel.addElement(musikariak.get(i).getIzena());
-					}
-
-					// Birkargatu Lista Modelo berriarekin
-					listMusikaria.setModel(playlistModel);
+					Berregin (playlistModel,listMusikaria,musikariak);
 
 					btnEzabatu.setEnabled(false);
 
@@ -145,7 +143,14 @@ public class ArtistakKudeatu extends JFrame {
 		btnEditatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				try {
+					selectedAukera = Aukera();
+					String erantzuna = ArtistaAldatu(selectedAukera);
+					KudeatuArtistaDao.UpdateArtista(erantzuna,selectedAukera, musikariak,listMusikaria.getSelectedIndex());
+					Berregin (playlistModel,listMusikaria,musikariak);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -160,55 +165,123 @@ public class ArtistakKudeatu extends JFrame {
 		contentPane.add(btnEditatu);
 		btnEzabatu.setEnabled(false);
 		btnEditatu.setEnabled(false);
+		
+		
+		
 	}
 	
-	public static void ArtistaSortu(DefaultListModel<String> playlistModel, JList<String> listmusikaria, List<Abeslari> listak) throws SQLException {
+	public static void ArtistaSortu(List<Abeslari> listak) throws SQLException {
 		String ArtistaIzenBerri = JOptionPane.showInputDialog("Ze izen jarri nahi diozu?");
+		if (KudeatuArtistaDao.ArtistaBegiratuDagoen(ArtistaIzenBerri)) {
+			JOptionPane.showMessageDialog(null, "Artista hau eziztzen da");
+		}else {
+			
 		String textua = "";
 		String[] ArtistaMota = new String[2];
 		ArtistaMota[0] = "Bakarlaria";
-		ArtistaMota[1] = "Taldea";
+		ArtistaMota[1] = "taldea";
 
 		String selectedMota = (String) JOptionPane.showInputDialog(null,
 				"Aukeratu Mota:", "Aukeratu Mota", JOptionPane.QUESTION_MESSAGE, null,
 				ArtistaMota, ArtistaMota[0]);
 		
-		JTextArea textArea = new JTextArea(10, 30); // 10 filas y 30 columnas
-        textArea.setLineWrap(true); // Permitir el ajuste de línea
-        textArea.setWrapStyleWord(true); // Ajuste de línea en las palabras
+		JTextArea textArea = new JTextArea(10, 30);
+        textArea.setLineWrap(true); 
+        textArea.setWrapStyleWord(true);
         
-        // Encapsular el JTextArea en un JScrollPane
         JScrollPane scrollPane = new JScrollPane(textArea);
         
-        // Mostrar el JOptionPane con el JScrollPane
         int result = JOptionPane.showConfirmDialog(null, scrollPane, 
                 "Ingrese su texto:", JOptionPane.OK_CANCEL_OPTION, 
                 JOptionPane.PLAIN_MESSAGE);
         
-        // Manejar la respuesta del usuario
+
         if (result == JOptionPane.OK_OPTION) {
-            // Obtener el texto ingresado
              textua = textArea.getText();
         } else {
-            // El usuario canceló la operación
             JOptionPane.showMessageDialog(null, "ez duzu ezer idatzi");
         }
 
 		if (selectedMota != null && selectedMota.length() > 0) {
+			
+			
 			KudeatuArtistaDao.InsertArtista(textua, ArtistaIzenBerri, selectedMota);
-		listak = AbeslariDao.musikariakAtera();
+	
+	}
+		}
+	}
 
-		// Limpiar el modelo actual
+	
+	public static String ArtistaAldatu(String selectedAukera) throws SQLException {
+		
+		
+		
+		if (selectedAukera == "izenartistikoa") {
+			
+			String ArtistaIzenBerri = JOptionPane.showInputDialog("Ze izen jarri nahi diozu?");
+			
+			return ArtistaIzenBerri;
+			
+		}else if (selectedAukera == "ezaugarria") {
+			String[] ArtistaMota = new String[2];
+			ArtistaMota[0] = "Bakarlaria";
+			ArtistaMota[1] = "Taldea";
+
+			String selectedMota = (String) JOptionPane.showInputDialog(null,
+					"Aukeratu Mota:", "Aukeratu Mota", JOptionPane.QUESTION_MESSAGE, null,
+					ArtistaMota, ArtistaMota[0]);
+			
+			return selectedMota;
+			
+		}else {
+			String textua = "";
+			
+			
+			JTextArea textArea = new JTextArea(10, 30);
+	        textArea.setLineWrap(true); 
+	        textArea.setWrapStyleWord(true);
+	        
+	        JScrollPane scrollPane = new JScrollPane(textArea);
+
+	        int result = JOptionPane.showConfirmDialog(null, scrollPane, 
+	                "Ingrese su texto:", JOptionPane.OK_CANCEL_OPTION, 
+	                JOptionPane.PLAIN_MESSAGE);
+	        
+	        if (result == JOptionPane.OK_OPTION) {
+	             textua = textArea.getText();
+	             return textua;
+	        } else {
+	            JOptionPane.showMessageDialog(null, "ez duzu ezer idatzi");
+	        }
+		}
+			
+		
+		
+		return selectedAukera;
+	}
+	
+	
+	public static String Aukera() {
+		String[] AukeraAldatu = new String[3];
+		AukeraAldatu[0] = "izenartistikoa";
+		AukeraAldatu[1] = "ezaugarria";
+		AukeraAldatu[2] = "deskribapena";
+
+		String selectedAukera = (String) JOptionPane.showInputDialog(null,
+				"Aukeratu", "Aukeratu", JOptionPane.QUESTION_MESSAGE, null,
+				AukeraAldatu, AukeraAldatu[0]);
+		
+		return selectedAukera;
+	}
+	
+	public static void Berregin (DefaultListModel<String> playlistModel,JList<String> listmusikaria,List<Abeslari> musikariak) {
+
 		playlistModel.clear();
 
-		// Agregar las playlists actualizadas al modelo
-		for (int i = 0; i < listak.size(); i++) {
-			playlistModel.addElement(listak.get(i).getIzena());
+		for (int i = 0; i < musikariak.size(); i++) {
+			playlistModel.addElement(musikariak.get(i).getIzena());
 		}
 
-		// Actualizar la lista JList con el nuevo modelo
 		listmusikaria.setModel(playlistModel);
 	}
-
-	}
-}
+		}

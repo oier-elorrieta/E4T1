@@ -24,9 +24,11 @@ import javax.swing.event.ListSelectionListener;
 
 import DatuBasea.AbeslariDao;
 import DatuBasea.AbestiaKudeatuDao;
+import DatuBasea.AlbumDao;
 import DatuBasea.KudeatuArtistaDao;
 import Modelo.Abeslari;
 import Modelo.Abesti;
+import Modelo.Album;
 import funtzioak.BistakArgitaratu;
 
 public class AbestiaKudeatuBista extends JFrame {
@@ -38,6 +40,7 @@ public class AbestiaKudeatuBista extends JFrame {
 	private JButton btnSartu;
 	private List<Abesti> abestiak = new ArrayList<>();
 	private List<Abeslari> musikariak = new ArrayList<>();
+	private List<Album> album = new ArrayList<>();
 	/**
 	 * Create the frame.
 	 */
@@ -76,6 +79,16 @@ public class AbestiaKudeatuBista extends JFrame {
 		JList<String> listAbestiak = new JList<String>();
 		listAbestiak.setFont(new Font("Dialog", Font.PLAIN, 14));
 		scrollPane.setViewportView(listAbestiak);
+		listAbestiak.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					if (listAbestiak.getSelectedIndex() >= 0) {
+						btnEzabatu.setEnabled(true);
+						btnEditatu.setEnabled(true);
+					}
+				}
+			}
+		});
 
 		DefaultListModel<String> playlistModel = new DefaultListModel<String>();
 		for (int i = 0; i < abestiak.size(); i++) {
@@ -88,9 +101,9 @@ public class AbestiaKudeatuBista extends JFrame {
 		btnSartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					AbestiaSortu(playlistModel,listAbestiak,musikariak,abestiak);
+					AbestiaSortu(musikariak,abestiak,album);
+					Berregin (playlistModel,abestiak, listAbestiak);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -102,7 +115,7 @@ public class AbestiaKudeatuBista extends JFrame {
    
 
 		btnEzabatu = new JButton("Ezabatu");
-		btnEzabatu.setEnabled(false);
+		btnEzabatu.setEnabled(true);
 		btnEzabatu.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 17));
 		btnEzabatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,20 +124,8 @@ public class AbestiaKudeatuBista extends JFrame {
 				} else {
 					AbestiaKudeatuDao.ezabatuAbestia(listAbestiak.getSelectedIndex(), abestiak);
 
-					// Berriro lortu PlayList zerrenda
-			
-					// Modeloa ezabatu
-					playlistModel.clear();
+					Berregin (playlistModel,abestiak, listAbestiak);
 
-					// Berriro kargatu modeloa
-					for (int i = 0; i < abestiak.size(); i++) {
-						playlistModel.addElement(abestiak.get(i).getAbestiIzena());
-					}
-
-					// Birkargatu Lista Modelo berriarekin
-					listAbestiak.setModel(playlistModel);
-
-					btnEzabatu.setEnabled(false);
 
 				}
 			}
@@ -137,8 +138,14 @@ public class AbestiaKudeatuBista extends JFrame {
 		btnEditatu.setFont(new Font("Source Sans Pro Light", Font.PLAIN, 17));
 		btnEditatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				String selectAukera = Aukera();
+				try {
+					AbestiaAldatu(selectAukera,musikariak,album, listAbestiak);
+					Berregin (playlistModel,abestiak, listAbestiak);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -148,49 +155,117 @@ public class AbestiaKudeatuBista extends JFrame {
 		btnEditatu.setEnabled(false);
 		
 		
-
-		btnEditatu.setBounds(730, 312, 240, 41);
-		contentPane.add(btnEditatu);
-		btnEzabatu.setEnabled(false);
-		btnEditatu.setEnabled(false);
-		
 		musikariak = AbeslariDao.musikariakAtera();
 		
 		
 	}
 	
-	public static void AbestiaSortu(DefaultListModel<String> playlistModel, JList<String> listAbestiak, List<Abeslari> musikariak, List<Abesti> abestiak) throws SQLException {
-		String AbestiaIzenBerri = JOptionPane.showInputDialog("Ze izen jarri nahi diozu?");
+	public static void AbestiaSortu( List<Abeslari> musikariak, List<Abesti> abestiak, List<Album> album) throws SQLException {
+		String abestiaIzenBerri = JOptionPane.showInputDialog("Ze izen jarri nahi diozu?");
 		
 		String[] musikariIzena = new String[musikariak.size()];
 		for (int i = 0; i < musikariak.size(); i++) {
 			musikariIzena[i] = musikariak.get(i).getIzena();
 
 		}
-
 		String selectedArtista = (String) JOptionPane.showInputDialog(null,
 				"Aukeratu Artista", "Aukeratu Artista", JOptionPane.QUESTION_MESSAGE, null,
 				musikariIzena, musikariIzena[0]);
+		
+		
+		
+		album = AlbumDao.lortuAlbumIzenak(selectedArtista);
+		
+		
+		String[] albumLista = new String[album.size()];
+		for (int i = 0; i < album.size(); i++) {
+			albumLista[i] = album.get(i).getIzenburua();
+			
+		}
+		
+		String selectedAlbum = (String) JOptionPane.showInputDialog(null,
+				"Aukeratu Artista", "Aukeratu Artista", JOptionPane.QUESTION_MESSAGE, null,
+				albumLista, albumLista[0]);
 
 		if (selectedArtista != null && selectedArtista.length() > 0) {
-			if (AbestiaKudeatuDao.AbestiaBegiratuDagoen(AbestiaIzenBerri, selectedArtista) == true) {
+			if (AbestiaKudeatuDao.AbestiaBegiratuDagoen(abestiaIzenBerri, selectedArtista) == true) {
 				JOptionPane.showMessageDialog(null, "Abesti ahu badago");
 			}else {
-				AbestiaKudeatuDao.SortuAbestia(selectedArtista,AbestiaIzenBerri);
-			abestiak = AbestiaKudeatuDao.AbestiakAtera();
+				AbestiaKudeatuDao.AbestiaAlbum(selectedAlbum,abestiaIzenBerri,selectedArtista);
+			}
+		}
+	}
+	
+public static String AbestiaAldatu(String selectedAukera, List<Abeslari> musikariak, List<Album> album, JList<String> listAbestiak) throws SQLException {
+		
+		
+		
+		if (selectedAukera == "izena") {
+			
+			String ArtistaIzenBerri = JOptionPane.showInputDialog("Ze izen jarri nahi diozu?");
+			
+			return ArtistaIzenBerri;
+			
+		}else if (selectedAukera == "Artista") {
+			String[] musikariIzena = new String[musikariak.size()];
+			for (int i = 0; i < musikariak.size(); i++) {
+				musikariIzena[i] = musikariak.get(i).getIzena();
 
-		// Limpiar el modelo actual
-			playlistModel.clear();
+			}
+			String selectedArtista = (String) JOptionPane.showInputDialog(null,
+					"Aukeratu Artista", "Aukeratu Artista", JOptionPane.QUESTION_MESSAGE, null,
+					musikariIzena, musikariIzena[0]);
+			
+			return selectedArtista;
+			
+		}else {
+			String[] musikariIzena = new String[musikariak.size()];
+			for (int i = 0; i < musikariak.size(); i++) {
+				musikariIzena[i] = musikariak.get(i).getIzena();
 
-		// Agregar las playlists actualizadas al modelo
+			}
+			String selectedArtista = (String) JOptionPane.showInputDialog(null,
+					"Aukeratu Artista", "Aukeratu Artista", JOptionPane.QUESTION_MESSAGE, null,
+					musikariIzena, musikariIzena[0]);
+			
+			album = AlbumDao.lortuAlbumIzenak(selectedArtista);
+			
+			
+			String[] albumLista = new String[album.size()];
+			for (int i = 0; i < album.size(); i++) {
+				albumLista[i] = album.get(i).getIzenburua();
+				
+			}
+			
+			String selectedAlbum = (String) JOptionPane.showInputDialog(null,
+					"Aukeratu Artista", "Aukeratu Artista", JOptionPane.QUESTION_MESSAGE, null,
+					albumLista, albumLista[0]);
+			return selectedAlbum;
+		}
+	}
+	
+	
+	public static String Aukera() {
+		String[] AukeraAldatu = new String[4];
+		AukeraAldatu[0] = "izena";
+		AukeraAldatu[1] = "Albuma";
+		AukeraAldatu[2] = "Artista";
+
+		String selectedAukera = (String) JOptionPane.showInputDialog(null,
+				"Aukeratu", "Aukeratu", JOptionPane.QUESTION_MESSAGE, null,
+				AukeraAldatu, AukeraAldatu[0]);
+		
+		return selectedAukera;
+	}
+	
+	public static void Berregin (DefaultListModel<String> playlistModel,List<Abesti> abestiak, JList<String> listAbestiak) {
+
+		playlistModel.clear();
+
 		for (int i = 0; i < abestiak.size(); i++) {
 			playlistModel.addElement(abestiak.get(i).getAbestiIzena());
 		}
 
-		// Actualizar la lista JList con el nuevo modelo
 		listAbestiak.setModel(playlistModel);
-	}
-		}
-
 	}
 }

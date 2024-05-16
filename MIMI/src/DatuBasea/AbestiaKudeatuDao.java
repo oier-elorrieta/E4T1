@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import Modelo.Abeslari;
 import Modelo.Abesti;
 import Modelo.Audio.Mota;
+import funtzioak.DateFuntzioak;
 
 public class AbestiaKudeatuDao {
 	
@@ -98,24 +99,99 @@ public class AbestiaKudeatuDao {
 		return dago;
 
 }
-	public static boolean SortuAbestia(String selectedArtista, String AbestiaIzenBerri) throws SQLException {
+	public static String SortuAbestia(String selectedArtista, String AbestiaIzenBerri) throws SQLException {
+		
+		String id = "";
+		String idberria = "";
 		 boolean inserted = false;
-	    Time time = new Time (0,2,52);
-	    try (Connection con = Konexioa.konexioa()) {
-	        String kontsulta = "{CALL abestiagehitu(?,?,?,?)}";
-	        try (CallableStatement cstmt = con.prepareCall(kontsulta)) {
-<<<<<<< HEAD
-	        	cstmt.setString(1, AbestiaIzenBerri.substring(1,3).toUpperCase() + "AU01");
+		 Time time = new Time (0,2,52);
+
+		try (Connection con = Konexioa.konexioa()) {
+
+			String kontsulta = "select idaudio from audio where idaudio like '" + selectedArtista.substring(0,2).toUpperCase() + "%'" +  "order by idaudio desc limit 1";
+
+			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+
+				try (ResultSet rs = pstmt.executeQuery()) {
+
+					while (rs.next()) {
+
+						id = rs.getString("idaudio");
+
+						String zenbakiaStr = id.substring(4);
+						int zbk = Integer.parseInt(zenbakiaStr);
+
+						zbk++;
+
+						id = id.substring(0,2) + String.format("%03d", zbk);
+
+					}
+					
+					idberria = selectedArtista.substring(0,2).toUpperCase() + "AU1";
+
+				}
+
+			}
+	
+	        String kontsulta2 = "{CALL abestiagehitu(?,?,?,?)}";
+	        try (CallableStatement cstmt = con.prepareCall(kontsulta2)) {
+	        	if (id != "") {
+	        	cstmt.setString(1, id);
+	        	return id;
+	        	}else {
+	        		cstmt.setString(1, idberria);
+	        		
+	        	}
 	        	cstmt.setString(2, AbestiaIzenBerri);
-=======
-	        	cstmt.setString(1, AbestiaIzenBerri.substring(0,2).toUpperCase() + "AU01");	        	cstmt.setString(2, AbestiaIzenBerri);
->>>>>>> 590494bb5871199ba59cdad7439cef192eb9a40e
 	        	cstmt.setTime(3,time);
 	        	cstmt.setString(4, "abestia");
 	        	
 	        	 inserted = cstmt.executeUpdate() > 0;
 	        }
 	    }
-		return inserted;
+		return idberria;
 	}
-}
+	
+	public static void AbestiaAlbum (String selectedAlbum, String AbestiaIzenBerri, String selectedArtista) throws SQLException {
+		
+		String idalbum = "";
+		
+		String idaudio = SortuAbestia(selectedArtista, AbestiaIzenBerri);
+
+		try (Connection con = Konexioa.konexioa()) {
+			
+			String kontsulta = "Select idalbum from album where izenburua = '" + selectedAlbum + "'";
+			
+			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+
+				try (ResultSet rs = pstmt.executeQuery()) {
+
+					while (rs.next()) {
+						
+						idalbum = rs.getString("idalbum");
+						
+						
+					}
+				}
+			}
+
+			String insert = "insert into abestia (idaudio,idalbum) values (?,?)";
+			
+
+			try {
+				PreparedStatement preparedStatement = con.prepareStatement(insert);
+				preparedStatement.setString(1, idaudio);
+				preparedStatement.setString(2, idalbum);
+
+				preparedStatement.executeUpdate();
+
+				preparedStatement.close();
+
+
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+		
+	}

@@ -48,6 +48,30 @@ public class KudeatuArtistaDao {
 		}
 	}
 	
+	public static boolean ArtistaBegiratuDagoen(String selectedArtista) {
+		boolean dago = false;
+		
+		try (Connection con = Konexioa.konexioa()) {
+			String kontsulta = "SELECT izenartistikoa from musikaria;";
+			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+				try (ResultSet rs = pstmt.executeQuery()) {
+					while (rs.next()) {
+
+						String artista = rs.getString("izenartistikoa");
+						
+						if (artista.equals(selectedArtista)) {
+							dago = true;
+						}
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dago;
+
+}
+	
 	/**
 	 * Artista bat gehitzeko metodoa.
 	 *
@@ -71,4 +95,14 @@ public class KudeatuArtistaDao {
 	    }
 	    return inserted;
 	}
-	}
+	
+	public static void UpdateArtista(String erantzuna, String selectedAukera, List<Abeslari> lista, int id) throws SQLException {
+		try (Connection con = Konexioa.konexioa()) {
+			String update = "Update musikaria set " + selectedAukera + " = '" + erantzuna + "' where idmusikaria = '" + lista.get(id).getId() + "'";
+			try (PreparedStatement pstmt = con.prepareStatement(update)) {
+				pstmt.executeUpdate();
+						
+					}
+				}
+			}
+		}

@@ -110,5 +110,37 @@ public class AlbumDao {
 		return album;
 
 	}
+	
+	public static ArrayList<Album> lortuAlbumIzenak(String selectedArtista) {
+		ArrayList<Album> album = new ArrayList<>();
+		
+		try (Connection con = Konexioa.konexioa()) {
+			String kontsulta = "SELECT album.* FROM album inner join musikaria using (idmusikaria) where izenartistikoa = '" + selectedArtista + "';";
+			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+				try (ResultSet rs = pstmt.executeQuery()) {
+					while (rs.next()) {
+
+						String id = rs.getString("idalbum");
+						String izenburua = rs.getString("izenburua");
+						Date argitaratzea = rs.getDate("urtea");
+						String generoa = rs.getString("generoa");
+						String idmusikaria = rs.getString("idmusikaria");
+						String kolaboratzaileak = rs.getString("kolaboratzaileak");
+						Time albumIraupena = rs.getTime("iraupena");
+
+						Album albumobjetu = new Album(id, izenburua, argitaratzea, 0, generoa, idmusikaria, kolaboratzaileak, albumIraupena);
+						
+						
+						album.add(albumobjetu);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return album;
+
+	}
 
 }
