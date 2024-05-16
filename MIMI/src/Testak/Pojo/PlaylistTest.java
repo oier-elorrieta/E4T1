@@ -103,7 +103,6 @@ public class PlaylistTest {
         abestiList.add(new Abesti(null,null,null,Mota.abestia,null, "Abesti1", "Album1", "Kolaboratzaile1"));
         Playlist playlist = new Playlist("1", "Playlist1", abestiList);
         String expectedToString = "Playlist [id=1, izena=Playlist1, abestiList=[Audio [id=null, iraupena=null, irudia=null, mota=abestia]Abesti [id=null, abestiIzena=Abesti1albumIzena=Album1, kolaboratzaile=Kolaboratzaile1]]]";
-        System.out.println(expectedToString +"\n"+ playlist.toString());
         assertEquals(expectedToString, playlist.toString());
     }
 

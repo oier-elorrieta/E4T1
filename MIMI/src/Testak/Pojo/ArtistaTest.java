@@ -26,7 +26,7 @@ public class ArtistaTest {
 
     @Test
     public void testSetIdp() {
-        Podcaster podcaster = new Podcaster("0", null, null, null);
+        Podcaster podcaster = new Podcaster();
         podcaster.setId("2");
         assertEquals("2", podcaster.getId());
     }
@@ -129,6 +129,21 @@ public class ArtistaTest {
         String expectedToStringa = "[id=1, izena=abeslari1, info=Informazioa]Mota = null";
         assertEquals(expectedToStringa, abeslari.toString());
     }
+    
+    @Test
+    public void testEqualsAbeslari() {
+    	Abeslari abeslari = new Abeslari("1", "abeslari1", "Informazioa", null, null);
+        Abeslari abeslari2 = new Abeslari("1", "abeslari1", "Informazioa", null, null);
+        assertTrue(abeslari.equals(abeslari2));
+    }
+    @Test
+	public void testEqualsPodcaster() {
+		Podcaster podcaster = new Podcaster("1", "podcaster1", "Informazioa", null);
+		Podcaster podcaster2 = new Podcaster("1", "podcaster1", "Informazioa", null);
+		assertTrue(podcaster.equals(podcaster2));
+	}
+    
+    
  
 
 }

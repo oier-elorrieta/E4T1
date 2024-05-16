@@ -191,7 +191,6 @@ public class BezeroDao {
 
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 		}
 		return idberria;
 
@@ -232,10 +231,8 @@ public class BezeroDao {
 
 				con.close();
 
-				System.out.println("Erregistroa ondo egina");
 
 			} catch (SQLException e) {
-				System.out.println(e.getMessage());
 			}
 		}
 	}
@@ -270,10 +267,8 @@ public class BezeroDao {
 
 				preparedStatement.executeUpdate();
 
-				System.out.println("Erregistroa ondo egina");
 
 			} catch (SQLException e) {
-				System.out.println(e.getMessage());
 			}
 		}
 
@@ -302,7 +297,6 @@ public class BezeroDao {
 				preparedStatement.executeUpdate();
 
 			} catch (SQLException e) {
-				System.out.println(e.getMessage());
 			}
 
 		}
@@ -332,7 +326,6 @@ public class BezeroDao {
 				preparedStatement.executeUpdate();
 
 			} catch (SQLException e) {
-				System.out.println(e.getMessage());
 			}
 
 		} catch (SQLException e1) {
@@ -381,7 +374,6 @@ public class BezeroDao {
 
 			} catch (SQLException e) {
 
-				System.out.println(e.getMessage());
 
 			}
 
@@ -432,7 +424,6 @@ public static boolean BezeroaPremiumEdoEz (Bezero bz) {
 
 		}
 	} catch (SQLException e) {
-		System.out.println(e.getMessage());
 	}
 	return true;
 	
@@ -469,7 +460,6 @@ public static boolean Bezeroaexistitu (String erabiltzaile) {
 
 		}
 	} catch (SQLException e) {
-		System.out.println(e.getMessage());
 	}
 	return dago;
 }

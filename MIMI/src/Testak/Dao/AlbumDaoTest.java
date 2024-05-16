@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +17,9 @@ import org.junit.Test;
 import DatuBasea.AlbumDao;
 import DatuBasea.Konexioa;
 import Modelo.Abesti;
+import Modelo.Album;
 import Modelo.Audio.Mota;
+import funtzioak.DateFuntzioak;
 
 public class AlbumDaoTest {
 	@Test
@@ -37,4 +40,21 @@ public class AlbumDaoTest {
 	    	assertEquals(abestiak.get(0).getKolaboratzaile(), null);
 	    
 	}
+	
+	@Test
+	public void testlortuAlbumaIdAudio() {
+	    Date data = new Date(2021-01-01);
+	    String idAudio = "XIAU3";
+	    Album album = AlbumDao.lortuAlbumaIdAudio(idAudio);
+
+	    assertNotNull(album);
+	    assertEquals(album.getId(), "XIAl2");
+	    assertEquals(album.getIzenburua(), "Aurrera");
+	    assertEquals((album.getArgitaratzea()),DateFuntzioak.StringtoDate("2021-01-01")); 
+	    assertEquals(album.getGeneroa(), "Rock");
+	    assertEquals(album.getIdMusikaria(), "XII01");
+	    assertEquals(album.getKolaboratzaileak(), null);
+	}
+
+	
 }

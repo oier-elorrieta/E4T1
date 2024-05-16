@@ -35,7 +35,6 @@ public class PodcasterDaoTest {
 		podcasterListDao.get(0).setInfo("Hemen informazioa jarri behar da");
 		
 
-		// Salta el equals de todo el objeto a la vez
 			assertEquals(podcasterListDao.get(0).getIzena(), "Benetan zabiz?");
 			assertEquals(podcasterListDao.get(0).getId(),"BNZB1");
 			assertEquals(podcasterListDao.get(0).getInfo(), "Hemen informazioa jarri behar da");
@@ -50,14 +49,13 @@ public class PodcasterDaoTest {
 		
 		Time time = new Time(0,7,25);
 		
-
-		// Salta el equals de todo el objeto a la vez
+		
 			assertEquals(podcastTestDao.get(0).getId_Podcast(), "QMAU1");
 			assertEquals(podcastTestDao.get(0).getId(),"QMAU1");
 			assertEquals(podcastTestDao.get(0).getIraupena(),time);
 			assertEquals(podcastTestDao.get(0).getKolaboratzaile(), null);
 			assertEquals(podcastTestDao.get(0).getMota(), Mota.podcast);
-			assertEquals(podcastTestDao.get(0).getPodcast_izena(), "Odio a Taylor Swift");
+			assertEquals(podcastTestDao.get(0).getPodcast_izena(), "Sueños homoeroticos");
 	}
 
 }

@@ -12,7 +12,6 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import Modelo.Abeslari;
 import Modelo.Abesti;
 import Modelo.Audio.Mota;
 
@@ -70,7 +69,7 @@ public class AbestiaKudeatuDao {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			
 		}
 	}
 

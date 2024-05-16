@@ -18,6 +18,7 @@ import DatuBasea.AbeslariDao;
 import DatuBasea.Konexioa;
 import Modelo.Abeslari;
 import Modelo.Album;
+import Modelo.Playlist;
 import funtzioak.DateFuntzioak;
 import funtzioak.ErregistratuF;
 import Modelo.Abeslari.Mota;
@@ -28,19 +29,14 @@ public class AbeslariDaoTest {
 
 	@Test
 	public void testMusikariakAtera() {
-	    // AbeslariDao klasearen bidez musikariak lortzen dira eta listan gorde.
 	    List<Abeslari> musikariak = AbeslariDao.musikariakAtera();
 	    
-	    // musikariak ez direla nuluek eta hutsik ez daudela egiaztatu.
 	    assertNotNull(musikariak);
 	    assertFalse(musikariak.isEmpty());
-	    //Salta el equals de todo el objeto a la vez
 	    	assertEquals(musikariak.get(0).getIzena(), "Bulego");
 	    	assertEquals(musikariak.get(0).getId(),"BUL01");
 	    	assertEquals(musikariak.get(0).getInfo(),"Euskal Herriko indie musika eskenean kokatzen den taldea da. Bere soinuak elektronika eta rock estiloak uztartzen ditu, eta testuak gehienbat euskara daude. Bulegok, gai sozial eta politikoak jorratzen dituen kantak egin ditu, eta musika-ekintza sozial gisa ere jarduten du, bertako komunitatearekin harreman zuzenak izateko ahaleginak eginez. Taldeak modernotasun eta tradizioak batzen ditu, eta euren musikak euskal kulturaren eta gizarteko errealitatearen ardatz nagusiak hartzen ditu.");
 	    	assertEquals(musikariak.get(0).getMota(),Mota.Taldea);
-	    	//assertEquals(musikariak.get(i).getIrudia(), musikariakTest.get(i).getIrudia());
-	    // lortuAreatoakTEST() metodoaren emaitzak eta AbeslariDao-rena berdina direla egiaztatu.
 	}
 
 	@Test
@@ -50,7 +46,7 @@ public class AbeslariDaoTest {
     
 	    assertNotNull(album);
 	    assertFalse(album.isEmpty());
-	    System.out.println(album.get(0).toString());
+
 	    
 	    assertEquals(album.get(0).getId(), "ESAL1");
 	    assertEquals(album.get(0).getIzenburua(), "Estopía");
@@ -61,4 +57,14 @@ public class AbeslariDaoTest {
 	    assertEquals(album.get(0).getKolaboratzaileak(), "Pole eta Fito Fitipaldi");
 	    assertEquals(album.get(0).getAlbumIraupena(), album.get(0).getAlbumIraupena());
 	    }
+	
+	@Test
+	public void testAbeslariaAteraPlayList() {
+		Playlist plDao = new Playlist();
+		plDao.setId("PL003");
+		ArrayList<String> abeslaria = new ArrayList<String>();
+		abeslaria = AbeslariDao.AbeslariaAteraPlayList(plDao);
+		assertEquals(abeslaria.get(0), "Eminem");
+	}
+	
 }
