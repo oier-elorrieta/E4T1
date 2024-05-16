@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -25,7 +24,6 @@ import java.sql.SQLException;
 import Modelo.Abeslari;
 import Modelo.Album;
 import Modelo.Bezero;
-import Modelo.FreeBezero;
 import funtzioak.BistakArgitaratu;
 import funtzioak.Inabegazioa;
 

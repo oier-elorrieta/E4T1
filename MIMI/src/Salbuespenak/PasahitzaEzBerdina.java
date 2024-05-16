@@ -6,6 +6,8 @@ public class PasahitzaEzBerdina extends Exception {
 
 	/**
 	 * 
+	 * PasahitzaEzBerdina klasea sortu dugu, pasahitzak ezberdinak direnean jartzeko
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 

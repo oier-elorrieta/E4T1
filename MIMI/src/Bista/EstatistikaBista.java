@@ -1,6 +1,5 @@
 package Bista;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +13,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import funtzioak.BistakArgitaratu;
-import java.awt.FlowLayout;
 
 public class EstatistikaBista extends JFrame {
 

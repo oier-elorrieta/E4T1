@@ -7,6 +7,8 @@ public class DatubaseErroreaKeyDupe extends Exception{
 	
 	/**
 	 * 
+	 * DatubaseErroreaKeyDupe klasea sortu dugu, datu basean sartu nahi dugun gakoaren balioa datu basean dagoeneko badagoela adierazteko.
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
