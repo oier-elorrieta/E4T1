@@ -8,7 +8,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -30,6 +29,7 @@ import org.jdatepicker.impl.UtilDateModel;
 import DatuBasea.BezeroDao;
 import Modelo.FreeBezero;
 import Modelo.PremiumBezeroa;
+import Salbuespenak.PasahitzaEzBerdina;
 import funtzioak.BistakArgitaratu;
 import funtzioak.DateFuntzioak;
 import funtzioak.ErregistratuF;
@@ -52,9 +52,9 @@ public class ErregistroBista extends JFrame {
 	private JButton btnErosi;
 	private JButton btnGorde;
 	LocalDate premiumMuga = LocalDate.now().plusYears(1);
-	
+
 	public ErregistroBista() {
-	
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 864, 694);
@@ -138,7 +138,7 @@ public class ErregistroBista extends JFrame {
 		txtErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				denaBeteta();
-				
+
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, txtErabiltzaile, 30, SpringLayout.SOUTH, txtIzena);
@@ -206,7 +206,7 @@ public class ErregistroBista extends JFrame {
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 
 		Calendar today = Calendar.getInstance();
-        today.add(Calendar.YEAR, -14); // Gutxienez 14 urte eduki behar ditu
+		today.add(Calendar.YEAR, -14); // Gutxienez 14 urte eduki behar ditu
 		model.setDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
 		model.setSelected(true);
 		datePanel.getModel().setSelected(true);
@@ -246,8 +246,6 @@ public class ErregistroBista extends JFrame {
 		lblErregistro.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		getContentPane().add(lblErregistro);
 
-		
-
 		txtErregistro = new JTextField(LocalDate.now().format(DateFuntzioak.LocalDateFormatua()));
 		txtErregistro.setEditable(false);
 		springLayout.putConstraint(SpringLayout.NORTH, txtErregistro, 418, SpringLayout.NORTH, getContentPane());
@@ -264,7 +262,6 @@ public class ErregistroBista extends JFrame {
 		lblPremium.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		getContentPane().add(lblPremium);
 
-	
 		txtPremium = new JTextField(premiumMuga.format(DateFuntzioak.LocalDateFormatua()));
 		txtPremium.setEditable(false);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtErregistro, -37, SpringLayout.NORTH, txtPremium);
@@ -305,29 +302,36 @@ public class ErregistroBista extends JFrame {
 		btnGorde.setEnabled(false);
 		btnGorde.addActionListener(new ActionListener() {
 
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				
 
 				erregistroBezero = new FreeBezero();
-				
-				
-				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true && BezeroDao.Bezeroaexistitu(txtErabiltzaile.getText()) == true) {
-
-				ErregistratuF.sortuBezeroa(erregistroBezero, txtIzena, txtAbizena, txtErabiltzaile, pasahitzaPass,
-						selectDate, txtErregistro, AukeratuHizkuntza);
-
 				try {
-					BezeroDao.InsertFree(erregistroBezero);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+					if (ErregistratuF.PasahitzaBerdina(pasahitzaPass.getText(), konfirmarPass.getText()) == true
+							&& BezeroDao.Bezeroaexistitu(txtErabiltzaile.getText()) == true) {
+
+						ErregistratuF.sortuBezeroa(erregistroBezero, txtIzena.getText(), txtAbizena.getText(),
+								txtErabiltzaile.getText(), pasahitzaPass.getText(), selectDate, txtErregistro.getText(),
+								AukeratuHizkuntza.getText());
+
+						try {
+							BezeroDao.InsertFree(erregistroBezero);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+
+						BistakArgitaratu.loginJoan();
+						dispose();
+					} else {
+						txtErabiltzaile.setText("");
+						throw new PasahitzaEzBerdina();
+
+					}
+				} catch (PasahitzaEzBerdina ex) {
+					konfirmarPass.setText("");
+					pasahitzaPass.setText("");
 				}
 
-				BistakArgitaratu.loginJoan();
-				dispose();
-			}else {
-				txtErabiltzaile.setText("");
-				
-			}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnGorde, -52, SpringLayout.SOUTH, getContentPane());
@@ -342,22 +346,29 @@ public class ErregistroBista extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				berriaPre = new PremiumBezeroa();
-				
-				
-				 if(ErregistratuF.PasahitzaBerdina(pasahitzaPass, konfirmarPass) == true && BezeroDao.Bezeroaexistitu(txtErabiltzaile.getText()) == true) {
-
-				ErregistratuF.PremiumErosi(premiumMuga, txtIzena, txtAbizena, txtErabiltzaile,
-						pasahitzaPass, selectDate, txtErregistro, AukeratuHizkuntza, berriaPre);
-
 				try {
-					BezeroDao.InsertPremium(berriaPre);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
+					if (ErregistratuF.PasahitzaBerdina(pasahitzaPass.getText(), konfirmarPass.getText()) == true
+							&& BezeroDao.Bezeroaexistitu(txtErabiltzaile.getText()) == true) {
 
-				BistakArgitaratu.loginJoan();
-				dispose();
-			}
+						ErregistratuF.PremiumErosi(premiumMuga, txtIzena.getText(), txtAbizena.getText(),
+								txtErabiltzaile.getText(), pasahitzaPass.getText(), selectDate, txtErregistro.getText(),
+								AukeratuHizkuntza.getText(), berriaPre);
+
+						try {
+							BezeroDao.InsertPremium(berriaPre);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+
+						BistakArgitaratu.loginJoan();
+						dispose();
+					} else {
+						throw new PasahitzaEzBerdina();
+					}
+				} catch (PasahitzaEzBerdina ex) {
+					konfirmarPass.setText("");
+					pasahitzaPass.setText("");
+				}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnErosi, 0, SpringLayout.NORTH, btnGorde);

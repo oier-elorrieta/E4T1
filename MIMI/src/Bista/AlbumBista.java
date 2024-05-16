@@ -64,7 +64,8 @@ public class AlbumBista extends JFrame implements Inabegazioa {
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 
-					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, listMusika.getSelectedIndex(),artistaIzena,albumak, (Player.iragarkia = false));
+					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, listMusika.getSelectedIndex(),
+							artistaIzena, albumak, (Player.iragarkia = false));
 					dispose();
 
 				}
@@ -98,7 +99,7 @@ public class AlbumBista extends JFrame implements Inabegazioa {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BistakArgitaratu.ArtistaBistaJoan(artistaIzena,albumak, bz);
+				BistakArgitaratu.ArtistaBistaJoan(artistaIzena, albumak, bz);
 				dispose();
 			}
 		});
@@ -127,13 +128,12 @@ public class AlbumBista extends JFrame implements Inabegazioa {
 		if (splitKatea.length >= 1) {
 			izenaSplit = splitKatea[0];
 		} else {
-			System.out.println("Txarto");
 		}
 		return izenaSplit;
 	}
 
 	@Override
 	public void profila(Bezero bz) {
-		  BistakArgitaratu.ProfilaBistaJoan(bz);		
+		BistakArgitaratu.ProfilaBistaJoan(bz);
 	}
 }

@@ -174,30 +174,15 @@ public abstract class Artista {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
+        if (obj == null || getClass() != obj.getClass())
             return false;
         Artista other = (Artista) obj;
-        if (irudia == null && other.irudia != null) {
-            return false;
-        }
-        if (irudia != null && !irudia.equals(other.irudia)) {
-            return false;
-        }
-        
-        try {
-            // Convertir Blob a arrays de bytes
-            byte[] thisBytes = this.irudia.getBytes(1, (int) this.irudia.length());
-            byte[] otherBytes = other.irudia.getBytes(1, (int) other.irudia.length());
-            // Comparar arrays de bytes y otros campos
-            return Objects.equals(id, other.id) && Objects.equals(info, other.info) && Arrays.equals(thisBytes, otherBytes)
-                    && Objects.equals(izena, other.izena);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+        return Objects.equals(id, other.id) &&
+               Objects.equals(izena, other.izena) &&
+               Objects.equals(info, other.info);
     }
+
+
 
 
 }

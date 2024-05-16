@@ -1,6 +1,5 @@
 package Bista;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,17 +23,15 @@ import javax.swing.event.ListSelectionListener;
 
 import DatuBasea.AbeslariDao;
 import DatuBasea.KudeatuArtistaDao;
-import DatuBasea.NirePlaylistDao;
-import DatuBasea.PlaylistDao;
 import Modelo.Abeslari;
-import Modelo.Abeslari.Mota;
-import Modelo.Bezero;
-import Modelo.Playlist;
 import funtzioak.BistakArgitaratu;
+<<<<<<< HEAD
 import funtzioak.PlaylistFuntzioak;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSplitPane;
+=======
+>>>>>>> 6550db734a5346d81d7d265dec23bcfc624aa7bd
 
 public class ArtistakKudeatu extends JFrame {
 

@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.util.Objects;
+
 import com.mysql.cj.jdbc.Blob;
 
 /**
@@ -98,6 +100,12 @@ public class Abeslari extends Artista {
 		return super.toString() + "Mota = " + mota;
 	}
 
+
+
+
+
+
+
 	/**
 	 * 
 	 * Abeslariren objektua beste objektu batekin alderatzen duena, berdinak diren
@@ -119,4 +127,6 @@ public class Abeslari extends Artista {
 		Abeslari other = (Abeslari) obj;
 		return mota == other.mota;
 	}
+	
+	
 }

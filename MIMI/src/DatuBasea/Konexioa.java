@@ -3,6 +3,8 @@ package DatuBasea;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
 /**
  * 
  * Datu basearekin konexioa sortzeko klasea.
@@ -33,14 +35,13 @@ public class Konexioa {
 //            String pass = "1234";
             
 
-            String url = "jdbc:mysql://localhost:3307/mimi";
+            String url = "jdbc:mysql://localhost:3306/mimi";
             String user = "root";
             String pass = "";
 
             konektatua = DriverManager.getConnection(url, user, pass); 
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Tira la db");
+           JOptionPane.showMessageDialog(null, "Ezin da konexioa egin, mesedez egiaztatu zure konexioa edo itxi Aplikazioa", "Errorea", JOptionPane.ERROR_MESSAGE);
         }
 		return konektatua;
     }
@@ -56,8 +57,6 @@ public class Konexioa {
 		}
     }
     
-    public static void objetuakHasi() {
-    	
-    }
+
     
 }

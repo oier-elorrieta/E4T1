@@ -14,82 +14,65 @@ import Salbuespenak.PasahitzaEzBerdina;
 public class ErregistratuF {
 
 	/**
-	 * PremiumBezeroa klasea erabiltzailearen premium bezeroaren informazioa
-	 * gordetzeko erabiliko da. Klase honek erabiltzailearen izena, abizena,
-	 * erabiltzaile-izena, pasahitza, jaio-data, erregistro-data, premium mugak,
-	 * mota eta hizkuntza gordetzen ditu.
-	 * 
-	 * @param erregistroBezero  FreeBezero objektua, erregistroa gordetzeko
-	 *                          erabiltzen dena
-	 * @param txtIzena          JTextField objektua, bezeroaren izena jaso ahal
-	 *                          izateko
-	 * @param txtAbizena        JTextField objektua, bezeroaren abizena jaso ahal
-	 *                          izateko
-	 * @param txtErabiltzaile   JTextField objektua, bezeroaren erabiltzaile izena
-	 *                          jaso ahal izateko
-	 * @param pasahitzaPass     JPasswordField objektua, bezeroaren pasahitza jaso
-	 *                          ahal izateko
-	 * @param selectDate        java.util.Date objektua, bezeroaren jaiotze data
-	 *                          jaso ahal izateko
-	 * @param txtErregistro     JTextField objektua, bezeroaren erregistro data jaso
-	 *                          ahal izateko
-	 * @param AukeratuHizkuntza JTextField objektua, bezeroaren aukeratutako
-	 *                          hizkuntza jaso ahal izateko
-	 * @return sortutako PremiumBezero objektua
+	 * ErregistratuF klasea da, bezero berri bat sortzeko erabiliko da. Klase honek
+	 * bezeroaren informazioa gordetzen du. Bezeroaren izena, abizena, erabiltzaile
+	 *
+	 * @param premiumMuga
+	 * @param txtIzena
+	 * @param txtAbizena
+	 * @param txtErabiltzaile
+	 * @param pasahitzaPass
+	 * @param selectDate
+	 * @param txtErregistro
+	 * @param AukeratuHizkuntza
+	 * @param berriaPre
+	 * @return
 	 */
-	@SuppressWarnings("deprecation")
-	public static PremiumBezeroa PremiumErosi(LocalDate premiumMuga, JTextField txtIzena, JTextField txtAbizena,
-			JTextField txtErabiltzaile, JPasswordField pasahitzaPass, Date selectDate, JTextField txtErregistro,
-			JTextField AukeratuHizkuntza, PremiumBezeroa berriaPre) {
+	public static PremiumBezeroa PremiumErosi(LocalDate premiumMuga, String txtIzena, String txtAbizena,
+			String txtErabiltzaile, String pasahitzaPass, Date selectDate, String txtErregistro,
+			String AukeratuHizkuntza, PremiumBezeroa berriaPre) {
 
 		DateFuntzioak.LocalDatetoString(premiumMuga);
-
-		berriaPre.setIzena(txtIzena.getText());
-		berriaPre.setAbizena(txtAbizena.getText());
-		berriaPre.setErabiltzaile(txtErabiltzaile.getText());
-		berriaPre.setPasahitza(pasahitzaPass.getText());
+		berriaPre.setIzena(txtIzena);
+		berriaPre.setAbizena(txtAbizena);
+		berriaPre.setErabiltzaile(txtErabiltzaile);
+		berriaPre.setPasahitza(pasahitzaPass);
 		berriaPre.setJaioData(DateFuntzioak.DatetoString(selectDate));
-		berriaPre.setErregisData(txtErregistro.getText());
+		berriaPre.setErregisData(txtErregistro);
 		berriaPre.setPremiumMuga(DateFuntzioak.LocalDatetoString(premiumMuga));
 		berriaPre.setMota("premium");
-		berriaPre.setHizkuntza(AukeratuHizkuntza.getText());
+		berriaPre.setHizkuntza(AukeratuHizkuntza);
+
+
 
 		return berriaPre;
+
 	}
 
 	/**
-	 * SortuBezeroa metodoa erabiltzen da FreeBezero objektua sortzeko.
-	 *
-	 * @param erregistroBezero  FreeBezero objektua, erregistroa gordetzeko
-	 *                          erabiltzen dena
-	 * @param txtIzena          JTextField objektua, bezeroaren izena jaso ahal
-	 *                          izateko
-	 * @param txtAbizena        JTextField objektua, bezeroaren abizena jaso ahal
-	 *                          izateko
-	 * @param txtErabiltzaile   JTextField objektua, bezeroaren erabiltzaile izena
-	 *                          jaso ahal izateko
-	 * @param pasahitzaPass     JPasswordField objektua, bezeroaren pasahitza jaso
-	 *                          ahal izateko
-	 * @param selectDate        java.util.Date objektua, bezeroaren jaiotze data
-	 *                          jaso ahal izateko
-	 * @param txtErregistro     JTextField objektua, bezeroaren erregistro data jaso
-	 *                          ahal izateko
-	 * @param AukeratuHizkuntza JTextField objektua, bezeroaren aukeratutako
-	 *                          hizkuntza jaso ahal izateko
-	 * @return sortutako FreeBezero objektua
+	 * sortuBezeroa metodoa bezero berri bat sortzeko erabiliko da. Klase honek
+	 * bezeroaren informazioa gordetzen du. Bezeroaren izena, abizena, erabiltzaile
+	 * @param erregistroBezero
+	 * @param txtIzena
+	 * @param txtAbizena
+	 * @param txtErabiltzaile
+	 * @param pasahitzaPass
+	 * @param selectDate
+	 * @param txtErregistro
+	 * @param AukeratuHizkuntza
+	 * @return
 	 */
-	@SuppressWarnings("deprecation")
-	public static FreeBezero sortuBezeroa(FreeBezero erregistroBezero, JTextField txtIzena, JTextField txtAbizena,
-			JTextField txtErabiltzaile, JPasswordField pasahitzaPass, java.util.Date selectDate,
-			JTextField txtErregistro, JTextField AukeratuHizkuntza) {
+	public static FreeBezero sortuBezeroa(FreeBezero erregistroBezero, String txtIzena, String txtAbizena,
+			String txtErabiltzaile, String pasahitzaPass, java.util.Date selectDate,
+			String txtErregistro, String AukeratuHizkuntza) {
 
-		erregistroBezero.setIzena(txtIzena.getText());
-		erregistroBezero.setAbizena(txtAbizena.getText());
-		erregistroBezero.setErabiltzaile(txtErabiltzaile.getText());
-		erregistroBezero.setPasahitza(pasahitzaPass.getText());
+		erregistroBezero.setIzena(txtIzena);
+		erregistroBezero.setAbizena(txtAbizena);
+		erregistroBezero.setErabiltzaile(txtErabiltzaile);
+		erregistroBezero.setPasahitza(pasahitzaPass);
 		erregistroBezero.setJaioData(DateFuntzioak.DatetoString(selectDate));
-		erregistroBezero.setErregisData(txtErregistro.getText());
-		erregistroBezero.setHizkuntza(AukeratuHizkuntza.getText());
+		erregistroBezero.setErregisData(txtErregistro);
+		erregistroBezero.setHizkuntza(AukeratuHizkuntza);
 		erregistroBezero.setMota("free");
 
 		return erregistroBezero;
@@ -108,23 +91,19 @@ public class ErregistratuF {
 	 * 
 	 * 
 	 */
-	public static boolean PasahitzaBerdina(JPasswordField pasahitzaPass, JPasswordField konfirmarPass) {
+	public static boolean PasahitzaBerdina(String pasahitzaPass, String konfirmarPass) throws PasahitzaEzBerdina {
 
 		boolean pasahitzaOK = false;
 
-		String pasahitza = new String(pasahitzaPass.getPassword());
-		String konfirmazioa = new String(konfirmarPass.getPassword());
-		try {
-			if (pasahitza.equals(konfirmazioa)) {
+		
+		
+			if (pasahitzaPass.equals(konfirmarPass)) {
 				pasahitzaOK = true;
 			} else {
 				throw new PasahitzaEzBerdina();
 			}
 
-		} catch (PasahitzaEzBerdina ex) {
-			konfirmarPass.setText("");
-			pasahitzaPass.setText("");
-		}
+		
 
 		return pasahitzaOK;
 	}

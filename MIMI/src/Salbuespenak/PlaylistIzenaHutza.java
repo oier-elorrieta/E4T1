@@ -6,6 +6,8 @@ public class PlaylistIzenaHutza extends Exception {
 
 	/**
 	 * 
+	 * PlaylistIzenaHutza klasea sortu dugu, PlayList bat sortu nahi dugunean izena ez badagoela adierazteko.
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
