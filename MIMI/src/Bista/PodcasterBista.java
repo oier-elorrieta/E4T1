@@ -84,8 +84,7 @@ public class PodcasterBista extends JFrame implements Inabegazioa {
 						BistakArgitaratu.PodcastErreproduktoreraJoan(bz, selectedValue, podcastList, podcaster);
 						dispose();
 					} else {
-						System.out.println("Abestiaren izena ez da aurkitu.");
-					}
+                        JOptionPane.showMessageDialog(null, "Aukeratu podcast bat", "Errorea", JOptionPane.ERROR_MESSAGE);					}
 				}
 			}
 		});

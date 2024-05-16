@@ -91,7 +91,22 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 			public void actionPerformed(ActionEvent e) {
 				PlaylistSortu(bz, playlistModel, listPlaylist, listak, false);
 				listPlaylist.setModel(playlistModel);
+				
+				// Berriro lortu PlayList zerrenda
+				listak = NirePlaylistDao.nirePlaylistAtera(bz);
 
+				// Modeloa ezabatu
+				playlistModel.clear();
+
+				// Berriro kargatu modeloa
+				for (Playlist playlista : listak) {
+					playlistModel.addElement(playlista.getIzena());
+				}
+
+				// Birkargatu Lista Modelo berriarekin
+				listPlaylist.setModel(playlistModel);
+
+				
 				btnEzabatu.setEnabled(false);
 				btnExportatu.setEnabled(false);
 				btnSartu.setEnabled(false);
@@ -139,9 +154,23 @@ public class NirePlaylistBista extends JFrame implements Inabegazioa {
 			public void actionPerformed(ActionEvent e) {
 				// EZARRI PLAYLIST IZENA
 				PlaylistSortu(bz, playlistModel, listPlaylist, listak, true);
+				// Berriro lortu PlayList zerrenda
+				listak = NirePlaylistDao.nirePlaylistAtera(bz);
+
+				// Modeloa ezabatu
+				playlistModel.clear();
+
+				// Berriro kargatu modeloa
+				for (Playlist playlista : listak) {
+					playlistModel.addElement(playlista.getIzena());
+				}
+
+				// Birkargatu Lista Modelo berriarekin
+				listPlaylist.setModel(playlistModel);
 
 				btnEzabatu.setEnabled(false);
 				btnExportatu.setEnabled(false);
+				btnSartu.setEnabled(false);
 			}
 		});
 		btnImportatu.setBounds(730, 232, 240, 41);

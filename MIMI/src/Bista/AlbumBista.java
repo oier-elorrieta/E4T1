@@ -64,7 +64,7 @@ public class AlbumBista extends JFrame implements Inabegazioa {
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 
-					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, listMusika.getSelectedIndex(),artistaIzena,albumak);
+					BistakArgitaratu.ErreproduktoreaBistaJoan(bz, abestiak, album, listMusika.getSelectedIndex(),artistaIzena,albumak, (Player.iragarkia = false));
 					dispose();
 
 				}
@@ -126,7 +126,6 @@ public class AlbumBista extends JFrame implements Inabegazioa {
 		String[] splitKatea = izena.split(" - ");
 		if (splitKatea.length >= 1) {
 			izenaSplit = splitKatea[0];
-			System.out.println("Abestiaren izena: " + izenaSplit);
 		} else {
 			System.out.println("Txarto");
 		}

@@ -104,7 +104,6 @@ public class PodcastDeskubrituBista extends JFrame implements Inabegazioa {
 					for (int i = 0; i < podcasterList.size(); i++) {
 						if (podcasterIzena.equals(podcasterList.get(i).getIzena())) {
 							podcaster = podcasterList.get(i);
-							System.out.println(podcaster.toString());
 							BistakArgitaratu.PodcasterBistaJoan(podcaster, bz);
 							dispose();
 

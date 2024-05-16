@@ -63,7 +63,7 @@ public class NirePlaylistDao {
 				preparedStatement.executeUpdate();
 
 			} catch (SQLException e) {
-				System.out.println(e.getMessage());
+				JOptionPane.showMessageDialog(null, "Zure playlistaren izena handiegia da!");
 			}
 		}
 		return lista;
@@ -161,6 +161,43 @@ public class NirePlaylistDao {
 
 	}
 
+<<<<<<< HEAD
+=======
+	public static ArrayList<Abesti> lortuAbestiListaId(Playlist playlist) {
+		ArrayList<Abesti> abestiak = new ArrayList<>();
+		try (Connection con = Konexioa.konexioa()) {
+			String kontsulta = "SELECT * FROM `mimi`.`audio` inner join playlist_abestiak USING (idaudio) inner join abestia USING (idaudio) INNER JOIN album USING (idalbum) WHERE idlist = '"
+					+ playlist.getId() + "' ORDER BY `idaudio` ASC";
+			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
+				try (ResultSet rs = pstmt.executeQuery()) {
+					while (rs.next()) {
+
+						Time argitaratzea = rs.getTime("iraupena");
+						Blob irudia = rs.getBlob("irudia");
+						String mota = rs.getString("mota");
+						String idAudio = rs.getString("idaudio");
+						String abestiIzena = rs.getString("izena");
+						String albumIzena = rs.getString("izenburua");
+						String kolaboratzaile = rs.getString("kolaboratzaileak");
+
+						if (mota.equals("abestia")) {
+							Abesti abesti = new Abesti(idAudio, argitaratzea, irudia, Mota.abestia, idAudio,
+									abestiIzena, albumIzena, kolaboratzaile);
+							abestiak.add(abesti);
+						}
+
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return abestiak;
+
+	}
+	
+>>>>>>> 539214d3ed24588d8b168374ef469a9880a3343e
 	public static Abesti abestiakIdExpo(String IdAudio) {
 		Abesti abesti = null;
 		try (Connection con = Konexioa.konexioa()) {
