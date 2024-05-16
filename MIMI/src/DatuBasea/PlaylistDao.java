@@ -96,22 +96,4 @@ public class PlaylistDao {
 		return true;
 	}
 	
-<<<<<<< HEAD
-	
-=======
-
-	public static boolean InsertErreprodukzioak(Bezero bz, String idAudio) throws SQLException {
-	    boolean inserted = false;
-	    try (Connection con = Konexioa.konexioa()) {
-	        String kontsulta = "{CALL erreprodukzioagehitu(?, ?)}";
-	        try (CallableStatement cstmt = con.prepareCall(kontsulta)) {
-	            cstmt.setString(1, bz.getId());
-	            cstmt.setString(2, idAudio);
-	            inserted = cstmt.executeUpdate() > 0;
-	        }
-	    }
-	    return inserted;
-	}
-
->>>>>>> 539214d3ed24588d8b168374ef469a9880a3343e
 }

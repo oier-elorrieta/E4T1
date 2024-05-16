@@ -9,7 +9,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import DatuBasea.AbeslariDao;
+import DatuBasea.AlbumDao;
 import DatuBasea.NirePlaylistDao;
+import Modelo.Album;
 import Modelo.Bezero;
 import Modelo.Playlist;
 import funtzioak.BistakArgitaratu;
@@ -38,10 +40,8 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 	private JButton btnExportatu;
 	private JButton btnSartu;
 	private ArrayList<Integer> erreprodukzioak = new ArrayList<>();
-    /**
-     * Create the frame.
-     */
-    public PlaylistAbestiakBista(Bezero bz, Playlist playlist) {
+
+ public PlaylistAbestiakBista(Bezero bz, Playlist playlist) {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1010, 500);
@@ -87,10 +87,7 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 				if (listAbestiPlaylist.getSelectedIndex() >= 0) {
 					btnEzabatu.setEnabled(true);
 					btnExportatu.setEnabled(true);
-<<<<<<< HEAD
-=======
 					btnSartu.setEnabled(true);
->>>>>>> 539214d3ed24588d8b168374ef469a9880a3343e
 				}
 			}
 		}
@@ -156,15 +153,11 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 		btnEzabatu.setEnabled(false);
 		btnExportatu.setEnabled(false);
 		
-<<<<<<< HEAD
+
 		btnSartu = new JButton("Erreprodukzitu");
 		btnSartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BistakArgitaratu.PlaylistErreproduktoreBistaJoan(bz, null, null, ABORT, getName(), null, playlist);
-=======
-		btnSartu = new JButton("Erreproduzitu");
-		btnSartu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 				ArrayList<Album> albumak = new ArrayList<Album>();
 				if (listAbestiPlaylist.getSelectedIndex() == -1) {
 					JOptionPane.showMessageDialog(null, "Ez duzu ezer aukeratu erreprodukzioa hasteko");
@@ -180,8 +173,7 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 					btnExportatu.setEnabled(false);
 					btnEzabatu.setEnabled(false);
 				}
-
->>>>>>> 539214d3ed24588d8b168374ef469a9880a3343e
+				
 			}
 		});
 		btnSartu.setFont(new Font("Dialog", Font.PLAIN, 17));
@@ -195,17 +187,11 @@ public class PlaylistAbestiakBista extends JFrame implements Inabegazioa{
 		btnExportatu.setEnabled(false);
 		btnSartu.setEnabled(false);
 
-	}
+	} 
 	@Override
 	public void profila(Bezero bz) {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-		
-=======
         BistakArgitaratu.ProfilaBistaJoan(bz);		
->>>>>>> 539214d3ed24588d8b168374ef469a9880a3343e
 	}
-
-	}
+    }
 		
 	

@@ -161,8 +161,6 @@ public class NirePlaylistDao {
 
 	}
 
-<<<<<<< HEAD
-=======
 	public static ArrayList<Abesti> lortuAbestiListaId(Playlist playlist) {
 		ArrayList<Abesti> abestiak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
@@ -197,7 +195,6 @@ public class NirePlaylistDao {
 
 	}
 	
->>>>>>> 539214d3ed24588d8b168374ef469a9880a3343e
 	public static Abesti abestiakIdExpo(String IdAudio) {
 		Abesti abesti = null;
 		try (Connection con = Konexioa.konexioa()) {
