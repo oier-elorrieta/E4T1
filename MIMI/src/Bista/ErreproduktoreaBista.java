@@ -17,7 +17,7 @@ import Modelo.Album;
 import Modelo.Bezero;
 
 import Modelo.Playlist;
-
+import Salbuespenak.DatubaseErroreaKeyDupe;
 import funtzioak.BistakArgitaratu;
 import funtzioak.Inabegazioa;
 import funtzioak.Player;
@@ -73,7 +73,7 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 	private Timer timer;
 
 	public ErreproduktoreaBista(Bezero bz, List<Abesti> abestiak, Album album, int index, String artistaIzena,
-			List<Album> albumak, Boolean iragarkia) throws SQLException {
+			List<Album> albumak, Boolean iragarkia) throws SQLException, DatubaseErroreaKeyDupe {
 
 		setResizable(false);
 
@@ -273,7 +273,11 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 				try {
 
-					player.aurreko(bz, lblInfo, lblIrudi, abestiak);
+					try {
+						player.aurreko(bz, lblInfo, lblIrudi, abestiak);
+					} catch (DatubaseErroreaKeyDupe e1) {
+//						e1.printStackTrace();
+					}
 					btnPlay.setText("Pause");
 
 				} catch (SQLException e1) {
@@ -333,7 +337,11 @@ public class ErreproduktoreaBista extends JFrame implements Inabegazioa {
 
 				try {
 
-					player.next(bz, lblInfo, lblIrudi, abestiak);
+					try {
+						player.next(bz, lblInfo, lblIrudi, abestiak);
+					} catch (DatubaseErroreaKeyDupe e1) {
+//						e1.printStackTrace();
+					}
 					btnPlay.setText("Pause");
 
 				} catch (SQLException e1) {

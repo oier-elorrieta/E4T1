@@ -17,7 +17,7 @@ import Modelo.Album;
 import Modelo.Bezero;
 
 import Modelo.Playlist;
-
+import Salbuespenak.DatubaseErroreaKeyDupe;
 import funtzioak.BistakArgitaratu;
 import funtzioak.Inabegazioa;
 import funtzioak.Player;
@@ -175,7 +175,15 @@ public class PlaylistErreproduktoreBista extends JFrame implements Inabegazioa {
 
 		contentPane.add(lblNewLabel);
 
-		player.ateraArgazkia(bz, lblIrudi, Player.indizea, abestiak);
+		try {
+			player.ateraArgazkia(bz, lblIrudi, Player.indizea, abestiak);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (DatubaseErroreaKeyDupe e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		JButton btnMenu = new JButton("Menua");
 		btnMenu.addActionListener(new ActionListener() {
@@ -255,7 +263,11 @@ public class PlaylistErreproduktoreBista extends JFrame implements Inabegazioa {
 
 				try {
 
-					player.aurreko(bz, lblInfo, lblIrudi, abestiak);
+					try {
+						player.aurreko(bz, lblInfo, lblIrudi, abestiak);
+					} catch (DatubaseErroreaKeyDupe e1) {
+//						e1.printStackTrace();
+					}
 					btnPlay.setText("Pause");
 
 
@@ -305,7 +317,11 @@ public class PlaylistErreproduktoreBista extends JFrame implements Inabegazioa {
 
 				try {
 
-					player.next(bz, lblInfo, lblIrudi, abestiak);
+					try {
+						player.next(bz, lblInfo, lblIrudi, abestiak);
+					} catch (DatubaseErroreaKeyDupe e1) {
+//						e1.printStackTrace();
+					}
 					btnPlay.setText("Pause");
 
 				} catch (SQLException e1) {

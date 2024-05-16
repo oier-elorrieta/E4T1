@@ -12,6 +12,8 @@ import DatuBasea.PlaylistDao;
 import Modelo.Abesti;
 import Modelo.Album;
 import Modelo.Bezero;
+import Salbuespenak.DatubaseErroreaKeyDupe;
+
 import java.io.*;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -120,8 +122,9 @@ public class Player implements Iplayer {
 	 * @param lblIrudi Irudia erakusteko JLabel objektua.
 	 * @param abestiak Abestiak gordetzeko List objektua.
 	 * @throws SQLException SQL errorea gertatzen bada.
+	 * @throws DatubaseErroreaKeyDupe 
 	 */
-	public void aurreko(Bezero bz, JLabel lblInfo, JLabel lblIrudi, List<Abesti> abestiak) throws SQLException {
+	public void aurreko(Bezero bz, JLabel lblInfo, JLabel lblIrudi, List<Abesti> abestiak) throws SQLException, DatubaseErroreaKeyDupe {
 		indizea--;
 		if (indizea < 0) {
 			indizea = abestiakPlayer.size() - 1;
@@ -143,8 +146,9 @@ public class Player implements Iplayer {
 	 * @param lblIrudi argazkia erakusteko JLabel-a
 	 * @param abestiak abestiakPlayer listako abestiak
 	 * @throws SQLException SQL errore bat gertatzen bada
+	 * @throws DatubaseErroreaKeyDupe 
 	 */
-	public void next(Bezero bz, JLabel lblInfo, JLabel lblIrudi, List<Abesti> abestiak) throws SQLException {
+	public void next(Bezero bz, JLabel lblInfo, JLabel lblIrudi, List<Abesti> abestiak) throws SQLException, DatubaseErroreaKeyDupe {
 		indizea++;
 		if (indizea >= abestiakPlayer.size()) {
 			indizea = 0;
@@ -195,8 +199,9 @@ public class Player implements Iplayer {
 	 *                 den.
 	 * @param abestiak Abestiak zerrenda, non abestien informazioa gordeta dagoen.
 	 * @throws SQLException SQL errore bat gertatzen bada.
+	 * @throws DatubaseErroreaKeyDupe 
 	 */
-	public void ateraArgazkia(Bezero bz, JLabel lblIrudi, int indizea, List<Abesti> abestiak) throws SQLException {
+	public void ateraArgazkia(Bezero bz, JLabel lblIrudi, int indizea, List<Abesti> abestiak) throws SQLException, DatubaseErroreaKeyDupe {
 		String filename = kenduWav(abestiakPlayer.get(indizea).getName());
 		for (Abesti abesti : abestiak) {
 			if (abesti.getid_abesti().equals(filename)) {
