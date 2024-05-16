@@ -19,7 +19,6 @@ public class AlbumDao {
 	public static List<Abesti> albumarenAbestiak(String album) {
 		List<Abesti> abestiak = new ArrayList<>();
 		try (Connection con = Konexioa.konexioa()) {
-			System.out.println(album);
 			String kontsulta = "SELECT * FROM audio inner join abestia USING (idaudio) inner join album USING (idalbum) WHERE izenburua ='" + album + "';";
 			try (PreparedStatement pstmt = con.prepareStatement(kontsulta)) {
 				try (ResultSet rs = pstmt.executeQuery()) {

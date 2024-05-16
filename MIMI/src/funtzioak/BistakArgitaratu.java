@@ -2,6 +2,7 @@ package funtzioak;
 
 import java.util.List;
 
+import Bista.AbestiaKudeatuBista;
 import Bista.AdminMenua;
 import Bista.AlbumBista;
 import Bista.ArtistaBista;
@@ -196,6 +197,16 @@ public class BistakArgitaratu {
     	
     	try {
     		ArtistakKudeatu frame = new ArtistakKudeatu();
+    		frame.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+    	}
+    }
+    
+ public static void AbestiakKudeatuJoan () {
+    	
+    	try {
+    		AbestiaKudeatuBista frame = new AbestiaKudeatuBista();
     		frame.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();

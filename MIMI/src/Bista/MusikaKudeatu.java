@@ -90,7 +90,7 @@ public class MusikaKudeatu extends JFrame {
 		JButton btnPDeskubritu = new JButton("Abestiak Kudeatu");
 		btnPDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				BistakArgitaratu.AbestiakKudeatuJoan();
 				dispose();
 			}
 		});

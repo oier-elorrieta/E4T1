@@ -63,7 +63,7 @@ public class ArtistakKudeatu extends JFrame {
         btnAtzera.setBounds(10, 11, 89, 23);
         contentPane.add(btnAtzera);
         
-        JLabel lblTitle = new JLabel("");
+        JLabel lblTitle = new JLabel("Artistak Kudeatu");
         lblTitle.setFont(new Font("Monospaced", Font.PLAIN, 60));
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitle.setBounds(119, 11, 759, 55);
@@ -167,7 +167,7 @@ public class ArtistakKudeatu extends JFrame {
 		String ArtistaIzenBerri = JOptionPane.showInputDialog("Ze izen jarri nahi diozu?");
 		String textua = "";
 		String[] ArtistaMota = new String[2];
-		ArtistaMota[0] = "Bakarlari";
+		ArtistaMota[0] = "Bakarlaria";
 		ArtistaMota[1] = "Taldea";
 
 		String selectedMota = (String) JOptionPane.showInputDialog(null,
